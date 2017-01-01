@@ -1,17 +1,45 @@
 Package: joineR
-Version: 1.0-3
-Date: 2012-10-23
-Author: Pete Philipson, Ines Sousa, Peter Diggle, Paula Williamson,
-        Ruwanthi Kolamunnage-Dona, Robin Henderson
-Maintainer: Pete Philipson <pete.philipson@northumbria.ac.uk>
-Title: Joint modelling of repeated measurements and time-to-event data
-Description: Analysis of repeated measurements and time-to-event data
-        via random effects joint models. Some plotting functions and
-        the variogram are also included.
-Depends: R (>= 2.13.0), nlme, MASS, boot, survival, lattice, statmod,
-        gdata
-License: Unlimited
-URL: http://www.r-project.org
-Packaged: 2012-10-26 16:00:35 UTC; petep
-Repository: CRAN
-Date/Publication: 2012-10-26 16:50:53
+Type: Package
+Title: Joint Modelling of Repeated Measurements and Time-to-Event Data
+Version: 1.0.3.9000
+Date: 2017-01-01
+Authors@R: c(
+    person("Pete", "Philipson", email = "pete.philipson@northumbria.ac.uk", 
+        role = c("cre", "aut")),
+    person("Ines", "Sousa", email = "isousa@mct.uminho.pt",
+        role = "aut"),
+    person("Peter J.", "Diggle", email = "p.diggle@lancaster.ac.uk",
+        role = "aut"),
+    person("Paula", "Williamson", email = "p.r.williamson@liverpool.ac.uk",
+        role = "aut"),        
+    person("Ruwanthi", "Kolamunnage-Dona", email = "kdrr@liverpool.ac.uk", 
+        role = "aut"),
+    person("Robin", "Henderson", email = "robin.henderson@ncl.ac.uk",
+        role = "aut"),        
+    person("Graeme L.", "Hickey", email = "graeme.hickey@liverpool.ac.uk", 
+        role = "ctb"),        
+    )
+Maintainer: Graeme L. Hickey <graeme.hickey@liverpool.ac.uk>
+Date: 2016-12-30
+Description: Analysis of repeated measurements and time-to-event data via 
+    random effects joint models. Some plotting functions and the variogram are 
+    also included.
+License: GPL-3
+URL: https://github.com/graemeleehickey/joineR/
+BugReports: https://github.com/graemeleehickey/joineR/issues
+LazyData: true
+Depends: 
+    R (>= 3.1)
+Imports:
+    boot,
+    gdata,
+    lattice,
+    MASS,
+    nlme,
+    statmod,
+    survival
+Suggests:
+    knitr,
+    rmarkdown
+VignetteBuilder: 
+    knitr
