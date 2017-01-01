@@ -1,5 +1,5 @@
-variogram <- function (indv, time, Y) 
-{
+variogram <- function (indv, time, Y) {
+  
     id <- as.vector(indv[!is.na(Y)])
     time <- as.vector(time[!is.na(Y)])
     y <- as.vector(Y[!is.na(Y)])
@@ -8,8 +8,9 @@ variogram <- function (indv, time, Y)
     vv <- c()
     vt <- c()
     vtot <- c()
+    
     for (i in 1:m) {
-        j1 <- id == subject[i]
+        j1 <- (id == subject[i])
         rr1 <- y[j1]
         tt <- time[j1]
         dr <- outer(rr1, rr1, function(x, y) {
@@ -31,10 +32,12 @@ variogram <- function (indv, time, Y)
             l <- l + 1
         }
     }
+    
     svar <- cbind(vt, vv)
     sigma2 <- mean(vtot)
     vrgm <- list(svar = svar, sigma2 = sigma2)
+    
     class(vrgm) <- c("vargm", "list")
     return(vrgm)
-    cat("\n")
+    
 }
