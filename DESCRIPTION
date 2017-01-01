@@ -1,0 +1,17 @@
+Package: joineR
+Version: 1.0-3
+Date: 2012-10-23
+Author: Pete Philipson, Ines Sousa, Peter Diggle, Paula Williamson,
+        Ruwanthi Kolamunnage-Dona, Robin Henderson
+Maintainer: Pete Philipson <pete.philipson@northumbria.ac.uk>
+Title: Joint modelling of repeated measurements and time-to-event data
+Description: Analysis of repeated measurements and time-to-event data
+        via random effects joint models. Some plotting functions and
+        the variogram are also included.
+Depends: R (>= 2.13.0), nlme, MASS, boot, survival, lattice, statmod,
+        gdata
+License: Unlimited
+URL: http://www.r-project.org
+Packaged: 2012-10-26 16:00:35 UTC; petep
+Repository: CRAN
+Date/Publication: 2012-10-26 16:50:53
