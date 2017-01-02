@@ -1,3 +1,38 @@
+#' Transform data to the longitudinal balanced format
+#' 
+#' Transforms a longitudinal data set in the unbalanced format \code{TO} the
+#' balanced format
+#' 
+#' 
+#' @param data a data frame with longitudinal data in the unbalanced format.
+#' That is, in the format of 'one row per observation'.
+#' @param id.col a column number, or column name, in the data frame
+#' \code{data}, where the patient identifier is located.
+#' @param time.col a column number, or column name, in the data frame
+#' \code{data}, where the time measurements are.
+#' @param Y.col a vector of column numbers, or column names, of longitudinal
+#' variables, and/or time dependent covariates in the data frame \code{data}.
+#' @param other.col a vector of column numbers, or column names, of baseline
+#' covariates, and/or other subject level data, as for example, survival data.
+#' Default does not include \code{other.col}.
+#' @return The function returns a data frame with longitudinal data in the
+#' balanced format. The balanced format is considered in this context as the
+#' format where each row has data on each subject. Notice that in this format
+#' we will have multiple columns for the same longitudinal variable, each
+#' corresponding to the variable observed at each time point.
+#' @author Ines Sousa (isousa@@math.uminho.pt)
+#' @seealso \code{to.unbalanced}.
+#' @keywords balanced
+#' @examples
+#' 
+#' simul <- data.frame(num = 1:10, Y1.1 = rnorm(10), Y1.2 = rnorm(10),
+#'                     Y2.1 = rnorm(10),Y2.2 = rnorm(10), age = rnorm(10))
+#' simul <- to.unbalanced(simul, id.col = 1, times = c(1,2), 
+#'                        Y.col = 2:5, other.col = 6)
+#' simul<-to.balanced(simul, id.col = "num", time.col = "time",
+#'                    Y.col = c("Y1.1","Y2.1"), other.col = "age")
+#' 
+#' @export to.balanced
 to.balanced <- function (data, id.col, time.col, Y.col, other.col = NA) {
   
   if (length(id.col) > 1) {
