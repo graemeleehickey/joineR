@@ -15,9 +15,9 @@ Authors@R: c(
     person("Ruwanthi", "Kolamunnage-Dona", email = "kdrr@liverpool.ac.uk", 
         role = "aut"),
     person("Robin", "Henderson", email = "robin.henderson@ncl.ac.uk",
-        role = "aut"),        
+        role = "aut"),
     person("Graeme L.", "Hickey", email = "graeme.hickey@liverpool.ac.uk", 
-        role = "ctb")       
+        role = "aut")
     )
 Maintainer: Graeme L. Hickey <graeme.hickey@liverpool.ac.uk>
 Description: Analysis of repeated measurements and time-to-event data via
