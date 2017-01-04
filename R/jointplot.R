@@ -1,56 +1,59 @@
 #' Joint plot of longitudinal and survival data
 #' 
-#' This function views the longitudinal profile of each unit with the last
-#' longitudinal measurement prior to event-time (censored or not) taken as the
-#' end-point, referred to as time zero. In doing so, the shape of the profile
-#' prior to event-time can be inspected. This can be done over a user-specified
+#' This function views the longitudinal profile of each unit with the last 
+#' longitudinal measurement prior to event-time (censored or not) taken as the 
+#' end-point, referred to as time zero. In doing so, the shape of the profile 
+#' prior to event-time can be inspected. This can be done over a user-specified 
 #' number of time units.
 #' 
-#' @param object name of the \code{jointdata} object.
-#' @param Y.col an element of class \code{character} identifying the
-#' longitudinal response part of the \code{jointdata} object.
-#' @param Cens.col an element of class \code{character} identifying the
-#' survival status or censoring indicator part of the \code{jointdata} object.
-#' @param lag argument which specifies how many units in time we look back
-#' through. Defaults to the maximum observation time across all units.
-#' @param split logical argument which allows the profiles of
-#' units which \sQuote{fail} and those which are \sQuote{censored} to be viewed
-#' in separate panels of the same graph. This is the default option. Using
-#' \code{split=FALSE} will plot all profiles overlaid on a single plot.
-#' @param col1 argument to choose the colour for the profiles of the
-#' \sQuote{censored} units.
-#' @param col2 argument to choose the colour for the profiles of the
-#' \sQuote{failed} units.
-#' @param xlab an element of class \code{character} indicating the title for
-#' the x-axis.
-#' @param ylab an element of class \code{character} indicating the title for
-#' the x-axis.
-#' @param gp1lab an element of class \code{character} for the group
-#' corresponding to a censoring indicator of zero. Typically, the censored
-#' group.
-#' @param gp2lab an element of class \code{character} for the group
-#' corresponding to a censoring indicator of one. Typically, the group
-#' experiencing the event of interest.
-#' @param smooth the smoother span. This gives the proportion of points in the
-#' plot which influence the smooth at each value. Defaults to a value of 2/3.
-#' Larger values give more smoothness. See \code{\link[stats]{lowess}} for further details.
-#' @param mean.profile draw mean profiles if TRUE. Only applies to the
-#' \code{split=TRUE} case.
-#' @param mcol1 argument to choose the colour for the mean profile of the units
-#' with a censoring indicator of zero.
-#' @param mcol2 argument to choose the colour for the mean profile of the units
-#' with a censoring indicator of one.
-#' 
-#' @details The function tailors the \code{\link[lattice]{xyplot}} function to produce
-#' a representation of joint data with longitudinal and survival components.
-#' 
+#' @param object an object of class \code{jointdata}.
+#' @param Y.col an element of class \code{character} identifying the 
+#'   longitudinal response part of the \code{jointdata} object.
+#' @param Cens.col an element of class \code{character} identifying the survival
+#'   status or censoring indicator part of the \code{jointdata} object.
+#' @param lag argument which specifies how many units in time we look back 
+#'   through. Defaults to the maximum observation time across all units.
+#' @param split logical argument which allows the profiles of units which
+#'   \emph{fail} and those which are \emph{censored} to be viewed in separate
+#'   panels of the same graph. This is the default option. Using 
+#'   \code{split=FALSE} will plot all profiles overlaid on a single plot.
+#' @param col1 argument to choose the colour for the profiles of the 
+#'   \emph{censored} units.
+#' @param col2 argument to choose the colour for the profiles of the 
+#'   \emph{failed} units.
+#' @param xlab an element of class \code{character} indicating the title for the
+#'   x-axis.
+#' @param ylab an element of class \code{character} indicating the title for the
+#'   x-axis.
+#' @param gp1lab an element of class \code{character} for the group 
+#'   corresponding to a censoring indicator of zero. Typically, the censored 
+#'   group.
+#' @param gp2lab an element of class \code{character} for the group 
+#'   corresponding to a censoring indicator of one. Typically, the group 
+#'   experiencing the event of interest.
+#' @param smooth the smoother span. This gives the proportion of points in the 
+#'   plot which influence the smooth at each value. Defaults to a value of 2/3. 
+#'   Larger values give more smoothness. See \code{\link[stats]{lowess}} for
+#'   further details.
+#' @param mean.profile draw mean profiles if TRUE. Only applies to the 
+#'   \code{split=TRUE} case.
+#' @param mcol1 argument to choose the colour for the mean profile of the units 
+#'   with a censoring indicator of zero.
+#' @param mcol2 argument to choose the colour for the mean profile of the units 
+#'   with a censoring indicator of one.
+#'   
+#' @details The function tailors the \code{\link[lattice]{xyplot}} function to
+#'   produce a representation of joint data with longitudinal and survival
+#'   components.
+#'   
 #' @author Pete Philipson (\email{pete.philipson@@northumbria.ac.uk})
-#' @keywords models survival
-#' @seealso \code{\link[lattice]{xyplot}}, \code{\link{joint}}, \code{\link{jointdata}}.
-#' 
-#' Wulfsohn MS, Tsiatis AA. A joint model for survival and longitudinal data
-#' measured with error. \emph{Biometrics.} 1997; \strong{53(1)}: 330-339.
-#' 
+#' @keywords dplot
+#' @seealso \code{\link[lattice]{xyplot}}, \code{\link{joint}},
+#'   \code{\link{jointdata}}.
+#'   
+#'   Wulfsohn MS, Tsiatis AA. A joint model for survival and longitudinal data 
+#'   measured with error. \emph{Biometrics.} 1997; \strong{53(1)}: 330-339.
+#'   
 #' @return A lattice plot.
 #' @export
 #' 

@@ -9,15 +9,17 @@ getD <- function(q, arg) {
   return(D)
 }
 
+
 #' Internal function for testing for missing data
-#'
+#' 
 #' @keywords internal
 notNA <- function(x) {
   !(is.vector(x) & length(x) == 1 & any(is.na(x)))
 }
 
+
 #' Internal function for calling separate model fits
-#'
+#' 
 #' @keywords internal
 sep <- function(ests, logical) {
   if (logical == FALSE) {

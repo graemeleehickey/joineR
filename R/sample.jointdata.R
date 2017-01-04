@@ -1,18 +1,20 @@
 #' Sample from a \code{jointdata} object
 #' 
-#' Generic function used to sampling a subset of data from an object of class
+#' Generic function used to sampling a subset of data from an object of class 
 #' \code{jointdata}, with a specific size of number of subjects.
 #' 
 #' @param object an object of class \code{jointdata}.
 #' @param size number of subjects to include in the sampled subset.
-#' @param replace should sampling be with replacement?
-#'
+#' @param replace should sampling be with replacement? Deafault is
+#'   \code{replace=TRUE}.
+#'   
 #' @author Ines Sousa (\email{isousa@@math.uminho.pt})
-#' @seealso \code{\link{sample}}, \code{\link{jointdata}}, \code{\link{UniqueVariables}}.
-#' @keywords survival
-#' 
-#' @return An object of class \code{jointdata}, with data
-#' only on the subjects sampled.
+#' @seealso \code{\link{sample}}, \code{\link{jointdata}},
+#'   \code{\link{UniqueVariables}}.
+#' @keywords data
+#'   
+#' @return An object of class \code{jointdata}, with data only on the subjects
+#'   sampled.
 #' @export
 #' 
 #' @examples
@@ -25,7 +27,7 @@
 #'                             id.col = "num", 
 #'                             time.col = "time")
 #' sample.jointdata(heart.valve.jd, size = 10)
-sample.jointdata <- function (object, size, replace = FALSE) {
+sample.jointdata <- function(object, size, replace = FALSE) {
   
   origid <- object$subject
   id <- sample(object$subject, size = size, replace = replace)

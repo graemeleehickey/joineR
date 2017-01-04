@@ -1,5 +1,6 @@
-#' Internal function for calculating the initial parameters of the longitudinal data sub-model
-#'
+#' Internal function for calculating the initial parameters of the longitudinal
+#' data sub-model
+#' 
 #' @keywords internal
 longst <- function(longdat, long.formula, model, longdat2) {
   

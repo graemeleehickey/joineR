@@ -1,5 +1,5 @@
 #' Internal function for calculating the log-likelihood the maximizer
-#'
+#' 
 #' @keywords internal
 jlike <- function(longdat, survdat, ran, likeests, lgpt) {
   

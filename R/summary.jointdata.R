@@ -1,34 +1,31 @@
 #' Summarise a jointdata object
 #' 
-#' Generic function used to produce summaries of objects of class
+#' Generic function used to produce summaries of objects of class 
 #' \code{jointdata}
 #' 
-#' @param object an object of class \code{jointdata}.
-#' @param ... further arguments for the summary.
-#' 
+#' @inheritParams summary.joint
+#'   
 #' @author Ines Sousa (\email{isousa@@math.uminho.pt})
 #' @seealso \code{\link{jointdata}}, \code{\link{UniqueVariables}}.
-#' @keywords survival
-#' 
-#' @return A list with five elements. Each summarises an
-#' element of the \code{jointdata} object:
-#' 
-#' \item{\code{subjects}}{Gives the number of subjects in the data set.}
-#' 
-#' \item{\code{longitudinal}}{If longitudinal data is available, it gives the names
-#' and class, of the longitudinal variables.}
-#' 
-#' \item{\code{survival}}{If survival data
-#' is available, it gives the number of subjects with failure and censored
-#' survival times.}
-#' 
-#' \item{\code{baseline}}{If baseline covariates is available, it
-#' gives the names and class, of the baseline covariates.}
-#' 
-#' \item{\code{times}}{If
-#' longitudinal data is available, it gives the unique longitudinal time
-#' measurements, if it is a balanced study. In case of unbalanced study , it
-#' will only state it is an unbalanced study.}
+#' @keywords methods
+#'   
+#' @return A list with five elements. Each summarises an element of the
+#'   \code{jointdata} object:
+#'   
+#'   \item{\code{subjects}}{Gives the number of subjects in the data set.}
+#'   
+#'   \item{\code{longitudinal}}{If longitudinal data is available, it gives the
+#'   names and class, of the longitudinal variables.}
+#'   
+#'   \item{\code{survival}}{If survival data is available, it gives the number
+#'   of subjects with failure and censored survival times.}
+#'   
+#'   \item{\code{baseline}}{If baseline covariates is available, it gives the
+#'   names and class, of the baseline covariates.}
+#'   
+#'   \item{\code{times}}{If longitudinal data is available, it gives the unique
+#'   longitudinal time measurements, if it is a balanced study. In case of
+#'   unbalanced study , it will only state it is an unbalanced study.}
 #' @export
 #' 
 #' @examples

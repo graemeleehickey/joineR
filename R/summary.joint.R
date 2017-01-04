@@ -1,26 +1,25 @@
 #' Summarise a random effects joint model fit
 #' 
-#' Generic function used to produce summary information from a fitted random
+#' Generic function used to produce summary information from a fitted random 
 #' effects joint model as represented by \code{object} of class \code{joint}.
 #' 
-#' @param object an object inheriting from class \code{joint} representing a
-#' fitted random effects joint model.
-#' @param variance should the variance components be output as variances or
-#' standard deviations? Defaults to \code{variance=TRUE}.
+#' @param object an object of class \code{jointdata}.
+#' @param variance should the variance components be output as variances or 
+#'   standard deviations? Defaults to \code{variance=TRUE}.
 #' @param ... further arguments for the summary.
-#' 
+#'   
 #' @author Pete Philipson (\email{pete.philipson@@northmbria.ac.uk})
-#' @keywords models
-#' 
-#' @return An object inheriting from class \code{summary.joint} with all
-#' components included in \code{object} (see \code{\link{joint}} for a full
-#' description of the components) plus the following components:
-#' 
-#' \item{\code{nobs}}{the total number of (typically longitudinal) observations (i.e.
-#' rows in an unbalanced data set).}
-#' 
-#' \item{\code{ngrps}}{the number of groups in the
-#' analysed dataset, often individual subjects.}
+#' @keywords methods
+#'   
+#' @return An object inheriting from class \code{summary.joint} with all 
+#'   components included in \code{object} (see \code{\link{joint}} for a full 
+#'   description of the components) plus the following components:
+#'   
+#'   \item{\code{nobs}}{the total number of (typically longitudinal)
+#'   observations (i.e. rows in an unbalanced data set).}
+#'   
+#'   \item{\code{ngrps}}{the number of groups in the analysed dataset, often
+#'   individual subjects.}
 #' @export
 #' 
 #' @examples
@@ -43,7 +42,7 @@
 #'              surv.formula = Surv(fuyrs,status) ~ hs, 
 #'              model = "intslope")
 #' summary(fit)
-summary.joint <- function (object, variance = TRUE, ...) {
+summary.joint <- function(object, variance = TRUE, ...) {
   
   # Random effects
   cat("Random effects joint model\n")

@@ -1,28 +1,28 @@
 #' Plot longitudinal data
 #' 
-#' Plot longitudinal data of an object of class \code{jointdata}, for a
-#' longitudinal variable. It is possible to plot all the subjects in the data
+#' Plot longitudinal data of an object of class \code{jointdata}, for a 
+#' longitudinal variable. It is possible to plot all the subjects in the data 
 #' set, or just a selected \code{subset}. See \code{\link{subset.jointdata}}.
 #' 
 #' @param x object of class \code{jointdata}.
-#' @param Y.col column number, or column name, of longitudinal variable to be
-#' plotted. Defaults to \code{Y.col=NA}, plotting all longitudinal variables.
-#' @param type the type of line to be plotted, see \code{\link[graphics]{plot}} for further
-#' details.
+#' @param Y.col column number, or column name, of longitudinal variable to be 
+#'   plotted. Defaults to \code{Y.col=NA}, plotting all longitudinal variables.
+#' @param type the type of line to be plotted, see \code{\link[graphics]{plot}}
+#'   for further details.
 #' @param xlab a title for the x-axis, see \code{\link[graphics]{title}}.
-#' @param xlim,ylim numeric vectors of length 2, giving the x and y coordinates
-#' ranges, see \code{\link[graphics]{plot.window}} for further details.
+#' @param xlim,ylim numeric vectors of length 2, giving the x and y coordinates 
+#'   ranges, see \code{\link[graphics]{plot.window}} for further details.
 #' @param main an overall title for the plot; see \code{\link[graphics]{title}}.
-#' @param pty a character specifying the type of plot region to be used, see
-#' \code{\link[graphics]{par}} for details.
+#' @param pty a character specifying the type of plot region to be used, see 
+#'   \code{\link[graphics]{par}} for details.
 #' @param ... other graphical arguments; see \code{\link[graphics]{plot}}.
-#' 
+#'   
 #' @author Ines Sousa (\email{isousa@@math.uminho.pt})
-#' @keywords plot, longitudinal, jointdata
-#' 
-#' @return A graphical device with a plot for longitudinal data. Other
-#' functions are useful to be used with this as \code{\link[graphics]{lines}} and
-#' \code{\link[graphics]{points}}.
+#' @keywords dplot
+#'   
+#' @return A graphical device with a plot for longitudinal data. Other functions
+#'   are useful to be used with this as \code{\link[graphics]{lines}} and 
+#'   \code{\link[graphics]{points}}.
 #' @export
 #' 
 #' @examples
@@ -37,8 +37,8 @@
 #'                       id.col = "num",
 #'                       time.col = "time")
 #' plot(heart.jd, Y.col = "grad", col = "grey")
-plot.jointdata <- function (x, Y.col, type, xlab, xlim = NULL, ylim = NULL, 
-                            main = NA, pty, ...) {
+plot.jointdata <- function(x, Y.col, type, xlab, xlim = NULL, ylim = NULL, 
+                           main = NA, pty, ...) {
   
   if (missing(Y.col)) {Y.col <- NA}
   if (missing(type)) {type = "l"}

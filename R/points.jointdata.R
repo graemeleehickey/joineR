@@ -1,20 +1,17 @@
 #' Add points to an existing jointdata plot
 #' 
-#' Add points to an existing plot of an object of class \code{jointdata}, for a
-#' longitudinal variable. It is possible plot all the subjects in the data set,
+#' Add points to an existing plot of an object of class \code{jointdata}, for a 
+#' longitudinal variable. It is possible plot all the subjects in the data set, 
 #' or just a selected \code{subset}. See \code{\link{subset.jointdata}}.
 #' 
-#' @param x object of class \code{jointdata}.
-#' @param Y.col column number, or column name, of longitudinal variable to be
-#' plotted.
-#' @param ... other graphical arguments.
-#' 
+#' @inheritParams plot.jointdata
+#'   
 #' @author Ines Sousa (\email{isousa@@math.uminho.pt})
-#' @keywords points, longitudinal, jointdata
-#' 
-#' @return A graphical device with a plot for longitudinal data. Other
-#' functions are useful to be used with this as \code{\link[graphics]{plot}} and
-#' \code{\link[graphics]{lines}}.
+#' @keywords aplot
+#'   
+#' @return A graphical device with a plot for longitudinal data. Other functions
+#'   are useful to be used with this as \code{\link[graphics]{plot}} and 
+#'   \code{\link[graphics]{lines}}.
 #' @export
 #' 
 #' @examples
@@ -36,7 +33,7 @@
 #' 
 #' plot(heart.jd.1, Y.col = "grad", type = "p")
 #' points(heart.jd.2, Y.col = "grad", col = "blue", pch = 20)
-points.jointdata <- function (x, Y.col, ...) {
+points.jointdata <- function(x, Y.col, ...) {
   
   object <- x
   if (!is.vector(Y.col) | length(Y.col) > 1) {

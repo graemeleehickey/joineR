@@ -1,18 +1,18 @@
 #' Subsetting object of class \code{jointdata}
 #' 
-#' Returns an object of class \code{jointdata} which is a subset of an original
+#' Returns an object of class \code{jointdata} which is a subset of an original 
 #' object of class \code{jointdata}.
 #' 
 #' @param x an object of class \code{jointdata}.
-#' @param subj.subset vector of subject identifiers, to include in the data
-#' subset. This must be a unique vector of patient identifiers.
+#' @param subj.subset vector of subject identifiers, to include in the data 
+#'   subset. This must be a unique vector of patient identifiers.
 #' @param ... further arguments to be passed to or from other methods.
-#'
+#'   
 #' @author Ines Sousa (\email{isousa@@math.uminho.pt})
-#' @keywords jointdata
-#'  
-#' @return An object of class \code{jointdata}, with data
-#' only on a subset of subjects.
+#' @keywords data
+#'   
+#' @return An object of class \code{jointdata}, with data only on a subset of
+#'   subjects.
 #' @export
 #' 
 #' @examples
@@ -28,7 +28,7 @@
 #'                       time.col = "time")
 #' take <- heart.jd$survival$num[heart.jd$survival$status == 0]
 #' heart.jd.cens <- subset(heart.jd, take)
-subset.jointdata <- function (x, subj.subset, ...) {
+subset.jointdata <- function(x, subj.subset, ...) {
   
   id <- subj.subset
   re <- x

@@ -1,27 +1,22 @@
 #' Transform data to the longitudinal unbalanced format
 #' 
-#' Transforms a longitudinal data set in the balanced format to the
-#' unbalanced format.
+#' Transforms a longitudinal data set in the balanced format to the unbalanced
+#' format.
 #' 
-#' @param data a data frame with longitudinal data in the balanced format. That
-#' is, in the format of 'one row per subject'.
-#' @param id.col a column number, or column name, in the data frame
-#' \code{data}, where the patient identifications is.
-#' @param times a vector with the unique time points where the patients are
-#' observed. This is the study design time points in a balanced data set.
-#' @param Y.col a vector of column numbers, or column names, of longitudinal
-#' variables, and/or time dependent covariates in the data.
-#' @param other.col a vector of column numbers, or column names, of baseline
-#' covariates, and/or other subject level data, as for example, survival data.
-#' Default does not include \code{other.col}.
-#' 
+#' @param data a data frame with longitudinal data in the balanced format. That 
+#'   is, in the format of 'one row per subject'. \code{data}, where the patient
+#'   identifications is.
+#' @param times a vector with the unique time points where the patients are 
+#'   observed. This is the study design time points in a balanced data set.
+#' @inheritParams to.balanced
+#'   
 #' @author Ines Sousa (\email{isousa@@uminho.pt})
 #' @seealso \code{\link{to.balanced}}.
-#' @keywords balanced
-#' 
-#' @return A data frame with longitudinal data in the
-#' unbalanced format. The unbalanced format is considered in this context as
-#' the format where each row has data on each subject observation.
+#' @keywords data manip
+#'   
+#' @return A data frame with longitudinal data in the unbalanced format. The
+#'   unbalanced format is considered in this context as the format where each
+#'   row has data on each subject observation.
 #' @export
 #' 
 #' @examples
