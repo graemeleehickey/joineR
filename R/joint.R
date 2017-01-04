@@ -28,7 +28,7 @@
 #'   are returned.
 #' @param survsep if \code{TRUE}, parameter estimates and log-likelihood from a 
 #'   separate analysis of the survival data using the Cox proportional hazards 
-#'   model are returned (see \code{\link[survival]coxph}} function for details).
+#'   model are returned (see \code{\link[survival]{coxph}} function for details).
 #' @param gpt the number of quadrature points across which the integration with 
 #'   respect to the random effects will be performed. Defaults to \code{gpt=3} 
 #'   which produces stable estimates in most datasets.
@@ -91,7 +91,7 @@
 #' @author Pete Philipson (\email{pete.philipson@@northumbria.ac.uk})
 #' @keywords models survival
 #' @seealso \code{\link[nlme]{lme}}, \code{\link[survival]{coxph}},
-#'   \code{\link{jointdata}}, \code{\link{jointplot}.
+#'   \code{\link{jointdata}}, \code{\link{jointplot}}.
 #'   
 #' @references
 #' 

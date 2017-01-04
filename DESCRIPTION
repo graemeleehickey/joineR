@@ -2,7 +2,7 @@ Package: joineR
 Type: Package
 Title: Joint Modelling of Repeated Measurements and Time-to-Event Data
 Version: 1.0.3.9000
-Date: 2017-01-01
+Date: 2016-12-30
 Authors@R: c(
     person("Pete", "Philipson", email = "pete.philipson@northumbria.ac.uk", 
         role = c("cre", "aut")),
@@ -20,15 +20,14 @@ Authors@R: c(
         role = "ctb")       
     )
 Maintainer: Graeme L. Hickey <graeme.hickey@liverpool.ac.uk>
-Date: 2016-12-30
-Description: Analysis of repeated measurements and time-to-event data via 
-    random effects joint models. Some plotting functions and the variogram are 
+Description: Analysis of repeated measurements and time-to-event data via
+    random effects joint models. Some plotting functions and the variogram are
     also included.
 License: GPL-3
 URL: https://github.com/graemeleehickey/joineR/
 BugReports: https://github.com/graemeleehickey/joineR/issues
 LazyData: true
-Depends: 
+Depends:
     R (>= 3.1)
 Imports:
     boot,
@@ -41,5 +40,5 @@ Imports:
 Suggests:
     knitr,
     rmarkdown
-VignetteBuilder: 
-    knitr
+VignetteBuilder: knitr
+RoxygenNote: 5.0.1
