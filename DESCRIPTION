@@ -31,12 +31,14 @@ Depends:
     R (>= 3.1)
 Imports:
     boot,
-    gdata,
+    graphics,
     lattice,
     MASS,
     nlme,
     statmod,
-    survival
+    stats,
+    survival,
+    utils
 Suggests:
     knitr,
     rmarkdown

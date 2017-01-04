@@ -177,8 +177,7 @@ em.alg <- function(longdat, survdat, model, ran, lat, sepassoc,
       }
     }
     if (model == "int") {
-      sd[(p2 + 1), (p2 + 1)] <- -colSums(eb2x[, 1] * 
-                                           EUUexpU)[1:ran]
+      sd[(p2 + 1), (p2 + 1)] <- -colSums(eb2x[, 1] * EUUexpU)[1:ran]
     } else {
       diag(sd[(p2 + 1):(p2 + ran), (p2 + 1):(p2 + ran)]) <- 
         -colSums(eb2x[, 1] * EUUexpU)[1:ran]

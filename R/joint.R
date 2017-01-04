@@ -106,6 +106,7 @@
 #'   if required, from either or both of the separate analyses. The combined 
 #'   log-likelihood from a separate analysis and the log-likelihood from the 
 #'   joint model are also produced as part of the fit.
+#' @import stats graphics utils
 #' @export
 #' 
 #' @examples
@@ -152,7 +153,7 @@ joint <- function(data, long.formula, surv.formula,
   Call <- match.call()
   
   if (any(sapply(data$baseline, "class") == "factor")) {
-    data$baseline <- drop.levels(data$baseline)
+    data$baseline <- droplevels(data$baseline)
   }
   
   # Longitudinal data
