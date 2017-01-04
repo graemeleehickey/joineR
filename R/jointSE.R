@@ -68,8 +68,11 @@ jointSE <- function(fitted, n.boot, gpt, lgpt, max.it, tol,
   id <- fitted$data$subj.col
   time.long <- fitted$data$time.col
   q <- length(diag(fitted$sigma.u))
-  paranames <- c(row.names(fitted$coefficients$fixed$longitudinal), names(fitted$coefficients$fixed$survival),
-                 names(fitted$coefficients$latent), paste("U_", 0:(q-1), sep = "") , "Residual")
+  paranames <- c(row.names(fitted$coefficients$fixed$longitudinal), 
+                 names(fitted$coefficients$fixed$survival),
+                 names(fitted$coefficients$latent), 
+                 paste("U_", 0:(q-1), sep = ""),
+                 "Residual")
   compnames <- rep("", length(paranames))
   compnames[1] <- "Longitudinal"
   lb1 <- length(fitted$coefficients$fixed$longitudinal[,1])
@@ -158,8 +161,8 @@ jointSE <- function(fitted, n.boot, gpt, lgpt, max.it, tol,
       ci1[i] <- 0
       ci2[i] <- 0
     } else {
-      ci1[i] <- sort(as.numeric(out[, i]))[2.5/100 * n.boot]
-      ci2[i] <- sort(as.numeric(out[, i]))[97.5/100 * n.boot]
+      ci1[i] <- sort(as.numeric(out[, i]))[0.025 * n.boot]
+      ci2[i] <- sort(as.numeric(out[, i]))[0.975 * n.boot]
     }
   }
   if (dim(surv.frame)[2] != 1){
@@ -180,7 +183,8 @@ jointSE <- function(fitted, n.boot, gpt, lgpt, max.it, tol,
               as.numeric(as.vector(as.matrix(diag(fitted$sigma.u))))), 4),
       round(cbind(se), 4), round(ci1, 4), round(ci2, 4)))
   }
-  names(b1)[1:6] <- c("Component", "Parameter", "Estimate", "SE", "95%Lower", "95%Upper")
+  names(b1)[1:6] <- c("Component", "Parameter", "Estimate", "SE", 
+                      "95%Lower", "95%Upper")
   return(b1)
 
 }

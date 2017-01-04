@@ -1,6 +1,7 @@
 #' Internal function for calculating the log-likelihood the maximizer
 #' 
 #' @keywords internal
+#' @importFrom statmod gauss.quad.prob
 jlike <- function(longdat, survdat, ran, likeests, lgpt) {
   
   id <- longdat[, 1]
@@ -26,7 +27,7 @@ jlike <- function(longdat, survdat, ran, likeests, lgpt) {
   sf <- likeests$sf
   rs <- likeests$rs
   N <- sum(nn)
-  g <- gauss.quad.prob(lgpt, "normal", sigma = sqrt(0.5))
+  g <- statmod::gauss.quad.prob(lgpt, "normal", sigma = sqrt(0.5))
   ab <- g$nodes
   w <- g$weights * sqrt(pi)
   gmat <- matrix(0, lgpt^ran, ran)
@@ -69,15 +70,13 @@ jlike <- function(longdat, survdat, ran, likeests, lgpt) {
       W11 <- ttv %*% W21 + sigma.zi[1:nn[i], 1:nn[i]]
     }
     if (nn[i] == 1) {
-      W3 <- W12/W11
+      W3 <- W12 / W11
       if (model == "int") {
-        cvch <- sqrt((sigma.u - tcrossprod(W21, W3)) * 
-                       2)
+        cvch <- sqrt((sigma.u - tcrossprod(W21, W3)) * 2)
       } else {
-        cvch <- chol((sigma.u - tcrossprod(W21, W3)) * 
-                       2)
+        cvch <- chol((sigma.u - tcrossprod(W21, W3)) * 2)
       }
-      cm <- matrix(W3 * rv, lgpt^ran, ran, TRUE)
+      cm <- matrix(W3 * rv, lgpt^ran, ran, byrow = TRUE)
     } else {
       W3 <- solve(W11, W12)
       if (model == "int") {
@@ -85,16 +84,16 @@ jlike <- function(longdat, survdat, ran, likeests, lgpt) {
       } else {
         cvch <- chol((sigma.u - W21 %*% W3) * 2)
       }
-      cm <- matrix(rv %*% W3, lgpt^ran, ran, TRUE)
+      cm <- matrix(rv %*% W3, lgpt^ran, ran, byrow = TRUE)
     }
     newu <- gmat %*% cvch + cm
     DUs <- newu %*% Ds[, i]
     DUsf <- newu %*% Dsf[, 1:rs[i]]
-    ss <- exp(b2x[i, ]) * exp(newu %*% (Dsf[, 1:rs[i]] * 
-                                          b2[(p2 + 1):(p2 + lat)])) %*% haz[1:rs[i]]
-    den <- sum(exp(cen[i] * (newu %*% (Dst[i, ] * b2[(p2 + 
-                                                        1):(p2 + lat)]) + b2x[i, ])) * (haz[rs[i]]^cen[i]) * 
-                 w * exp(-ss))
+    ss <- exp(b2x[i, ]) * 
+      exp(newu %*% (Dsf[, 1:rs[i]] * b2[(p2 + 1):(p2 + lat)])) %*% haz[1:rs[i]]
+    den <- sum(
+      exp(cen[i] * (newu %*% (Dst[i, ] * b2[(p2 + 1):(p2 + lat)]) + b2x[i, ])) * 
+        (haz[rs[i]]^cen[i]) * w * exp(-ss))
     l2 <- l2 + 0
     if (den > 0) {
       l2 <- l2 + log(den)

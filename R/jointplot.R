@@ -55,6 +55,7 @@
 #'   measured with error. \emph{Biometrics.} 1997; \strong{53(1)}: 330-339.
 #'   
 #' @return A lattice plot.
+#' @importFrom lattice xyplot
 #' @export
 #' 
 #' @examples
@@ -166,7 +167,7 @@ jointplot <- function(object, Y.col, Cens.col, lag, split = TRUE,
     }
     
     Y <- c(Y,mean_cens, mean_fail)
-    fac <- c(fac,rep(gp1lab, length(mean_cens)), rep(gp2lab,length(mean_fail)))
+    fac <- c(fac,rep(gp1lab, length(mean_cens)), rep(gp2lab, length(mean_fail)))
     id <- c(id, rep(max(id) + 1, length(mean_cens)), 
             rep(max(id) + 2, length(mean_fail)))
     t0 <- c(t0, t_mean_cens, t_mean_fail)
@@ -174,7 +175,7 @@ jointplot <- function(object, Y.col, Cens.col, lag, split = TRUE,
     
     if (split == TRUE) {
       xyplot(Y ~ t0 | fac, groups = id, type = "l", lty = 1, 
-             lwd = c(rep(1,length(cens)),2,2),
+             lwd = c(rep(1, length(cens)), 2, 2),
              xlim = c(-lag, 0), col = hue, xlab = xlab, ylab = ylab, 
              scales = list(alternating = FALSE))
     } else {

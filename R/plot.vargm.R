@@ -19,6 +19,7 @@
 #' @keywords dplot
 #'   
 #' @return A graphical device with the plot of empirical variogram.
+#' @import graphics
 #' @export
 #' 
 #' @examples

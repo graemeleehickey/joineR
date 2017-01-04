@@ -12,6 +12,7 @@
 #' @return A graphical device with a plot for longitudinal data. Other functions
 #'   are useful to be used with this as \code{\link[graphics]{plot}} and 
 #'   \code{\link[graphics]{lines}}.
+#' @import graphics
 #' @export
 #' 
 #' @examples

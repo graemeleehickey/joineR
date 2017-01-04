@@ -52,14 +52,14 @@ summary.joint <- function(object, variance = TRUE, ...) {
   cat("\n")
   
   # Longitudinal sub-model
-  cat("Longitudinal sub-model fixed effects:",deparse(object$formulae$lformula))
+  cat("Longitudinal sub-model fixed effects:", deparse(object$formulae$lformula))
   lfixed <- object$coefficients$fixed$longitudinal
   names(lfixed) <- ""
   print(lfixed)
   cat("\n")
   
   # Survival sub-model
-  cat("Survival sub-model fixed effects:",deparse(object$formulae$sformula))
+  cat("Survival sub-model fixed effects:", deparse(object$formulae$sformula))
   sfixed <- data.frame(object$coefficients$fixed$survival)
   if (sum(dim(sfixed)) == 0) {
     cat("\n", "No survival baseline covariates specified", "\n")
@@ -84,13 +84,17 @@ summary.joint <- function(object, variance = TRUE, ...) {
   names(sigz) <- "Residual"
   vars <- c(sigu, sigz)
   names(vars) <- c(names(sigu), names(sigz))
-  if(!variance) {vars = sqrt(vars)}
+  if (!variance) {
+    vars <- sqrt(vars)
+  }
   print(vars)
-  if(!variance) {cat(" Note: the above are standard deviations\n")}
+  if (!variance) {
+    cat(" Note: the above are standard deviations\n")
+  }
   cat("\n")
   
   # Convergence
-  if(object$convergence == TRUE) {
+  if (object$convergence == TRUE) {
     cat("Convergence at iteration:", object$numIter,"\n")
   } else {
     cat("Convergence not achieved\n")

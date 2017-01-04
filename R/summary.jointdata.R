@@ -47,8 +47,8 @@ summary.jointdata <- function(object, ...) {
   if (any(is.na(object$longitudinal)) & !is.data.frame(object$longitudinal)) {
     out[[2]] <- paste0("No longitudinal data available")
   } else {
-    out[[2]] <- as.data.frame(matrix(0, ncol = 1, 
-                                     nrow = dim(object$longitudinal)[2] - 1))
+    out[[2]] <- as.data.frame(
+      matrix(0, ncol = 1, nrow = dim(object$longitudinal)[2] - 1))
     names(out[[2]]) <- c("class")
     row.names(out[[2]]) <- names(object$longitudinal)[2:(dim(object$longitudinal)[2])]
     for (j in 2:(dim(object$longitudinal)[2])) {
