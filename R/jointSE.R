@@ -4,17 +4,11 @@
 #' errors, with optional confidence intervals, for the main longitudinal and
 #' survival covariates.
 #' 
-#' Standard errors and confidence intervals are obtained by repeated fitting of
-#' the requisite joint model to bootstrap samples of the original longitudinal
-#' and survival data. It is rare that more than 200 bootstrap samples are
-#' needed for estimating a standard error. The number of bootstrap samples
-#' needed for accurate confidence intervals can be as large as 1000.
-#' 
-#' @param fitted A list containing as components the parameter estimates
+#' @param fitted a list containing as components the parameter estimates
 #' obtained by fitting a joint model along with the respective formulae for the
 #' longitudinal and survival sub-models and the model chosen, see \code{joint}
 #' for further details.
-#' @param n.boot Argument specifying the number of bootstrap samples to use in
+#' @param n.boot argument specifying the number of bootstrap samples to use in
 #' order to obtain the standard error estimates and confidence intervals. Note
 #' that at least n.boot=100 is required in order for the function to return
 #' non-zero confidence intervals.
@@ -23,36 +17,48 @@
 #' which produces stable estimates in most datasets.
 #' @param lgpt the number of quadrature points which the log-likelihood is
 #' evaluated over following a model fit. This defaults to \code{lgpt = 10},
-#' though \code{lgpt = 3} is often sufficient.
+#' though \code{lgpt=3} is often sufficient.
 #' @param max.it the maximum number of iterations of the EM algorithm that the
-#' function will perform. Defaults to \code{max.it = 200}, though more
+#' function will perform. Defaults to \code{max.it=200}, though more
 #' iterations may be necessary for large, complex data.
 #' @param tol the tolerance level before convergence of the algorithm is deemed
-#' to have occurred. Default value is \code{tol = 0.001}.
+#' to have occurred. Default value is \code{tol=0.001}.
 #' @param print.detail This argument determines the level of printing that is
 #' done during the bootstrapping. If \code{TRUE} then the parameter estimates
 #' from each bootstrap sample are output.
-#' @author Ruwanthi Kolamunnage-Dona
-#' (Ruwanthi.Kolamunnage-Dona@@liverpool.ac.uk) and Pete Philipson
-#' (pete.philipson@@northumbria.ac.uk)
-#' @seealso \code{lme}, \code{coxph}, \code{joint}, \code{jointdata}.
-#' @references Wulfsohn, M. S. and Tsiatis, A. A. (1997) \sQuote{A Joint Model
-#' for Survival and Longitudinal Data Measured with Error}. \emph{Biometrics},
-#' \bold{53}, 330-339.
 #' 
-#' Efron, B. and Tibshirani, J. (1994) \sQuote{An Introduction to the
-#' Bootstrap}. Chapman & Hall.
+#' @details Standard errors and confidence intervals are obtained by repeated fitting of
+#' the requisite joint model to bootstrap samples of the original longitudinal
+#' and survival data. It is rare that more than 200 bootstrap samples are
+#' needed for estimating a standard error. The number of bootstrap samples
+#' needed for accurate confidence intervals can be as large as 1000.
+#' 
+#' @author Ruwanthi Kolamunnage-Dona (\email{ruwanthi.kolamunnage-dona@@liverpool.ac.uk}) and Pete Philipson
+#' (\email{pete.philipson@@northumbria.ac.uk})
 #' @keywords models survival
+#' @seealso \code{\link[nlme]{lme}}, \code{\link[survival]{coxph}}, \code{\link{joint}}, \code{\link{jointdata}}.
+#' 
+#' @return An object of class \code{data.frame}.
+#' @export
+#' 
+#' @references
+#' 
+#' Wulfsohn MS, Tsiatis AA. A joint model for survival and longitudinal data
+#' measured with error. \emph{Biometrics.} 1997; \strong{53(1)}: 330-339.
+#' 
+#' Efron B, Tibshirani R. \emph{An Introduction to the Bootstrap.} 2000; Boca
+#' Raton, FL: Chapman & Hall/CRC.
+#' 
 #' @examples
 #' 
 #' data(heart.valve)
 #' heart.surv <- UniqueVariables(heart.valve, 
 #'                               var.col = c("fuyrs", "status"), 
-#'                               id.col="num")
+#'                               id.col = "num")
 #' heart.long <- heart.valve[, c("num", "time", "log.lvmi")]
 #' heart.cov <- UniqueVariables(heart.valve, 
 #'                              c("age", "hs", "sex"), 
-#'                              id.col="num")
+#'                              id.col = "num")
 #' heart.valve.jd <- jointdata(longitudinal = heart.long, 
 #'                             baseline = heart.cov, 
 #'                             survival = heart.surv, 
@@ -60,11 +66,9 @@
 #'                             time.col = "time")
 #' fit <- joint(heart.valve.jd, 
 #'              long.formula = log.lvmi ~ 1 + time + hs, 
-#'              surv.formula = Surv(fuyrs,status) ~ hs, 
+#'              surv.formula = Surv(fuyrs, status) ~ hs, 
 #'              model = "int")
 #' jointSE(fitted = fit, n.boot = 1)
-#' 
-#' @export jointSE
 jointSE <- function(fitted, n.boot, gpt, lgpt, max.it, tol, 
                     print.detail = FALSE) {
   

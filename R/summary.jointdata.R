@@ -3,24 +3,34 @@
 #' Generic function used to produce summaries of objects of class
 #' \code{jointdata}
 #' 
+#' @param object an object of class \code{jointdata}.
+#' @param ... further arguments for the summary.
 #' 
-#' @param object an object of class \code{jointdata}
-#' @param list() further arguments for the summary
-#' @return The function returns a list with five elements. Each summarises each
-#' element of the \code{jointdata} object.
+#' @author Ines Sousa (\email{isousa@@math.uminho.pt})
+#' @seealso \code{\link{jointdata}}, \code{\link{UniqueVariables}}.
+#' @keywords survival
 #' 
-#' \item{subjects}{Gives the number of subjects in the data set.}
-#' \item{longitudinal}{If longitudinal data is available, it gives the names
-#' and class, of the longitudinal variables.} \item{survival}{If survival data
+#' @return A list with five elements. Each summarises an
+#' element of the \code{jointdata} object:
+#' 
+#' \item{\code{subjects}}{Gives the number of subjects in the data set.}
+#' 
+#' \item{\code{longitudinal}}{If longitudinal data is available, it gives the names
+#' and class, of the longitudinal variables.}
+#' 
+#' \item{\code{survival}}{If survival data
 #' is available, it gives the number of subjects with failure and censored
-#' survival times.} \item{baseline}{If baseline covariates is available, it
-#' gives the names and class, of the baseline covariates.} \item{times}{If
+#' survival times.}
+#' 
+#' \item{\code{baseline}}{If baseline covariates is available, it
+#' gives the names and class, of the baseline covariates.}
+#' 
+#' \item{\code{times}}{If
 #' longitudinal data is available, it gives the unique longitudinal time
 #' measurements, if it is a balanced study. In case of unbalanced study , it
 #' will only state it is an unbalanced study.}
-#' @author Ines Sousa (isousa@@math.uminho.pt)
-#' @seealso \code{jointdata}, \code{UniqueVariables}.
-#' @keywords survival
+#' @export
+#' 
 #' @examples
 #' 
 #' data(heart.valve)
@@ -31,8 +41,7 @@
 #'                             id.col = "num",
 #'                             time.col = "time")
 #' summary(heart.valve.jd)
-#' @export summary.jointdata
-summary.jointdata <- function (object, ...) {
+summary.jointdata <- function(object, ...) {
   
   out <- as.list(rep(NA, 5))
   names(out) <- c("subjects", "longitudinal", "survival", "baseline", "times")

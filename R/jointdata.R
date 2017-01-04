@@ -1,16 +1,8 @@
-#' Creates an object of class 'jointdata'
+#' Creates an object of class \code{jointdata}
 #' 
 #' This function creates an object of class \code{jointdata}. This is an object
 #' with information on at least one of, longitudinal data or survival data.
 #' Moreover, it can also have data on baseline covariates.
-#' 
-#' This function creates an object of class \code{jointdata}. This is a list
-#' with elements used in joint modelling, mainly longitudinal and/or survival
-#' data. The output has to have at least one of the data sets, longitudinal or
-#' survival. However, for joint modelling is necessary to have both data sets.
-#' Moreover, a third data frame is possible to be given as input, for the
-#' baseline (non-time dependent) covariates. The subject identification and
-#' time measurement column names are necessary.
 #' 
 #' @param longitudinal a data frame or matrix in the unbalanced format (one row
 #' per observation), with subject identification, time of measurements, and
@@ -29,15 +21,27 @@
 #' @param time.col an element of class \code{character} with the time
 #' measurements identification. This is to identify the time column in the data
 #' frames.
-#' @return This function returns a list of length six. The first element is the
+#' 
+#' @details This function creates an object of class \code{jointdata}. This is a list
+#' with elements used in joint modelling, mainly longitudinal and/or survival
+#' data. The output has to have at least one of the data sets, longitudinal or
+#' survival. However, for joint modelling is necessary to have both data sets.
+#' Moreover, a third data frame is possible to be given as input, for the
+#' baseline (non-time dependent) covariates. The subject identification and
+#' time measurement column names are necessary.
+#' 
+#' @author Ines Sousa (\email{isousa@@math.uminho.pt})
+#' @keywords survival
+#' 
+#' @return A list of length six. The first element is the
 #' vector of subjects identification. The second is, if exists a data frame of
 #' the longitudinal data. The third element of the list is, if exists a data
 #' frame of the survival data. The fourth element of the list is, if exists a
 #' data frame on the baseline covariates. The fifth is, if longitudinal data is
 #' given, the column name identification of longitudinal times. And the sixth
 #' and last element of the list is the column name identification of subjects.
-#' @author Ines Sousa (isousa@@math.uminho.pt)
-#' @keywords survival
+#' @export
+#' 
 #' @examples
 #' 
 #' data(heart.valve)
@@ -47,8 +51,6 @@
 #' heart.valve.jd <- jointdata(survival = heart.surv, 
 #'                             id.col = "num",
 #'                             time.col = "time")
-#' 
-#' @export jointdata
 jointdata <- function(longitudinal = NA, survival = NA, baseline = NA, id.col = "ID", 
                       time.col = NA) {
   

@@ -6,56 +6,61 @@
 #' prior to event-time can be inspected. This can be done over a user-specified
 #' number of time units.
 #' 
-#' The function tailors the \code{xyplot} function in \pkg{lattice} to produce
-#' a representation of joint data with longitudinal and survival components.
-#' 
-#' @param object Name of the \code{jointdata} object
-#' @param Y.col An element of class \code{character} identifying the
+#' @param object name of the \code{jointdata} object.
+#' @param Y.col an element of class \code{character} identifying the
 #' longitudinal response part of the \code{jointdata} object.
-#' @param Cens.col An element of class \code{character} identifying the
+#' @param Cens.col an element of class \code{character} identifying the
 #' survival status or censoring indicator part of the \code{jointdata} object.
-#' @param lag Argument which specifies how many units in time we look back
+#' @param lag argument which specifies how many units in time we look back
 #' through. Defaults to the maximum observation time across all units.
-#' @param split \code{TRUE}/\code{FALSE} argument which allows the profiles of
+#' @param split logical argument which allows the profiles of
 #' units which \sQuote{fail} and those which are \sQuote{censored} to be viewed
 #' in separate panels of the same graph. This is the default option. Using
-#' \code{split = FALSE} will plot all profiles overlaid on a single plot.
+#' \code{split=FALSE} will plot all profiles overlaid on a single plot.
 #' @param col1 argument to choose the colour for the profiles of the
 #' \sQuote{censored} units.
 #' @param col2 argument to choose the colour for the profiles of the
 #' \sQuote{failed} units.
-#' @param xlab An element of class \code{character} indicating the title for
+#' @param xlab an element of class \code{character} indicating the title for
 #' the x-axis.
-#' @param ylab An element of class \code{character} indicating the title for
+#' @param ylab an element of class \code{character} indicating the title for
 #' the x-axis.
-#' @param gp1lab An element of class \code{character} for the group
+#' @param gp1lab an element of class \code{character} for the group
 #' corresponding to a censoring indicator of zero. Typically, the censored
 #' group.
-#' @param gp2lab An element of class \code{character} for the group
+#' @param gp2lab an element of class \code{character} for the group
 #' corresponding to a censoring indicator of one. Typically, the group
 #' experiencing the event of interest.
 #' @param smooth the smoother span. This gives the proportion of points in the
 #' plot which influence the smooth at each value. Defaults to a value of 2/3.
-#' Larger values give more smoothness. See \code{lowess}for further details.
+#' Larger values give more smoothness. See \code{\link[stats]{lowess}} for further details.
 #' @param mean.profile draw mean profiles if TRUE. Only applies to the
-#' \code{split = TRUE} case.
+#' \code{split=TRUE} case.
 #' @param mcol1 argument to choose the colour for the mean profile of the units
 #' with a censoring indicator of zero.
 #' @param mcol2 argument to choose the colour for the mean profile of the units
 #' with a censoring indicator of one.
-#' @author Pete Philipson \email{pete.philipson@@northumbria.ac.uk}
-#' @seealso \code{xyplot}, \code{joint}, \code{jointdata}
-#' @references Wulfsohn, M. S. and Tsiatis, A. A. (1997) \sQuote{A Joint Model
-#' for Survival and Longitudinal Data Measured with Error}, \emph{Biometrics},
-#' \bold{53}, 330-339.
+#' 
+#' @details The function tailors the \code{\link[lattice]{xyplot}} function to produce
+#' a representation of joint data with longitudinal and survival components.
+#' 
+#' @author Pete Philipson (\email{pete.philipson@@northumbria.ac.uk})
 #' @keywords models survival
+#' @seealso \code{\link[lattice]{xyplot}}, \code{\link{joint}}, \code{\link{jointdata}}.
+#' 
+#' Wulfsohn MS, Tsiatis AA. A joint model for survival and longitudinal data
+#' measured with error. \emph{Biometrics.} 1997; \strong{53(1)}: 330-339.
+#' 
+#' @return A lattice plot.
+#' @export
+#' 
 #' @examples
 #' 
 #' data(heart.valve)
 #' heart.surv <- UniqueVariables(heart.valve, 
 #'                               var.col = c("fuyrs", "status"),
 #'                               id.col = "num")
-#' heart.long <- heart.valve[,c("num", "time", "log.lvmi")]
+#' heart.long <- heart.valve[, c("num", "time", "log.lvmi")]
 #' heart.cov <- UniqueVariables(heart.valve, 
 #'                              c("age", "sex"), 
 #'                              id.col = "num")
@@ -66,8 +71,6 @@
 #'                             time.col = "time")
 #' jointplot(heart.valve.jd, Y.col = "log.lvmi", 
 #'           Cens.col = "status", lag = 5)
-#' 
-#' @export jointplot
 jointplot <- function(object, Y.col, Cens.col, lag, split = TRUE, 
                       col1, col2, xlab, ylab, gp1lab, gp2lab, 
                       smooth = 2/3, mean.profile = FALSE, mcol1, mcol2) {

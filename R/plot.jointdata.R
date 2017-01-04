@@ -4,35 +4,39 @@
 #' longitudinal variable. It is possible to plot all the subjects in the data
 #' set, or just a selected \code{subset}. See \code{\link{subset.jointdata}}.
 #' 
-#' 
-#' @param x object of class \code{jointdata}
+#' @param x object of class \code{jointdata}.
 #' @param Y.col column number, or column name, of longitudinal variable to be
-#' plotted. Defaults to \code{Y.col = NA}, plotting all longitudinal variables
-#' @param type the type of line to be plotted, see \code{plot} for further
+#' plotted. Defaults to \code{Y.col=NA}, plotting all longitudinal variables.
+#' @param type the type of line to be plotted, see \code{\link[graphics]{plot}} for further
 #' details.
-#' @param xlab a title for the x-axis, see \code{title}.
+#' @param xlab a title for the x-axis, see \code{\link[graphics]{title}}.
 #' @param xlim,ylim numeric vectors of length 2, giving the x and y coordinates
-#' ranges, see \code{plot.window} for further details.
-#' @param main an overall title for the plot: see \code{title}.
-#' @param pty A character specifying the type of plot region to be used, see
-#' \code{par} for details.
-#' @param list() other graphical arguments (see \code{plot})
-#' @return A graphical device with a plot for longitudinal data. Other
-#' functions are useful to be used with this as \code{\link{lines}} and
-#' \code{\link{points}}
-#' @author Ines Sousa (isousa@@math.uminho.pt)
+#' ranges, see \code{\link[graphics]{plot.window}} for further details.
+#' @param main an overall title for the plot; see \code{\link[graphics]{title}}.
+#' @param pty a character specifying the type of plot region to be used, see
+#' \code{\link[graphics]{par}} for details.
+#' @param ... other graphical arguments; see \code{\link[graphics]{plot}}.
+#' 
+#' @author Ines Sousa (\email{isousa@@math.uminho.pt})
 #' @keywords plot, longitudinal, jointdata
+#' 
+#' @return A graphical device with a plot for longitudinal data. Other
+#' functions are useful to be used with this as \code{\link[graphics]{lines}} and
+#' \code{\link[graphics]{points}}.
+#' @export
+#' 
 #' @examples
 #' 
 #' data(heart.valve)
-#' heart.surv <- UniqueVariables(heart.valve, var.col = c("fuyrs", "status"), 
-#'       id.col = "num")
+#' heart.surv <- UniqueVariables(heart.valve,
+#'                               var.col = c("fuyrs", "status"),
+#'                               id.col = "num")
 #' heart.long <- heart.valve[, c(1, 4, 5, 7, 8, 9, 10, 11)]
 #' heart.jd <- jointdata(longitudinal = heart.long, 
-#'       survival = heart.surv, id.col = "num", time.col = "time")
+#'                       survival = heart.surv,
+#'                       id.col = "num",
+#'                       time.col = "time")
 #' plot(heart.jd, Y.col = "grad", col = "grey")
-#' 
-#' @export plot.jointdata
 plot.jointdata <- function (x, Y.col, type, xlab, xlim = NULL, ylim = NULL, 
                             main = NA, pty, ...) {
   

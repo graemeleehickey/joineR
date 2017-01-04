@@ -1,3 +1,6 @@
+#' Internal function for calculating the initial parameters of the longitudinal data sub-model
+#'
+#' @keywords internal
 longst <- function(longdat, long.formula, model, longdat2) {
   
   if (model == "int") {

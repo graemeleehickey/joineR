@@ -5,34 +5,36 @@
 #' a data frame with columns, patient identification and variables selected.
 #' Each row corresponds to the data for each individual.
 #' 
-#' This function can be used, when longitudinal data is in the unbalanced
+#' @param data data frame, or matrix, with at least a column of patient
+#' identification and a covariate column.
+#' @param var.col vector of column names or column numbers, of the variables
+#' (non-time dependent). Cannot have mix of numbers and column names.
+#' @param id.col column name or column number of the patient identification.
+#' 
+#' @details This function can be used, when longitudinal data is in the unbalanced
 #' format, and it is necessary, for example, to extract the set of unique
 #' baseline covariates, or any non-time dependent variables, that in the
 #' unbalanced format, are repeated for each observation row. Also, if the
 #' original data frame has survival data, this can also be used to extract the
 #' survival information from the original data set.
 #' 
-#' @param data data frame, or matrix, with at least a column of patient
-#' identification and a covariate column
-#' @param var.col vector of column names or column numbers, of the variables
-#' (non-time dependent). Cannot have mix of numbers and column names.
-#' @param id.col column name or column number of the patient identification
-#' @return The function returns a data frame with patient identification and
+#' @author Ines Sousa (\email{isousa@@uminho.pt})
+#' @keywords survival
+#' 
+#' @return A data frame with patient identification and
 #' covariates selected. Each row corresponds to the data for each individual.
 #' Note that, this can be only used for non-time dependent covariates. If
 #' extracting unique time dependent covariates, the function gives an error,
 #' because it can't select what is the unique covariate.
-#' @author Ines Sousa (isousa@@math..pt)
-#' @keywords survival
+#' @export
+#' 
 #' @examples
 #' 
 #' data(heart.valve)
 #' heart.cov <- UniqueVariables(heart.valve,
 #'                              c(2, 3, 5, 6, 12:25),
 #'                              id.col = "num")
-#' 
-#' @export UniqueVariables
-UniqueVariables <- function (data, var.col, id.col = "ID") {
+UniqueVariables <- function(data, var.col, id.col = "ID") {
   
   patid <- unique(data[[id.col]])
   npat <- length(patid)

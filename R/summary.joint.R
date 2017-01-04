@@ -3,27 +3,32 @@
 #' Generic function used to produce summary information from a fitted random
 #' effects joint model as represented by \code{object} of class \code{joint}.
 #' 
-#' 
 #' @param object an object inheriting from class \code{joint} representing a
 #' fitted random effects joint model.
 #' @param variance should the variance components be output as variances or
-#' standard deviations? Defaults to \code{variance = TRUE}.
-#' @param list() further arguments for the summary
-#' @return an object inheriting from class \code{summary.joint} with all
-#' components included in \code{object} (see \code{joint} for a full
+#' standard deviations? Defaults to \code{variance=TRUE}.
+#' @param ... further arguments for the summary.
+#' 
+#' @author Pete Philipson (\email{pete.philipson@@northmbria.ac.uk})
+#' @keywords models
+#' 
+#' @return An object inheriting from class \code{summary.joint} with all
+#' components included in \code{object} (see \code{\link{joint}} for a full
 #' description of the components) plus the following components:
 #' 
-#' \item{nobs}{the total number of (typically longitudinal) observations (i.e.
-#' rows in an unbalanced data set).} \item{ngrps}{the number of groups in the
+#' \item{\code{nobs}}{the total number of (typically longitudinal) observations (i.e.
+#' rows in an unbalanced data set).}
+#' 
+#' \item{\code{ngrps}}{the number of groups in the
 #' analysed dataset, often individual subjects.}
-#' @author Pete Philipson (pete.philipson@@northmbria.ac.uk)
-#' @keywords models
+#' @export
+#' 
 #' @examples
 #' 
 #' data(heart.valve)
 #' heart.surv <- UniqueVariables(heart.valve, 
-#'                               var.col=c("fuyrs","status"),
-#'                               id.col="num")
+#'                               var.col = c("fuyrs","status"),
+#'                               id.col = "num")
 #' heart.long <- heart.valve[, c("num", "time", "log.lvmi")]
 #' heart.cov <- UniqueVariables(heart.valve, 
 #'                              c("age", "hs", "sex"), 
@@ -38,8 +43,6 @@
 #'              surv.formula = Surv(fuyrs,status) ~ hs, 
 #'              model = "intslope")
 #' summary(fit)
-#' 
-#' @export summary.joint
 summary.joint <- function (object, variance = TRUE, ...) {
   
   # Random effects
