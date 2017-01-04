@@ -1,5 +1,3 @@
-#' Internal function for calculating the Z design matrix
-#'
 #' @keywords internal
 getD <- function(q, arg) {
   D <- matrix(0, q, length(arg))
@@ -10,16 +8,12 @@ getD <- function(q, arg) {
 }
 
 
-#' Internal function for testing for missing data
-#' 
 #' @keywords internal
 notNA <- function(x) {
   !(is.vector(x) & length(x) == 1 & any(is.na(x)))
 }
 
 
-#' Internal function for calling separate model fits
-#' 
 #' @keywords internal
 sep <- function(ests, logical) {
   if (logical == FALSE) {

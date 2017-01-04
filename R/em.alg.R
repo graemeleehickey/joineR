@@ -1,5 +1,3 @@
-#' Internal function for performing EM algorithm
-#' 
 #' @keywords internal
 em.alg <- function(longdat, survdat, model, ran, lat, sepassoc, 
                    paraests, gpt, max.it, tol) {
@@ -31,7 +29,7 @@ em.alg <- function(longdat, survdat, model, ran, lat, sepassoc,
   nn <- diff(match(unique(id), id))
   nn <- c(nn, length(id) - sum(nn))
   N <- sum(nn)
-  g <- gauss.quad.prob(gpt, "normal", sigma = sqrt(0.5))
+  g <- statmod::gauss.quad.prob(gpt, "normal", sigma = sqrt(0.5))
   ab <- g$nodes
   w <- g$weights * sqrt(pi)
   gmat <- matrix(0, gpt^ran, ran)

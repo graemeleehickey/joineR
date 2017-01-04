@@ -1,5 +1,3 @@
-#' Internal function for calculating the log-likelihood the maximizer
-#' 
 #' @keywords internal
 #' @importFrom statmod gauss.quad.prob
 jlike <- function(longdat, survdat, model, ran, lat, sepassoc,

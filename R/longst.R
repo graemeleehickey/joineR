@@ -1,6 +1,3 @@
-#' Internal function for calculating the initial parameters of the longitudinal
-#' data sub-model
-#' 
 #' @keywords internal
 #' @import nlme
 longst <- function(longdat, long.formula, model, longdat2) {

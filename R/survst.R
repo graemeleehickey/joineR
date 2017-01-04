@@ -1,6 +1,3 @@
-#' Internal function for calculating the initial parameters of the survival data
-#' sub-model
-#' 
 #' @keywords internal
 survst <- function(survdat, surv.formula, survdat2) {
   
