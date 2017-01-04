@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-`joineR`
-========
+joineR
+======
 
 [![Travis-CI Build Status](https://travis-ci.org/graemeleehickey/joineR.svg?branch=master)](https://travis-ci.org/graemeleehickey/joineR) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/graemeleehickey/joineR?branch=master&svg=true)](https://ci.appveyor.com/project/graemeleehickey/joineR) [![License](https://img.shields.io/badge/License-GPL%20%28%3E=%203%29-brightgreen.svg)](http://www.gnu.org/licenses/gpl-3.0.html) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/joineR)](https://cran.r-project.org/package=joineR) [![](http://cranlogs.r-pkg.org/badges/joineR)](http://cran.rstudio.com/web/packages/joineR/index.html)
 
