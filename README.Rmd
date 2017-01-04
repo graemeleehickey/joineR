@@ -12,7 +12,13 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Introduction
+# joineR
+
+[![Travis-CI Build Status](https://travis-ci.org/graemeleehickey/joineR.svg?branch=master)](https://travis-ci.org/graemeleehickey/joineR)
+[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/graemeleehickey/joineR?branch=master&svg=true)](https://ci.appveyor.com/project/graemeleehickey/joineR)
+[![License](https://img.shields.io/badge/License-GPL%20%28%3E=%203%29-brightgreen.svg)](http://www.gnu.org/licenses/gpl-3.0.html)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/joineR)](https://cran.r-project.org/package=joineR)
+[![](http://cranlogs.r-pkg.org/badges/joineR)](http://cran.rstudio.com/web/packages/joineR/index.html)
 
 The `joineR` package implements methods for analyzing data from longitudinal studies in which the response from each subject consists of a time-sequence of repeated measurements and a possibly censored time-to- event outcome. The modelling framework for the repeated measurements is the linear model with random effects and/or correlated error structure (Laird and Ware, 1982). The model for the time-to-event outcome is a Cox proportional hazards model with log-Gaussian frailty (Cox, 1972). Stochastic dependence is captured by allowing the Gaussian random effects of the linear model to be correlated with the frailty term of the Cox proportional hazards model. The methodology used to fit the model is described in Henderson et al. (2002) and Wulfsohn and Tsiatis (1997).
 
