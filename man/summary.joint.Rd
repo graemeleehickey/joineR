@@ -10,7 +10,7 @@
 \item{object}{an object of class \code{jointdata}.}
 
 \item{variance}{should the variance components be output as variances or 
-standard deviations? Defaults to \code{variance=TRUE}.}
+standard deviations? Defaults to \code{variance = TRUE}.}
 
 \item{...}{further arguments for the summary.}
 }

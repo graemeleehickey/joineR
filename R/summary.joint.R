@@ -5,7 +5,7 @@
 #' 
 #' @param object an object of class \code{jointdata}.
 #' @param variance should the variance components be output as variances or 
-#'   standard deviations? Defaults to \code{variance=TRUE}.
+#'   standard deviations? Defaults to \code{variance = TRUE}.
 #' @param ... further arguments for the summary.
 #'   
 #' @author Pete Philipson (\email{pete.philipson@@northmbria.ac.uk})

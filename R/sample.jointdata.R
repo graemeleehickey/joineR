@@ -6,7 +6,7 @@
 #' @param object an object of class \code{jointdata}.
 #' @param size number of subjects to include in the sampled subset.
 #' @param replace should sampling be with replacement? Deafault is
-#'   \code{replace=TRUE}.
+#'   \code{replace = TRUE}.
 #'   
 #' @author Ines Sousa (\email{isousa@@math.uminho.pt})
 #' @seealso \code{\link{sample}}, \code{\link{jointdata}},

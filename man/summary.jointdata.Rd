@@ -28,7 +28,7 @@ A list with five elements. Each summarises an element of the
   
   \item{\code{times}}{If longitudinal data is available, it gives the unique
   longitudinal time measurements, if it is a balanced study. In case of
-  unbalanced study , it will only state it is an unbalanced study.}
+  unbalanced study, it will only state it is an unbalanced study.}
 }
 \description{
 Generic function used to produce summaries of objects of class 

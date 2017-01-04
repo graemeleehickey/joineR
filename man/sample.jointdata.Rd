@@ -12,7 +12,7 @@ sample.jointdata(object, size, replace = FALSE)
 \item{size}{number of subjects to include in the sampled subset.}
 
 \item{replace}{should sampling be with replacement? Deafault is
-\code{replace=TRUE}.}
+\code{replace = TRUE}.}
 }
 \value{
 An object of class \code{jointdata}, with data only on the subjects

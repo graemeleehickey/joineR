@@ -2,7 +2,6 @@
 #' sub-model
 #' 
 #' @keywords internal
-#' @import survival
 survst <- function(survdat, surv.formula, survdat2) {
   
   survdat2 <- survdat2[order(survdat2[, 2]), ]

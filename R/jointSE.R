@@ -5,29 +5,29 @@
 #' survival covariates.
 #' 
 #' @param fitted a list containing as components the parameter estimates 
-#'   obtained by fitting a joint model along with the respective formulae for
-#'   the longitudinal and survival sub-models and the model chosen, see
+#'   obtained by fitting a joint model along with the respective formulae for 
+#'   the longitudinal and survival sub-models and the model chosen, see 
 #'   \code{joint} for further details.
 #' @param n.boot argument specifying the number of bootstrap samples to use in 
 #'   order to obtain the standard error estimates and confidence intervals. Note
-#'   that at least \code{n.boot=100} is required in order for the function to
+#'   that at least \code{n.boot = 100} is required in order for the function to 
 #'   return non-zero confidence intervals.
 #' @inheritParams joint
 #' @param print.detail This argument determines the level of printing that is 
 #'   done during the bootstrapping. If \code{TRUE} then the parameter estimates 
 #'   from each bootstrap sample are output.
 #'   
-#' @details Standard errors and confidence intervals are obtained by repeated
-#'   fitting of the requisite joint model to bootstrap samples of the original
-#'   longitudinal and survival data. It is rare that more than 200 bootstrap
+#' @details Standard errors and confidence intervals are obtained by repeated 
+#'   fitting of the requisite joint model to bootstrap samples of the original 
+#'   longitudinal and survival data. It is rare that more than 200 bootstrap 
 #'   samples are needed for estimating a standard error. The number of bootstrap
 #'   samples needed for accurate confidence intervals can be as large as 1000.
 #'   
-#' @author Ruwanthi Kolamunnage-Dona
+#' @author Ruwanthi Kolamunnage-Dona 
 #'   (\email{ruwanthi.kolamunnage-dona@@liverpool.ac.uk}) and Pete Philipson 
 #'   (\email{pete.philipson@@northumbria.ac.uk})
 #' @keywords models survival htest
-#' @seealso \code{\link[nlme]{lme}}, \code{\link[survival]{coxph}},
+#' @seealso \code{\link[nlme]{lme}}, \code{\link[survival]{coxph}}, 
 #'   \code{\link{joint}}, \code{\link{jointdata}}.
 #'   
 #' @return An object of class \code{data.frame}.

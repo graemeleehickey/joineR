@@ -29,9 +29,7 @@ ranges, see \code{\link[graphics]{plot.window}} for further details.}
 \item{...}{other graphical arguments; see \code{\link[graphics]{plot}}.}
 }
 \value{
-A graphical device with a plot for longitudinal data. Other functions
-  are useful to be used with this as \code{\link[graphics]{lines}} and 
-  \code{\link[graphics]{points}}.
+A graphical device with a plot for longitudinal data.
 }
 \description{
 Plot longitudinal data of an object of class \code{jointdata}, for a 
@@ -53,6 +51,9 @@ plot(heart.jd, Y.col = "grad", col = "grey")
 }
 \author{
 Ines Sousa (\email{isousa@math.uminho.pt})
+}
+\seealso{
+\code{\link[graphics]{lines}} and \code{\link[graphics]{points}}.
 }
 \keyword{dplot}
 

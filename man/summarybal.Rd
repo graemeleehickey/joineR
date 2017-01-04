@@ -20,10 +20,10 @@ instead, but should match the columns defined in \code{Y.col}.}
 \item{use}{an optional character string giving a method for computing 
 covariances in the presence of missing values. This must be (an
 abbreviation of) one of the strings \code{"all.obs"}, \code{"complete.obs"}
-or \code{"pairwise.complete.obs"}. Defaults to \code{use="all.obs"}.}
+or \code{"pairwise.complete.obs"}. Defaults to \code{use = "all.obs"}.}
 
 \item{na.rm}{logical. Should missing values be removed? By default, 
-\code{na.rm=FALSE}.}
+\code{na.rm = FALSE}.}
 
 \item{...}{further arguments for the summary.}
 }

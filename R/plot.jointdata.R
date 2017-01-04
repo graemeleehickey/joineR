@@ -19,10 +19,9 @@
 #'   
 #' @author Ines Sousa (\email{isousa@@math.uminho.pt})
 #' @keywords dplot
+#' @seealso \code{\link[graphics]{lines}} and \code{\link[graphics]{points}}.
 #'   
-#' @return A graphical device with a plot for longitudinal data. Other functions
-#'   are useful to be used with this as \code{\link[graphics]{lines}} and 
-#'   \code{\link[graphics]{points}}.
+#' @return A graphical device with a plot for longitudinal data.
 #' @export
 #' 
 #' @examples

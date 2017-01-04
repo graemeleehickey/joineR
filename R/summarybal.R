@@ -14,9 +14,9 @@
 #' @param use an optional character string giving a method for computing 
 #'   covariances in the presence of missing values. This must be (an
 #'   abbreviation of) one of the strings \code{"all.obs"}, \code{"complete.obs"}
-#'   or \code{"pairwise.complete.obs"}. Defaults to \code{use="all.obs"}.
+#'   or \code{"pairwise.complete.obs"}. Defaults to \code{use = "all.obs"}.
 #' @param na.rm logical. Should missing values be removed? By default, 
-#'   \code{na.rm=FALSE}.
+#'   \code{na.rm = FALSE}.
 #' @param ... further arguments for the summary.
 #'   
 #' @author Ines Sousa (\email{isousa@@math.uminho.pt})

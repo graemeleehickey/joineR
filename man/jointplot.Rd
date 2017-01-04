@@ -19,10 +19,10 @@ status or censoring indicator part of the \code{jointdata} object.}
 \item{lag}{argument which specifies how many units in time we look back 
 through. Defaults to the maximum observation time across all units.}
 
-\item{split}{logical argument which allows the profiles of units which
-\emph{fail} and those which are \emph{censored} to be viewed in separate
-panels of the same graph. This is the default option. Using 
-\code{split=FALSE} will plot all profiles overlaid on a single plot.}
+\item{split}{logical argument which allows the profiles of units which 
+\emph{fail} and those which are \emph{censored} to be viewed in separate 
+panels of the same graph. This is the default option. Using \code{split =
+FALSE} will plot all profiles overlaid on a single plot.}
 
 \item{col1}{argument to choose the colour for the profiles of the 
 \emph{censored} units.}
@@ -46,11 +46,11 @@ experiencing the event of interest.}
 
 \item{smooth}{the smoother span. This gives the proportion of points in the 
 plot which influence the smooth at each value. Defaults to a value of 2/3. 
-Larger values give more smoothness. See \code{\link[stats]{lowess}} for
+Larger values give more smoothness. See \code{\link[stats]{lowess}} for 
 further details.}
 
 \item{mean.profile}{draw mean profiles if TRUE. Only applies to the 
-\code{split=TRUE} case.}
+\code{split = TRUE} case.}
 
 \item{mcol1}{argument to choose the colour for the mean profile of the units 
 with a censoring indicator of zero.}
@@ -69,8 +69,8 @@ prior to event-time can be inspected. This can be done over a user-specified
 number of time units.
 }
 \details{
-The function tailors the \code{\link[lattice]{xyplot}} function to
-  produce a representation of joint data with longitudinal and survival
+The function tailors the \code{\link[lattice]{xyplot}} function to 
+  produce a representation of joint data with longitudinal and survival 
   components.
 }
 \examples{
@@ -94,12 +94,13 @@ jointplot(heart.valve.jd, Y.col = "log.lvmi",
 \author{
 Pete Philipson (\email{pete.philipson@northumbria.ac.uk})
 }
+\references{
+Wulfsohn MS, Tsiatis AA. A joint model for survival and longitudinal data 
+measured with error. \emph{Biometrics.} 1997; \strong{53(1)}: 330-339.
+}
 \seealso{
-\code{\link[lattice]{xyplot}}, \code{\link{joint}},
+\code{\link[lattice]{xyplot}}, \code{\link{joint}}, 
   \code{\link{jointdata}}.
-  
-  Wulfsohn MS, Tsiatis AA. A joint model for survival and longitudinal data 
-  measured with error. \emph{Biometrics.} 1997; \strong{53(1)}: 330-339.
 }
 \keyword{dplot}
 
