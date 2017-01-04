@@ -4,7 +4,7 @@
 \alias{em.alg}
 \title{Internal function for performing EM algorithm}
 \usage{
-em.alg(longdat, survdat, ran, paraests, gpt, max.it, tol)
+em.alg(longdat, survdat, model, ran, lat, sepassoc, paraests, gpt, max.it, tol)
 }
 \description{
 Internal function for performing EM algorithm

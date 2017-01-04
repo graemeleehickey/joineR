@@ -2,7 +2,7 @@
 #' data sub-model
 #' 
 #' @keywords internal
-#' @importFrom nlme lme
+#' @import nlme
 longst <- function(longdat, long.formula, model, longdat2) {
   
   if (model == "int") {
@@ -11,8 +11,8 @@ longst <- function(longdat, long.formula, model, longdat2) {
     long.start <- nlme::lme(long.formula, random = rf, method = "ML", 
                             data = data.frame(longdat2), na.action = na.omit)
   } else if (model == "intslope") {
-    rf <- as.formula
-    (paste(paste0("~", colnames(longdat)[3]), colnames(longdat)[1], sep = "|"))
+    rf <- as.formula(
+      paste(paste0("~", colnames(longdat)[3]), colnames(longdat)[1], sep = "|"))
     long.start <- nlme::lme(long.formula, random = rf, method = "ML", 
                             data = data.frame(longdat2), na.action = na.omit)
   } else {

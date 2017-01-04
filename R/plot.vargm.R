@@ -15,7 +15,7 @@
 #' @param points logical value if the points \eqn{v_ijk} should be plotted.
 #' @param ... other graphical options as in \code{\link[graphics]{par}}.
 #'   
-#' @author Ines Sousa (\eail{isousa@@math.uminho.pt})
+#' @author Ines Sousa (\email{isousa@@math.uminho.pt})
 #' @keywords dplot
 #'   
 #' @return A graphical device with the plot of empirical variogram.

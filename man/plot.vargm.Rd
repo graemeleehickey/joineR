@@ -46,7 +46,7 @@ vgm <- variogram(indv = tail(mental.unbalanced[, 1], 30),
 plot(vgm)
 }
 \author{
-Ines Sousa (\eail{isousa@math.uminho.pt})
+Ines Sousa (\email{isousa@math.uminho.pt})
 }
 \keyword{dplot}
 

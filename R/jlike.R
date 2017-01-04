@@ -2,7 +2,8 @@
 #' 
 #' @keywords internal
 #' @importFrom statmod gauss.quad.prob
-jlike <- function(longdat, survdat, ran, likeests, lgpt) {
+jlike <- function(longdat, survdat, model, ran, lat, sepassoc,
+                  likeests, lgpt) {
   
   id <- longdat[, 1]
   Y <- longdat[, 2]
@@ -64,8 +65,7 @@ jlike <- function(longdat, survdat, ran, likeests, lgpt) {
     W21 <- cov[, (cnn[i] + 1):cnn[i + 1]]
     W12 <- tcov[(cnn[i] + 1):cnn[i + 1], ]
     if (model == "int") {
-      W11 <- tcrossprod(ttv, W21) + sigma.zi[1:nn[i], 
-                                             1:nn[i]]
+      W11 <- tcrossprod(ttv, W21) + sigma.zi[1:nn[i], 1:nn[i]]
     } else {
       W11 <- ttv %*% W21 + sigma.zi[1:nn[i], 1:nn[i]]
     }

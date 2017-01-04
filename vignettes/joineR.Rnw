@@ -316,6 +316,8 @@ as in the following example.
 liver.long <- liver[, 1:3]
 liver.surv <- UniqueVariables(liver, var.col = c("survival", "cens"), id.col = "id")
 liver.baseline <- UniqueVariables(liver, var.col = 4 , id.col = "id")
+library(nlme)
+library(survival)
 liver.jd <- jointdata(longitudinal = liver.long, survival = liver.surv, 
  baseline = liver.baseline, id.col = "id", time.col = "time")
 @

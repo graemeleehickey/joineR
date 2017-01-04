@@ -4,7 +4,7 @@
 \alias{jlike}
 \title{Internal function for calculating the log-likelihood the maximizer}
 \usage{
-jlike(longdat, survdat, ran, likeests, lgpt)
+jlike(longdat, survdat, model, ran, lat, sepassoc, likeests, lgpt)
 }
 \description{
 Internal function for calculating the log-likelihood the maximizer
