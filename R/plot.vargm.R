@@ -1,7 +1,7 @@
 #' Plots the empirical variogram for longitudinal data
 #' 
 #' Plots the empirical variogram for observed measurements, of an object of 
-#' class 'vargm', obtained by using function \code{\link{variogram}}.
+#' class \code{vargm}, obtained by using function \code{\link{variogram}}.
 #' 
 #' @param x object of class \code{vargm} obtained by using function. 
 #'   \code{\link{variogram}}

@@ -76,8 +76,8 @@
 #'
 #'   }
 #' @keywords datasets
-#' @seealso \code{\link{pbc2}}, \code{\link{renal}},
-#'   \code{\link{epileptic.qol}}.
+#' @seealso \code{\link{mental}}, \code{\link{liver}}, 
+#'   \code{\link{epileptic}}.
 #' @source Mr Eric Lim (\url{http://www.drericlim.com}) and
 #'   \code{\link[joineR]{heart.valve}}
 #' @references

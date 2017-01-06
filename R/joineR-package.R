@@ -24,7 +24,7 @@
 #'   
 #' @section Plot functions:
 #'   
-#'   The plot function can be applied to \code{jointdata} and \code{varg}
+#'   The plot function can be applied to \code{jointdata} and \code{vargm}
 #'   (variogram) objects. In addition, \code{points} and \code{lines} can also
 #'   be used with \code{jointplot} objects.
 #'   

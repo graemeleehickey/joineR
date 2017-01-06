@@ -10,7 +10,8 @@
 \item{x}{object of class \code{jointdata}.}
 
 \item{Y.col}{column number, or column name, of longitudinal variable to be 
-plotted. Defaults to \code{Y.col=NA}, plotting all longitudinal variables.}
+plotted. Defaults to \code{Y.col = NA}, plotting all longitudinal
+variables.}
 
 \item{...}{other graphical arguments; see \code{\link[graphics]{plot}}.}
 }

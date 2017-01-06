@@ -6,7 +6,8 @@
 #' 
 #' @param x object of class \code{jointdata}.
 #' @param Y.col column number, or column name, of longitudinal variable to be 
-#'   plotted. Defaults to \code{Y.col=NA}, plotting all longitudinal variables.
+#'   plotted. Defaults to \code{Y.col = NA}, plotting all longitudinal
+#'   variables.
 #' @param type the type of line to be plotted, see \code{\link[graphics]{plot}}
 #'   for further details.
 #' @param xlab a title for the x-axis, see \code{\link[graphics]{title}}.

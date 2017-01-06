@@ -30,7 +30,7 @@ A graphical device with the plot of empirical variogram.
 }
 \description{
 Plots the empirical variogram for observed measurements, of an object of 
-class 'vargm', obtained by using function \code{\link{variogram}}.
+class \code{vargm}, obtained by using function \code{\link{variogram}}.
 }
 \examples{
 
