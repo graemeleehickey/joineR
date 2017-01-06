@@ -49,19 +49,19 @@ summary(fit)
 #>  Log-likelihood: -424.7052 
 #> 
 #> Longitudinal sub-model fixed effects: log.lvmi ~ 1 + time + hs                              
-#> (Intercept)        4.993407175
-#> time              -0.006933494
-#> hsStentless valve  0.055477011
+#> (Intercept)        4.993407933
+#> time              -0.006931631
+#> hsStentless valve  0.055477776
 #> 
 #> Survival sub-model fixed effects: Surv(fuyrs, status) ~ hs                           
-#> hsStentless valve 0.7927917
+#> hsStentless valve 0.7927934
 #> 
 #> Latent association:                 
-#> gamma_0 0.8233222
+#> gamma_0 0.8233934
 #> 
 #> Variance components:
 #>         U_0         U_1    Residual 
-#> 0.113490833 0.001751502 0.037096393 
+#> 0.113488455 0.001750984 0.037097242 
 #> 
 #> Convergence at iteration: 15 
 #> 
@@ -96,7 +96,7 @@ install_github('graemeleehickey/joineR', build_vignettes = FALSE)
 References
 ==========
 
-1.  Cox DR. Regression models and life-tables. *J R Stat Soc Ser B Stat Methodol.* 1972; 34(2): 187-220.
+1.  Cox DR. Regression models and life-tables. *J R Stat Soc Ser B Stat Methodol.* 1972; **34(2)**: 187-220.
 
 2.  Laird NM, Ware JH. Random-effects models for longitudinal data. *Biometrics.* 1982; **38(4)**: 963-974.
 

@@ -82,7 +82,7 @@ install_github('graemeleehickey/joineR', build_vignettes = FALSE)
 
 # References
 
-1. Cox DR. Regression models and life-tables. *J R Stat Soc Ser B Stat Methodol.* 1972; 34(2): 187-220.
+1. Cox DR. Regression models and life-tables. *J R Stat Soc Ser B Stat Methodol.* 1972; **34(2)**: 187-220.
 
 2. Laird NM, Ware JH. Random-effects models for longitudinal data. *Biometrics.* 1982; **38(4)**: 963-974.
 
