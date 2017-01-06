@@ -79,8 +79,7 @@
 #'   }
 #' @keywords datasets
 #' @seealso \code{\link{mental}}, \code{\link{liver}}, \code{\link{epileptic}}.
-#' @source Mr Eric Lim (\url{http://www.drericlim.com}) and 
-#'   \code{\link[joineR]{heart.valve}}
+#' @source Mr Eric Lim (\url{http://www.drericlim.com})
 #' @references
 #' 
 #' Lim E, Ali A, Theodorou P, Sousa I, Ashrafian H, Chamageorgakis T, Duncan M, 
