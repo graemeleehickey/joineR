@@ -9,7 +9,7 @@
   of measurement, calibrated dose, baseline covariates, and survival data. 
   The column names are identified as follows:
   
-  \itemize{
+  \describe{
   
   \item{\code{id}}{integer: patient identifier.}
   

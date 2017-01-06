@@ -7,7 +7,7 @@
 \format{A balanced data set with respect to the times at which observations 
   recorded. The data consists of the following variables on each patient:
   
-  \itemize{
+  \describe{
   
   \item{\code{id}}{integer: patient identifier.}
   

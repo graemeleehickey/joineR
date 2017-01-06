@@ -14,7 +14,7 @@
 #' @format A data frame in the unbalanced format with longitudinal observations 
 #'   from 488 subjects. The columns are:
 #'   
-#'   \itemize{
+#'   \describe{
 #'   
 #'   \item{\code{id}}{inetger: number for patient identification.}
 #'   
