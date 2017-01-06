@@ -1,3 +1,6 @@
+#' Internal function to get initial parameter estimates for the time-to-event 
+#' sub-model
+#'
 #' @keywords internal
 survst <- function(survdat, surv.formula, survdat2) {
   

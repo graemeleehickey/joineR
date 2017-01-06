@@ -1,3 +1,5 @@
+#' Internal function for performing the EM algorithm
+#'
 #' @keywords internal
 em.alg <- function(longdat, survdat, model, ran, lat, sepassoc, 
                    paraests, gpt, max.it, tol) {
