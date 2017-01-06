@@ -508,11 +508,11 @@ and $V_i$ to follow  zero-mean multivariate Normal distributions, realized
 independently for different subjects. Conditional on $U_i$ and $V_i$, the 
 repeated measurements sub-model is
 
-$$Y_{ij} = x_{ij} \beta_{ij} + a_{ij}^\prime U_i + Z_{ij},$$
+$$Y_{ij} = x_{ij} \beta_{ij} + a_{ij}^\top U_i + Z_{ij},$$
 
 and the hazard sub-model is
 
-$$\lambda_i(t) = \lambda_0(t) \exp(w_{ij} \alpha_{ij} + b_{ij}^\prime V_i).$$
+$$\lambda_i(t) = \lambda_0(t) \exp(w_{ij} \alpha_{ij} + b_{ij}^\top V_i).$$
 
 In the above, the $x_{ij}$, $w_{ij}$, $a_{ij}$ and $b_{ij}$ are vectors of 
 explanatory variables that may be time-constant or time-varying, and the 
@@ -521,9 +521,9 @@ principle, this is a very flexible model. In practice, the computational cost of
 evaluating the likelihood restricts routine implementation of the model to 
 low-dimensional $U_i$ and $V_i$. Wulfsohn and Tsiatis (1997) considered the 
 special case in which the repeated measurements follow the so-called random 
-intercept and slope model with $a_{ij}^\prime  = (1,t_{ij})$, whilst the random 
+intercept and slope model with $a_{ij}^\top  = (1,t_{ij})$, whilst the random 
 effects for the repeated measurement and time-to-event sub-models are 
-proportional, hence $b_{ij}^\prime V_{i} = \phi a_{ij}^\prime U_{i}$.
+proportional, hence $b_{ij}^\top V_{i} = \phi a_{ij}^\top U_{i}$.
 
 The function provided in the `joineR` package for fitting Wulfsohn-Tsiatis 
 models is `joint`, which allows the user to choose from three models for the 
@@ -547,8 +547,8 @@ The syntax for `joint` is best seen via examples. We will fit the joint random
 effect model to the `mental` data-set with the sub-models:
 
 \begin{eqnarray*}
-  \mbox{longitudinal sub-model:  } & Y_{ij} = X'_{i1}\beta_1 + U_{0i} + Z_{ij} \\
-  \mbox{hazard sub-model:  } & h_i(t) = h_0(t) \exp{\{ X'_{i2}\beta_2 + \gamma U_{0i} \}} \\
+  \mbox{longitudinal sub-model:  } & Y_{ij} = X_{i1}^\top \beta_1 + U_{0i} + Z_{ij} \\
+  \mbox{hazard sub-model:  } & h_i(t) = h_0(t) \exp{\{ X_{i2}^\top \beta_2 + \gamma U_{0i} \}} \\
 \end{eqnarray*}
 
 To do this, we first create a `jointdata` object for these data, using the unbalanced form of the data defined earlier.
@@ -618,16 +618,16 @@ measurements sub-model. Choosing the former leads to the following specification
 for the sub-models:
 
 \begin{eqnarray*}
-  \mbox{longitudinal sub-model:  } & Y_{ij} = X'_{i1}\beta_1 + U_{0i} + U_{1i}t_{ij} + Z_{ij} \\
-  \mbox{hazard sub-model:  } & h_i(t) = h_0(t) \exp{\{ X'_{i2}\beta_2 + \gamma\left(U_{0i} + U_{1i}t\right) \}} \\
+  \mbox{longitudinal sub-model:  } & Y_{ij} = X_{i1}^\top \beta_1 + U_{0i} + U_{1i}t_{ij} + Z_{ij} \\
+  \mbox{hazard sub-model:  } & h_i(t) = h_0(t) \exp{\{ X_{i2}^\top \beta_2 + \gamma\left(U_{0i} + U_{1i}t\right) \}} \\
 \end{eqnarray*}
 
 Similarly, setting `model = "quad"} leads to a joint random effects model of the
 form:
 
 \begin{eqnarray*}
-  \mbox{longitudinal sub-model:  } & Y_{ij} = X'_{i1}\beta_1 + U_{0i} + U_{1i}t_{ij} + U_{2i}{t_{ij}}^2 + Z_{ij} \\
-  \mbox{hazard sub-model:  }& h_i(t) = h_0(t) \exp{\{ X'_{i2}\beta_2 + \gamma\left(U_{0i} + U_{1i}t + U_{2i}t^2\right) \}} \\
+  \mbox{longitudinal sub-model:  } & Y_{ij} = X_{i1}^\top \beta_1 + U_{0i} + U_{1i}t_{ij} + U_{2i}{t_{ij}}^2 + Z_{ij} \\
+  \mbox{hazard sub-model:  }& h_i(t) = h_0(t) \exp{\{ X_{i2}^\top \beta_2 + \gamma\left(U_{0i} + U_{1i}t + U_{2i}t^2\right) \}} \\
 \end{eqnarray*}
 
 The argument `sepassoc` can be set to `TRUE` for each of these model choices, 
@@ -635,8 +635,8 @@ allowing a different latent association parameter for each random effect in the
 survival sub-model, e.g. for the random intercept and slope model
 
 \begin{eqnarray*}
-  \mbox{longitudinal sub-model:  } & Y_{ij} = X'_{i1}\beta_1 + U_{0i} + U_{1i}t_{ij} + Z_{ij} \\
-  \mbox{hazard sub-model:  }& h_i(t) = h_0(t) \exp{\{ X'_{i2}\beta_2 + \gamma_0 U_{0i} + \gamma_1 U_{1i}t \}} \\
+  \mbox{longitudinal sub-model:  } & Y_{ij} = X_{i1}^\top \beta_1 + U_{0i} + U_{1i}t_{ij} + Z_{ij} \\
+  \mbox{hazard sub-model:  }& h_i(t) = h_0(t) \exp{\{ X_{i2}^\top \beta_2 + \gamma_0 U_{0i} + \gamma_1 U_{1i}t \}} \\
 \end{eqnarray*}
 
 The default in `joineR` is that `sepassoc = FALSE`, in which case a model with

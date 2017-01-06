@@ -1,3 +1,9 @@
 base
 survival
 joineR
+nlme
+MASS
+boot
+lattice
+statmod
+gdata
