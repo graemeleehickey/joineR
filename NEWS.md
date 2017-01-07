@@ -1,5 +1,11 @@
 # joineR 1.1.9000
 
+## Minor updates
+
+* Add `simjoint` function to simulate data from joint models with several types of association structures.
+
+## Maintanence
+
 * Added a `NEWS.md` file to track changes to the package.
 
 * Converted Rd files to roxygen.
