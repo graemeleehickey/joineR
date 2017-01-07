@@ -1,6 +1,3 @@
-#' Internal function for calculating the likelihood after the maximizer has been
-#' determined from the EM algorithm
-#' 
 #' @keywords internal
 #' @importFrom statmod gauss.quad.prob
 jlike <- function(longdat, survdat, model, ran, lat, sepassoc,
