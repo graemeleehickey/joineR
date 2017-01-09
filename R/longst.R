@@ -24,17 +24,7 @@ longst <- function(longdat, long.formula, model, longdat2) {
                                                opt = "optim"))
   
   q <- dim(nlme::VarCorr(long.start))[1] - 1
-  sigma.u <- diag(as.double(nlme::VarCorr(long.start)[1:q, 1]), q, q)
-  
-  if (q > 1) {
-    vv <- tcrossprod(diag(sqrt(sigma.u))) * lower.tri(sigma.u)
-    rho <- as.double(VarCorr(long.start, rdig = 8)[-c(1, q + 1), -(1:2)])
-    rho <- rho[!is.na(rho)]
-    vars <- diag(sigma.u)
-    sigma.u[lower.tri(sigma.u)] <- vv[lower.tri(vv)] * rho
-    sigma.u <- sigma.u + t(sigma.u) - diag(vars)
-  }
-  
+  sigma.u <- as.matrix(nlme::getVarCov(long.start))
   rownames(sigma.u) <- paste("U_", 0:(q - 1), sep = "")
   colnames(sigma.u) <- paste("U_", 0:(q - 1), sep = "")
   sigma.z <- long.start$sigma^2
