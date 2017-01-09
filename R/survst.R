@@ -22,9 +22,6 @@ survst <- function(survdat, surv.formula, survdat2) {
     haz <- haz[surv.start.f$n.event > 0]
   }
   rs <- rep(1:nf, c(diff(match(sf, s)), n + 1 - match(sf, s)[nf]))
-  if (cen[1] == 0) {
-    rs <- c(0, rs)
-  }
   b2 <- coef(surv.start)
   ll <- surv.start$loglik - sum(cen)
   
