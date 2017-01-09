@@ -49,7 +49,7 @@ sample.jointdata <- function(object, size, replace = FALSE) {
     }
     if (is.data.frame(re$survival)) {
       re$survival <- re$survival[mid, ]
-      re$survival[, 1] <- 1:length(id)
+      re$survival[[re$subj.col]] <- 1:length(id)
       row.names(re$survival) <- 1:(dim(re$survival)[1])
     }
     if (is.data.frame(re$baseline)) {
