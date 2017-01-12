@@ -185,9 +185,9 @@ em.alg <- function(longdat, survdat, model, ran, lat, sepassoc,
     fd[(p2 + 1):(p2 + ran)] <- colSums(cen * (EU * t(Ds))) - 
       colSums(eb2x[, 1] * EUexpU)
     if (model != "int") {
-      inds1 <- c((p2 + 1):(p2 + ran), (p2 + 1):(p2 + ran))
-      inds2 <- upper.tri(sd[(p2 + 1):(p2 + ran), (p2 + 1):(p2 + ran)])
-      sd[inds1][inds2] <- -colSums(eb2x[, 1] * 0.5 * EUUexpU)[(ran + 1):sum(1:ran)]
+      inds1 <- (p2 + 1):(p2 + ran)
+      inds2 <- upper.tri(sd[(p2 + 1):(p2 + ran), inds1])
+      sd[inds1, inds1][inds2] <- -colSums(eb2x[, 1] * 0.5 * EUUexpU)[(ran + 1):sum(1:ran)]
     }
     if (p2 > 0) {
       fd[1:p2] <- c(colSums((cen * X2) - (X2 * eb2x[, 1] * EexpUi)))
@@ -232,7 +232,8 @@ em.alg <- function(longdat, survdat, model, ran, lat, sepassoc,
     }
     
   }
-  if (conv != TRUE) {
+
+  if ((conv != TRUE) & !loglik) {
     print("Not converged")
   }
   
