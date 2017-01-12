@@ -263,7 +263,8 @@ joint <- function(data, long.formula, surv.formula,
                      paraests = paraests,
                      gpt = gpt,
                      max.it = max.it,
-                     tol = tol)
+                     tol = tol,
+                     loglik = FALSE)
   
   # Extract MLEs
   likeests <- c(jointfit, list(rs = survests$rs, 
@@ -289,14 +290,18 @@ joint <- function(data, long.formula, surv.formula,
                        latent = latent)
   
   # Log-likelihood at MLE
-  jointll <- jlike(longdat = longdat,
-                   survdat = survdat,
-                   model = model,
-                   ran = ran,
-                   lat = lat,
-                   sepassoc = sepassoc,
-                   likeests = likeests,
-                   lgpt = lgpt)
+  jointll <- em.alg(longdat = longdat,
+                    survdat = survdat,
+                    model = model,
+                    ran = ran,
+                    lat = lat,
+                    sepassoc = sepassoc,
+                    paraests = likeests,
+                    gpt = lgpt,
+                    max.it = 1,
+                    tol = tol,
+                    loglik = TRUE)
+
   loglik <- list(jointlhood = jointll$log.like,
                  jointy = jointll$longlog.like, 
                  jointn = jointll$survlog.like)
