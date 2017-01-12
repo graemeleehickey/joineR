@@ -8,6 +8,8 @@
 
 * Added a `NEWS.md` file to track changes to the package.
 
+* Added some unit tests + code coverage monitoring integration.
+
 * Converted Rd files to roxygen.
 
 * Converted Sweave vignette to rmarkdown.

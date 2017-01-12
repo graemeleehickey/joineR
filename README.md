@@ -3,7 +3,7 @@
 joineR
 ======
 
-[![Travis-CI Build Status](https://travis-ci.org/graemeleehickey/joineR.svg?branch=master)](https://travis-ci.org/graemeleehickey/joineR) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/graemeleehickey/joineR?branch=master&svg=true)](https://ci.appveyor.com/project/graemeleehickey/joineR) [![License](https://img.shields.io/badge/License-GPL%20%28%3E=%203%29-brightgreen.svg)](http://www.gnu.org/licenses/gpl-3.0.html) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/joineR)](https://cran.r-project.org/package=joineR) [![](http://cranlogs.r-pkg.org/badges/joineR)](http://cran.rstudio.com/web/packages/joineR/index.html)
+[![Travis-CI Build Status](https://travis-ci.org/graemeleehickey/joineR.svg?branch=master)](https://travis-ci.org/graemeleehickey/joineR) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/graemeleehickey/joineR?branch=master&svg=true)](https://ci.appveyor.com/project/graemeleehickey/joineR) [![License](https://img.shields.io/badge/License-GPL%20%28%3E=%203%29-brightgreen.svg)](http://www.gnu.org/licenses/gpl-3.0.html) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/joineR)](https://cran.r-project.org/package=joineR) [![](http://cranlogs.r-pkg.org/badges/joineR)](http://cran.rstudio.com/web/packages/joineR/index.html) [![Coverage Status](https://img.shields.io/codecov/c/github/graemeleehickey/joineR/master.svg)](https://codecov.io/github/graemeleehickey/joineR?branch=master)
 
 The `joineR` package implements methods for analyzing data from longitudinal studies in which the response from each subject consists of a time-sequence of repeated measurements and a possibly censored time-to- event outcome. The modelling framework for the repeated measurements is the linear model with random effects and/or correlated error structure (Laird and Ware, 1982). The model for the time-to-event outcome is a Cox proportional hazards model with log-Gaussian frailty (Cox, 1972). Stochastic dependence is captured by allowing the Gaussian random effects of the linear model to be correlated with the frailty term of the Cox proportional hazards model. The methodology used to fit the model is described in Henderson et al. (2002) and Wulfsohn and Tsiatis (1997).
 
@@ -46,24 +46,24 @@ fit <- joint(data = heart.valve.jd,
 summary(fit)
 #> Random effects joint model
 #>  Data: heart.valve.jd 
-#>  Log-likelihood: -424.7052 
+#>  Log-likelihood: -424.7061 
 #> 
 #> Longitudinal sub-model fixed effects: log.lvmi ~ 1 + time + hs                              
-#> (Intercept)        4.993407933
-#> time              -0.006931631
-#> hsStentless valve  0.055477776
+#> (Intercept)        4.993339611
+#> time              -0.006972218
+#> hsStentless valve  0.055435769
 #> 
 #> Survival sub-model fixed effects: Surv(fuyrs, status) ~ hs                           
-#> hsStentless valve 0.7927934
+#> hsStentless valve 0.7926163
 #> 
 #> Latent association:                 
-#> gamma_0 0.8233934
+#> gamma_0 0.8225708
 #> 
 #> Variance components:
 #>         U_0         U_1    Residual 
-#> 0.113488455 0.001750984 0.037097242 
+#> 0.113512667 0.001754585 0.037090655 
 #> 
-#> Convergence at iteration: 15 
+#> Convergence at iteration: 12 
 #> 
 #> Number of observations: 988 
 #> Number of groups: 256
