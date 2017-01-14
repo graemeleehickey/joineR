@@ -40,10 +40,18 @@
 plot.jointdata <- function(x, Y.col, type, xlab, xlim = NULL, ylim = NULL, 
                            main = NA, pty, ...) {
   
-  if (missing(Y.col)) {Y.col <- NA}
-  if (missing(type)) {type = "l"}
-  if (missing(xlab)) {xlab = "Time"}
-  if (missing(pty)) {pty = "m"}
+  if (missing(Y.col)) {
+    Y.col <- NA
+  }
+  if (missing(type)) {
+    type = "l"
+  }
+  if (missing(xlab)) {
+    xlab = "Time"
+  }
+  if (missing(pty)) {
+    pty = "m"
+  }
   if (sum(is.na(Y.col)) > 0) {
     n.resp <- dim(x$longitudinal)[2] - 2
     if (n.resp > 9) {
@@ -202,7 +210,7 @@ plot.jointdata <- function(x, Y.col, type, xlab, xlim = NULL, ylim = NULL,
         }
       }
     }
-  
+    
   }
   
 }
