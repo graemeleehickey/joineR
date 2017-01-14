@@ -1,7 +1,8 @@
 library(joineR)
-context("Ancillary functions work")
+context("Ancillary functions")
 
-test_that("simjoint works", {
+
+test_that("simulation", {
   # simulate data
   set.seed(1)
   d <- simjoint(10, sepassoc = TRUE)
@@ -11,7 +12,8 @@ test_that("simjoint works", {
   expect_equal(dim(d$survival), c(10, 5))
 })
 
-test_that("variogram works", {
+
+test_that("variogram estimation", {
   # load data + fit model
   data(mental)
   mental.unbalanced <- to.unbalanced(
@@ -30,7 +32,8 @@ test_that("variogram works", {
   expect_equal(vgm$sigma2, 104, tol = 1e-03)
 })
 
-test_that("to.unbalanced works", {
+
+test_that("conversion between balanced + unbalanced works", {
   # convert
   simul0 <- data.frame(
     num = 1:10,
@@ -58,3 +61,26 @@ test_that("to.unbalanced works", {
 })
 
 
+test_that("subset of jointdata", {
+  # data + subset
+  data(heart.valve)
+  heart.surv <- UniqueVariables(heart.valve,
+                                var.col = c("fuyrs", "status"),
+                                id.col = "num")
+  heart.long <- heart.valve[, c(1, 4, 5, 7, 8, 9, 10, 11)]
+  heart.jd <- jointdata(longitudinal = heart.long, 
+                        survival = heart.surv,
+                        id.col = "num",
+                        time.col = "time")
+  take <- heart.jd$survival$num[heart.jd$survival$status == 0]
+  heart.jd.cens <- subset(heart.jd, take)
+  # tests
+  expect_output(str(heart.jd.cens), "List of 6")
+  expect_output(str(heart.jd.cens$longitudinal), "data.frame")
+  expect_equal(dim(heart.jd.cens$longitudinal), c(827, 8))
+  expect_equal(dim(heart.jd.cens$survival), c(202, 3))
+  expect_equal(heart.jd.cens$time.col, "time")
+  expect_equal(heart.jd.cens$subj.col, "num")
+})
+  
+  

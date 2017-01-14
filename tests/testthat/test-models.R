@@ -1,7 +1,8 @@
 library(joineR)
-context("Models fit")
+context("Models fitting")
 
-test_that("random-intercept and random-slope model works", {
+
+test_that("random-intercept and random-slope models", {
   # load data + fit model
   data(heart.valve)
   heart.surv <- UniqueVariables(heart.valve, 
@@ -38,7 +39,8 @@ test_that("random-intercept and random-slope model works", {
   expect_output(str(fit$data), "List of 6")
 })
 
-test_that("random-intercept only model works", {
+
+test_that("random-intercept only models", {
   # load data + fit model
   data(heart.valve)
   heart.surv <- UniqueVariables(heart.valve, 
@@ -75,7 +77,8 @@ test_that("random-intercept only model works", {
   expect_output(str(fit$data), "List of 6")
 })
 
-test_that("quadratic model works", {
+
+test_that("quadratic models", {
   # load data + fit model
   data(heart.valve)
   heart.surv <- UniqueVariables(heart.valve, 
@@ -112,7 +115,8 @@ test_that("quadratic model works", {
   expect_output(str(fit$data), "List of 6")
 })
 
-test_that("sepassoc model works", {
+
+test_that("seperate association models", {
   # load data + fit model
   data(heart.valve)
   heart.surv <- UniqueVariables(heart.valve, 
@@ -141,7 +145,8 @@ test_that("sepassoc model works", {
                tol = 1e-03, check.attributes = FALSE)
 })
 
-test_that("bootstrap SE works", {
+
+test_that("bootstrap SE", {
   # load data + fit model
   data(heart.valve)
   heart.surv <- UniqueVariables(heart.valve, 
