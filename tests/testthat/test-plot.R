@@ -66,4 +66,20 @@ test_that("points + lines added to a plot of jointdata", {
   expect_silent(points(heart.jd.2, Y.col = "grad", col = "blue", pch = 20))
   expect_silent(lines(heart.jd.2, Y.col = "grad", col = "blue", pch = 20))
 })
+
+
+test_that("variogram plot", {
+  # data + variogram
+  data(mental)
+  mental.unbalanced <- to.unbalanced(mental, id.col = 1, 
+                                     times = c(0, 1, 2, 4, 6, 8),
+                                     Y.col = 2:7, 
+                                     other.col = c(8, 10, 11))
+  names(mental.unbalanced)[3] <- "Y"
+  vgm <- variogram(indv = tail(mental.unbalanced[, 1], 30),
+                   time = tail(mental.unbalanced[, 2], 30),
+                   Y = tail(mental.unbalanced[, 3], 30))
+  # tests
+  expect_silent(plot(vgm))
+})
   
