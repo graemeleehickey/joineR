@@ -15,6 +15,7 @@ test_that("plot jointdata objects (longitudinal)", {
                         time.col = "time")
   # tests
   expect_silent(plot(heart.jd, Y.col = "grad", col = "grey"))
+  expect_silent(plot(heart.jd))
 })
 
 
