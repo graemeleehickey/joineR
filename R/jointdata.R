@@ -57,20 +57,20 @@ jointdata <- function(longitudinal = NA, survival = NA, baseline = NA, id.col = 
   # Checks
   if (!(is.matrix(longitudinal) | is.data.frame(longitudinal)) & 
       notNA(longitudinal)) {
-    stop("longitudinal object must be a matrix or a data.frame")
+    stop("Longitudinal object must be a matrix or a data.frame")
   }
   
   if (!(is.matrix(survival) | is.data.frame(survival)) & notNA(survival)) {
-    stop("survival object must be a matrix or a data.frame")
+    stop("Survival object must be a matrix or a data.frame")
   }
   
   if (!(is.matrix(baseline) | is.data.frame(baseline) | is.character(baseline)) & 
       notNA(baseline)) {
-    stop("baseline object must be a matrix or a data.frame or a vector of names of baseline covariates")
+    stop("Baseline object must be a matrix or a data.frame or a vector of names of baseline covariates")
   }
   
   if (is.na(id.col)) {
-    stop("It is necessary to specify an subject identification column name")
+    stop("It is necessary to specify a subject identification column name")
   }
   
   nm <- names(which(!is.na(list(longitudinal = longitudinal, survival = survival))))

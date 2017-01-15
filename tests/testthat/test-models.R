@@ -189,25 +189,25 @@ test_that("jointdata throws errors for incorrect data", {
                          survival = heart.surv, 
                          id.col = "num", 
                          time.col = "time"),
-               "longitudinal object must be a matrix or a data.frame")
+               "Longitudinal object must be a matrix or a data.frame")
   expect_error(jointdata(longitudinal = heart.long, 
                          baseline = 1, 
                          survival = heart.surv, 
                          id.col = "num", 
                          time.col = "time"),
-               "baseline object must be a matrix or a data.frame or a vector of names of baseline covariates")  
+               "Baseline object must be a matrix or a data.frame or a vector of names of baseline covariates")  
   expect_error(jointdata(longitudinal = heart.long, 
                          baseline = heart.cov, 
                          survival = 1, 
                          id.col = "num", 
                          time.col = "time"),
-               "survival object must be a matrix or a data.frame")  
+               "Survival object must be a matrix or a data.frame")  
   expect_error(jointdata(longitudinal = heart.long, 
                          baseline = heart.cov, 
                          survival = heart.surv, 
                          id.col = NA, 
                          time.col = "time"),
-               "It is necessary to specify an subject identification column name")
+               "It is necessary to specify a subject identification column name")
   names(heart.cov)[1] <- "Num" # case change
   expect_error(jointdata(longitudinal = heart.long, 
                          baseline = heart.cov, 
