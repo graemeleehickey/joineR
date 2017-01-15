@@ -5,11 +5,20 @@ context("Ancillary functions")
 test_that("simulation", {
   # simulate data
   set.seed(1)
-  d <- simjoint(10, sepassoc = TRUE)
+  d1 <- simjoint(10, sepassoc = TRUE)
+  d2 <- simjoint(10, model = "int", gamma = 1)
+  d3 <- simjoint(10, model = "quad", sepassoc = TRUE, gamma = 1:3)
   # tests
-  expect_output(str(d), "List of 2")
-  expect_equal(dim(d$longitudinal)[2], 7)
-  expect_equal(dim(d$survival), c(10, 5))
+  expect_output(str(d1), "List of 2")
+  expect_output(str(d2), "List of 2")
+  expect_output(str(d3), "List of 2")
+  expect_equal(dim(d1$longitudinal)[2], 7)
+  expect_equal(dim(d2$longitudinal)[2], 7)
+  expect_equal(dim(d3$longitudinal)[2], 7)
+  expect_equal(dim(d1$survival), c(10, 5))
+  expect_equal(dim(d2$survival), c(10, 5))
+  expect_equal(dim(d3$survival), c(10, 5))
+  expect_warning(simjoint(10, model = "intslop", sigu = 1))
 })
 
 
