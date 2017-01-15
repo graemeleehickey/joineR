@@ -22,10 +22,10 @@ response must be a survival object as returned by the
 
 \item{model}{a character string specifying the type of latent association. 
 This defaults to the intercept and slope version as seen in Wulfsohn and 
-Tsiatis. For association via the random intercept only, choose \code{model
-= "int"}, whereas for a quadratic association, use \code{model = "quad"}.
-Computing times are commensurate with the type of association structure
-chosen.}
+Tsiatis (1997). For association via the random intercept only, choose
+\code{model = "int"}, whereas for a quadratic association, use \code{model
+= "quad"}. Computing times are commensurate with the type of association
+structure chosen.}
 
 \item{sepassoc}{logical value: if \code{TRUE} then the joint model is fitted 
 with separate association, see \code{Details}.}
