@@ -132,8 +132,7 @@ plot.jointdata <- function(x, Y.col, type, xlab, xlim = NULL, ylim = NULL,
       }
       if (n.resp %in% c(2, 4)) {
         nc = 2
-      }
-      else {
+      } else {
         if (n.resp %in% 1) {
           nc = 1
         }
@@ -160,8 +159,7 @@ plot.jointdata <- function(x, Y.col, type, xlab, xlim = NULL, ylim = NULL,
       Y.col.i <- Y.col[i]
       if (is.numeric(Y.col.i)) {
         resp <- x$longitudinal[, Y.col.i]
-      }
-      else {
+      } else {
         resp <- x$longitudinal[[Y.col.i]]
         Y.col.i <- which(names(x$longitudinal) %in% 
                            Y.col.i)
