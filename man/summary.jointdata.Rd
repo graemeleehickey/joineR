@@ -2,7 +2,7 @@
 % Please edit documentation in R/summary.jointdata.R
 \name{summary.jointdata}
 \alias{summary.jointdata}
-\title{Summarise a jointdata object}
+\title{Summarise a \code{jointdata} object}
 \usage{
 \method{summary}{jointdata}(object, ...)
 }

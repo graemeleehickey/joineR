@@ -76,7 +76,7 @@ The \code{joint} function fits a joint model to survival and
   \deqn{Y_i = X_{i1}(t_i)^T\beta_1 + D_i(t_i)^T U_i + \epsilon_i,}
   
   where \eqn{U_i} is a vector of random effects, \eqn{(U_{0i}, \ldots 
-  U_{qi})} whose length depends on the model chosen, ie. \eqn{q = 1} for the 
+  U_{qi})} whose length depends on the model chosen, i.e. \eqn{q = 1} for the 
   random intercept model. \eqn{D_i} is the random effects covariate matrix, 
   which will be time-dependent for all but the random intercept model. 
   \eqn{X_{i1}} is the longitudinal design matrix for unit \eqn{i}, and 
@@ -98,7 +98,7 @@ The \code{joint} function fits a joint model to survival and
   
   \deqn{D_i(t)(\gamma^T U_i) = \gamma (U_{0i} + U_{1i} t).}
   
-  \eqn{X_{i2}} is the vector of survival covaraites for unit \eqn{i}. The 
+  \eqn{X_{i2}} is the vector of survival covariates for unit \eqn{i}. The 
   baseline hazard is \eqn{\lambda_0}.
   
   The function uses an EM algorithm to estimate parameters in the joint 

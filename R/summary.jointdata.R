@@ -1,4 +1,4 @@
-#' Summarise a jointdata object
+#' Summarise a \code{jointdata} object
 #' 
 #' Generic function used to produce summaries of objects of class 
 #' \code{jointdata}

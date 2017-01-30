@@ -22,7 +22,7 @@ and Tsiatis (1997).
 The package offers several types of functions for the analysis of joint data.
 }
 \note{
-Further details on the package are given in the vigentte. To access
+Further details on the package are given in the vignette. To access
   this, run \code{vignette("joineR")}.
 }
 \section{Data manipulation functions}{

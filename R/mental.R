@@ -1,7 +1,7 @@
 #' Mental health trial data
 #' 
 #' The data is obtained from a trial in which chronically ill mental health 
-#' patients were randomised across two treatments: placebo and an active drug. A
+#' patients were randomized across two treatments: placebo and an active drug. A
 #' questionnaire instrument was used to assess each patient's mental state at 
 #' weeks 0, 1, 2, 4, 6 and 8 post-randomisation, a high recorded score implying 
 #' a severe condition. Some of the 100 patients dropped out of the study for 

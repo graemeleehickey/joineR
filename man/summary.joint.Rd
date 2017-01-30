@@ -22,7 +22,7 @@ An object inheriting from class \code{summary.joint} with all
   \item{\code{nobs}}{the total number of (typically longitudinal)
   observations (i.e. rows in an unbalanced data set).}
   
-  \item{\code{ngrps}}{the number of groups in the analysed dataset, often
+  \item{\code{ngrps}}{the number of groups in the analyzed dataset, often
   individual subjects.}
 }
 \description{

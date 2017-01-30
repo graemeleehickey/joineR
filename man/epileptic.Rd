@@ -15,14 +15,14 @@
   
   \item{\code{dose}}{numeric: calibrated dose.}
   
-  \item{\code{time}}{iteger: timing of clinic visit at which dose recorded
+  \item{\code{time}}{integer: timing of clinic visit at which dose recorded
   (days).}
   
   \item{\code{with.time}}{integer: time of drug withdrawal/maximum follow up 
   time (days).}
   
   \item{\code{with.status}}{censoring indicator (\code{1 = }withdrawal of 
-  randomised drug and \code{0 = }not withdrawn from randomised drug/lost to
+  randomized drug and \code{0 = }not withdrawn from randomized drug/lost to
   follow up).}
   
   \item{\code{with.status.uae}}{\code{1 = }withdrawal due to unacceptable 
@@ -48,10 +48,10 @@ SANAD Trial - University of Liverpool
 data(epileptic)
 }
 \description{
-The SANAD (Standard and New Antiepileptic Drugs) study (Marson et al., 2007) 
-is a randomised control trial of standard and new antiepileptic drugs, 
+The SANAD (Standard and New Anti-epileptic Drugs) study (Marson et al., 2007) 
+is a randomized control trial of standard and new anti-epileptic drugs, 
 comparing effects on longer term clinical outcomes. The data consists of 
-longitudinal measurements of calibrated dose for the groups randomised to a 
+longitudinal measurements of calibrated dose for the groups randomized to a 
 standard drug (CBZ) and a new drug (LTG). The objective of the analysis is to
 investigate the effect of drug titration on the relative effects of LTG and 
 CBZ on treatment failure (withdrawal of the randomized drug). There are 

@@ -1,4 +1,4 @@
-#' Add lines to an existing jointdata plot
+#' Add lines to an existing \code{jointdata} plot
 #' 
 #' Add lines to an existing plot of an object of class \code{jointdata}, for a
 #' longitudinal variable. It is possible to plot all the subjects in the data 

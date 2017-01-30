@@ -6,7 +6,7 @@
 #' form of the event time and associated censoring indicator are also recorded 
 #' along with a solitary baseline covariate - the allocated treatment arm in 
 #' this instance. The data are taken from Andersen et al. (1993, p. 19) and were
-#' analysed in Henderson et al. (2002). This is a subset of the full data where
+#' analyzed in Henderson et al. (2002). This is a subset of the full data where
 #' a number of variables were recorded both at entry and during the course of
 #' the trial.
 #' 
@@ -16,9 +16,9 @@
 #'   
 #'   \describe{
 #'   
-#'   \item{\code{id}}{inetger: number for patient identification.}
+#'   \item{\code{id}}{integer: number for patient identification.}
 #'   
-#'   \item{\code{prothrombin}}{inetger: prothrombin index measurement (\%).}
+#'   \item{\code{prothrombin}}{integer: prothrombin index measurement (\%).}
 #'   
 #'   \item{\code{time}}{numeric: time of prothrombin index measurement (years).}
 #'   

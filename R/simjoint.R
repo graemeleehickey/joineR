@@ -53,7 +53,7 @@
 #'   time, whilst in the case of latter, the approach of Austin (2012) is used.
 #'   
 #'   TODO: add something on the \code{model = "quad"}. Also, check
-#'   \code{grid.step} defintion.
+#'   \code{grid.step} definition.
 #'   
 #' @author Pete Philipson (\email{pete.philipson@northumbria.ac.uk})
 #' @keywords datagen survival

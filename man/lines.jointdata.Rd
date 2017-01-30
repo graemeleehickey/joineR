@@ -2,7 +2,7 @@
 % Please edit documentation in R/lines.jointdata.R
 \name{lines.jointdata}
 \alias{lines.jointdata}
-\title{Add lines to an existing jointdata plot}
+\title{Add lines to an existing \code{jointdata} plot}
 \usage{
 \method{lines}{jointdata}(x, Y.col, ...)
 }

@@ -33,7 +33,7 @@
 #'   The primary function for fitting a joint model is \code{joint}. Standard
 #'   errors can be estimated using \code{jointSE}.
 #'   
-#' @note Further details on the package are given in the vigentte. To access
+#' @note Further details on the package are given in the vignette. To access
 #'   this, run \code{vignette("joineR")}.
 #'   
 #' @references

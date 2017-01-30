@@ -2,7 +2,7 @@
 % Please edit documentation in R/points.jointdata.R
 \name{points.jointdata}
 \alias{points.jointdata}
-\title{Add points to an existing jointdata plot}
+\title{Add points to an existing \code{jointdata} plot}
 \usage{
 \method{points}{jointdata}(x, Y.col, ...)
 }

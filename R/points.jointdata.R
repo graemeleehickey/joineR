@@ -1,4 +1,4 @@
-#' Add points to an existing jointdata plot
+#' Add points to an existing \code{jointdata} plot
 #' 
 #' Add points to an existing plot of an object of class \code{jointdata}, for a 
 #' longitudinal variable. It is possible plot all the subjects in the data set, 
