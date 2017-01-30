@@ -4,7 +4,7 @@ simdat <- function(n, model, sepassoc, ntms, ran, b1, b2, gamma, sigu,
                    trunctime, gridstep) {
   
   ctsx <- rnorm(n)
-  binx <- runif(n, -sqrt(3), sqrt(3))
+  binx <- rbinom(n, 1, 0.5)
   X2 <- cbind(ctsx, binx)
   id <- 1:n
   idl <- rep(id, each = ntms)
