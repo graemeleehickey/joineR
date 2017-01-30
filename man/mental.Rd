@@ -43,6 +43,9 @@
   dropout.}
   
   }}
+\source{
+Peter J. Diggle (p.diggle@lancaster.ac.uk)
+}
 \usage{
 data(mental)
 }
@@ -55,6 +58,15 @@ a severe condition. Some of the 100 patients dropped out of the study for
 reasons that were thought to be related to their mental state, and therefore 
 potentially informative; others dropped out for reasons unrelated to their 
 mental state.
+}
+\references{
+Henderson R, Diggle PJ, Dobson A. Joint modelling of longitudinal 
+measurements and event time data. \emph{Biostatistics.} 2000; \strong{1(4)}: 
+465-480.
+
+Diggle PJ, Farewell D, Henderson R. Longitudinal data with dropout:
+objectives, assumptions and a proposal (with Discussion). \emph{Applied
+Statistics.} 2007; \strong{56}: 499-550.
 }
 \seealso{
 \code{\link{heart.valve}}, \code{\link{liver}}, 

@@ -52,6 +52,16 @@
 #' @keywords datasets
 #' @seealso \code{\link{heart.valve}}, \code{\link{liver}}, 
 #'   \code{\link{epileptic}}.
+#' @source Peter J. Diggle (p.diggle@@lancaster.ac.uk)
+#' @references
+#' 
+#' Henderson R, Diggle PJ, Dobson A. Joint modelling of longitudinal 
+#' measurements and event time data. \emph{Biostatistics.} 2000; \strong{1(4)}: 
+#' 465-480.
+#' 
+#' Diggle PJ, Farewell D, Henderson R. Longitudinal data with dropout:
+#' objectives, assumptions and a proposal (with Discussion). \emph{Applied
+#' Statistics.} 2007; \strong{56}: 499-550.
 "mental"
 
 
