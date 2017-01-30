@@ -4,6 +4,10 @@
 
 * Add `simjoint` function to simulate data from joint models with several types of association structures.
 
+* Removed `jlike` function and integrated likelihood calculation directly into `em.alg` function.
+
+* Minor bug fixes to the `joint` and `em.alg` functions.
+
 ## Maintanence
 
 * Added a `NEWS.md` file to track changes to the package.
