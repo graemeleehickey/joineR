@@ -112,7 +112,7 @@ The function \code{simData} simulates data from a joint model,
   different approach. We note that hazard function can be written as
   
   \deqn{\lim_{dt \rightarrow 0} \lambda(t) dt = \lim_{dt \rightarrow 0} 
-  \text{Pr}(t \le T \le t + dt | T \ge t).}
+  P[t \le T \le t + dt | T \ge t].}
   
   In the simulation routine the parameter \code{gridstep} acts as \eqn{dt} in
   that we choose a nominally small value, which multiplies the hazard and 
