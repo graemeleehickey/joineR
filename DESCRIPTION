@@ -2,7 +2,7 @@ Package: joineR
 Type: Package
 Title: Joint Modelling of Repeated Measurements and Time-to-Event Data
 Version: 1.1.0.9000
-Date: 2017-01-07
+Date: 2017-01-31
 Authors@R: c(
     person("Pete", "Philipson", email = "pete.philipson@northumbria.ac.uk", 
         role = c("cre", "aut")),
