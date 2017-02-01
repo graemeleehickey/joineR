@@ -1,4 +1,13 @@
+## Resubmission
+
+This is a resubmission due to 2 NOTES:
+
+* I have changed the URL in the README.md to CRAN canonical format.
+
+* I have reassigned the package creator to be Graeme L. Hickey.
+
 ## Test environments
+
 * local OS X install, R 3.3.1
 * ubuntu 12.04 (on travis-ci), R 3.3.1
 * win-builder (devel and release)
