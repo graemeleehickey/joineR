@@ -74,7 +74,7 @@ Full details on the data and the functions are provided in the help documentatio
 Multivariate data
 =================
 
-`joineR` only models a single repeated measurement and a single event time. If multiple longitudinal outcomes are available (see Hickey et al., 2016), a separate package is available: [`joineRML`](https://cran.r-project.org/web/packages/joineRML/index.html).
+`joineR` only models a single repeated measurement and a single event time. If multiple longitudinal outcomes are available (see Hickey et al., 2016), a separate package is available: [`joineRML`](https://CRAN.R-project.org/package=joineRML).
 
 Funding
 =======
