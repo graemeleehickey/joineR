@@ -5,7 +5,7 @@ Version: 1.1.0
 Date: 2017-01-31
 Authors@R: c(
     person("Pete", "Philipson", email = "pete.philipson@northumbria.ac.uk", 
-        role = c("aut")),
+        role = "aut"),
     person("Ines", "Sousa", email = "isousa@mct.uminho.pt",
         role = "aut"),
     person("Peter J.", "Diggle", email = "p.diggle@lancaster.ac.uk",
@@ -17,7 +17,7 @@ Authors@R: c(
     person("Robin", "Henderson", email = "robin.henderson@ncl.ac.uk",
         role = "aut"),
     person("Graeme L.", "Hickey", email = "graeme.hickey@liverpool.ac.uk", 
-        role = c("aut", "cre")
+        role = c("aut", "cre"))
     )
 Maintainer: Graeme L. Hickey <graeme.hickey@liverpool.ac.uk>
 Description: Analysis of repeated measurements and time-to-event data via
