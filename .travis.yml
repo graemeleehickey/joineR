@@ -2,6 +2,9 @@
 
 language: R
 cran: http://cran.rstudio.com
+repos:
+  CRAN: http://cran.rstudio.com
+  ropensci: http://packages.ropensci.com
 sudo: false
 cache: packages
 
