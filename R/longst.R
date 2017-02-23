@@ -20,7 +20,8 @@ longst <- function(longdat, long.formula, model, longdat2) {
                           method = "ML", 
                           data = data.frame(longdat2),
                           na.action = na.omit,
-                          control = lmeControl(maxIter = 100, msMaxIter = 100,
+                          control = lmeControl(maxIter = 100, 
+                                               msMaxIter = 100,
                                                opt = "optim"))
   
   q <- dim(nlme::VarCorr(long.start))[1] - 1
@@ -31,6 +32,9 @@ longst <- function(longdat, long.formula, model, longdat2) {
   ll <- long.start$logLik
   b1 <- nlme::fixef(long.start)
   
-  list(b1 = data.frame(b1), sigma.z = sigma.z, sigma.u = sigma.u, log.like = ll)
+  list("b1" = data.frame(b1),
+       "sigma.z" = sigma.z,
+       "sigma.u" = sigma.u,
+       "log.like" = ll)
   
 }

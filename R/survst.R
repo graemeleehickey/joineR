@@ -16,8 +16,7 @@ survst <- function(survdat, surv.formula, survdat2) {
   nev <- surv.start.f$n.event[surv.start.f$n.event != 0]
   if (p2 > 0) {
     haz <- survival::coxph.detail(surv.start)$hazard
-  }
-  else {
+  } else {
     haz <- (surv.start.f$n.event) / (surv.start.f$n.risk)
     haz <- haz[surv.start.f$n.event > 0]
   }
@@ -25,6 +24,11 @@ survst <- function(survdat, surv.formula, survdat2) {
   b2 <- coef(surv.start)
   ll <- surv.start$loglik - sum(cen)
   
-  list(b2 = b2, haz = haz, rs = rs, sf = sf, nev = nev, log.like = ll)
+  list("b2" = b2,
+       "haz" = haz,
+       "rs" = rs,
+       "sf" = sf,
+       "nev" = nev,
+       "log.like" = ll)
   
 }

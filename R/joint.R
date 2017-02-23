@@ -175,14 +175,14 @@ joint <- function(data, long.formula, surv.formula,
                       long.names)
   
   # Survival data
-  surv.frame <- model.frame(surv.formula, data = cbind(data$survival,
-                                                       data$baseline))
+  surv.frame <- model.frame(surv.formula,
+                            data = cbind(data$survival, data$baseline))
   srv <- model.extract(surv.frame, "response")
-  surv.terms <- terms(surv.formula, data = cbind(data$survival,
-                                                 data$baseline))
+  surv.terms <- terms(surv.formula,
+                      data = cbind(data$survival, data$baseline))
   attr(surv.terms, "intercept") <- 1
-  surv.cov <- model.matrix(surv.terms, data = cbind(data$survival,
-                                                    data$baseline))
+  surv.cov <- model.matrix(surv.terms,
+                           data = cbind(data$survival, data$baseline))
   surv.cov <- surv.cov[, -1, drop = FALSE]
   rss <- as.integer(row.names(surv.cov))
   survdat <- cbind(data$survival[[id]][rss], 

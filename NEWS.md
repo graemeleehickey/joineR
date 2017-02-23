@@ -1,4 +1,8 @@
-# joineR 1.1.9000
+# joineR 1.1.0.9000
+
+TBA
+
+# joineR 1.1.0
 
 ## Minor updates
 
