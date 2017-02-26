@@ -1,137 +1,137 @@
 #' Fit joint model for survival and longitudinal data measured with error
-#' 
-#' This generic function fits a joint model with random latent association, 
-#' building on the formulation described in Wulfsohn and Tsiatis (1997) while 
-#' allowing for the presence of longitudinal and survival covariates, and three 
-#' choices for the latent process. The link between the longitudinal and 
+#'
+#' This generic function fits a joint model with random latent association,
+#' building on the formulation described in Wulfsohn and Tsiatis (1997) while
+#' allowing for the presence of longitudinal and survival covariates, and three
+#' choices for the latent process. The link between the longitudinal and
 #' survival processes can be proportional or separate.
-#' 
-#' @param data an object of class \code{jointdata} containing the variables 
+#'
+#' @param data an object of class \code{jointdata} containing the variables
 #'   named in the formulae arguments.
-#' @param long.formula a formula object with the response variable, and the 
+#' @param long.formula a formula object with the response variable, and the
 #'   covariates to include in the longitudinal sub-model.
-#' @param surv.formula a formula object with the survival time, censoring 
-#'   indicator and the covariates to include in the survival sub-model. The 
-#'   response must be a survival object as returned by the 
+#' @param surv.formula a formula object with the survival time, censoring
+#'   indicator and the covariates to include in the survival sub-model. The
+#'   response must be a survival object as returned by the
 #'   \code{\link[survival]{Surv}} function.
-#' @param model a character string specifying the type of latent association. 
-#'   This defaults to the intercept and slope version as seen in Wulfsohn and 
+#' @param model a character string specifying the type of latent association.
+#'   This defaults to the intercept and slope version as seen in Wulfsohn and
 #'   Tsiatis (1997). For association via the random intercept only, choose
 #'   \code{model = "int"}, whereas for a quadratic association, use \code{model
 #'   = "quad"}. Computing times are commensurate with the type of association
 #'   structure chosen.
-#' @param sepassoc logical value: if \code{TRUE} then the joint model is fitted 
+#' @param sepassoc logical value: if \code{TRUE} then the joint model is fitted
 #'   with separate association, see \code{Details}.
-#' @param longsep logical value: if \code{TRUE}, parameter estimates and 
-#'   log-likelihood from a separate linear mixed model analysis of the 
-#'   longitudinal data (see the \code{\link[nlme]{lme}} function for details) 
+#' @param longsep logical value: if \code{TRUE}, parameter estimates and
+#'   log-likelihood from a separate linear mixed model analysis of the
+#'   longitudinal data (see the \code{\link[nlme]{lme}} function for details)
 #'   are returned.
-#' @param survsep if \code{TRUE}, parameter estimates and log-likelihood from a 
-#'   separate analysis of the survival data using the Cox proportional hazards 
+#' @param survsep if \code{TRUE}, parameter estimates and log-likelihood from a
+#'   separate analysis of the survival data using the Cox proportional hazards
 #'   model are returned (see \code{\link[survival]{coxph}} function for
 #'   details).
-#' @param gpt the number of quadrature points across which the integration with 
+#' @param gpt the number of quadrature points across which the integration with
 #'   respect to the random effects will be performed. Defaults to \code{gpt = 3}
 #'   which produces stable estimates in most datasets.
-#' @param lgpt the number of quadrature points which the log-likelihood is 
-#'   evaluated over following a model fit. This defaults to \code{lgpt = 10}, 
+#' @param lgpt the number of quadrature points which the log-likelihood is
+#'   evaluated over following a model fit. This defaults to \code{lgpt = 10},
 #'   though \code{lgpt = 3} is often sufficient.
-#' @param max.it the maximum number of iterations of the EM algorithm that the 
-#'   function will perform. Defaults to \code{max.it = 200}, though more 
+#' @param max.it the maximum number of iterations of the EM algorithm that the
+#'   function will perform. Defaults to \code{max.it = 200}, though more
 #'   iterations may be necessary for large, complex data.
-#' @param tol the tolerance level before convergence of the algorithm is deemed 
+#' @param tol the tolerance level before convergence of the algorithm is deemed
 #'   to have occurred. Default value is \code{tol = 0.001}.
-#'   
-#' @details The \code{joint} function fits a joint model to survival and 
-#'   longitudinal data. The formulation is similar to Wulfsohn and Tsiatis 
+#'
+#' @details The \code{joint} function fits a joint model to survival and
+#'   longitudinal data. The formulation is similar to Wulfsohn and Tsiatis
 #'   (1997). A linear mixed effects model is assumed for the longitudinal data.
-#'   
+#'
 #'   \deqn{Y_i = X_{i1}(t_i)^T\beta_1 + D_i(t_i)^T U_i + \epsilon_i,}
-#'   
-#'   where \eqn{U_i} is a vector of random effects, \eqn{(U_{0i}, \ldots 
-#'   U_{qi})} whose length depends on the model chosen, i.e. \eqn{q = 1} for the 
-#'   random intercept model. \eqn{D_i} is the random effects covariate matrix, 
-#'   which will be time-dependent for all but the random intercept model. 
-#'   \eqn{X_{i1}} is the longitudinal design matrix for unit \eqn{i}, and 
-#'   \eqn{t_i} is the vector of measurement times for subject \eqn{i}. 
+#'
+#'   where \eqn{U_i} is a vector of random effects, \eqn{(U_{0i}, \ldots
+#'   U_{qi})} whose length depends on the model chosen, i.e. \eqn{q = 1} for the
+#'   random intercept model. \eqn{D_i} is the random effects covariate matrix,
+#'   which will be time-dependent for all but the random intercept model.
+#'   \eqn{X_{i1}} is the longitudinal design matrix for unit \eqn{i}, and
+#'   \eqn{t_i} is the vector of measurement times for subject \eqn{i}.
 #'   Measurement error is represented by \eqn{\epsilon_i}.
-#'   
+#'
 #'   The Cox proportional hazards model is adopted for the survival data,
-#'   
-#'   \deqn{\lambda(t) = \lambda_0(t) \exp\{{X_{i2}(t)^T\beta_2 + 
+#'
+#'   \deqn{\lambda(t) = \lambda_0(t) \exp\{{X_{i2}(t)^T\beta_2 +
 #'   D_i(t)(\gamma^TU_i)}\}.}
-#'   
-#'   The parameter \eqn{\gamma} determines the level of association between the 
-#'   two processes. For the intercept and slope model with separate association 
+#'
+#'   The parameter \eqn{\gamma} determines the level of association between the
+#'   two processes. For the intercept and slope model with separate association
 #'   we have
-#'   
+#'
 #'   \deqn{D_i(t) (\gamma^T U_i) = \gamma_0 U_{0i} + \gamma_1 U_{1i} t,}
-#'   
+#'
 #'   whereas under proportional association
-#'   
+#'
 #'   \deqn{D_i(t)(\gamma^T U_i) = \gamma (U_{0i} + U_{1i} t).}
-#'   
-#'   \eqn{X_{i2}} is the vector of survival covariates for unit \eqn{i}. The 
+#'
+#'   \eqn{X_{i2}} is the vector of survival covariates for unit \eqn{i}. The
 #'   baseline hazard is \eqn{\lambda_0}.
-#'   
-#'   The function uses an EM algorithm to estimate parameters in the joint 
-#'   model. Starting values are provided by calls to standard R functions 
-#'   \code{\link[nlme]{lme}} and \code{\link[survival]{coxph}} for the 
+#'
+#'   The function uses an EM algorithm to estimate parameters in the joint
+#'   model. Starting values are provided by calls to standard R functions
+#'   \code{\link[nlme]{lme}} and \code{\link[survival]{coxph}} for the
 #'   longitudinal and survival components, respectively.
-#'   
-#' @note Both \code{longsep} and \code{survsep} ignore any latent association 
+#'
+#' @note Both \code{longsep} and \code{survsep} ignore any latent association
 #'   (i.e. \eqn{\gamma = 0}) between the longitudinal and survival processes but
-#'   their output can be used to compare with the results from the joint model. 
-#'   If interest is solely in the individual processes then the user should 
-#'   instead make use of the functions \code{\link[nlme]{lme}} and 
-#'   \code{\link[survival]{coxph}} mentioned above. Furthermore, if interest is 
-#'   in the separate effect of each random effect (this is for intercept and 
+#'   their output can be used to compare with the results from the joint model.
+#'   If interest is solely in the individual processes then the user should
+#'   instead make use of the functions \code{\link[nlme]{lme}} and
+#'   \code{\link[survival]{coxph}} mentioned above. Furthermore, if interest is
+#'   in the separate effect of each random effect (this is for intercept and
 #'   slope or quadratic models only) upon the survival data, the user should set
 #'   \code{sepassoc = TRUE}.
-#'   
+#'
 #' @author Pete Philipson (\email{pete.philipson@@northumbria.ac.uk})
 #' @keywords models survival
-#' @seealso \code{\link[nlme]{lme}}, \code{\link[survival]{coxph}}, 
+#' @seealso \code{\link[nlme]{lme}}, \code{\link[survival]{coxph}},
 #'   \code{\link{jointdata}}, \code{\link{jointplot}}.
-#'   
+#'
 #' @references
-#' 
-#' Wulfsohn MS, Tsiatis AA. A joint model for survival and longitudinal data 
+#'
+#' Wulfsohn MS, Tsiatis AA. A joint model for survival and longitudinal data
 #' measured with error. \emph{Biometrics.} 1997; \strong{53(1)}: 330-339.
-#' 
-#' Henderson R, Diggle PJ, Dobson A. Joint modelling of longitudinal 
-#' measurements and event time data. \emph{Biostatistics.} 2000; \strong{1(4)}: 
+#'
+#' Henderson R, Diggle PJ, Dobson A. Joint modelling of longitudinal
+#' measurements and event time data. \emph{Biostatistics.} 2000; \strong{1(4)}:
 #' 465-480.
-#' 
-#' @return A list containing the parameter estimates from the joint model and, 
-#'   if required, from either or both of the separate analyses. The combined 
-#'   log-likelihood from a separate analysis and the log-likelihood from the 
+#'
+#' @return A list containing the parameter estimates from the joint model and,
+#'   if required, from either or both of the separate analyses. The combined
+#'   log-likelihood from a separate analysis and the log-likelihood from the
 #'   joint model are also produced as part of the fit.
 #' @import graphics stats survival utils
 #' @export
-#' 
+#'
 #' @examples
-#' 
+#'
 #' data(heart.valve)
-#' heart.surv <- UniqueVariables(heart.valve, 
+#' heart.surv <- UniqueVariables(heart.valve,
 #'                               var.col = c("fuyrs", "status"),
 #'                               id.col = "num")
 #' heart.long <- heart.valve[, c("num", "time", "log.lvmi")]
-#' heart.cov <- UniqueVariables(heart.valve, 
-#'                              c("age", "hs", "sex"), 
+#' heart.cov <- UniqueVariables(heart.valve,
+#'                              c("age", "hs", "sex"),
 #'                              id.col = "num")
-#' heart.valve.jd <- jointdata(longitudinal = heart.long, 
-#'                             baseline = heart.cov, 
-#'                             survival = heart.surv, 
-#'                             id.col = "num", 
+#' heart.valve.jd <- jointdata(longitudinal = heart.long,
+#'                             baseline = heart.cov,
+#'                             survival = heart.surv,
+#'                             id.col = "num",
 #'                             time.col = "time")
-#' fit <- joint(data = heart.valve.jd, 
-#'              long.formula = log.lvmi ~ 1 + time + hs, 
-#'              surv.formula = Surv(fuyrs, status) ~ hs, 
+#' fit <- joint(data = heart.valve.jd,
+#'              long.formula = log.lvmi ~ 1 + time + hs,
+#'              surv.formula = Surv(fuyrs, status) ~ hs,
 #'              model = "intslope")
-joint <- function(data, long.formula, surv.formula, 
-                  model = c("intslope", "int", "quad"), 
-                  sepassoc = FALSE, longsep = FALSE, survsep = FALSE, 
+joint <- function(data, long.formula, surv.formula,
+                  model = c("intslope", "int", "quad"),
+                  sepassoc = FALSE, longsep = FALSE, survsep = FALSE,
                   gpt, lgpt, max.it, tol) {
   
   id <- data$subj.col
@@ -164,13 +164,13 @@ joint <- function(data, long.formula, surv.formula,
   long.terms <- terms(long.formula, data = long.data)
   long.names <- colnames(long.cov)
   rll <- !is.na(data$longitudinal[[names(long.frame[1])]])
-  longdat <- cbind(data$longitudinal[[id]][rll], 
-                   long.frame[, 1], 
-                   data$longitudinal[[time.long]][rll], 
+  longdat <- cbind(data$longitudinal[[id]][rll],
+                   long.frame[, 1],
+                   data$longitudinal[[time.long]][rll],
                    long.cov)
   longdat <- as.data.frame(longdat)
-  names(longdat) <- c(id, 
-                      names(long.frame)[1], 
+  names(longdat) <- c(id,
+                      names(long.frame)[1],
                       time.long,
                       long.names)
   
@@ -185,26 +185,26 @@ joint <- function(data, long.formula, surv.formula,
                            data = cbind(data$survival, data$baseline))
   surv.cov <- surv.cov[, -1, drop = FALSE]
   rss <- as.integer(row.names(surv.cov))
-  survdat <- cbind(data$survival[[id]][rss], 
-                   srv[rss, 1], 
-                   srv[rss, 2], 
+  survdat <- cbind(data$survival[[id]][rss],
+                   srv[rss, 1],
+                   srv[rss, 2],
                    surv.cov[rss, ])
   survdat <- as.data.frame(survdat)
   names(survdat) <- c(id,
                       surv.formula[2][[1]][[2]],
-                      surv.formula[2][[1]][[3]], 
-                      colnames(surv.cov))    
+                      surv.formula[2][[1]][[3]],
+                      colnames(surv.cov))
   if (dim(survdat)[2] > 3) {
     survdat[, 4:dim(survdat)[2]] <- scale(survdat[, 4:dim(survdat)[2]],
                                           scale = FALSE)
   }
   survdat2 <- data.frame(data$survival[[id]][rss],
-                         srv[rss, 1], 
+                         srv[rss, 1],
                          srv[rss, 2],
                          surv.frame[, -1])
   names(survdat2) <- c(id,
                        surv.formula[2][[1]][[2]],
-                       surv.formula[2][[1]][[3]], 
+                       surv.formula[2][[1]][[3]],
                        attr(surv.terms, "term.labels"))
   
   # Latent association structure
@@ -249,28 +249,27 @@ joint <- function(data, long.formula, surv.formula,
                      survdat2)
   sep.ll <- ldaests$log.like + survests$log.like[2]
   sep.loglik <- list(seplhood = sep.ll,
-                     sepy = ldaests$log.like, 
+                     sepy = ldaests$log.like,
                      sepn = survests$log.like[2])
   paraests <- c(ldaests, survests)
   
   # Run the EM algorithm
-  jointfit <- em.alg(longdat = longdat,
-                     survdat = survdat, 
-                     model = model,
-                     ran = ran,
-                     lat = lat,
-                     sepassoc = sepassoc,
-                     paraests = paraests,
-                     gpt = gpt,
-                     max.it = max.it,
-                     tol = tol,
-                     loglik = FALSE)
+  jointfit <- emUpdate(longdat = longdat,
+                       survdat = survdat,
+                       model = model,
+                       ran = ran,
+                       lat = lat,
+                       sepassoc = sepassoc,
+                       paraests = paraests,
+                       gpt = gpt,
+                       max.it = max.it,
+                       tol = tol,
+                       loglik = FALSE)
   
   # Extract MLEs
-  likeests <- c(jointfit, list(rs = survests$rs, 
+  likeests <- c(jointfit, list(rs = survests$rs,
                                sf = survests$sf))
   b1 <- jointfit$b1
-  sigma.u <- jointfit$sigma.u
   rownames(b1) <- rownames(paraests$b1)
   if (p2 > 0) {
     b2 <- jointfit$b2[1:p2, ]
@@ -290,39 +289,39 @@ joint <- function(data, long.formula, surv.formula,
                        latent = latent)
   
   # Log-likelihood at MLE
-  jointll <- em.alg(longdat = longdat,
-                    survdat = survdat,
-                    model = model,
-                    ran = ran,
-                    lat = lat,
-                    sepassoc = sepassoc,
-                    paraests = likeests,
-                    gpt = lgpt,
-                    max.it = 1,
-                    tol = tol,
-                    loglik = TRUE)
-
+  jointll <- emUpdate(longdat = longdat,
+                      survdat = survdat,
+                      model = model,
+                      ran = ran,
+                      lat = lat,
+                      sepassoc = sepassoc,
+                      paraests = likeests,
+                      gpt = lgpt,
+                      max.it = 1,
+                      tol = tol,
+                      loglik = TRUE)
+  
   loglik <- list(jointlhood = jointll$log.like,
-                 jointy = jointll$longlog.like, 
+                 jointy = jointll$longlog.like,
                  jointn = jointll$survlog.like)
   
   # Separate model estimates
-  sepests <- list(longests = sep(ldaests, longsep), 
+  sepests <- list(longests = sep(ldaests, longsep),
                   survests = sep(survests, survsep))
   
   # Return
   results <- list(coefficients = coefficients,
-                  sigma.z = jointfit$sigma.z, 
+                  sigma.z = jointfit$sigma.z,
                   sigma.u = jointfit$sigma.u,
                   hazard = jointfit$haz,
-                  loglik = loglik, 
+                  loglik = loglik,
                   numIter = jointfit$iters,
-                  convergence = jointfit$conv, 
+                  convergence = jointfit$conv,
                   model = model,
                   sepassoc = sepassoc,
-                  sepests = sepests, 
-                  sep.loglik = sep.loglik, 
-                  formulae = list(lformula = long.formula, 
+                  sepests = sepests,
+                  sep.loglik = sep.loglik,
+                  formulae = list(lformula = long.formula,
                                   sformula = surv.formula),
                   data = data,
                   call = Call)

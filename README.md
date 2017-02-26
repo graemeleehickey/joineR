@@ -7,6 +7,8 @@ joineR
 
 The `joineR` package implements methods for analyzing data from longitudinal studies in which the response from each subject consists of a time-sequence of repeated measurements and a possibly censored time-to- event outcome. The modelling framework for the repeated measurements is the linear model with random effects and/or correlated error structure (Laird and Ware, 1982). The model for the time-to-event outcome is a Cox proportional hazards model with log-Gaussian frailty (Cox, 1972). Stochastic dependence is captured by allowing the Gaussian random effects of the linear model to be correlated with the frailty term of the Cox proportional hazards model. The methodology used to fit the model is described in Henderson et al. (2002) and Wulfsohn and Tsiatis (1997).
 
+The `joineR` package also allows competing risks data to be jointly modelled through a cause-specific hazards model. The importance of accounting for competing risks is detailed in Williamson et al. (2007a,b). The methodology used to fit this model is described in Williamson et al. (2008).
+
 Example
 =======
 
@@ -98,10 +100,16 @@ References
 
 1.  Cox DR. Regression models and life-tables. *J R Stat Soc Ser B Stat Methodol.* 1972; **34(2)**: 187-220.
 
-2.  Laird NM, Ware JH. Random-effects models for longitudinal data. *Biometrics.* 1982; **38(4)**: 963-974.
+2.  Henderson R, Diggle PJ, Dobson A. Joint modelling of longitudinal measurements and event time data. *Biostatistics.* 2000; **1(4)**: 465-480.
 
-3.  Henderson R, Diggle PJ, Dobson A. Joint modelling of longitudinal measurements and event time data. *Biostatistics.* 2000; **1(4)**: 465-480.
+3.  Hickey GL, Philipson P, Jorgensen A, Kolamunnage-Dona R. Joint modelling of time-to-event and multivariate longitudinal outcomes: recent developments and issues. *BMC Med Res Methodol.* 2016; **16(1)**: 117.
 
-4.  Wulfsohn MS, Tsiatis AA. A joint model for survival and longitudinal data measured with error. *Biometrics.* 1997; **53(1)**: 330-339.
+4.  Laird NM, Ware JH. Random-effects models for longitudinal data. *Biometrics.* 1982; **38(4)**: 963-974.
 
-5.  Hickey GL, Philipson P, Jorgensen A, Kolamunnage-Dona R. Joint modelling of time-to-event and multivariate longitudinal outcomes: recent developments and issues. *BMC Med Res Methodol.* 2016; **16(1)**: 117.
+5.  Williamson PR, Kolamunnage-Dona R, Tudur-Smith C. The influence of competing-risks setting on the choice of hypothesis test for treatment effect. *Biostatistics.* 2007; **8(4)**: 689–694.
+
+6.  Williamson PR., Tudur-Smith C, Sander JW, Marson AG. Importance of competing risks in the analysis of anti-epileptic drug failure. *Trials.* 2007; **8**: 12.
+
+7.  Williamson PR, Kolamunnage-Dona R, Philipson P, Marson AG. Joint modelling of longitudinal and competing risks data. *Stat Med.* 2008; **27**: 6426–6438.
+
+8.  Wulfsohn MS, Tsiatis AA. A joint model for survival and longitudinal data measured with error. *Biometrics.* 1997; **53(1)**: 330-339.

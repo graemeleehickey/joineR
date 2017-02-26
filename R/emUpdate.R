@@ -1,8 +1,8 @@
 #' @keywords internal
 #' @importFrom statmod gauss.quad.prob
-em.alg <- function(longdat, survdat, model, ran, lat, sepassoc, 
+emUpdate <- function(longdat, survdat, model, ran, lat, sepassoc,
                    paraests, gpt, max.it, tol, loglik) {
-  
+
   id <- longdat[, 1]
   Y <- longdat[, 2]
   tt <- longdat[, 3]
@@ -73,7 +73,7 @@ em.alg <- function(longdat, survdat, model, ran, lat, sepassoc,
     l1 <- 0
     l2 <- 0
   }
-  
+
   # main loop over EM iterations begins here
   for (it in 1:max.it) {
     if (p2 > 0) {
@@ -84,10 +84,10 @@ em.alg <- function(longdat, survdat, model, ran, lat, sepassoc,
     cov <- sigma.u %*% Dtt
     tcov <- Dtt2 %*% sigma.u
     DH <- Dnsf * rep(haz, each = ran)
-    
+
     # main loop over subjects begins here
     for (i in 1:n) {
-      
+
       rv <- r[(cnn[i] + 1):cnn[i + 1]]
       ttv <- Dtt2[(cnn[i] + 1):cnn[i + 1], ]
       W21 <- cov[, (cnn[i] + 1):cnn[i + 1]]
@@ -121,7 +121,7 @@ em.alg <- function(longdat, survdat, model, ran, lat, sepassoc,
       }
       egDUs <- 1
       if (cen[i] == 1) {
-        egDUs <- exp(newu %*% (Dst[i, ] * b2[(p2 + 1):(p2 + lat)]) + 
+        egDUs <- exp(newu %*% (Dst[i, ] * b2[(p2 + 1):(p2 + lat)]) +
                        b2x[i, ]) * haz[rs[i]]
       }
       egDUsf <- exp(newu %*% (Dsf[, 1:rs[i]] * b2[(p2 + 1):(p2 + lat)]))
@@ -136,31 +136,31 @@ em.alg <- function(longdat, survdat, model, ran, lat, sepassoc,
         EUexpU[i, 1] <- sum(f[, 1] %*% (newu[, 1] * C) * haz[1:rs[i]]) / den
         EUUexpU[i, 1] <- sum(f[, 1] %*% (newu[, 1]^2 * C) * haz[1:rs[i]]) / den
       } else {
-        EUexpU[i, 1:ran] <- rowSums(crossprod(newu * f[, 1], C) * 
+        EUexpU[i, 1:ran] <- rowSums(crossprod(newu * f[, 1], C) *
                                       Dsf[, 1:rs[i]] * DH[, 1:rs[i]]) / den
         EUUexpU[i, 1:ran] <- rowSums(crossprod(newu2[, 1:ran] * f[, 1], C) *
                                        Dsf2[, 1:rs[i]] * DH[, 1:rs[i]]) / den
         if (model == "intslope") {
-          EUUexpU[i, ran + 1] <- 2 * sum(f[, 1] %*% (newu2[, ran + 1] * C) * 
+          EUUexpU[i, ran + 1] <- 2 * sum(f[, 1] %*% (newu2[, ran + 1] * C) *
                                            haz[1:rs[i]] * sf[1:rs[i]]) / den
         } else {
-          EUUexpU[i, (ran + 1):sum(1:ran)] <- 2 * 
-            rowSums(crossprod(newu2[, (ran + 1):sum(1:ran)] * f[, 1], C) * 
+          EUUexpU[i, (ran + 1):sum(1:ran)] <- 2 *
+            rowSums(crossprod(newu2[, (ran + 1):sum(1:ran)] * f[, 1], C) *
                       Dsfc[, 1:rs[i]] * DH[, 1:rs[i]]) / den
         }
       }
-      
+
       # calculate the log-likelihood
       if (loglik) {
         if (den > 0) {
           l2 <- l2 + log(den)
         }
-        l1 <- l1 - nn[i] * 0.5 * log(2 * pi) - 0.5 * log(det(W11)) - 
+        l1 <- l1 - nn[i] * 0.5 * log(2 * pi) - 0.5 * log(det(W11)) -
           0.5 * sum(rv * solve(W11, rv))
       }
-      
+
     } # end loop over subjects
-    
+
     parac <- data.frame(c(b1, b2, sigma.z, sigma.u))
     EexpUi <- colSums(t(EexpU) * haz)
     haz <- nev / colSums(EexpU * eb2x[, 1])
@@ -182,7 +182,7 @@ em.alg <- function(longdat, survdat, model, ran, lat, sepassoc,
     }
     fd <- vector("numeric", p2 + ran)
     sd <- matrix(0, p2 + ran, p2 + ran)
-    fd[(p2 + 1):(p2 + ran)] <- colSums(cen * (EU * t(Ds))) - 
+    fd[(p2 + 1):(p2 + ran)] <- colSums(cen * (EU * t(Ds))) -
       colSums(eb2x[, 1] * EUexpU)
     if (model != "int") {
       inds1 <- (p2 + 1):(p2 + ran)
@@ -202,7 +202,7 @@ em.alg <- function(longdat, survdat, model, ran, lat, sepassoc,
     if (model == "int") {
       sd[(p2 + 1), (p2 + 1)] <- -colSums(eb2x[, 1] * EUUexpU)[1:ran]
     } else {
-      diag(sd[(p2 + 1):(p2 + ran), (p2 + 1):(p2 + ran)]) <- 
+      diag(sd[(p2 + 1):(p2 + ran), (p2 + 1):(p2 + ran)]) <-
         -colSums(eb2x[, 1] * EUUexpU)[1:ran]
     }
     if (!sepassoc) {
@@ -225,32 +225,32 @@ em.alg <- function(longdat, survdat, model, ran, lat, sepassoc,
     b2 <- b2 - solve(sd, fd)
     para <- data.frame(c(b1, b2, sigma.z, sigma.u))
     dd <- abs(parac - para)
-    
+
     if (max(dd) < tol) {
       conv <- TRUE
       break
     }
-    
+
   }
 
   if ((conv != TRUE) & !loglik) {
     print("Not converged")
   }
-  
+
   if (loglik) {
     ll <- l1 + l2 - 0.5 * ran * n * log(pi)
     list("log.like" = ll,
          "longlog.like" = l1,
          "survlog.like" = ll - l1)
   } else {
-    list("b1" = data.frame(b1), 
-         "b2" = data.frame(b2), 
-         "sigma.z" = sigma.z, 
-         "sigma.u" = sigma.u, 
-         "haz" = haz, 
-         "random" = EU, 
-         "conv" = conv, 
+    list("b1" = data.frame(b1),
+         "b2" = data.frame(b2),
+         "sigma.z" = sigma.z,
+         "sigma.u" = sigma.u,
+         "haz" = haz,
+         "random" = EU,
+         "conv" = conv,
          "iters" = it)
   }
-  
+
 }

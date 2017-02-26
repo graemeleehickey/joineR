@@ -1,6 +1,8 @@
 # joineR 1.1.0.9000
 
-TBA
+## Maintanence
+
+* General code tidy-up and internal function renaming
 
 # joineR 1.1.0
 
