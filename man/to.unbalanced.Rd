@@ -42,12 +42,11 @@ simul <- data.frame(num = 1:10,
 to.unbalanced(simul, id.col = 1, times = c(1, 2), Y.col = 2:5,
               other.col = 6)
 }
-\author{
-Ines Sousa (\email{isousa@uminho.pt})
-}
 \seealso{
 \code{\link{to.balanced}}.
 }
+\author{
+Ines Sousa (\email{isousa@uminho.pt})
+}
 \keyword{data}
 \keyword{manip}
-

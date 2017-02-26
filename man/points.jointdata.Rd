@@ -49,4 +49,3 @@ points(heart.jd.2, Y.col = "grad", col = "blue", pch = 20)
 Ines Sousa (\email{isousa@math.uminho.pt})
 }
 \keyword{aplot}
-

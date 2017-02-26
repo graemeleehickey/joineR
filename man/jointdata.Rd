@@ -69,4 +69,3 @@ Ines Sousa (\email{isousa@math.uminho.pt})
 \keyword{data}
 \keyword{list}
 \keyword{survival}
-

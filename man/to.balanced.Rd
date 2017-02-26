@@ -45,12 +45,11 @@ simul <- to.unbalanced(simul, id.col = 1, times = c(1, 2),
 simul <- to.balanced(simul, id.col = "num", time.col = "time",
                      Y.col = c("Y1.1", "Y2.1"), other.col = "age")
 }
-\author{
-Ines Sousa (\email{isousa@math.uminho.pt})
-}
 \seealso{
 \code{\link{to.unbalanced}}.
 }
+\author{
+Ines Sousa (\email{isousa@math.uminho.pt})
+}
 \keyword{data}
 \keyword{manip}
-

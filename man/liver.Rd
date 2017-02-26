@@ -53,4 +53,3 @@ markers for survival. \emph{Biostatistics} 2002; \strong{3}: 33-50.
   \code{\link{mental}}.
 }
 \keyword{datasets}
-

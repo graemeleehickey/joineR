@@ -49,6 +49,7 @@ Further details on the package are given in the vignette. To access
   The primary function for fitting a joint model is \code{joint}. Standard
   errors can be estimated using \code{jointSE}.
 }
+
 \references{
 Wulfsohn MS, Tsiatis AA. A joint model for survival and longitudinal data 
 measured with error. \emph{Biometrics.} 1997; \strong{53(1)}: 330-339.
@@ -63,4 +64,3 @@ Methodol.} 1972; \strong{34(2)}: 187-220.
 Laird NM, Ware JH. Random-effects models for longitudinal data.
 \emph{Biometrics.} 1982; \strong{38(4)}: 963-974.
 }
-

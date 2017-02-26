@@ -13,14 +13,14 @@ simjoint(n = 500, model = c("intslope", "int", "quad"), sepassoc = FALSE,
 \arguments{
 \item{n}{the number of subjects to simulate data for.}
 
-\item{model}{a character string specifying the type of latent association. 
-This defaults to the intercept and slope version as seen in Wulfsohn and 
+\item{model}{a character string specifying the type of latent association.
+This defaults to the intercept and slope version as seen in Wulfsohn and
 Tsiatis (1997). For association via the random intercept only, choose
 \code{model = "int"}, whereas for a quadratic association, use \code{model
 = "quad"}. Computing times are commensurate with the type of association
 structure chosen.}
 
-\item{sepassoc}{logical value: if \code{TRUE} then the joint model is fitted 
+\item{sepassoc}{logical value: if \code{TRUE} then the joint model is fitted
 with separate association, see \code{Details}.}
 
 \item{ntms}{the maximum number of (discrete) time points to simulate repeated
@@ -132,9 +132,6 @@ The function \code{simData} simulates data from a joint model,
 \examples{
 simjoint(10, sepassoc = TRUE)
 }
-\author{
-Pete Philipson (\email{pete.philipson@northumbria.ac.uk})
-}
 \references{
 Austin PC. Generating survival times to simulate Cox proportional hazards 
 models with time-varying covariates. \emph{Stat Med.} 2012; \strong{31(29)}: 
@@ -147,6 +144,8 @@ Henderson R, Diggle PJ, Dobson A. Joint modelling of longitudinal
 measurements and event time data. \emph{Biostatistics.} 2000; \strong{1(4)}: 
 465-480.
 }
+\author{
+Pete Philipson (\email{pete.philipson@northumbria.ac.uk})
+}
 \keyword{datagen}
 \keyword{survival}
-

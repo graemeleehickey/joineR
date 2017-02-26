@@ -40,4 +40,3 @@ heart.jd.cens <- subset(heart.jd, take)
 Ines Sousa (\email{isousa@math.uminho.pt})
 }
 \keyword{data}
-

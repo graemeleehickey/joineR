@@ -33,12 +33,11 @@ heart.valve.jd <- jointdata(survival = heart.surv,
                             time.col = "time")
 sample.jointdata(heart.valve.jd, size = 10)
 }
-\author{
-Ines Sousa (\email{isousa@math.uminho.pt})
-}
 \seealso{
 \code{\link{sample}}, \code{\link{jointdata}},
   \code{\link{UniqueVariables}}.
 }
+\author{
+Ines Sousa (\email{isousa@math.uminho.pt})
+}
 \keyword{data}
-

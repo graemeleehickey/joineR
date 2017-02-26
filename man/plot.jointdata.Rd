@@ -50,11 +50,10 @@ heart.jd <- jointdata(longitudinal = heart.long,
                       time.col = "time")
 plot(heart.jd, Y.col = "grad", col = "grey")
 }
-\author{
-Ines Sousa (\email{isousa@math.uminho.pt})
-}
 \seealso{
 \code{\link[graphics]{lines}} and \code{\link[graphics]{points}}.
 }
+\author{
+Ines Sousa (\email{isousa@math.uminho.pt})
+}
 \keyword{dplot}
-

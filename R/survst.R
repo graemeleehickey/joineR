@@ -35,6 +35,7 @@ survst <- function(survdat, surv.formula, survdat2) {
   
 }
 
+
 #' @keywords internal
 survstCR <- function(survdat, event) {
   

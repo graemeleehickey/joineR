@@ -77,4 +77,3 @@ longitudinal and competing risks data. \emph{Stats Med.} 2008;
   \code{\link{mental}}.
 }
 \keyword{datasets}
-

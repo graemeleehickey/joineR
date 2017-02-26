@@ -91,9 +91,6 @@ heart.valve.jd <- jointdata(longitudinal = heart.long,
 jointplot(heart.valve.jd, Y.col = "log.lvmi", 
           Cens.col = "status", lag = 5)
 }
-\author{
-Pete Philipson (\email{pete.philipson@northumbria.ac.uk})
-}
 \references{
 Wulfsohn MS, Tsiatis AA. A joint model for survival and longitudinal data 
 measured with error. \emph{Biometrics.} 1997; \strong{53(1)}: 330-339.
@@ -102,5 +99,7 @@ measured with error. \emph{Biometrics.} 1997; \strong{53(1)}: 330-339.
 \code{\link[lattice]{xyplot}}, \code{\link{joint}}, 
   \code{\link{jointdata}}.
 }
+\author{
+Pete Philipson (\email{pete.philipson@northumbria.ac.uk})
+}
 \keyword{dplot}
-

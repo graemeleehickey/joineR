@@ -56,4 +56,3 @@ Ines Sousa (\email{isousa@math.uminho.pt})
 }
 \keyword{models}
 \keyword{smooth}
-

@@ -49,4 +49,3 @@ plot(vgm)
 Ines Sousa (\email{isousa@math.uminho.pt})
 }
 \keyword{dplot}
-

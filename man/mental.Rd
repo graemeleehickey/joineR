@@ -73,4 +73,3 @@ Statistics.} 2007; \strong{56}: 499-550.
   \code{\link{epileptic}}.
 }
 \keyword{datasets}
-

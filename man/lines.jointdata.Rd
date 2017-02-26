@@ -43,12 +43,11 @@ heart.jd.2 <- subset(heart.jd, take[2])
 plot(heart.jd.1, Y.col = 4)
 lines(heart.jd.2, Y.col = 4, lty = 2)
 }
-\author{
-Ines Sousa (\email{isousa@math.uminho.pt})
-}
 \seealso{
 Other functions are useful to be used with this such as
   \code{\link{plot}} and \code{\link{points}}.
 }
+\author{
+Ines Sousa (\email{isousa@math.uminho.pt})
+}
 \keyword{aplot}
-

@@ -7,7 +7,7 @@
 \method{summary}{jointdata}(object, ...)
 }
 \arguments{
-\item{object}{an object of class \code{jointdata}.}
+\item{object}{an object of class \code{joint}.}
 
 \item{...}{further arguments for the summary.}
 }
@@ -45,11 +45,10 @@ heart.valve.jd <- jointdata(survival = heart.surv,
                             time.col = "time")
 summary(heart.valve.jd)
 }
-\author{
-Ines Sousa (\email{isousa@math.uminho.pt})
-}
 \seealso{
 \code{\link{jointdata}}, \code{\link{UniqueVariables}}.
 }
+\author{
+Ines Sousa (\email{isousa@math.uminho.pt})
+}
 \keyword{methods}
-

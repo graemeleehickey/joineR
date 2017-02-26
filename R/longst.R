@@ -39,6 +39,7 @@ longst <- function(longdat, long.formula, model, longdat2) {
   
 }
 
+
 #' @keywords internal
 #' @import nlme
 longstCR <- function(longdat, long.formula, longdat2) {

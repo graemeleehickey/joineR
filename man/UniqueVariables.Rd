@@ -48,4 +48,3 @@ Ines Sousa (\email{isousa@uminho.pt})
 }
 \keyword{data}
 \keyword{manip}
-
