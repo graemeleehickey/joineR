@@ -142,7 +142,7 @@ cjoint <- function(data, long.formula, surv.formula,
                   data = data,
                   call = Call)
 
-  class(results) <- c("list", "cjoint")
+  class(results) <- "cjoint"
   return(results)
 
 }

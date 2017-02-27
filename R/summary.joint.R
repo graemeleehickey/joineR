@@ -62,7 +62,7 @@ summary.joint <- function(object, variance = TRUE, ...) {
   cat("\n")
   
   # Survival sub-model
-  if (class(object)[2] == "joint") {
+  if (class(object) == "joint") {
     # single event time
     cat("Survival sub-model fixed effects:", deparse(object$formulae$sformula))
     sfixed <- data.frame(object$coefficients$fixed$survival)
