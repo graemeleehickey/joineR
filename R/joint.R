@@ -160,31 +160,6 @@ joint <- function(data, long.formula, surv.formula,
     data$baseline <- droplevels(data$baseline)
   }
   
-  # Latent association structure
-  model <- match.arg(model)
-  if ((model == "int" || model == "quad") && compRisk) {
-    warning("Competing risks models are only fitted with model = 'intslope'")
-    model <- "intslope"
-  }
-  if (model != "intslope" && model != "int" && model != "quad") {
-    stop(paste("Unknown model:", model))
-  }
-  ran <- 2
-  if (model == "int") {
-    ran <- 1
-  }
-  if (model == "quad") {
-    ran <- 3
-  }
-  lat <- ran
-  if (sepassoc && compRisk) {
-    warning("Competing risks models are only fitted with sepassoc = FALSE")
-    sepassoc <- FALSE
-  }
-  if (!sepassoc) {
-    lat <- 1
-  }
-  
   #**********************************************************
   # Data
   #**********************************************************
@@ -217,6 +192,34 @@ joint <- function(data, long.formula, surv.formula,
   longdat <- as.matrix(sort$long.s)
   survdat <- as.matrix(sort$surv.s)
  
+  #**********************************************************
+  # Model structure
+  #**********************************************************
+  
+  model <- match.arg(model)
+  if ((model == "int" || model == "quad") && compRisk) {
+    warning("Competing risks models are only fitted with model = 'intslope'")
+    model <- "intslope"
+  }
+  if (model != "intslope" && model != "int" && model != "quad") {
+    stop(paste("Unknown model:", model))
+  }
+  ran <- 2
+  if (model == "int") {
+    ran <- 1
+  }
+  if (model == "quad") {
+    ran <- 3
+  }
+  lat <- ran
+  if (sepassoc && compRisk) {
+    warning("Competing risks models are only fitted with sepassoc = FALSE")
+    sepassoc <- FALSE
+  }
+  if (!sepassoc) {
+    lat <- 1
+  }
+  
   #**********************************************************
   # Inits
   #**********************************************************
