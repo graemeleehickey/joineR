@@ -23,7 +23,7 @@ test_that("summary of joint objects", {
                model = "int",
                tol = 1e-05)
   # tests
-  expect_output(str(summary(fit)), "List of 16")
+  expect_output(str(summary(fit)), "List of 17")
 })
 
 
