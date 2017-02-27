@@ -137,7 +137,10 @@ joint <- function(data, long.formula, surv.formula,
   id <- data$subj.col
   time.long <- data$time.col
   
+  #**********************************************************
   # Control parameters
+  #**********************************************************
+  
   if (missing(gpt)) {
     gpt <- 3
   }
@@ -157,58 +160,12 @@ joint <- function(data, long.formula, surv.formula,
     data$baseline <- droplevels(data$baseline)
   }
   
-  # Longitudinal data
-  long.data <- merge(data$longitudinal, data$baseline, by = id, sort = FALSE)
-  long.frame <- model.frame(long.formula, data = long.data)
-  long.cov <- model.matrix(long.formula, long.frame)
-  long.terms <- terms(long.formula, data = long.data)
-  long.names <- colnames(long.cov)
-  rll <- !is.na(data$longitudinal[[names(long.frame[1])]])
-  longdat <- cbind(data$longitudinal[[id]][rll],
-                   long.frame[, 1],
-                   data$longitudinal[[time.long]][rll],
-                   long.cov)
-  longdat <- as.data.frame(longdat)
-  names(longdat) <- c(id,
-                      names(long.frame)[1],
-                      time.long,
-                      long.names)
-  
-  # Survival data
-  surv.frame <- model.frame(surv.formula,
-                            data = cbind(data$survival, data$baseline))
-  srv <- model.extract(surv.frame, "response")
-  surv.terms <- terms(surv.formula,
-                      data = cbind(data$survival, data$baseline))
-  attr(surv.terms, "intercept") <- 1
-  surv.cov <- model.matrix(surv.terms,
-                           data = cbind(data$survival, data$baseline))
-  surv.cov <- surv.cov[, -1, drop = FALSE]
-  rss <- as.integer(row.names(surv.cov))
-  survdat <- cbind(data$survival[[id]][rss],
-                   srv[rss, 1],
-                   srv[rss, 2],
-                   surv.cov[rss, ])
-  survdat <- as.data.frame(survdat)
-  names(survdat) <- c(id,
-                      surv.formula[2][[1]][[2]],
-                      surv.formula[2][[1]][[3]],
-                      colnames(surv.cov))
-  if (dim(survdat)[2] > 3) {
-    survdat[, 4:dim(survdat)[2]] <- scale(survdat[, 4:dim(survdat)[2]],
-                                          scale = FALSE)
-  }
-  survdat2 <- data.frame(data$survival[[id]][rss],
-                         srv[rss, 1],
-                         srv[rss, 2],
-                         surv.frame[, -1])
-  names(survdat2) <- c(id,
-                       surv.formula[2][[1]][[2]],
-                       surv.formula[2][[1]][[3]],
-                       attr(surv.terms, "term.labels"))
-  
   # Latent association structure
   model <- match.arg(model)
+  if ((model == "int" || model == "quad") && compRisk) {
+    warning("Competing risks models are only fitted with model = 'intslope'")
+    model <- "intslope"
+  }
   if (model != "intslope" && model != "int" && model != "quad") {
     stop(paste("Unknown model:", model))
   }
@@ -220,9 +177,29 @@ joint <- function(data, long.formula, surv.formula,
     ran <- 3
   }
   lat <- ran
+  if (sepassoc && compRisk) {
+    warning("Competing risks models are only fitted with sepassoc = FALSE")
+    sepassoc <- FALSE
+  }
   if (!sepassoc) {
     lat <- 1
   }
+  
+  #**********************************************************
+  # Data
+  #**********************************************************
+  
+  # Longitudinal data
+  ldatList <- prepLongData(long.formula, data, id, time.long)
+  longdat <- ldatList$longdat
+  long.data <- ldatList$long.data
+  
+  # Survival data
+  sdatList <- prepSurvData(surv.formula, data, id, time.long)
+  survdat <- sdatList$survdat
+  survdat2 <- sdatList$survdat2
+  p2 <- sdatList$p2
+  compRisk <- sdatList$compRisk
   
   # Sort the data
   sort.dat <- function(longdat, survdat) {
@@ -239,87 +216,179 @@ joint <- function(data, long.formula, surv.formula,
   sort <- sort.dat(longdat, survdat)
   longdat <- as.matrix(sort$long.s)
   survdat <- as.matrix(sort$surv.s)
-  p2 <- dim(survdat)[2] - 3
+ 
+  #**********************************************************
+  # Inits
+  #**********************************************************
+  
+  # Longitudinal submodel
   ldaests <- longst(longdat,
                     long.formula,
-                    model = model,
+                    model,
                     long.data)
-  survests <- survst(survdat,
-                     surv.formula,
-                     survdat2)
-  sep.ll <- ldaests$log.like + survests$log.like[2]
-  sep.loglik <- list(seplhood = sep.ll,
-                     sepy = ldaests$log.like,
-                     sepn = survests$log.like[2])
-  paraests <- c(ldaests, survests)
   
-  # Run the EM algorithm
-  jointfit <- emUpdate(longdat = longdat,
-                       survdat = survdat,
-                       model = model,
-                       ran = ran,
-                       lat = lat,
-                       sepassoc = sepassoc,
-                       paraests = paraests,
-                       gpt = gpt,
-                       max.it = max.it,
-                       tol = tol,
-                       loglik = FALSE)
+  # Time-to-event submodel
+  if (!compRisk) {
+    # single event time
+    survests <- survst(survdat,
+                       surv.formula,
+                       survdat2)
+    paraests <- c(ldaests, survests)
+  } else {
+    # competing risks
+    survests.a <- survstCR(survdat,
+                           surv.formula,
+                           survdat2,
+                           event = 1)
+    survests.b <- survstCR(survdat,
+                           surv.formula,
+                           survdat2,
+                           event = 2)
+    paraests <- c(ldaests, survests.a, survests.b)
+  } 
   
-  # Extract MLEs
-  likeests <- c(jointfit, list(rs = survests$rs,
-                               sf = survests$sf))
+  # Initial log-likelihoods
+  if (!compRisk) {
+    # single event time
+    sep.ll <- ldaests$log.like + survests$log.like[2]
+    sep.loglik <- list(seplhood = sep.ll,
+                       sepy = ldaests$log.like,
+                       sepn = survests$log.like[2])
+  } else {
+    # competing risks
+    sep.ll <- NA
+    sep.loglik <- list(seplhood = sep.ll,
+                       sepy = ldaests$log.like,
+                       sepn = NA)
+  }
+  
+  #**********************************************************
+  # EM algorithm
+  #**********************************************************
+  
+  if (!compRisk) {
+    # single event time
+    jointfit <- emUpdate(longdat = longdat,
+                         survdat = survdat,
+                         model = model,
+                         ran = ran,
+                         lat = lat,
+                         sepassoc = sepassoc,
+                         paraests = paraests,
+                         gpt = gpt,
+                         max.it = max.it,
+                         tol = tol,
+                         loglik = FALSE)
+  } else {
+    # competing risks
+    jointfit <- emUpdateCR(longdat = longdat,
+                           survdat = survdat,
+                           paraests = paraests,
+                           gpt = gpt,
+                           lgpt = lgpt,
+                           max.it = max.it,
+                           tol = tol)
+    
+  }
+  
+  #**********************************************************
+  # Extract results
+  #**********************************************************
+  
+  # Extract MLEs (all except survival parameters)
   b1 <- jointfit$b1
   rownames(b1) <- rownames(paraests$b1)
-  if (p2 > 0) {
-    b2 <- jointfit$b2[1:p2, ]
-    names(b2) <- names(paraests$b2)
-  } else {
-    b2 <- NULL
-  }
-  fixed <- list(longitudinal = b1,
-                survival = b2)
-  latent <- jointfit$b2[(p2 + 1):(p2 + lat), ]
-  names(latent) <- paste0("gamma_", 0:(lat - 1))
   random <- jointfit$random
   colnames(random) <- paste0("U_", 0:(ran - 1))
   rownames(random) <- survdat[, 1]
+  sigma.u <- jointfit$sigma.u
+  rownames(sigma.u) <- colnames(sigma.u) <- rownames(ldaests$sigma.u)
+  
+  # Extract MLEs (survival parameters)
+  if (!compRisk) {
+    # single event time
+    hazard <- jointfit$haz
+    likeests <- c(jointfit, list(rs = survests$rs,
+                                 sf = survests$sf))
+    if (p2 > 0) {
+      b2 <- jointfit$b2[1:p2, ]
+      names(b2) <- names(paraests$b2)
+    } else {
+      b2 <- NULL
+    }
+    fixed <- list(longitudinal = b1,
+                  survival = b2)
+    latent <- jointfit$b2[(p2 + 1):(p2 + lat), ]
+    names(latent) <- paste0("gamma_", 0:(lat - 1))
+  } else {
+    # competing risks
+    hazard <- list(
+      "haz.a" = jointfit$haz.a,
+      "haz.b" = jointfit$haz.b)
+    if (p2 > 0) {
+      b2.a <- jointfit$b2.a[1:p2, ]
+      b2.b <- jointfit$b2.b[1:p2, ]
+      names(b2.a) <- names(b2.b) <- names(paraests$b2.a[1:p2])
+    } else {
+      b2.a <- b2.b <- NULL
+    }
+    fixed <- list(longitudinal = b1,
+                  survival1 = b2.a,
+                  survival2 = b2.b)
+    latent <- with(jointfit, c(b2.a[(p2 + 1), ],  b2.b[(p2 + 1), ]))
+    names(latent) <- paste0("gamma_", 1:2)
+  }
   coefficients <- list(fixed = fixed,
                        random = random,
                        latent = latent)
   
   # Log-likelihood at MLE
-  jointll <- emUpdate(longdat = longdat,
-                      survdat = survdat,
-                      model = model,
-                      ran = ran,
-                      lat = lat,
-                      sepassoc = sepassoc,
-                      paraests = likeests,
-                      gpt = lgpt,
-                      max.it = 1,
-                      tol = tol,
-                      loglik = TRUE)
-  
-  loglik <- list(jointlhood = jointll$log.like,
-                 jointy = jointll$longlog.like,
-                 jointn = jointll$survlog.like)
+  if (!compRisk) {
+    jointll <- emUpdate(longdat = longdat,
+                        survdat = survdat,
+                        model = model,
+                        ran = ran,
+                        lat = lat,
+                        sepassoc = sepassoc,
+                        paraests = likeests,
+                        gpt = lgpt,
+                        max.it = 1,
+                        tol = tol,
+                        loglik = TRUE)
+    
+    loglik <- list(jointlhood = jointll$log.like,
+                   jointy = jointll$longlog.like,
+                   jointn = jointll$survlog.like)
+  } else { # TODO
+    loglik <- list(jointlhood = NA,
+                   jointy = NA,
+                   jointn = NA)
+  }
   
   # Separate model estimates
-  sepests <- list(longests = sep(ldaests, longsep),
-                  survests = sep(survests, survsep))
+  if (!compRisk) {
+    sepests <- list(longests = sep(ldaests, longsep),
+                    survests = sep(survests, survsep))
+  } else { # TODO
+    sepests <- list(longests = NA,
+                    survests = NA)
+  }
   
-  # Return
+  #**********************************************************
+  # Return joint object
+  #**********************************************************
+  
   results <- list(coefficients = coefficients,
                   sigma.z = jointfit$sigma.z,
-                  sigma.u = jointfit$sigma.u,
-                  hazard = jointfit$haz,
+                  sigma.u = sigma.u,
+                  hazard <- hazard,
                   loglik = loglik,
                   numIter = jointfit$iters,
                   convergence = jointfit$conv,
                   model = model,
                   sepassoc = sepassoc,
                   sepests = sepests,
+                  compRisk = compRisk,
                   sep.loglik = sep.loglik,
                   formulae = list(lformula = long.formula,
                                   sformula = surv.formula),

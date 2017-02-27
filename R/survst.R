@@ -24,12 +24,13 @@ survst <- function(survdat, surv.formula, survdat2) {
   b2 <- coef(surv.start)
   ll <- surv.start$loglik - sum(cen)
   
-  out <- list("b2" = b2,
-       "haz" = haz,
-       "rs" = rs,
-       "sf" = sf,
-       "nev" = nev,
-       "log.like" = ll)
+  out <- list(
+    "b2" = b2,
+    "haz" = haz,
+    "rs" = rs,
+    "sf" = sf,
+    "nev" = nev,
+    "log.like" = ll)
   
   return(out)
   
@@ -37,20 +38,23 @@ survst <- function(survdat, surv.formula, survdat2) {
 
 
 #' @keywords internal
-survstCR <- function(survdat, event) {
+survstCR <- function(survdat, surv.formula, survdat2, event) {
   
+  survdat2 <- survdat2[order(survdat2[, 2]), ]
   n <- length(survdat[, 2])
-  surv.time <- survdat[, 2]
+  s <- survdat[, 2]
   cen <- survdat[ , ifelse(event == 1, 3, 4)]
-  #if(cen[1] == 0) {
+  #if (cen[1] == 0) {
   #  cen[1] <- 1
+  #  survdat[1, ifelse(event == 1, 3, 4)] <- 1
+  #  survdat2[1, ifelse(event == 1, 3, 4)] <- 1
   #}
-  p2 <- dim(survdat)[2] - 5
+  surv.formula[[2]][[3]] <- as.symbol(paste0("event", event))
+  p2 <- dim(survdat)[2] - 4
   if (p2 == 0) {
-    surv.start <- survival::coxph(Surv(surv.time, cen) ~ 0)
+    surv.start <- survival::coxph(Surv(s, cen) ~ 0)
   } else {
-    X2 <- as.matrix(survdat[, 6:dim(survdat)[2]])
-    surv.start <- survival::coxph(Surv(surv.time, cen) ~ X2)
+    surv.start <- survival::coxph(surv.formula, data = survdat2, x = TRUE)
   }
   alpha.0 <- survival::basehaz(surv.start, FALSE)
   l <- length(alpha.0[, 2])
@@ -59,8 +63,8 @@ survstCR <- function(survdat, event) {
   haz[1] <- alpha.0[1, 1]
   haz[2:l] <- diff(alpha.0[, 1])
   s.dist <- alpha.0[, 2]
-  id.1 <- match(surv.time[1:n], s.dist)
-  dummy <- match(s.dist[1:l], surv.time)
+  id.1 <- match(s[1:n], s.dist)
+  dummy <- match(s.dist[1:l], s)
   d.dummy <- diff(dummy)
   id.2 <- rep(id.1[dummy[1:(l-1)]], d.dummy[1:(l-1)])
   id.3 <- rep(id.1[dummy[l]], (n - dummy[l] + 1))
@@ -70,14 +74,13 @@ survstCR <- function(survdat, event) {
   ll <- surv.start$loglik
   
   out <- list(
-    "b2" = data.frame(c(coef(surv.start), 0)),
+    "b2" = coef(surv.start),
     "haz" = data.frame(haz),
     "id" = data.frame(id.5),
     "s.dist" = data.frame(s.dist),
-    "ll" = data.frame(ll)
-  )
+    "log.like" = ll)
   
-  names(out) <- paste0(c("b2", "haz", "id", "s.dist", "ll"),
+  names(out) <- paste0(c("b2", "haz", "id", "s.dist", "log.like"),
                        ifelse(event == 1, ".a", ".b"))
   return(out)
   

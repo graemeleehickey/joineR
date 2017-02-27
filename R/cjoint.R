@@ -76,7 +76,8 @@ cjoint <- function(data, long.formula, surv.formula,
     survdat[, 6:dim(survdat)[2]] <- scale(survdat[, 6:dim(survdat)[2]],
                                           scale = FALSE)
   }
-
+  survdat2 <- 
+  
   # Sorting survival & longitudinal data by survival time
   sortcr.dat <- function(longdat, survdat) {
     sort.long <- matrix(0, dim(longdat)[1], dim(longdat)[2])
@@ -93,8 +94,8 @@ cjoint <- function(data, long.formula, surv.formula,
   ran <- dim(ldaests$sigma.u)[1]
   longdat <- as.matrix(sort$long.s)
   survdat <- as.matrix(sort$surv.s)
-  survests.a <- survstCR(survdat, event = 1)
-  survests.b <- survstCR(survdat, event = 2)
+  survests.a <- survstCR(survdat, surv.formula, survdat2, event = 1)
+  survests.b <- survstCR(survdat, surv.formula, survdat2, event = 2)
   paraests <- c(ldaests, survests.a, survests.b)
   jointfit <- emUpdateCR(longdat, survdat, paraests, gpt, lgpt, max.it, tol)
 

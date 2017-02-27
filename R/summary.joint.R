@@ -44,6 +44,8 @@
 #' summary(fit)
 summary.joint <- function(object, variance = TRUE, ...) {
   
+  compRisk <- object$compRisk
+    
   cat("\nCall:\n", paste(deparse(object$call), sep = "\n", collapse = "\n"),
       "\n\n", sep = "")
   
@@ -62,7 +64,7 @@ summary.joint <- function(object, variance = TRUE, ...) {
   cat("\n")
   
   # Survival sub-model
-  if (class(object) == "joint") {
+  if (!compRisk) {
     # single event time
     cat("Survival sub-model fixed effects:", deparse(object$formulae$sformula))
     sfixed <- data.frame(object$coefficients$fixed$survival)
@@ -125,10 +127,11 @@ summary.joint <- function(object, variance = TRUE, ...) {
   # Data summaries
   cat("Number of observations:", dim(object$data$longitudinal)[1],"\n")
   cat("Number of groups:", dim(object$data$survival)[1],"\n")
+  
+  # Return summary.joint object
   object$nobs <- dim(object$data$longitudinal)[1]
   object$ngrps <- dim(object$data$survival)[1]
   class(object) <- c("summary.joint")
-  
   invisible(object)
   
 }

@@ -3,6 +3,7 @@ emUpdateCR <- function(longdat, survdat, paraests,
                    gpt, lgpt, max.it, tol) {
 
   # longitudinal submodel data
+  id <- longdat[, 1]
   Y <- longdat[, 2]
   lda.time <- longdat[, 3]
   X1 <- as.matrix(longdat[, 4:dim(longdat)[2]])
@@ -14,18 +15,19 @@ emUpdateCR <- function(longdat, survdat, paraests,
   sig[1, 2] <- paraests$sigma.u[1, 2]
   sig[2, 1] <- sig[1, 2]
   rho <- paraests$corr
-  varz <- paraests$varz
+  sigma.z <- paraests$sigma.z
 
   # failure time submodel data
   n <- length(survdat[, 2])
   surv.time <- survdat[, 2]
   cen.a <- survdat[, 3]
   cen.b <- survdat[, 4]
-  n.obs <- survdat[, 5]
-  p2 <- dim(survdat)[2] - 5
+  nn <- diff(match(unique(id), id))
+  nn <- c(nn, length(id) - sum(nn))
+  p2 <- dim(survdat)[2] - 4
   X2 <- 0
   if (p2 > 0) {
-    X2 <- as.matrix(survdat[, 6:dim(survdat)[2]])
+    X2 <- as.matrix(survdat[, 5:dim(survdat)[2]])
   }
   haz.a <- paraests$haz.a[, 1]
   s.dista <- paraests$s.dist.a[, 1]
@@ -33,14 +35,12 @@ emUpdateCR <- function(longdat, survdat, paraests,
   haz.b <- paraests$haz.b[, 1]
   s.distb <- paraests$s.dist.b[, 1]
   id.b <- paraests$id.b[, 1]
-  b2.a <- vector("numeric", p2 + 1)
-  b2.b <- vector("numeric", p2 + 1)
-  b2.a <- paraests$b2.a[, 1]
-  b2.b <- paraests$b2.b[, 1]
+  b2.a <- c(paraests$b2.a, 0)
+  b2.b <- c(paraests$b2.b, 0)
 
   # control params
-  N <- sum(n.obs)
-  maxn <- max(n.obs)
+  N <- sum(nn)
+  maxn <- max(nn)
   ran <- 2
   ab <- vector("numeric", gpt)
   w <- vector("numeric", gpt)
@@ -93,17 +93,17 @@ emUpdateCR <- function(longdat, survdat, paraests,
     # main loop over subjects begins here (E-step)
     for (i in 1:n) {
 
-      W21 <- matrix(0, 2, n.obs[i])
-      rvec <- rlong[count:(count + n.obs[i]-1)]
-      W11 <- (sig[1, 2] + sig[2, 2] * lda.time[count:(count + n.obs[i]-1)]) %*%
-        t(lda.time[count:(count + n.obs[i]-1)]) +
-        sig[1, 1] + sig[1, 2] * lda.time[count:(count + n.obs[i]-1)]
-      W21[1, 1:n.obs[i]] <- sig[1, 1] +
-        (sig[1, 2] * lda.time[count:(count + n.obs[i]-1)])
-      W21[2, 1:n.obs[i]] <- sig[1, 2] +
-        (sig[2, 2] * lda.time[count:(count + n.obs[i]-1)])
-      W11 <- W11 + (varz * diag(n.obs[i]))
-      count <- count + n.obs[i]
+      W21 <- matrix(0, 2, nn[i])
+      rvec <- rlong[count:(count + nn[i]-1)]
+      W11 <- (sig[1, 2] + sig[2, 2] * lda.time[count:(count + nn[i]-1)]) %*%
+        t(lda.time[count:(count + nn[i]-1)]) +
+        sig[1, 1] + sig[1, 2] * lda.time[count:(count + nn[i]-1)]
+      W21[1, 1:nn[i]] <- sig[1, 1] +
+        (sig[1, 2] * lda.time[count:(count + nn[i]-1)])
+      W21[2, 1:nn[i]] <- sig[1, 2] +
+        (sig[2, 2] * lda.time[count:(count + nn[i]-1)])
+      W11 <- W11 + (sigma.z * diag(nn[i]))
+      count <- count + nn[i]
       W3 <- solve(W11, t(W21))
       cvar <- W22-W21 %*% W3
 
@@ -166,7 +166,7 @@ emUpdateCR <- function(longdat, survdat, paraests,
     } # end of loop over subjects
 
     # M-step
-    parac <- data.frame(c(b1, b2.a, b2.b, varz, sig, rho))
+    parac <- data.frame(c(b1, b2.a, b2.b, sigma.z, sig, rho))
 
     # update: baseline hazards
     ndist.a <- max(id.a)
@@ -194,11 +194,11 @@ emUpdateCR <- function(longdat, survdat, paraests,
     # update: initial setup for beta1 (longitudinal) and beta2 (failure time)
     EUmat <- matrix(0, N, 2)
     EUUmat <- matrix(0, N, 3)
-    EUmat[, 1] <- rep(EU[, 1], n.obs)
-    EUmat[, 2] <- rep(EU[, 2], n.obs)
-    EUUmat[, 1] <- rep(EUU[, 1], n.obs)
-    EUUmat[, 2] <- rep(EUU[, 2], n.obs)
-    EUUmat[, 3] <- rep(EUU[, 3], n.obs)
+    EUmat[, 1] <- rep(EU[, 1], nn)
+    EUmat[, 2] <- rep(EU[, 2], nn)
+    EUUmat[, 1] <- rep(EUU[, 1], nn)
+    EUUmat[, 2] <- rep(EUU[, 2], nn)
+    EUUmat[, 3] <- rep(EUU[, 3], nn)
     summat.a <- matrix(0, n, 1)
     summat2.a <- matrix(0, n, 2)
     summat3.a <- matrix(0, n, 3)
@@ -251,7 +251,7 @@ emUpdateCR <- function(longdat, survdat, paraests,
     sum2 <- r^2-2 * r * (EUmat[, 1] + tEUmat) + EUUmat[, 1] +
       (EUUmat[, 2] * (lda.time^2))
     sum2 <- sum2 + 2 * EUUmat[, 3] * lda.time
-    varz <- sum(sum2) / N
+    sigma.z <- sum(sum2) / N
 
     # update: U-matrix
     sig[1, 1] <- sum(EUU[, 1]) / n
@@ -300,7 +300,7 @@ emUpdateCR <- function(longdat, survdat, paraests,
     b2.b <- b2.b - solve(sd.b, fd.b)
 
     # check convergence
-    para <- data.frame(c(b1, b2.a, b2.b, varz, sig, rho))
+    para <- data.frame(c(b1, b2.a, b2.b, sigma.z, sig, rho))
     dd <- abs(parac - para)
     if (max(dd) < tol) {
       conv <- TRUE
@@ -310,11 +310,13 @@ emUpdateCR <- function(longdat, survdat, paraests,
   }
 
   list("b1" = data.frame(b1),
-       "b2a" = data.frame(b2.a),
-       "b2b" = data.frame(b2.b),
-       "sigma.z" = sqrt(varz),
+       "b2.a" = data.frame(b2.a),
+       "b2.b" = data.frame(b2.b),
+       "sigma.z" = sigma.z,
        "sigma.u" = sig,
        "cor" = rho,
+       "haz.a" = haz.a,
+       "haz.b" = haz.b,
        "random" = EU,
        "conv" = conv,
        "iters" = iter)
