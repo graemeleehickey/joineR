@@ -135,19 +135,16 @@ plot.jointdata <- function(x, Y.col, type, xlab, xlim = NULL, ylim = NULL,
       } else {
         if (n.resp %in% 1) {
           nc = 1
-        }
-        else {
+        } else {
           nc = 3
         }
       }
       if (n.resp %in% c(1, 2, 3)) {
         nr = 1
-      }
-      else {
+      } else {
         if (n.resp <= 6) {
           nr = 2
-        }
-        else {
+        } else {
           nr = 3
         }
       }
