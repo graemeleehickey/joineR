@@ -1,4 +1,5 @@
 #' @keywords internal
+#' @importFrom statmod gauss.quad.prob
 emUpdateCR <- function(longdat, survdat, paraests,
                    gpt, lgpt, max.it, tol) {
 
