@@ -46,6 +46,11 @@ fit <- joint(data = heart.valve.jd,
              model = "intslope")
 
 summary(fit)
+#> 
+#> Call:
+#> joint(data = heart.valve.jd, long.formula = log.lvmi ~ 1 + time + 
+#>     hs, surv.formula = Surv(fuyrs, status) ~ hs, model = "intslope")
+#> 
 #> Random effects joint model
 #>  Data: heart.valve.jd 
 #>  Log-likelihood: -424.7061 
@@ -81,7 +86,7 @@ Multivariate data
 Funding
 =======
 
-This project was funded by the [Medical Research Council](http://www.mrc.ac.uk).
+This project was funded by the [Medical Research Council](http://www.mrc.ac.uk) (Grant numbers G0400615 and MR/M013227/1).
 
 ![](http://www.mrc.ac.uk/mrc/includes/themes/MRC/images/template/desktop/logo.png)
 
