@@ -69,5 +69,5 @@ Laird NM, Ware JH. Random-effects models for longitudinal data.
 
 Williamson PR, Kolamunnage-Dona R, Philipson P, Marson AG. Joint modelling of
 longitudinal and competing risks data. \emph{Stat Med.} 2008; \strong{27}:
-6426–6438.
+6426-6438.
 }
