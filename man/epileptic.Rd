@@ -61,7 +61,7 @@ withdrawal from randomized drug.
 \references{
 Marson AG, Appleton R, Baker GA, et al. A randomised controlled trial 
 examining longer-term outcomes of standard versus new antiepileptic drugs. 
-The SANAD Trial. \emph{Health Technology Assessment}. 2007; \strong{11(37)}.
+The SANAD Trial. \emph{Health Tech Assess}. 2007; \strong{11(37)}.
 
 Marson AG, Al-Kharusi AM, Alwaidh M, et al. The SANAD study of effectiveness 
 of carbamazepine, gabapentin, lamotrigine, oxcarbazepine, or topiramate for 
