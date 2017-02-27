@@ -51,7 +51,7 @@
 #' @keywords datasets
 #' @seealso \code{\link{heart.valve}}, \code{\link{liver}}, 
 #'   \code{\link{mental}}.
-#' @source SANAD Trial - University of Liverpool
+#' @source SANAD Trial, University of Liverpool
 #' @references
 #' 
 #' Marson AG, Appleton R, Baker GA, et al. A randomised controlled trial 

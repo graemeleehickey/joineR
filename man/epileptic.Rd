@@ -42,7 +42,7 @@
   
   }}
 \source{
-SANAD Trial - University of Liverpool
+SANAD Trial, University of Liverpool
 }
 \usage{
 data(epileptic)
