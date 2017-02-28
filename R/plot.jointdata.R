@@ -135,21 +135,21 @@ plot.jointdata <- function(x, Y.col, type, xlab, xlim = NULL, ylim = NULL,
         stop("Not reasonable to plot individual profiles for more than 9 variables. Try to specify Y.col")
       }
       if (n.resp %in% c(2, 4)) {
-        nc = 2
+        nc <- 2
       } else {
         if (n.resp %in% 1) {
-          nc = 1
+          nc <- 1
         } else {
-          nc = 3
+          nc <- 3
         }
       }
       if (n.resp %in% c(1, 2, 3)) {
-        nr = 1
+        nr <- 1
       } else {
         if (n.resp <= 6) {
-          nr = 2
+          nr <- 2
         } else {
-          nr = 3
+          nr <- 3
         }
       }
       par(mfrow = c(nr, nc), pty = pty)
