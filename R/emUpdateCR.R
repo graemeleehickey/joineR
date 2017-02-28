@@ -10,11 +10,7 @@ emUpdateCR <- function(longdat, survdat, paraests,
   X1 <- as.matrix(longdat[, 4:dim(longdat)[2]])
   p1 <- dim(X1)[2]
   b1 <- paraests$b1[, 1]
-  sig <- matrix(0, 2, 2)
-  sig[1, 1] <- paraests$sigma.u[1, 1]
-  sig[2, 2] <- paraests$sigma.u[2, 2]
-  sig[1, 2] <- paraests$sigma.u[1, 2]
-  sig[2, 1] <- sig[1, 2]
+  sig <- paraests$sigma.u
   rho <- paraests$corr
   sigma.z <- paraests$sigma.z
 
