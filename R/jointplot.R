@@ -1,10 +1,10 @@
 #' Joint plot of longitudinal and survival data
 #' 
-#' This function views the longitudinal profile of each unit with the last 
-#' longitudinal measurement prior to event-time (censored or not) taken as the 
-#' end-point, referred to as time zero. In doing so, the shape of the profile 
-#' prior to event-time can be inspected. This can be done over a user-specified 
-#' number of time units.
+#' @description This function views the longitudinal profile of each unit with
+#'   the last longitudinal measurement prior to event-time (censored or not)
+#'   taken as the end-point, referred to as time zero. In doing so, the shape of
+#'   the profile prior to event-time can be inspected. This can be done over a
+#'   user-specified number of time units.
 #' 
 #' @param object an object of class \code{jointdata}.
 #' @param Y.col an element of class \code{character} identifying the 
@@ -64,7 +64,6 @@
 #' @export
 #' 
 #' @examples
-#' 
 #' data(heart.valve)
 #' heart.surv <- UniqueVariables(heart.valve, 
 #'                               var.col = c("fuyrs", "status"),

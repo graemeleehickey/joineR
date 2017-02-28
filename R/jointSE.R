@@ -1,8 +1,8 @@
 #' Standard errors via bootstrap for a joint model fit
 #' 
-#' This function takes a model fit from a joint model and calculates standard 
-#' errors, with optional confidence intervals, for the main longitudinal and 
-#' survival covariates.
+#' @description This function takes a model fit from a joint model and
+#'   calculates standard errors, with optional confidence intervals, for the
+#'   main longitudinal and survival covariates.
 #' 
 #' @param fitted a list containing as components the parameter estimates 
 #'   obtained by fitting a joint model along with the respective formulae for 
@@ -42,7 +42,6 @@
 #' Raton, FL: Chapman & Hall/CRC.
 #' 
 #' @examples
-#' 
 #' data(heart.valve)
 #' heart.surv <- UniqueVariables(heart.valve, 
 #'                               var.col = c("fuyrs", "status"), 

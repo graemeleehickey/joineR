@@ -24,9 +24,9 @@ A data frame with patient identification and covariates selected.
   what is the unique covariate.
 }
 \description{
-This function extracts a set of unique variables within a patient, returning 
-a data frame with columns, patient identification and variables selected. 
-Each row corresponds to the data for each individual.
+This function extracts a set of unique variables within a
+  patient, returning a data frame with columns, patient identification and
+  variables selected. Each row corresponds to the data for each individual.
 }
 \details{
 This function can be used, when longitudinal data is in the
@@ -37,7 +37,6 @@ This function can be used, when longitudinal data is in the
   survival information from the original data set.
 }
 \examples{
-
 data(heart.valve)
 heart.cov <- UniqueVariables(heart.valve,
                              c(2, 3, 5, 6, 12:25),

@@ -1,7 +1,7 @@
 #' Transform data to the longitudinal balanced format
 #' 
-#' Transforms a longitudinal data set in the unbalanced format to the balanced
-#' format.
+#' @description Transforms a longitudinal data set in the unbalanced format to
+#'   the balanced format.
 #' 
 #' @param data a data frame with longitudinal data in the unbalanced format. 
 #'   That is, in the format of 'one row per observation'.
@@ -27,7 +27,6 @@
 #' @export
 #' 
 #' @examples
-#' 
 #' simul <- data.frame(num = 1:10,
 #'                     Y1.1 = rnorm(10), Y1.2 = rnorm(10),
 #'                     Y2.1 = rnorm(10), Y2.2 = rnorm(10),

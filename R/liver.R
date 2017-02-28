@@ -1,14 +1,14 @@
 #' Liver cirrhosis longitudinal data
 #' 
-#' This dataset gives the longitudinal observations of prothrombin index, a 
-#' measure of liver function, for patients from a controlled trial into 
-#' prednisone treatment of liver cirrhosis. Time-to-event information in the 
-#' form of the event time and associated censoring indicator are also recorded 
-#' along with a solitary baseline covariate - the allocated treatment arm in 
-#' this instance. The data are taken from Andersen et al. (1993, p. 19) and were
-#' analyzed in Henderson et al. (2002). This is a subset of the full data where
-#' a number of variables were recorded both at entry and during the course of
-#' the trial.
+#' @description This dataset gives the longitudinal observations of prothrombin
+#'   index, a measure of liver function, for patients from a controlled trial
+#'   into prednisone treatment of liver cirrhosis. Time-to-event information in
+#'   the form of the event time and associated censoring indicator are also
+#'   recorded along with a solitary baseline covariate - the allocated treatment
+#'   arm in this instance. The data are taken from Andersen et al. (1993, p. 19)
+#'   and were analyzed in Henderson et al. (2002). This is a subset of the full
+#'   data where a number of variables were recorded both at entry and during the
+#'   course of the trial.
 #' 
 #' @usage data(liver)
 #' @format A data frame in the unbalanced format with longitudinal observations 
@@ -34,7 +34,8 @@
 #' @keywords datasets
 #' @seealso \code{\link{heart.valve}}, \code{\link{epileptic}}, 
 #'   \code{\link{mental}}.
-#' @source Andersen et al. (1993).
+#' @source Andersen et al. (1993)
+#' @docType data
 #' @references
 #' 
 #' Andersen PK, Borgan O, Gill RD, Kieding N. \emph{Statistical Models Based on

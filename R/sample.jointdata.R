@@ -1,24 +1,23 @@
-#' Sample from a \code{jointdata} object
+#' Sample from a \code{jointdata} x
 #' 
-#' Generic function used to sampling a subset of data from an object of class 
-#' \code{jointdata}, with a specific size of number of subjects.
+#' @description Generic function used to sampling a subset of data from an x of
+#'   class \code{jointdata}, with a specific size of number of subjects.
 #' 
-#' @param object an object of class \code{jointdata}.
+#' @param x an object of class \code{jointdata}.
 #' @param size number of subjects to include in the sampled subset.
-#' @param replace should sampling be with replacement? Default is
-#'   \code{replace = TRUE}.
+#' @param replace should sampling be with replacement? Default is \code{replace
+#'   = TRUE}.
 #'   
 #' @author Ines Sousa (\email{isousa@@math.uminho.pt})
-#' @seealso \code{\link{sample}}, \code{\link{jointdata}},
+#' @seealso \code{\link{sample}}, \code{\link{jointdata}}, 
 #'   \code{\link{UniqueVariables}}.
 #' @keywords data
 #'   
-#' @return An object of class \code{jointdata}, with data only on the subjects
+#' @return An x of class \code{jointdata}, with data only on the subjects 
 #'   sampled.
 #' @export
 #' 
 #' @examples
-#' 
 #' data(heart.valve)
 #' heart.surv <- UniqueVariables(heart.valve, 
 #'                               var.col = c("fuyrs", "status"), 
@@ -27,21 +26,21 @@
 #'                             id.col = "num", 
 #'                             time.col = "time")
 #' sample.jointdata(heart.valve.jd, size = 10)
-sample.jointdata <- function(object, size, replace = FALSE) {
+sample.jointdata <- function(x, size, replace = FALSE) {
   
-  if (!inherits(object, "jointdata")) {
+  if (!inherits(x, "jointdata")) {
     stop("Data must be of class 'jointdata'\n")
   }
   
-  origid <- object$subject
-  id <- sample(object$subject, size = size, replace = replace)
-  re <- object
+  origid <- x$subject
+  id <- sample(x$subject, size = size, replace = replace)
+  re <- x
   
   if (replace) { # with replacement
     re$subject <- re$subject[id]
     if (is.data.frame(re$longitudinal)) {
-      nn <- diff(match(object$subject, object$longitudinal[[object$subj.col]]))
-      nn[length(nn) + 1] <- length(object$longitudinal[, 1]) - sum(nn)
+      nn <- diff(match(x$subject, x$longitudinal[[x$subj.col]]))
+      nn[length(nn) + 1] <- length(x$longitudinal[, 1]) - sum(nn)
       mid <- match(id, origid)
       geti <- match(id, re$longitudinal[[re$subj.col]])
       getirep <- rep(geti, nn[mid])

@@ -1,8 +1,8 @@
 #' Summary of a balanced longitudinal data set
 #' 
-#' For a balanced longitudinal data set a vector of the mean response and 
-#' variances at defined time points is returned along with the correlation 
-#' matrix of the responses across the time points.
+#' @description For a balanced longitudinal data set a vector of the mean
+#'   response and variances at defined time points is returned along with the
+#'   correlation matrix of the responses across the time points.
 #' 
 #' @param object a longitudinal data set in the balanced format.
 #' @param Y.col the column numbers of the longitudinal measurements at each 
@@ -36,7 +36,6 @@
 #' @export
 #' 
 #' @examples
-#' 
 #' data(mental)
 #' summarybal(mental, Y.col = 2:7, times = c(0, 1, 2, 4, 6, 8), na.rm = TRUE)
 summarybal <- function(object, Y.col, times, use = "all.obs", na.rm, ...) {

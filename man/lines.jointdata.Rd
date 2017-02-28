@@ -19,12 +19,12 @@ variables.}
 A graphical device with a plot for longitudinal data.
 }
 \description{
-Add lines to an existing plot of an object of class \code{jointdata}, for a
-longitudinal variable. It is possible to plot all the subjects in the data 
-set, or just a selected \code{subset}. See \code{\link{subset.jointdata}}.
+Add lines to an existing plot of an object of class
+  \code{jointdata}, for a longitudinal variable. It is possible to plot all
+  the subjects in the data set, or just a selected \code{subset}. See
+  \code{\link{subset.jointdata}}.
 }
 \examples{
-
 data(heart.valve)
 heart.surv <- UniqueVariables(heart.valve, 
                               var.col = c("fuyrs", "status"), 

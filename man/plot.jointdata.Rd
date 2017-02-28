@@ -33,9 +33,10 @@ ranges, see \code{\link[graphics]{plot.window}} for further details.}
 A graphical device with a plot for longitudinal data.
 }
 \description{
-Plot longitudinal data of an object of class \code{jointdata}, for a 
-longitudinal variable. It is possible to plot all the subjects in the data 
-set, or just a selected \code{subset}. See \code{\link{subset.jointdata}}.
+Plot longitudinal data of an object of class \code{jointdata},
+  for a longitudinal variable. It is possible to plot all the subjects in the
+  data set, or just a selected \code{subset}. See
+  \code{\link{subset.jointdata}}.
 }
 \examples{
 data(heart.valve)

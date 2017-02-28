@@ -1,8 +1,9 @@
 #' Add points to an existing \code{jointdata} plot
 #' 
-#' Add points to an existing plot of an object of class \code{jointdata}, for a 
-#' longitudinal variable. It is possible plot all the subjects in the data set, 
-#' or just a selected \code{subset}. See \code{\link{subset.jointdata}}.
+#' @description Add points to an existing plot of an object of class
+#'   \code{jointdata}, for a longitudinal variable. It is possible plot all the
+#'   subjects in the data set, or just a selected \code{subset}. See
+#'   \code{\link{subset.jointdata}}.
 #' 
 #' @inheritParams plot.jointdata
 #'   
@@ -16,7 +17,6 @@
 #' @export
 #' 
 #' @examples
-#' 
 #' data(heart.valve)
 #' heart.surv <- UniqueVariables(heart.valve,
 #'                               var.col = c("fuyrs", "status"),

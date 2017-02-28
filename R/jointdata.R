@@ -1,8 +1,8 @@
 #' Creates an object of class \code{jointdata}
 #' 
-#' This function creates an object of class \code{jointdata}. This is an object 
-#' with information on at least one of, longitudinal data or survival data. 
-#' Moreover, it can also have data on baseline covariates.
+#' @description This function creates an object of class \code{jointdata}. This
+#'   is an object with information on at least one of, longitudinal data or
+#'   survival data. Moreover, it can also have data on baseline covariates.
 #' 
 #' @param longitudinal a data frame or matrix in the unbalanced format (one row 
 #'   per observation), with subject identification, time of measurements, and 
@@ -43,7 +43,6 @@
 #' @export
 #' 
 #' @examples
-#' 
 #' data(heart.valve)
 #' heart.surv <- UniqueVariables(heart.valve,
 #'                               var.col = c("fuyrs", "status"), 

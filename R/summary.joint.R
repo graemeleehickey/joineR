@@ -1,7 +1,8 @@
 #' Summarise a random effects joint model fit
 #'
-#' Generic function used to produce summary information from a fitted random
-#' effects joint model as represented by \code{object} of class \code{joint}.
+#' @description Generic function used to produce summary information from a
+#'   fitted random effects joint model as represented by \code{object} of class
+#'   \code{joint}.
 #'
 #' @param object an object of class \code{joint}.
 #' @param variance should the variance components be output as variances or
@@ -23,7 +24,6 @@
 #' @export
 #'
 #' @examples
-#'
 #' data(heart.valve)
 #' heart.surv <- UniqueVariables(heart.valve,
 #'                               var.col = c("fuyrs","status"),

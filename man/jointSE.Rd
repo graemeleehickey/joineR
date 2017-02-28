@@ -40,9 +40,9 @@ from each bootstrap sample are output.}
 An object of class \code{data.frame}.
 }
 \description{
-This function takes a model fit from a joint model and calculates standard 
-errors, with optional confidence intervals, for the main longitudinal and 
-survival covariates.
+This function takes a model fit from a joint model and
+  calculates standard errors, with optional confidence intervals, for the
+  main longitudinal and survival covariates.
 }
 \details{
 Standard errors and confidence intervals are obtained by repeated 
@@ -52,7 +52,6 @@ Standard errors and confidence intervals are obtained by repeated
   samples needed for accurate confidence intervals can be as large as 1000.
 }
 \examples{
-
 data(heart.valve)
 heart.surv <- UniqueVariables(heart.valve, 
                               var.col = c("fuyrs", "status"), 

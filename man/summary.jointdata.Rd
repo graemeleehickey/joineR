@@ -32,10 +32,9 @@ A list with five elements. Each summarises an element of the
 }
 \description{
 Generic function used to produce summaries of objects of class 
-\code{jointdata}
+  \code{jointdata}.
 }
 \examples{
-
 data(heart.valve)
 heart.surv <- UniqueVariables(heart.valve,
                               var.col = c("fuyrs", "status"), 

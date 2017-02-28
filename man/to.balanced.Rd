@@ -31,11 +31,10 @@ A data frame with longitudinal data in the balanced format. The
   variable observed at each time point.
 }
 \description{
-Transforms a longitudinal data set in the unbalanced format to the balanced
-format.
+Transforms a longitudinal data set in the unbalanced format to
+  the balanced format.
 }
 \examples{
-
 simul <- data.frame(num = 1:10,
                     Y1.1 = rnorm(10), Y1.2 = rnorm(10),
                     Y2.1 = rnorm(10), Y2.2 = rnorm(10),

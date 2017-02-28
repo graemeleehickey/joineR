@@ -53,15 +53,15 @@ SANAD Trial, University of Liverpool
 data(epileptic)
 }
 \description{
-The SANAD (Standard and New Anti-epileptic Drugs) study (Marson et al., 2007) 
-is a randomized control trial of standard and new anti-epileptic drugs, 
-comparing effects on longer term clinical outcomes. The data consists of 
-longitudinal measurements of calibrated dose for the groups randomized to a 
-standard drug (CBZ) and a new drug (LTG). The objective of the analysis is to
-investigate the effect of drug titration on the relative effects of LTG and 
-CBZ on treatment failure (withdrawal of the randomized drug). There are 
-several baseline covariates available, and also data on the time to 
-withdrawal from randomized drug.
+The SANAD (Standard and New Anti-epileptic Drugs) study (Marson
+  et al., 2007) is a randomized control trial of standard and new
+  anti-epileptic drugs, comparing effects on longer term clinical outcomes.
+  The data consists of longitudinal measurements of calibrated dose for the
+  groups randomized to a standard drug (CBZ) and a new drug (LTG). The
+  objective of the analysis is to investigate the effect of drug titration on
+  the relative effects of LTG and CBZ on treatment failure (withdrawal of the
+  randomized drug). There are several baseline covariates available, and also
+  data on the time to withdrawal from randomized drug.
 }
 \references{
 Marson AG, Appleton R, Baker GA, et al. A randomised controlled trial 

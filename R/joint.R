@@ -1,10 +1,10 @@
 #' Fit joint model for survival and longitudinal data measured with error
 #'
-#' This generic function fits a joint model with random latent association,
-#' building on the formulation described in Wulfsohn and Tsiatis (1997) while
-#' allowing for the presence of longitudinal and survival covariates, and three
-#' choices for the latent process. The link between the longitudinal and
-#' survival processes can be proportional or separate.
+#' @description This generic function fits a joint model with random latent
+#'   association, building on the formulation described in Wulfsohn and Tsiatis
+#'   (1997) while allowing for the presence of longitudinal and survival
+#'   covariates, and three choices for the latent process. The link between the
+#'   longitudinal and survival processes can be proportional or separate.
 #'
 #' @param data an object of class \code{jointdata} containing the variables
 #'   named in the formulae arguments.
@@ -111,7 +111,6 @@
 #' @export
 #'
 #' @examples
-#'
 #' data(heart.valve)
 #' heart.surv <- UniqueVariables(heart.valve,
 #'                               var.col = c("fuyrs", "status"),

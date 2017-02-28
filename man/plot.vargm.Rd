@@ -29,11 +29,11 @@ for. When \code{NULL} this is the maximum of the data.}
 A graphical device with the plot of empirical variogram.
 }
 \description{
-Plots the empirical variogram for observed measurements, of an object of 
-class \code{vargm}, obtained by using function \code{\link{variogram}}.
+Plots the empirical variogram for observed measurements, of an
+  object of class \code{vargm}, obtained by using function
+  \code{\link{variogram}}.
 }
 \examples{
-
 data(mental)
 mental.unbalanced <- to.unbalanced(mental, id.col = 1, 
                                    times = c(0, 1, 2, 4, 6, 8),

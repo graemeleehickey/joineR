@@ -1,7 +1,7 @@
 #' Summarise a \code{jointdata} object
 #' 
-#' Generic function used to produce summaries of objects of class 
-#' \code{jointdata}
+#' @description Generic function used to produce summaries of objects of class 
+#'   \code{jointdata}.
 #' 
 #' @inheritParams summary.joint
 #'   
@@ -29,7 +29,6 @@
 #' @export
 #' 
 #' @examples
-#' 
 #' data(heart.valve)
 #' heart.surv <- UniqueVariables(heart.valve,
 #'                               var.col = c("fuyrs", "status"), 

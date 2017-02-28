@@ -62,11 +62,11 @@ with a censoring indicator of one.}
 A lattice plot.
 }
 \description{
-This function views the longitudinal profile of each unit with the last 
-longitudinal measurement prior to event-time (censored or not) taken as the 
-end-point, referred to as time zero. In doing so, the shape of the profile 
-prior to event-time can be inspected. This can be done over a user-specified 
-number of time units.
+This function views the longitudinal profile of each unit with
+  the last longitudinal measurement prior to event-time (censored or not)
+  taken as the end-point, referred to as time zero. In doing so, the shape of
+  the profile prior to event-time can be inspected. This can be done over a
+  user-specified number of time units.
 }
 \details{
 The function tailors the \code{\link[lattice]{xyplot}} function to 
@@ -78,7 +78,6 @@ If more than one cause of failure is present (i.e. competing risks
   data), then all failures are pooled together into a single failure type.
 }
 \examples{
-
 data(heart.valve)
 heart.surv <- UniqueVariables(heart.valve, 
                               var.col = c("fuyrs", "status"),

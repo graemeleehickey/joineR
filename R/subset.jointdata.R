@@ -1,7 +1,7 @@
 #' Subsetting object of class \code{jointdata}
 #' 
-#' Returns an object of class \code{jointdata} which is a subset of an original 
-#' object of class \code{jointdata}.
+#' @description Returns an object of class \code{jointdata} which is a subset of
+#'   an original object of class \code{jointdata}.
 #' 
 #' @param x an object of class \code{jointdata}.
 #' @param subj.subset vector of subject identifiers, to include in the data 
@@ -16,7 +16,6 @@
 #' @export
 #' 
 #' @examples
-#' 
 #' data(heart.valve)
 #' heart.surv <- UniqueVariables(heart.valve,
 #'                               var.col = c("fuyrs", "status"),

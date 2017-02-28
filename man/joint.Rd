@@ -62,11 +62,11 @@ A list containing the parameter estimates from the joint model and,
   joint model are also produced as part of the fit.
 }
 \description{
-This generic function fits a joint model with random latent association,
-building on the formulation described in Wulfsohn and Tsiatis (1997) while
-allowing for the presence of longitudinal and survival covariates, and three
-choices for the latent process. The link between the longitudinal and
-survival processes can be proportional or separate.
+This generic function fits a joint model with random latent
+  association, building on the formulation described in Wulfsohn and Tsiatis
+  (1997) while allowing for the presence of longitudinal and survival
+  covariates, and three choices for the latent process. The link between the
+  longitudinal and survival processes can be proportional or separate.
 }
 \details{
 The \code{joint} function fits a joint model to survival and
@@ -118,7 +118,6 @@ Both \code{longsep} and \code{survsep} ignore any latent association
   \code{sepassoc = TRUE}.
 }
 \examples{
-
 data(heart.valve)
 heart.surv <- UniqueVariables(heart.valve,
                               var.col = c("fuyrs", "status"),

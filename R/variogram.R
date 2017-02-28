@@ -1,8 +1,8 @@
 #' Empirical variogram for longitudinal data
 #' 
-#' Calculates the variogram for observed measurements, with two components, the 
-#' total variability in the data, and the variogram for all time lags in all 
-#' individuals.
+#' @description Calculates the variogram for observed measurements, with two
+#'   components, the total variability in the data, and the variogram for all
+#'   time lags in all individuals.
 #' 
 #' @param indv vector of individual identification, as in the longitudinal data,
 #'   repeated for each time point.
@@ -30,7 +30,6 @@
 #' @export
 #' 
 #' @examples
-#' 
 #' data(mental)
 #' mental.unbalanced <- to.unbalanced(mental, id.col = 1, 
 #'                                    times = c(0, 1, 2, 4, 6, 8),

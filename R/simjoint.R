@@ -1,7 +1,7 @@
 #' Simulate data from a joint model
 #' 
-#' This function simulates longitudinal and time-to-event data from a joint 
-#' model.
+#' @description This function simulates longitudinal and time-to-event data from
+#'   a joint model.
 #' 
 #' @param n the number of subjects to simulate data for.
 #' @inheritParams joint

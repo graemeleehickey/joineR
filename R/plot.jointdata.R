@@ -1,8 +1,9 @@
 #' Plot longitudinal data
 #' 
-#' Plot longitudinal data of an object of class \code{jointdata}, for a 
-#' longitudinal variable. It is possible to plot all the subjects in the data 
-#' set, or just a selected \code{subset}. See \code{\link{subset.jointdata}}.
+#' @description Plot longitudinal data of an object of class \code{jointdata},
+#'   for a longitudinal variable. It is possible to plot all the subjects in the
+#'   data set, or just a selected \code{subset}. See
+#'   \code{\link{subset.jointdata}}.
 #' 
 #' @param x object of class \code{jointdata}.
 #' @param Y.col column number, or column name, of longitudinal variable to be 

@@ -26,11 +26,11 @@ An object inheriting from class \code{summary.joint} with all
   individual subjects.}
 }
 \description{
-Generic function used to produce summary information from a fitted random
-effects joint model as represented by \code{object} of class \code{joint}.
+Generic function used to produce summary information from a
+  fitted random effects joint model as represented by \code{object} of class
+  \code{joint}.
 }
 \examples{
-
 data(heart.valve)
 heart.surv <- UniqueVariables(heart.valve,
                               var.col = c("fuyrs","status"),

@@ -70,8 +70,8 @@ A list of 2 data.frames: one recording the requisite longitudinal
   outcomes data, and one recording the time-to-event data.
 }
 \description{
-This function simulates longitudinal and time-to-event data from a joint 
-model.
+This function simulates longitudinal and time-to-event data from
+  a joint model.
 }
 \details{
 The function \code{simData} simulates data from a joint model, 
