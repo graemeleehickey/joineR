@@ -37,6 +37,10 @@
 plot.vargm <- function(x, smooth = FALSE, bdw = NULL, 
                        follow.time = NULL, points = TRUE, ...) {
   
+  if (!inherits(x, "vargm")) {
+    stop("Data must be of class 'vargm'\n")
+  }
+  
   vargm <- x
   svar <- vargm$svar
   sigma2 <- vargm$sigma2

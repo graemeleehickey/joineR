@@ -81,6 +81,10 @@ jointplot <- function(object, Y.col, Cens.col, lag, split = TRUE,
                       col1, col2, xlab, ylab, gp1lab, gp2lab, 
                       smooth = 2/3, mean.profile = FALSE, mcol1, mcol2) {
   
+  if (!inherits(object, "jointdata")) {
+    stop("Data must be of class 'jointdata'\n")
+  }
+  
   if (!is.vector(Y.col) | length(Y.col) > 1) {
     stop("Only one longitudinal response is possible to plot")
   }

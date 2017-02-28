@@ -40,6 +40,10 @@
 #' summary(heart.valve.jd)
 summary.jointdata <- function(object, ...) {
   
+  if (!inherits(x, "jointdata")) {
+    stop("Data must be of class 'jointdata'\n")
+  }
+  
   out <- as.list(rep(NA, 5))
   names(out) <- c("subjects", "longitudinal", "survival", "baseline", "times")
   out[[1]] <- paste("Number of subjects: ", length(object$subject), sep = "")

@@ -40,6 +40,10 @@
 plot.jointdata <- function(x, Y.col, type, xlab, xlim = NULL, ylim = NULL, 
                            main = NA, pty, ...) {
   
+  if (!inherits(x, "jointdata")) {
+    stop("Data must be of class 'jointdata'\n")
+  }
+  
   if (missing(Y.col)) {
     Y.col <- NA
   }

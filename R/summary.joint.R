@@ -44,6 +44,10 @@
 #' summary(fit)
 summary.joint <- function(object, variance = TRUE, ...) {
   
+  if (!inherits(object, "joint")) {
+    stop("Fitted model must be of class 'joint'\n")
+  }
+  
   compRisk <- object$compRisk
     
   cat("\nCall:\n", paste(deparse(object$call), sep = "\n", collapse = "\n"),

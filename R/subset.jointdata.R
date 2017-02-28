@@ -30,6 +30,10 @@
 #' heart.jd.cens <- subset(heart.jd, take)
 subset.jointdata <- function(x, subj.subset, ...) {
   
+  if (!inherits(x, "jointdata")) {
+    stop("Data must be of class 'jointdata'\n")
+  }
+  
   id <- subj.subset
   re <- x
   re$subject <- re$subject[re$subject %in% id]

@@ -35,6 +35,10 @@
 #' lines(heart.jd.2, Y.col = 4, lty = 2)
 lines.jointdata <- function(x, Y.col, ...) {
   
+  if (!inherits(x, "jointdata")) {
+    stop("Data must be of class 'jointdata'\n")
+  }
+  
   object <- x
   if (!is.vector(Y.col) | length(Y.col) > 1) {
     stop("Only one longitudinal response is possible to plot")

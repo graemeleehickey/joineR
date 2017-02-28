@@ -64,6 +64,10 @@
 jointSE <- function(fitted, n.boot, gpt, lgpt, max.it, tol, 
                     print.detail = FALSE) {
   
+  if (!inherits(fited, "joint")) {
+    stop("Fitted model must be of class 'joint'\n")
+  }
+  
   data <- fitted$data
   id <- fitted$data$subj.col
   time.long <- fitted$data$time.col

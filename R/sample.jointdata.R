@@ -29,6 +29,10 @@
 #' sample.jointdata(heart.valve.jd, size = 10)
 sample.jointdata <- function(object, size, replace = FALSE) {
   
+  if (!inherits(object, "jointdata")) {
+    stop("Data must be of class 'jointdata'\n")
+  }
+  
   origid <- object$subject
   id <- sample(object$subject, size = size, replace = replace)
   re <- object

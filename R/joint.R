@@ -134,6 +134,10 @@ joint <- function(data, long.formula, surv.formula,
                   sepassoc = FALSE, longsep = FALSE, survsep = FALSE,
                   gpt, lgpt, max.it, tol) {
   
+  if (!inherits(data, "jointdata")) {
+    stop("Data must be of class 'jointdata'\n")
+  }
+  
   id <- data$subj.col
   time.long <- data$time.col
   
