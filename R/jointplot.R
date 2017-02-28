@@ -112,7 +112,7 @@ jointplot <- function(object, Y.col, Cens.col, lag, split = TRUE,
   t0 <- t - ft
   hue <- length(id)
   
-  if (length(unqiue(cens)) == 3) {
+  if (length(unique(cens)) == 3) {
     warning("jointplot does not display profiles for different failure events")
   }
   
