@@ -64,7 +64,7 @@
 jointSE <- function(fitted, n.boot, gpt, lgpt, max.it, tol, 
                     print.detail = FALSE) {
   
-  if (!inherits(fited, "joint")) {
+  if (!inherits(fitted, "joint")) {
     stop("Fitted model must be of class 'joint'\n")
   }
   
