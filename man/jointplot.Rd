@@ -73,6 +73,10 @@ The function tailors the \code{\link[lattice]{xyplot}} function to
   produce a representation of joint data with longitudinal and survival 
   components.
 }
+\note{
+If more than one cause of failure is present (i.e. competing risks
+  data), then all failures are pooled together into a single failure type.
+}
 \examples{
 
 data(heart.valve)

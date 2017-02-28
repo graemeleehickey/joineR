@@ -46,6 +46,9 @@
 #'   produce a representation of joint data with longitudinal and survival 
 #'   components.
 #'   
+#' @note If more than one cause of failure is present (i.e. competing risks
+#'   data), then all failures are pooled together into a single failure type.
+#'   
 #' @author Pete Philipson (\email{pete.philipson@@northumbria.ac.uk})
 #' @keywords dplot
 #' @seealso \code{\link[lattice]{xyplot}}, \code{\link{joint}}, 
@@ -108,6 +111,10 @@ jointplot <- function(object, Y.col, Cens.col, lag, split = TRUE,
   ft <- rep(t[index], nobs)
   t0 <- t - ft
   hue <- length(id)
+  
+  if (length(unqiue(cens)) == 3) {
+    warning("jointplot does not display profiles for different failure events")
+  }
   
   if (missing(lag)) {
     lag <- max(t)
