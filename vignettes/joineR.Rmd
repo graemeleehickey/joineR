@@ -257,7 +257,7 @@ most of whose values are missing:
 ```{r epileptic_balanced}
 epileptic.balanced <- to.balanced(epileptic,
                                   id.col = 1, time.col = 3,
-                                  Y.col = 2, other.col = 4:11)
+                                  Y.col = 2, other.col = 4:12)
 dim(epileptic.balanced)
 sum(is.na(epileptic.balanced))
 ```
@@ -739,8 +739,8 @@ markers for survival. *Biostatistics*, 2002; **3**: 33-50.
 
 6. Lim E, Ali A, Theodorou P, Sousa I, Ashrafian H, Chamageorgakis AD, et al. A
 longitudinal study of the profile and predictors of left ventricular mass
-regression after stentless aortic valve replacement. *Annals of Thoracic
-Surgery*, 2008; **85**: 2026-2029.
+regression after stentless aortic valve replacement. *Annals of Thoracic Surgery*,
+2008; **85**: 2026-2029.
 
 7. Wulfsohn MS, Tsiatis AA. A joint model for survival and longitudinal data
 measured with error. *Biometrics*, 1997; **53**: 330-339
