@@ -93,3 +93,16 @@ test_that("subset of jointdata", {
 })
   
   
+test_that("jointdata without survival or baseline data", {
+  # data + subset
+  data(heart.valve)
+  heart.long <- heart.valve[, c(1, 4, 5, 7, 8, 9, 10, 11)]
+  heart.jd <- jointdata(longitudinal = heart.long, 
+                        id.col = "num",
+                        time.col = "time")
+  # tests
+  expect_output(str(heart.jd), "List of 6")
+  expect_identical(heart.jd$survival, NA)
+  expect_identical(heart.jd$baseline, NA)
+})
+

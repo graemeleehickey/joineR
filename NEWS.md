@@ -1,8 +1,14 @@
-# joineR 1.1.0.9000
+# joineR 2.0.0
+
+## Major updates
+
+* `joint` now allows for competing risks data (2 failure types) as per the model developed by Williamson et al. (2008). Other functions have been upgraded to handle the competing risks data.
 
 ## Maintanence
 
-* General code tidy-up and internal function renaming
+* General code and documentation tidy-up.
+
+* New unit tests added to increase code coverage.
 
 # joineR 1.1.0
 

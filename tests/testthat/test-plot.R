@@ -38,6 +38,14 @@ test_that("plot jointdata objects (joint plot)", {
   expect_output(str(jointplot(heart.valve.jd, Y.col = "log.lvmi", 
                               Cens.col = "status", lag = 5)),
                 "trellis")
+  expect_output(str(jointplot(heart.valve.jd, Y.col = "log.lvmi", 
+                              Cens.col = "status", lag = 5,
+                              mean.profile = TRUE, split = FALSE)),
+                "trellis")
+  expect_output(str(jointplot(heart.valve.jd, Y.col = "log.lvmi", 
+                              Cens.col = "status", lag = 5,
+                              mean.profile = FALSE, split = FALSE)),
+                "trellis")
 })
 
 
