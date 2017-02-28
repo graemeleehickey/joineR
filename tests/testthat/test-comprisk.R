@@ -38,3 +38,26 @@ test_that("competing risks models", {
   expect_output(str(fit$data), "List of 6")
 })
 
+
+test_that("bootstrap SEs with competing risks", {
+  # load data + fit model
+  data(epileptic)
+  epileptic$interaction <- with(epileptic, time * (treat == "LTG"))
+  longitudinal <- epileptic[, c(1:3, 13)]
+  survival <- UniqueVariables(epileptic, c(4, 6), "id")
+  baseline <- UniqueVariables(epileptic, "treat", "id")
+  data <- jointdata(longitudinal = longitudinal,
+                    survival = survival,
+                    baseline = baseline,
+                    id.col = "id",
+                    time.col = "time")
+  fit <- joint(data = data, long.formula = dose ~ time + treat + interaction,
+               surv.formula = Surv(with.time, with.status2) ~ treat,
+               longsep = FALSE, survsep = FALSE,
+               gpt = 3)
+  fit.boot <- jointSE(fit, n.boot = 2)
+  # tests
+  expect_output(str(fit.boot), "data.frame")
+  expect_equal(dim(fit.boot), c(11, 6))
+})
+
