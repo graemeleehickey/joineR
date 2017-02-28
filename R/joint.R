@@ -121,8 +121,8 @@
 #' 
 #' Williamson PR, Kolamunnage-Dona R, Philipson P, Marson AG. Joint modelling of
 #' longitudinal and competing risks data. \emph{Stat Med.} 2008; \strong{27}:
-#' 6426–6438.
-#'
+#' 6426-6438.
+#' 
 #' @return A list containing the parameter estimates from the joint model and,
 #'   if required, from either or both of the separate analyses. The combined
 #'   log-likelihood from a separate analysis and the log-likelihood from the
