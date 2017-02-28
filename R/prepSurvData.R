@@ -50,7 +50,7 @@ prepSurvData <- function(surv.formula, data, id, time.long) {
   } else {
     # competing risks
     event <- data$survival[, as.character(surv.formula[[2]][[3]])]
-    if (!all(unique(event) == 0:2)) {
+    if (!all(unique(event) %in% 0:2)) {
       stop("Competing risks data must be coded as 0 (censored), 1 and 2 (causes)")
     }
     surv.formula1 <- surv.formula
@@ -63,6 +63,7 @@ prepSurvData <- function(surv.formula, data, id, time.long) {
       event2)
     surv.terms <- terms(surv.formula1,
                         data = cbind(survdat, data$baseline))
+    attr(surv.terms, "intercept") <- 1
     surv.frame <- model.frame(surv.formula1,
                               data = cbind(survdat, data$baseline))
     surv.cov <- model.matrix(surv.terms,
@@ -78,7 +79,9 @@ prepSurvData <- function(surv.formula, data, id, time.long) {
                                             scale = FALSE)
     }
     survdat2 <- cbind(survdat2, surv.frame[rss, ])
-    names(survdat2)[(ncol(survdat) + 1):ncol(survdat2)] <- attr(surv.terms, "term.labels")
+    if (p2 > 0) {
+      names(survdat2)[(ncol(survdat) + 1):ncol(survdat2)] <- attr(surv.terms, "term.labels")
+    }
   }  
   
   out <- list(p2 = p2,
