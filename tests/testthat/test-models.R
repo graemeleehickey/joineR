@@ -232,5 +232,3 @@ test_that("jointdata throws errors for incorrect data", {
                          time.col = "time"),
                "ID column does not exist in survival object")   
 })
-  
-  
