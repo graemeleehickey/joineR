@@ -38,7 +38,6 @@ longitudinal variable. It is possible to plot all the subjects in the data
 set, or just a selected \code{subset}. See \code{\link{subset.jointdata}}.
 }
 \examples{
-
 data(heart.valve)
 heart.surv <- UniqueVariables(heart.valve,
                               var.col = c("fuyrs", "status"),
