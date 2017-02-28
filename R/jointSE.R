@@ -71,19 +71,47 @@ jointSE <- function(fitted, n.boot, gpt, lgpt, max.it, tol,
   id <- fitted$data$subj.col
   time.long <- fitted$data$time.col
   q <- length(diag(fitted$sigma.u))
+  b2.names <- NULL
+  if (fitted$compRisk) {
+    b2.est <- c(fitted$coefficients$fixed$survival1,
+                fitted$coefficients$fixed$survival2)
+    b2.names <- c(names(fitted$coefficients$fixed$survival1),
+                  names(fitted$coefficients$fixed$survival2))
+  } else {
+    b2.est <- fitted$coefficients$fixed$survival
+    b2.names <- names(fitted$coefficients$fixed$survival)
+  }
+  
   paranames <- c(row.names(fitted$coefficients$fixed$longitudinal), 
-                 names(fitted$coefficients$fixed$survival),
+                 b2.names,
                  names(fitted$coefficients$latent), 
                  paste("U_", 0:(q-1), sep = ""),
                  "Residual")
+  
+  mles <- c(fitted$coefficients$fixed$longitudinal[, 1],
+            b2.est,
+            fitted$coefficients$latent,
+            diag(fitted$sigma.u),
+            fitted$sigma.z)
+  
   compnames <- rep("", length(paranames))
   compnames[1] <- "Longitudinal"
-  lb1 <- length(fitted$coefficients$fixed$longitudinal[,1])
-  lb2 <- length(fitted$coefficients$fixed$survival)
+  lb1 <- length(fitted$coefficients$fixed$longitudinal[, 1])
+  lb2.a <- ifelse(fitted$compRisk, 
+                  length(fitted$coefficients$fixed$survival1),
+                  length(fitted$coefficients$fixed$survival))
+  lb2.b <- ifelse(fitted$compRisk, 
+                  length(fitted$coefficients$fixed$survival2),
+                  0)
   lg <- length(fitted$coefficients$latent)
-  compnames[lb1 + 1] <- "Survival"
-  compnames[lb1 + lb2 + 1] <- "Association"
-  compnames[lb1 + lb2 + lg + 1] <- "Variance"
+  if (fitted$compRisk) {
+    compnames[lb1 + 1] <- "Failure (cause 1)"
+    compnames[lb1 + lb2.a + 1] <- "Failure (cause 2)"
+  } else {
+    compnames[lb1 + 1] <- "Failure"
+  }
+  compnames[lb1 + lb2.a + lb2.b + 1] <- "Association"
+  compnames[lb1 + lb2.a + lb2.b + lg + 1] <- "Variance"
   
   if (missing(gpt)) {
     gpt <- 3
@@ -102,56 +130,50 @@ jointSE <- function(fitted, n.boot, gpt, lgpt, max.it, tol,
   surv.formula <- fitted$formulae$sformula
   long.formula <- fitted$formulae$lformula
   sepassoc <- fitted$sepassoc
-  data.surv <- cbind(fitted$data$survival, fitted$data$baseline)
-  surv.frame <- model.frame(surv.formula, data = data.surv)
   
-  if (dim(surv.frame)[2] == 1){
-    n.est <- dim(as.matrix(fitted$coefficients$fixed$longitudinal))[1] +
-      dim(as.matrix(fitted$coefficients$latent))[1] +
-      dim(as.matrix(diag(fitted$sigma.u)))[1] + 1
-  } else  { 
-    n.est <- dim(as.matrix(fitted$coefficients$fixed$longitudinal))[1] +
-      dim(as.matrix(fitted$coefficients$fixed$survival))[1] +
-      dim(as.matrix(fitted$coefficients$latent))[1] +
-      dim(as.matrix(diag(fitted$sigma.u)))[1] + 1
-  }
-  
-  out <- matrix(0, n.boot + 2, n.est)
+  n.est <- length(paranames)
   nsubj <- length(fitted$data$subject)
+  out <- matrix(0, n.boot, n.est)
   
-  for (i in 1:n.boot) {
+  for (i in 1:n.boot) { # start bootstrap loop here
+    
     s.new <- sample.jointdata(data, nsubj, replace = TRUE)
-    fitb <- joint(data = s.new, long.formula = long.formula, 
-                  surv.formula = surv.formula, model = model, sepassoc = sepassoc, 
-                  gpt = gpt, max.it = max.it, tol = tol, lgpt = lgpt)
-    b1 <- as.numeric(as.vector(as.matrix(fitb$coefficients$fixed$longitudinal[,1])))
+    suppressMessages(
+      fitb <- joint(data = s.new, 
+                    long.formula = long.formula, 
+                    surv.formula = surv.formula,
+                    model = model,
+                    sepassoc = sepassoc, 
+                    gpt = gpt, max.it = max.it, tol = tol, lgpt = lgpt)
+    )
+    
+    b1 <- as.numeric(as.vector(as.matrix(fitb$coefficients$fixed$longitudinal[, 1])))
     b3 <- as.numeric(as.vector(as.matrix(fitb$coefficients$latent)))
     b4 <- as.numeric(as.vector(as.matrix(diag(fitb$sigma.u))))
     b5 <- as.numeric(as.vector(as.matrix(fitb$sigma.z)))
     
-    if (dim(surv.frame)[2] != 1) { 
-      b2 <- as.numeric(as.vector(as.matrix(fitb$coefficients$fixed$survival)))
+    if (lb2.a > 0) { 
+      if (fitted$compRisk) {
+        b2 <- c(as.numeric(as.vector(as.matrix(fitb$coefficients$fixed$survival1))),
+                as.numeric(as.vector(as.matrix(fitb$coefficients$fixed$survival2))))
+      } else {
+        b2 <- as.numeric(as.vector(as.matrix(fitb$coefficients$fixed$survival)))
+      }
       out[i, ] <- c(b1, b2, b3, b4, b5)
       ests <- out[i, ]
-      if (print.detail) { 
-        detail <- data.frame(iteration = i, t(ests))
-        names(detail) <- c("Iteration", paranames)
-        print(detail)
-      }
-    } 
-    else {
+    } else {
       out[i, ] <- c(b1, b3, b4, b5)
       ests <- out[i, ]
-      if (print.detail) {
-        detail <- data.frame(iteration = i, t(ests))
-        names(detail) <- c("Iteration", paranames)
-        print(detail)
-      }
     }
-  }
-  i <- 1
-  while (out[i, 1] != 0) i = i + 1
-  out <- out[1 : (i - 1), ]
+    
+    if (print.detail) { 
+      detail <- data.frame(iteration = i, t(ests))
+      names(detail) <- c("Iteration", paranames)
+      print(detail)
+    }
+    
+  } # end of bootstrap loop
+  
   se <- 0
   ci1 <- 0
   ci2 <- 0
@@ -168,26 +190,12 @@ jointSE <- function(fitted, n.boot, gpt, lgpt, max.it, tol,
       ci2[i] <- sort(as.numeric(out[, i]))[0.975 * n.boot]
     }
   }
-  if (dim(surv.frame)[2] != 1){
-    b1 <- data.frame(cbind(
-      compnames, paranames,
-      round(c(as.numeric(as.vector(as.matrix(fitted$coefficients$fixed$longitudinal))),
-              as.numeric(as.vector(as.matrix(fitted$coefficients$fixed$survival))),
-              as.numeric(as.vector(as.matrix(fitted$coefficients$latent))),
-              as.numeric(as.vector(as.matrix(diag(fitted$sigma.u)))),
-              as.numeric(as.vector(as.matrix(fitted$sigma.z)))), 4),
-      round(cbind(se), 4), round(ci1, 4), round(ci2, 4)))
-  } else {
-    b1 <- data.frame(cbind(
-      compnames, paranames,
-      round(c(as.numeric(as.vector(as.matrix(fitted$coefficients$fixed$longitudinal))),
-              as.numeric(as.vector(as.matrix(fitted$coefficients$latent))),
-              as.numeric(as.vector(as.matrix(fitted$sigma.z))),
-              as.numeric(as.vector(as.matrix(diag(fitted$sigma.u))))), 4),
-      round(cbind(se), 4), round(ci1, 4), round(ci2, 4)))
-  }
-  names(b1)[1:6] <- c("Component", "Parameter", "Estimate", "SE", 
-                      "95%Lower", "95%Upper")
+  
+  b1 <- data.frame(compnames, paranames)
+  b1 <- cbind(b1, round(mles, 4), round(cbind(se), 4), round(ci1, 4), round(ci2, 4))
+  
+  colnames(b1)[1:6] <- c("Component", "Parameter", "Estimate", "SE", 
+                         "95%Lower", "95%Upper")
   return(b1)
-
+  
 }
