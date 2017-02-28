@@ -40,7 +40,7 @@
 #' summary(heart.valve.jd)
 summary.jointdata <- function(object, ...) {
   
-  if (!inherits(x, "jointdata")) {
+  if (!inherits(object, "jointdata")) {
     stop("Data must be of class 'jointdata'\n")
   }
   
