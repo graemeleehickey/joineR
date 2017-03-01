@@ -16,7 +16,7 @@ test_that("competing risks models", {
                     time.col = "time")
   fit <- joint(data = data, long.formula = dose ~ time + treat + interaction,
                surv.formula = Surv(with.time, with.status2) ~ treat,
-               longsep = FALSE, survsep = FALSE,
+               longsep = TRUE, survsep = TRUE,
                gpt = 3)
   # tests
   expect_is(fit, "joint")

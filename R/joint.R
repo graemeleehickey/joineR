@@ -424,9 +424,10 @@ joint <- function(data, long.formula, surv.formula,
   if (!compRisk) {
     sepests <- list(longests = sep(ldaests, longsep),
                     survests = sep(survests, survsep))
-  } else { # TODO
-    sepests <- list(longests = NA,
-                    survests = NA)
+  } else {
+    sepests <- list(longests = sep(ldaests, longsep),
+                    survests1 = sep(survests.a, survsep),
+                    survests2 = sep(survests.b, survsep))
   }
   
   #**********************************************************
