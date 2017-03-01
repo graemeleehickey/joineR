@@ -1,7 +1,7 @@
 #' @keywords internal
 #' @importFrom statmod gauss.quad.prob
 emUpdateCR <- function(longdat, survdat, paraests,
-                   gpt, lgpt, max.it, tol) {
+                   gpt, max.it, tol, loglik) {
 
   # longitudinal submodel data
   id <- longdat[, 1]
@@ -45,6 +45,7 @@ emUpdateCR <- function(longdat, survdat, paraests,
   ab <- g$nodes
   w <- g$weights * sqrt(pi)
   conv <- FALSE
+  
 
   # E-step setup
   gammat <- matrix(0, gpt^2, ran)
@@ -70,6 +71,11 @@ emUpdateCR <- function(longdat, survdat, paraests,
   cvar <- matrix(0, ran, ran)
   cvarch <- matrix(0, ran, ran)
 
+  if (loglik) {
+    l1 <- 0
+    l2 <- 0
+  }
+  
   # main loop over EM iterations begins here
   iter <- 0
   for (it in 1:max.it) {
@@ -91,18 +97,18 @@ emUpdateCR <- function(longdat, survdat, paraests,
     for (i in 1:n) {
 
       W21 <- matrix(0, 2, nn[i])
-      rvec <- rlong[count:(count + nn[i]-1)]
-      W11 <- (sig[1, 2] + sig[2, 2] * lda.time[count:(count + nn[i]-1)]) %*%
+      rvec <- rlong[count:(count + nn[i] - 1)]
+      W11 <- (sig[1, 2] + sig[2, 2] * lda.time[count:(count + nn[i] - 1)]) %*%
         t(lda.time[count:(count + nn[i]-1)]) +
-        sig[1, 1] + sig[1, 2] * lda.time[count:(count + nn[i]-1)]
+        sig[1, 1] + sig[1, 2] * lda.time[count:(count + nn[i] - 1)]
       W21[1, 1:nn[i]] <- sig[1, 1] +
-        (sig[1, 2] * lda.time[count:(count + nn[i]-1)])
+        (sig[1, 2] * lda.time[count:(count + nn[i] - 1)])
       W21[2, 1:nn[i]] <- sig[1, 2] +
-        (sig[2, 2] * lda.time[count:(count + nn[i]-1)])
+        (sig[2, 2] * lda.time[count:(count + nn[i] - 1)])
       W11 <- W11 + (sigma.z * diag(nn[i]))
       count <- count + nn[i]
       W3 <- solve(W11, t(W21))
-      cvar <- W22-W21 %*% W3
+      cvar <- W22 - W21 %*% W3
 
       # Transform to independent variables (called gamma)
       cvar <- cvar * 2
@@ -119,13 +125,13 @@ emUpdateCR <- function(longdat, survdat, paraests,
       )
       ssvec.a <- 1
 
-      if(id.a[i] > 0) {
+      if (id.a[i] > 0) {
         ssvec.a <- exp(
           b2.a[p2 + 1] * (newumat[1, ] + newumat[2, ] %*% t(s.dista[1:id.a[i]]))
         ) %*% haz.a[1:id.a[i]]
       }
       ssvec.b <- 1
-      if(id.b[i] > 0) {
+      if (id.b[i] > 0) {
         ssvec.b <- exp(
           b2.b[p2 + 1] * (newumat[1, ] + newumat[2, ] %*% t(s.distb[1:id.b[i]]))
         ) %*% haz.b[1:id.b[i]]
@@ -159,6 +165,15 @@ emUpdateCR <- function(longdat, survdat, paraests,
 
       EU0U1expU.b[i, 1:id.b[i]] <- t(fvec) %*% (newumat[1, ] * newumat[2, ] * const.b) / den
       EU1U1expU.b[i, 1:id.b[i]] <- t(fvec) %*% (newumat[2, ]^2 * const.b) / den
+      
+      # calculate the log-likelihood
+      if (loglik) {
+        if (den > 0) {
+          l2 <- l2 + log(den)
+        }
+        l1 <- l1 - nn[i] * 0.5 * log(2 * pi) - 0.5 * log(det(W11)) -
+          0.5 * sum(rvec * solve(W11, rvec))
+      }
 
     } # end of loop over subjects
 
@@ -306,16 +321,27 @@ emUpdateCR <- function(longdat, survdat, paraests,
 
   }
 
-  list("b1" = data.frame(b1),
-       "b2.a" = data.frame(b2.a),
-       "b2.b" = data.frame(b2.b),
-       "sigma.z" = sigma.z,
-       "sigma.u" = sig,
-       "cor" = rho,
-       "haz.a" = haz.a,
-       "haz.b" = haz.b,
-       "random" = EU,
-       "conv" = conv,
-       "iters" = iter)
+  if ((conv != TRUE) & !loglik) {
+    print("Not converged")
+  }
+  
+  if (loglik) {
+    ll <- l1 + l2 - 0.5 * ran * n * log(pi)
+    list("log.like" = ll,
+         "longlog.like" = l1,
+         "survlog.like" = ll - l1)
+  } else {
+    list("b1" = data.frame(b1),
+         "b2.a" = data.frame(b2.a),
+         "b2.b" = data.frame(b2.b),
+         "sigma.z" = sigma.z,
+         "sigma.u" = sig,
+         "cor" = rho,
+         "haz.a" = haz.a,
+         "haz.b" = haz.b,
+         "random" = EU,
+         "conv" = conv,
+         "iters" = iter)
+  }
 
 }

@@ -153,7 +153,8 @@
 #'              
 #' ## Competing risks joint model (same data as Williamson et al. 2008)
 #' 
-#' \dontrun{data(epileptic)
+#' \dontrun{
+#' data(epileptic)
 #' epileptic$interaction <- with(epileptic, time * (treat == "LTG"))
 #' longitudinal <- epileptic[, c(1:3, 13)]
 #' survival <- UniqueVariables(epileptic, c(4, 6), "id")
@@ -164,11 +165,13 @@
 #'                   id.col = "id",
 #'                   time.col = "time")
 #'                   
-#' fit2 <- joint(data = data, long.formula = dose ~ time + treat + interaction,
+#' fit2 <- joint(data = data,
+#'               long.formula = dose ~ time + treat + interaction,
 #'               surv.formula = Surv(with.time, with.status2) ~ treat,
 #'               longsep = FALSE, survsep = FALSE,
 #'               gpt = 3)
-#' summary(fit2)}
+#' summary(fit2)
+#' }
 joint <- function(data, long.formula, surv.formula,
                   model = c("intslope", "int", "quad"),
                   sepassoc = FALSE, longsep = FALSE, survsep = FALSE,
@@ -332,10 +335,9 @@ joint <- function(data, long.formula, surv.formula,
                            survdat = survdat,
                            paraests = paraests,
                            gpt = gpt,
-                           lgpt = lgpt,
                            max.it = max.it,
-                           tol = tol)
-    
+                           tol = tol,
+                           loglik = FALSE)
   }
   
   #**********************************************************
@@ -391,6 +393,7 @@ joint <- function(data, long.formula, surv.formula,
   
   # Log-likelihood at MLE
   if (!compRisk) {
+    # single event time
     jointll <- emUpdate(longdat = longdat,
                         survdat = survdat,
                         model = model,
@@ -402,15 +405,20 @@ joint <- function(data, long.formula, surv.formula,
                         max.it = 1,
                         tol = tol,
                         loglik = TRUE)
-    
-    loglik <- list(jointlhood = jointll$log.like,
-                   jointy = jointll$longlog.like,
-                   jointn = jointll$survlog.like)
-  } else { # TODO
-    loglik <- list(jointlhood = NA,
-                   jointy = NA,
-                   jointn = NA)
+  } else {
+    # competing risks
+    jointll <- emUpdateCR(longdat = longdat,
+                          survdat = survdat,
+                          paraests = paraests,
+                          gpt = lgpt,
+                          max.it = 1,
+                          tol = tol,
+                          loglik = TRUE)
   }
+  
+  loglik <- list(jointlhood = jointll$log.like,
+                 jointy = jointll$longlog.like,
+                 jointn = jointll$survlog.like)
   
   # Separate model estimates
   if (!compRisk) {
