@@ -134,6 +134,8 @@ Both \code{longsep} and \code{survsep} ignore any latent association
   \code{sepassoc = TRUE}.
 }
 \examples{
+## Standard joint model
+
 data(heart.valve)
 heart.surv <- UniqueVariables(heart.valve,
                               var.col = c("fuyrs", "status"),
@@ -151,6 +153,25 @@ fit <- joint(data = heart.valve.jd,
              long.formula = log.lvmi ~ 1 + time + hs,
              surv.formula = Surv(fuyrs, status) ~ hs,
              model = "intslope")
+             
+## Competing risks joint model (same data as Williamson et al. 2008)
+
+\dontrun{data(epileptic)
+epileptic$interaction <- with(epileptic, time * (treat == "LTG"))
+longitudinal <- epileptic[, c(1:3, 13)]
+survival <- UniqueVariables(epileptic, c(4, 6), "id")
+baseline <- UniqueVariables(epileptic, "treat", "id")
+data <- jointdata(longitudinal = longitudinal,
+                  survival = survival,
+                  baseline = baseline,
+                  id.col = "id",
+                  time.col = "time")
+                  
+fit2 <- joint(data = data, long.formula = dose ~ time + treat + interaction,
+              surv.formula = Surv(with.time, with.status2) ~ treat,
+              longsep = FALSE, survsep = FALSE,
+              gpt = 3)
+summary(fit2)}
 }
 \references{
 Wulfsohn MS, Tsiatis AA. A joint model for survival and longitudinal data

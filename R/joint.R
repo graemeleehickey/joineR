@@ -153,7 +153,7 @@
 #'              
 #' ## Competing risks joint model (same data as Williamson et al. 2008)
 #' 
-#' data(epileptic)
+#' \dontrun{data(epileptic)
 #' epileptic$interaction <- with(epileptic, time * (treat == "LTG"))
 #' longitudinal <- epileptic[, c(1:3, 13)]
 #' survival <- UniqueVariables(epileptic, c(4, 6), "id")
@@ -168,7 +168,7 @@
 #'               surv.formula = Surv(with.time, with.status2) ~ treat,
 #'               longsep = FALSE, survsep = FALSE,
 #'               gpt = 3)
-#' summary(fit2)
+#' summary(fit2)}
 joint <- function(data, long.formula, surv.formula,
                   model = c("intslope", "int", "quad"),
                   sepassoc = FALSE, longsep = FALSE, survsep = FALSE,
