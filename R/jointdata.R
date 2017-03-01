@@ -112,7 +112,7 @@ jointdata <- function(longitudinal = NA, survival = NA, baseline = NA, id.col = 
       stop("ID column does not exist in survival object")
     }
     ss <- unique(survival[[id.col]])
-    if (sum(order(patid) != order(ss)) > 0) {
+    if (sum(sort(patid) != sort(ss)) > 0) {
       stop("Number of subjects different in the longitudinal and survival data frames")
     }
     if (length(ss) != dim(survival)[1]) {
@@ -123,7 +123,7 @@ jointdata <- function(longitudinal = NA, survival = NA, baseline = NA, id.col = 
         stop("ID column does not exist in baseline object")
       }
       bb <- unique(baseline[[id.col]])
-      if (sum(order(patid) != order(bb)) > 0) {
+      if (sum(sort(patid) != sort(bb)) > 0) {
         stop("Number of subjects different in the longitudinal and covariates data frame")
       }
       if (length(bb) != dim(baseline)[1]) {

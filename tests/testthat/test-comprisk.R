@@ -61,3 +61,42 @@ test_that("bootstrap SEs with competing risks", {
   expect_equal(dim(fit.boot), c(11, 6))
 })
 
+
+test_that("ordering of subjects with competing risks", {
+  # load data + fit model (original data)
+  data(epileptic)
+  epileptic$interaction <- with(epileptic, time * (treat == "LTG"))
+  longitudinal <- epileptic[, c(1:3, 13)]
+  survival <- UniqueVariables(epileptic, c(4, 6), "id")
+  baseline <- UniqueVariables(epileptic, "treat", "id")
+  data <- jointdata(longitudinal = longitudinal,
+                    survival = survival,
+                    baseline = baseline,
+                    id.col = "id",
+                    time.col = "time")
+  fit <- joint(data = data, long.formula = dose ~ time + treat + interaction,
+               surv.formula = Surv(with.time, with.status2) ~ treat,
+               longsep = FALSE, survsep = FALSE,
+               gpt = 3)
+  # load data + fit model (unordered data)
+  longitudinal2 <- longitudinal[sample(nrow(longitudinal)), ]
+  survival2 <- survival[sample(nrow(survival)), ]
+  baseline2 <- baseline[sample(nrow(baseline)), ]
+  data2 <- jointdata(longitudinal = longitudinal2,
+                     survival = survival2,
+                     baseline = baseline2,
+                     id.col = "id",
+                     time.col = "time")
+  fit2 <- joint(data = data2, long.formula = dose ~ time + treat + interaction,
+                surv.formula = Surv(with.time, with.status2) ~ treat,
+                longsep = FALSE, survsep = FALSE,
+                gpt = 3)
+  # tests
+  expect_identical(summary(data), summary(data2))
+  expect_identical(fit$coefficients, fit2$coefficients)
+  expect_identical(fit$sigma.z, fit2$sigma.z)
+  expect_identical(fit$sigma.u, fit2$sigma.u)
+  expect_identical(fit$haz.a, fit2$haz.a)
+  expect_identical(fit$haz.b, fit2$haz.b)
+})
+

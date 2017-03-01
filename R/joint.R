@@ -164,12 +164,11 @@
 #'                   id.col = "id",
 #'                   time.col = "time")
 #'                   
-#' fit <- joint(data = data, long.formula = dose ~ time + treat + interaction,
-#'              surv.formula = Surv(with.time, with.status2) ~ treat,
-#'              longsep = FALSE, survsep = FALSE,
-#'              gpt = 3)
-#' summary(fit)
-summary(fit)
+#' fit2 <- joint(data = data, long.formula = dose ~ time + treat + interaction,
+#'               surv.formula = Surv(with.time, with.status2) ~ treat,
+#'               longsep = FALSE, survsep = FALSE,
+#'               gpt = 3)
+#' summary(fit2)
 joint <- function(data, long.formula, surv.formula,
                   model = c("intslope", "int", "quad"),
                   sepassoc = FALSE, longsep = FALSE, survsep = FALSE,
