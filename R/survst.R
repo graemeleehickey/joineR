@@ -43,7 +43,7 @@ survstCR <- function(survdat, surv.formula, survdat2, event) {
   survdat2 <- survdat2[order(survdat2[, 2]), ]
   n <- length(survdat[, 2])
   s <- survdat[, 2]
-  cen <- survdat[ , ifelse(event == 1, 3, 4)]
+  cen <- survdat[, ifelse(event == 1, 3, 4)]
   #if (cen[1] == 0) {
   #  cen[1] <- 1
   #  survdat[1, ifelse(event == 1, 3, 4)] <- 1
