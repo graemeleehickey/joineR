@@ -33,9 +33,9 @@
 #'   follow up).}
 #'   
 #'   \item{\code{with.status2}}{censoring indicator (\code{1 = }withdrawal of 
-#'   randomized drug due to inadequate seizure control, (\code{2 = }withdrawal
-#'   of randomized drug due to and \code{0 = }not withdrawn from randomized
-#'   drug/lost to follow up).}
+#'   randomized drug due to inadequate seizure control, (\code{2 = }withdrawal 
+#'   of randomized drug due to unacceptable adverse effects, and \code{0 = }not
+#'   withdrawn from randomized drug/lost to follow up).}
 #'   
 #'   \item{\code{with.status.uae}}{\code{1 = }withdrawal due to unacceptable 
 #'   adverse effects, \code{0 = }otherwise.}
