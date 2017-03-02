@@ -25,6 +25,10 @@ emUpdateCR <- function(longdat, survdat, paraests,
   X2 <- 0
   if (p2 > 0) {
     X2 <- as.matrix(survdat[, 5:dim(survdat)[2]])
+  } else {
+    b2x.a <- matrix(0, n, 1)
+    b2x.b <- matrix(0, n, 1)
+    b2x <- matrix(0, n, 1)
   }
   haz.a <- paraests$haz.a[, 1]
   s.dista <- paraests$s.dist.a[, 1]
@@ -78,12 +82,8 @@ emUpdateCR <- function(longdat, survdat, paraests,
   # main loop over EM iterations begins here
   iter <- 0
   for (it in 1:max.it) {
-
     iter <- iter + 1
     W22 <- sig
-    b2x.a <- matrix(0, n, 1)
-    b2x.b <- matrix(0, n, 1)
-    b2x <- matrix(0, n, 1)
     if (p2 > 0) {
       b2temp.a <- c(b2.a[1:p2])
       b2temp.b <- c(b2.b[1:p2])
@@ -120,12 +120,18 @@ emUpdateCR <- function(longdat, survdat, paraests,
       cmmat[, 1] <- rep(cm[1], gpt^2)
       cmmat[, 2] <- rep(cm[2], gpt^2)
       newumat <- cvarch %*% t(gammat) + t(cmmat)
-      fvec <- exp(
-        cen.a[i] * b2.a[p2 + 1] * (newumat[1, ] + newumat[2, ] * surv.time[i]) +
-          (cen.b[i] * b2.b[p2 + 1] * (newumat[1, ] + newumat[2, ] * surv.time[i]))
-      )
+      fvec <- 1
+      if (cen.a[i] == 1 || cen.b[i] == 1) {
+        fvec <- exp(
+          cen.a[i] * b2.a[p2 + 1] * (newumat[1, ] + newumat[2, ] * surv.time[i]) +
+            cen.b[i] * b2.b[p2 + 1] * (newumat[1, ] + newumat[2, ] * surv.time[i]))
+        if (loglik) {
+          fvec <- fvec * exp(b2x[i, ]) * 
+            ifelse(cen.a[i] == 1, haz.a[which(s.dista == surv.time[i])], 1) * 
+            ifelse(cen.b[i] == 1, haz.b[which(s.distb == surv.time[i])], 1)
+        }
+      }
       ssvec.a <- 1
-
       if (id.a[i] > 0) {
         ssvec.a <- exp(
           b2.a[p2 + 1] * (newumat[1, ] + newumat[2, ] %*% t(s.dista[1:id.a[i]]))
