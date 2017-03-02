@@ -54,7 +54,7 @@ emUpdateCR <- function(longdat, survdat, paraests,
   gammat <- matrix(0, gpt^2, ran)
   gammat[, 1] <- rep(ab, each = gpt)
   gammat[, 2] <- rep(ab, gpt)
-  wvec <- as.vector(w %*% t(w))
+  wvec <- as.vector(tcrossprod(w))
   EU <- matrix(0, n, 2)
   EUU <- matrix(0, n, 3)
   EexpU.a <- matrix(0, n, length(haz.a))
@@ -115,11 +115,11 @@ emUpdateCR <- function(longdat, survdat, paraests,
       cvar <- cvar * 2
       cvarch <- chol(cvar)
       cvarch <- t(cvarch)
-      cm <- t(W3) %*% rvec
+      cm <- crossprod(W3, rvec)
       cmmat <- matrix(0, gpt^2, ran)
       cmmat[, 1] <- rep(cm[1], gpt^2)
       cmmat[, 2] <- rep(cm[2], gpt^2)
-      newumat <- cvarch %*% t(gammat) + t(cmmat)
+      newumat <- tcrossprod(cvarch, gammat) + t(cmmat)
       fvec <- 1
       if (cen.a[i] == 1 || cen.b[i] == 1) {
         fvec <- exp(
@@ -257,15 +257,15 @@ emUpdateCR <- function(longdat, survdat, paraests,
     # update: beta1
     tEUmat <- EUmat[, 2] * lda.time
     sum <- EUmat[, 1] + tEUmat
-    Ystar <- Y-sum
+    Ystar <- Y - sum
     XTX <- t(X1) %*% X1
     XTY <- t(X1) %*% Ystar
     b1 <- solve(XTX, XTY)
 
     # update: sigmaz
     bx <- X1 %*% b1
-    r <- Y-bx
-    sum2 <- r^2-2 * r * (EUmat[, 1] + tEUmat) + EUUmat[, 1] +
+    r <- Y - bx
+    sum2 <- r^2 - 2 * r * (EUmat[, 1] + tEUmat) + EUUmat[, 1] +
       (EUUmat[, 2] * (lda.time^2))
     sum2 <- sum2 + 2 * EUUmat[, 3] * lda.time
     sigma.z <- sum(sum2) / N
