@@ -711,10 +711,13 @@ summary(model.jointrandom.heart)
 
 # Acknowledgements
 
-The `joineR` package was funded by the UK Medical Research Council under a grant 
-with Principal Investigator Prof. Paula Williamson; Co-Investigators Prof. Peter
-J. Diggle and Prof. Robin Henderson; and Research Associates Dr Ruwanthi 
-Kolamunnage-Dona, Dr Peter Philipson, and Dr Ines Sousa.
+The `joineR` package was funded by the UK Medical Research Council (MRC) under a
+grant with Principal Investigator (PI) Prof. Paula Williamson; Co-Investigators
+(Co-Is) Prof. Peter J. Diggle and Prof. Robin Henderson; and Research Associates
+Dr Ruwanthi Kolamunnage-Dona, Dr Peter Philipson, and Dr Ines Sousa (Grant
+numbers G0400615). Updates to it were made under a separate MRC grant with PI Dr
+Ruwanthi Kolamunnage-Dona, Co-Is Dr Peter Philipson and Dr Andrea Jorgensen, and
+Research Associate Dr Graeme L. Hickey (Grant number MR/M013227/1).
 
 
 # References
@@ -743,6 +746,6 @@ regression after stentless aortic valve replacement. *Annals of Thoracic Surgery
 2008; **85**: 2026-2029.
 
 7. Wulfsohn MS, Tsiatis AA. A joint model for survival and longitudinal data
-measured with error. *Biometrics*, 1997; **53**: 330-339
+measured with error. *Biometrics*, 1997; **53**: 330-339.
 
 

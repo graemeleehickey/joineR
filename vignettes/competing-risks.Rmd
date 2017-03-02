@@ -40,6 +40,7 @@ time-to-event sub-models are proportional, hence $b_{ij}^\top V_{ig} = \gamma_g
 a_{ij}^\top U_i$. We also note that currently on 2 failure types are be 
 modelled, which must be coded as 1 and 2 (with 0 representing censoring).
 
+
 # Example
 
 We will perform the analysis from Williamson et al. (2008) to the SANAD (Standard
@@ -172,7 +173,24 @@ two drugs still appear to provide similar seizure control. Thus, the conclusion
 from the original simpler analysis of the cause-specific hazards is found to be
 robust to the variation in titration between the drugs in the trial.
 
+
+# Acknowledgements
+
+The `joineR` package was funded by the UK Medical Research Council (MRC) under a
+grant with Principal Investigator (PI) Prof. Paula Williamson; Co-Investigators
+(Co-Is) Prof. Peter J. Diggle and Prof. Robin Henderson; and Research Associates
+Dr Ruwanthi Kolamunnage-Dona, Dr Peter Philipson, and Dr Ines Sousa (Grant
+numbers G0400615). Updates to it were made under a separate MRC grant with PI Dr
+Ruwanthi Kolamunnage-Dona, Co-Is Dr Peter Philipson and Dr Andrea Jorgensen, and
+Research Associate Dr Graeme L. Hickey (Grant number MR/M013227/1).
+
+
 # References
+
+Williamson PR, Kolamunnage-Dona R, Philipson P, Marson AG. Joint modelling of longitudinal and competing risks data. *Statistics in Medicine*, 2008; **27**: 6426-6438.
+
+4. Henderson R, Diggle PJ, Dobson A. Joint modelling of longitudinal measurements
+and event time data. *Biostatistics*, 2000; **1**: 465-480
 
 1. Marson AG, Al-Kharusi AM, Alwaidh M, Appleton R, Baker GA, Chadwick DW, Cramp
 C, Cockerell OC, Cooper PN, Doughty J, Eaton B, Gamble C, Goulding PJ, Howell
@@ -180,25 +198,25 @@ SJL, Hughes A, Jackson M, Jacoby A, Kellett M, Lawson GR, Leach JP, Nicolaides P
 Roberts R, Shackley P, Shen J, Smith DF, Smith PEM, Tudur Smith C, Vanoli A,
 Williamson PR on behalf of the SANAD Study group. Carbamazepine, gabapentin,
 lamotrigine, oxcarbazepine or topiramate for partial epilepsy: results from the
-SANAD trial. *The Lancet* 2007; **369**: 1000–1015.
+SANAD trial. *The Lancet*, 2007; **369**: 1000–1015.
 
 2. Commission on Antiepileptic Drugs. Considerations on designing clinical
 trials to evaluate the place of new antiepileptic drugs in the treatment of
-newly diagnosed and chronic patients with epilepsy. *Epilepsia* 1998; **39**:
+newly diagnosed and chronic patients with epilepsy. *Epilepsia*, 1998; **39**:
 799–803.
 
 3. Williamson PR, Smith CT, Josemir WS, Marson AG. Importance of competing risks
-in the analysis of anti-epileptic drug failure. *Trials* 2007; **8**: 12.
+in the analysis of anti-epileptic drug failure. *Trials*, 2007; **8**: 12.
 
 4. Williamson PR, Kolamnunnage-Dona R, Tudur Smith C. The influence of competing
 risks setting on the choice of hypothesis test for treatment effect.
-*Biostatistics* 2006; **8**: 689–694.
+*Biostatistics*, 2006; **8**: 689–694.
 
 5. Cross H, Ferrie C, Lascelles K, Livingston J, Mewasingh L. Old versus new
-antiepileptic drugs: the SANAD study. *The Lancet* 2007; **370**: 314.
+antiepileptic drugs: the SANAD study. *The Lancet*, 2007; **370**: 314.
 
 6. O’Donoghue MF, Sander JWAS. Lamotrigine versus carbamazepine in epilepsy.
-*The Lancet* 1995; **345**: 1300.
+*The Lancet*, 1995; **345**: 1300.
 
-7. Faught E. Epilepsy drugs: getting it right the first time. *Lancet Neurology*
+7. Faught E. Epilepsy drugs: getting it right the first time. *Lancet Neurology*,
 2007; **6**: 476–478.
