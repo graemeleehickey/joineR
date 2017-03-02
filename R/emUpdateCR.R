@@ -154,24 +154,25 @@ emUpdateCR <- function(longdat, survdat, paraests,
       if (id.a[i] == 0) {
         const.a <- const.a^0
       }
-      EexpU.a[i, 1:id.a[i]] <- t(fvec) %*% const.a / den
-      EU0expU.a[i, 1:id.a[i]] <- t(fvec) %*% (newumat[1, ] * const.a) / den
-      EU1expU.a[i, 1:id.a[i]] <- t(fvec) %*% (newumat[2, ] * const.a) / den
-      EU0U0expU.a[i, 1:id.a[i]] <- t(fvec) %*% (newumat[1, ]^2 * const.a) / den
-      EU0U1expU.a[i, 1:id.a[i]] <- t(fvec) %*% (newumat[1, ] * newumat[2, ] * const.a) / den
-      EU1U1expU.a[i, 1:id.a[i]] <- t(fvec) %*% (newumat[2, ]^2 * const.a) / den
+      fvecT.den <- t(fvec) / den
+      EexpU.a[i, 1:id.a[i]] <- fvecT.den %*% const.a
+      EU0expU.a[i, 1:id.a[i]] <- fvecT.den %*% (newumat[1, ] * const.a)
+      EU1expU.a[i, 1:id.a[i]] <- fvecT.den %*% (newumat[2, ] * const.a)
+      EU0U0expU.a[i, 1:id.a[i]] <- fvecT.den %*% (newumat[1, ]^2 * const.a)
+      EU0U1expU.a[i, 1:id.a[i]] <- fvecT.den %*% (newumat[1, ] * newumat[2, ] * const.a)
+      EU1U1expU.a[i, 1:id.a[i]] <- fvecT.den %*% (newumat[2, ]^2 * const.a)
       const.b <- exp(b2.b[p2 + 1] * (newumat[1, ] + newumat[2, ] %*% t(s.distb[1:id.b[i]])))
 
       if (id.b[i] == 0) {
         const.b <- const.b^0
       }
-      EexpU.b[i, 1:id.b[i]] <- t(fvec) %*% const.b / den
-      EU0expU.b[i, 1:id.b[i]] <- t(fvec) %*% (newumat[1, ] * const.b) / den
-      EU1expU.b[i, 1:id.b[i]] <- t(fvec) %*% (newumat[2, ] * const.b) / den
-      EU0U0expU.b[i, 1:id.b[i]] <- t(fvec) %*% (newumat[1, ]^2 * const.b) / den
+      EexpU.b[i, 1:id.b[i]] <- fvecT.den %*% const.b
+      EU0expU.b[i, 1:id.b[i]] <- fvecT.den %*% (newumat[1, ] * const.b)
+      EU1expU.b[i, 1:id.b[i]] <- fvecT.den %*% (newumat[2, ] * const.b)
+      EU0U0expU.b[i, 1:id.b[i]] <- fvecT.den %*% (newumat[1, ]^2 * const.b)
 
-      EU0U1expU.b[i, 1:id.b[i]] <- t(fvec) %*% (newumat[1, ] * newumat[2, ] * const.b) / den
-      EU1U1expU.b[i, 1:id.b[i]] <- t(fvec) %*% (newumat[2, ]^2 * const.b) / den
+      EU0U1expU.b[i, 1:id.b[i]] <- fvecT.den %*% (newumat[1, ] * newumat[2, ] * const.b)
+      EU1U1expU.b[i, 1:id.b[i]] <- fvecT.den %*% (newumat[2, ]^2 * const.b)
       
       # calculate the log-likelihood
       if (loglik) {
