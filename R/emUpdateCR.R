@@ -131,46 +131,43 @@ emUpdateCR <- function(longdat, survdat, paraests,
             ifelse(cen.b[i] == 1, haz.b[which(s.distb == surv.time[i])], 1)
         }
       }
+      const.a <- 1
       ssvec.a <- 1
       if (id.a[i] > 0) {
-        ssvec.a <- exp(
-          b2.a[p2 + 1] * (newumat[1, ] + newumat[2, ] %*% t(s.dista[1:id.a[i]]))
-        ) %*% haz.a[1:id.a[i]]
+        const.a <- exp(
+          b2.a[p2 + 1] * (newumat[1, ] + tcrossprod(newumat[2, ], s.dista[1:id.a[i]]))
+        )
+        ssvec.a <- const.a %*% haz.a[1:id.a[i]]
       }
+      const.b <- 1
       ssvec.b <- 1
       if (id.b[i] > 0) {
-        ssvec.b <- exp(
-          b2.b[p2 + 1] * (newumat[1, ] + newumat[2, ] %*% t(s.distb[1:id.b[i]]))
-        ) %*% haz.b[1:id.b[i]]
+        const.b <- exp(
+          b2.b[p2 + 1] * (newumat[1, ] + tcrossprod(newumat[2, ], s.distb[1:id.b[i]]))
+        )
+        ssvec.b <- const.b %*% haz.b[1:id.b[i]]
       }
       ssvec <- ssvec.a * ssvec.b * exp(b2x[i, ])
       fvec <- fvec * wvec * exp(-ssvec)
       den <- sum(fvec)
-      EU[i, 1:2] <- t(newumat %*% fvec / den)
-      EUU[i, 1:2] <- t((newumat^2) %*% fvec / den)
-      EUU[i, 3] <- (newumat[1, ] * newumat[2, ]) %*% fvec / den
-      const.a <- exp(
-        b2.a[p2 + 1] * (newumat[1, ] + newumat[2, ] %*% t(s.dista[1:id.a[i]])))
-      if (id.a[i] == 0) {
-        const.a <- const.a^0
-      }
       fvecT.den <- t(fvec) / den
+      fvec.den <- fvec / den
+      
+      EU[i, 1:2] <- t(newumat %*% fvec.den)
+      EUU[i, 1:2] <- t((newumat^2) %*% fvec.den)
+      EUU[i, 3] <- (newumat[1, ] * newumat[2, ]) %*% fvec.den
+      
       EexpU.a[i, 1:id.a[i]] <- fvecT.den %*% const.a
       EU0expU.a[i, 1:id.a[i]] <- fvecT.den %*% (newumat[1, ] * const.a)
       EU1expU.a[i, 1:id.a[i]] <- fvecT.den %*% (newumat[2, ] * const.a)
       EU0U0expU.a[i, 1:id.a[i]] <- fvecT.den %*% (newumat[1, ]^2 * const.a)
       EU0U1expU.a[i, 1:id.a[i]] <- fvecT.den %*% (newumat[1, ] * newumat[2, ] * const.a)
       EU1U1expU.a[i, 1:id.a[i]] <- fvecT.den %*% (newumat[2, ]^2 * const.a)
-      const.b <- exp(b2.b[p2 + 1] * (newumat[1, ] + newumat[2, ] %*% t(s.distb[1:id.b[i]])))
 
-      if (id.b[i] == 0) {
-        const.b <- const.b^0
-      }
       EexpU.b[i, 1:id.b[i]] <- fvecT.den %*% const.b
       EU0expU.b[i, 1:id.b[i]] <- fvecT.den %*% (newumat[1, ] * const.b)
       EU1expU.b[i, 1:id.b[i]] <- fvecT.den %*% (newumat[2, ] * const.b)
       EU0U0expU.b[i, 1:id.b[i]] <- fvecT.den %*% (newumat[1, ]^2 * const.b)
-
       EU0U1expU.b[i, 1:id.b[i]] <- fvecT.den %*% (newumat[1, ] * newumat[2, ] * const.b)
       EU1U1expU.b[i, 1:id.b[i]] <- fvecT.den %*% (newumat[2, ]^2 * const.b)
       
@@ -191,7 +188,7 @@ emUpdateCR <- function(longdat, survdat, paraests,
     # update: baseline hazards
     ndist.a <- max(id.a)
     ndist.b <- max(id.b)
-    for (i in 1:(ndist.a-1)) {
+    for (i in 1:(ndist.a - 1)) {
       sum3 <- sum(exp(b2x.a[match(i, id.a):n]) * (EexpU.a[match(i, id.a):n, i]))
       nfail <- sum(cen.a[match(i, id.a):(match(i + 1, id.a) - 1)])
       haz.a[i] <- nfail / sum3
@@ -200,7 +197,7 @@ emUpdateCR <- function(longdat, survdat, paraests,
                   (EexpU.a[match(ndist.a, id.a):n, i]))
     nfail <- sum(cen.a[match(ndist.a, id.a):n])
     haz.a[ndist.a] <- nfail / sum3
-    for (i in 1:(ndist.b-1)) {
+    for (i in 1:(ndist.b - 1)) {
       sum3 <- sum(exp(b2x.b[match(i, id.b):n]) *
                     (EexpU.b[match(i, id.b):n, i]))
       nfail <- sum(cen.b[match(i, id.b):(match(i + 1, id.b) - 1)])
