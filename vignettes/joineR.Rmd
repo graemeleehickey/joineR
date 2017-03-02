@@ -491,10 +491,10 @@ plot(vgm)
 
 # Model-fitting
 
-The package includes functions for fitting %two different classes of model 
-%using maximum likelihood estimation. The first is an extended version of the 
-random effects model proposed by Wulfsohn and Tsiatis (1997). See Henderson et
-al. (2000). The second is the transformation model described by Diggle et al.
+The package includes functions for fitting two different classes of model using
+maximum likelihood estimation. The first is an extended version of the random
+effects model proposed by Wulfsohn and Tsiatis (1997). See Henderson et al.
+(2000). The second is the transformation model described by Diggle et al. 
 (2008).
 
 ## The random effects model
@@ -504,26 +504,26 @@ response for the repeated measurements and the subject-specific hazard for the
 time-to-event outcome depend on latent random effect vectors. Hence, if 
 $\lambda_i(t)$ denotes the hazard for subject $i$ and $Y_{ij}$ the $j$-th 
 repeated measurement on subject $i$, the model specifies latent vectors $U_i$ 
-and $V_i$ to follow  zero-mean multivariate Normal distributions, realized 
-independently for different subjects. Conditional on $U_i$ and $V_i$, the 
+and $V_i$ to follow  zero-mean multivariate normal distributions, realized 
+independently for different subjects. Conditional on $U_i$ and $V_i$, the
 repeated measurements sub-model is
 
-$$Y_{ij} = x_{ij} \beta_{ij} + a_{ij}^\top U_i + Z_{ij},$$
+$$Y_{ij} = x_{ij} \beta + a_{ij}^\top U_i + Z_{ij},$$
 
 and the hazard sub-model is
 
-$$\lambda_i(t) = \lambda_0(t) \exp(w_{ij} \alpha_{ij} + b_{ij}^\top V_i).$$
+$$\lambda_i(t) = \lambda_0(t) \exp(w_{ij} \alpha + b_{ij}^\top V_i).$$
 
 In the above, the $x_{ij}$, $w_{ij}$, $a_{ij}$ and $b_{ij}$ are vectors of 
 explanatory variables that may be time-constant or time-varying, and the 
-$Z_{ij}$ are mutually independent, $Z_{ij} \sim {\rm N}(0,\tau^2)$. In 
+$Z_{ij}$ are mutually independent, $Z_{ij} \sim {\rm N}(0, \tau^2)$. In 
 principle, this is a very flexible model. In practice, the computational cost of
 evaluating the likelihood restricts routine implementation of the model to 
 low-dimensional $U_i$ and $V_i$. Wulfsohn and Tsiatis (1997) considered the 
 special case in which the repeated measurements follow the so-called random 
-intercept and slope model with $a_{ij}^\top  = (1,t_{ij})$, whilst the random 
+intercept and slope model with $a_{ij}^\top  = (1, t_{ij})$, whilst the random 
 effects for the repeated measurement and time-to-event sub-models are 
-proportional, hence $b_{ij}^\top V_{i} = \phi a_{ij}^\top U_{i}$.
+proportional, hence $b_{ij}^\top V_i = \phi a_{ij}^\top U_i$.
 
 The function provided in the `joineR` package for fitting Wulfsohn-Tsiatis 
 models is `joint`, which allows the user to choose from three models for the 
