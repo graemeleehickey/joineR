@@ -81,6 +81,8 @@ emUpdateCR <- function(longdat, survdat, paraests,
 
     iter <- iter + 1
     W22 <- sig
+    b2x.a <- matrix(0, n, 1)
+    b2x.b <- matrix(0, n, 1)
     b2x <- matrix(0, n, 1)
     if (p2 > 0) {
       b2temp.a <- c(b2.a[1:p2])
