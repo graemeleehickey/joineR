@@ -303,13 +303,13 @@ joint <- function(data, long.formula, surv.formula,
     sep.ll <- ldaests$log.like + survests$log.like[2]
     sep.loglik <- list(seplhood = sep.ll,
                        sepy = ldaests$log.like,
-                       sepn = survests$log.like[2])
+                       sepn = survests$log.like[2])    
   } else {
     # competing risks
-    sep.ll <- NA
+    sep.ll <- ldaests$log.like + survests.a$log.like[2] + survests.b$log.like[2]
     sep.loglik <- list(seplhood = sep.ll,
                        sepy = ldaests$log.like,
-                       sepn = NA)
+                       sepn = survests.a$log.like[2] + survests.b$log.like[2])
   }
   
   #**********************************************************

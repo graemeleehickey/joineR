@@ -71,7 +71,7 @@ survstCR <- function(survdat, surv.formula, survdat2, event) {
   id.4 <- vector("numeric", n)
   id.4 <- c(id.2, id.3)
   id.5 <- c(rep(0, match(1, id.1) - 1), id.4)
-  ll <- surv.start$loglik
+  ll <- surv.start$loglik - sum(cen)
   
   out <- list(
     "b2" = coef(surv.start),

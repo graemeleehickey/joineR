@@ -45,7 +45,6 @@ emUpdateCR <- function(longdat, survdat, paraests,
   ab <- g$nodes
   w <- g$weights * sqrt(pi)
   conv <- FALSE
-  
 
   # E-step setup
   gammat <- matrix(0, gpt^2, ran)
