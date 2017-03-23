@@ -1,124 +1,124 @@
 #' Simulate data from a joint model
-#' 
+#'
 #' @description This function simulates longitudinal and time-to-event data from
 #'   a joint model.
-#' 
+#'
 #' @param n the number of subjects to simulate data for.
 #' @inheritParams joint
 #' @param ntms the maximum number of (discrete) time points to simulate repeated
 #'   longitudinal measurements at.
-#' @param b1 a vector specifying the coefficients of the fixed effects in the 
-#'   longitudinal sub-model. The order in each row is intercept, a continuous 
+#' @param b1 a vector specifying the coefficients of the fixed effects in the
+#'   longitudinal sub-model. The order in each row is intercept, a continuous
 #'   covariate, covariate, a binary covariate, the measurement time.
-#' @param b2 a vector of \code{length = 2} specifying the coefficients for the 
-#'   time-to-event baseline covariates, in the order of a continuous covariate 
+#' @param b2 a vector of \code{length = 2} specifying the coefficients for the
+#'   time-to-event baseline covariates, in the order of a continuous covariate
 #'   and a binary covariate.
-#' @param gamma a vector of specifying the latent association parameter(s) for 
-#'   the longitudinal outcome. It must be of length 1 if \code{sepassoc = 
+#' @param gamma a vector of specifying the latent association parameter(s) for
+#'   the longitudinal outcome. It must be of length 1 if \code{sepassoc =
 #'   FALSE}.
-#' @param sigu a positive-definite matrix specifying the variance-covariance 
-#'   matrix. If \code{model = "int"}, the matrix has dimension \code{dim = c(1, 
-#'   1)}; if \code{model = "intslope"}, the matrix has dimension \code{dim = 
+#' @param sigu a positive-definite matrix specifying the variance-covariance
+#'   matrix. If \code{model = "int"}, the matrix has dimension \code{dim = c(1,
+#'   1)}; if \code{model = "intslope"}, the matrix has dimension \code{dim =
 #'   c(2, 2)}; else if \code{model = "quad"}, the matrix has dimension \code{dim
 #'   = c(3, 3)}. If \code{D = NULL} (default), an identity matrix is assumed.
 #' @param vare a numeric value specifying the residual standard error.
 #' @param theta0,theta1 parameters controlling the failure rate. See Details.
-#' @param censoring logical: if \code{TRUE}, includes an independent censoring 
+#' @param censoring logical: if \code{TRUE}, includes an independent censoring
 #'   time.
-#' @param censlam a scale (\eqn{>0}) parameter for an exponential distribution 
+#' @param censlam a scale (\eqn{>0}) parameter for an exponential distribution
 #'   used to simulate random censoring times for when \code{censoring = TRUE}.
-#' @param truncation logical: if \code{TRUE}, adds a truncation time for a 
-#'   maximum event time in the case of \code{model = "int"} or \code{model = 
+#' @param truncation logical: if \code{TRUE}, adds a truncation time for a
+#'   maximum event time in the case of \code{model = "int"} or \code{model =
 #'   "intslope"}.
 #' @param trunctime a truncation time for use when \code{truncation = TRUE}. For
-#'   \code{model = "quad"}, \code{trunctime} is required, and defaults to 
+#'   \code{model = "quad"}, \code{trunctime} is required, and defaults to
 #'   \code{max(ntms)} if not specified.
-#' @param gridstep the step-size for the grid used to simulate event times when 
+#' @param gridstep the step-size for the grid used to simulate event times when
 #'   \code{model = "quad"}. Default is \code{gridstep = 0.01}. See Details.
-#'   
-#' @details The function \code{simData} simulates data from a joint model, 
-#'   similar to that performed in Henderson et al. (2000). It works by first 
-#'   simulating longitudinal data for all possible follow-up times using random 
-#'   draws for the multivariate Gaussian random effects and residual error 
+#'
+#' @details The function \code{simData} simulates data from a joint model,
+#'   similar to that performed in Henderson et al. (2000). It works by first
+#'   simulating longitudinal data for all possible follow-up times using random
+#'   draws for the multivariate Gaussian random effects and residual error
 #'   terms. Data can be simulated assuming either random-intercepts only
 #'   (\code{model = "int"}) in each of the longitudinal sub-models;
-#'   random-intercepts and random-slopes (\code{model = "intslope"}); or 
+#'   random-intercepts and random-slopes (\code{model = "intslope"}); or
 #'   quadratic random effects structures (\code{model = "quad"}). The failure
 #'   times are simulated from proportional hazards time-to-event models, using
 #'   the following methodologies:
-#'   
+#'
 #'   \describe{
-#'   
-#'   \item{\code{model="int"}}{The baseline hazard function is specified to be 
+#'
+#'   \item{\code{model="int"}}{The baseline hazard function is specified to be
 #'   an exponential distribution with
-#'   
+#'
 #'   \deqn{\lambda_0(t) = \exp{\theta_0}.}
-#'   
-#'   Simulation is conditional on known time-independent effects, and the 
+#'
+#'   Simulation is conditional on known time-independent effects, and the
 #'   methodology of Bender et al. (2005) is used to simulate the failure time.}
-#'   
+#'
 #'   \item{\code{model="intslope"}}{The baseline hazard function is specified to
 #'   be a Gompertz distribution with
-#'   
+#'
 #'   \deqn{\lambda_0(t) = \exp{\theta_0 + \theta_1 t}.}
-#'   
+#'
 #'   In the usual representation of the Gompertz distribution, \eqn{\theta_1} is
-#'   the shape parameter, and the scale parameter is equivalent to 
-#'   \eqn{\exp(\theta_0)}. Simulation is conditional on on a predictable 
+#'   the shape parameter, and the scale parameter is equivalent to
+#'   \eqn{\exp(\theta_0)}. Simulation is conditional on on a predictable
 #'   (linear) time-varying process, and the methodology of Austin (2012) is used
 #'   to simulate the failure time.}
-#'   
+#'
 #'   \item{\code{model="quad"}}{The baseline hazard function is specified as per
-#'   \code{model="intslope"}. The integration technique used for the above two 
+#'   \code{model="intslope"}. The integration technique used for the above two
 #'   cases is complex in quadratic (and higher order) models, therefore we use a
 #'   different approach. We note that hazard function can be written as
-#'   
-#'   \deqn{\lim_{dt \rightarrow 0} \lambda(t) dt = \lim_{dt \rightarrow 0} 
+#'
+#'   \deqn{\lim_{dt \rightarrow 0} \lambda(t) dt = \lim_{dt \rightarrow 0}
 #'   P[t \le T \le t + dt | T \ge t].}
-#'   
+#'
 #'   In the simulation routine the parameter \code{gridstep} acts as \eqn{dt} in
-#'   that we choose a nominally small value, which multiplies the hazard and 
-#'   this scaled hazard is equivalent to the probability of having an event in 
-#'   the interval \eqn{(t, t + dt)}, or equivalently \eqn{(t, t + 
-#'   }\code{gridstep}\eqn{)}. A vector of possible times is set up for each 
+#'   that we choose a nominally small value, which multiplies the hazard and
+#'   this scaled hazard is equivalent to the probability of having an event in
+#'   the interval \eqn{(t, t + dt)}, or equivalently \eqn{(t, t +
+#'   }\code{gridstep}\eqn{)}. A vector of possible times is set up for each
 #'   individual, ranging from 0 to \code{trunctime} in increments of \eqn{dt} (or
-#'   \code{gridstep}). The failure probability at each time is compared to an 
-#'   independent \eqn{U(0, 1)} draw, and if the probability does not exceed the 
+#'   \code{gridstep}). The failure probability at each time is compared to an
+#'   independent \eqn{U(0, 1)} draw, and if the probability does not exceed the
 #'   random draw then the survival time is set as \code{trunctime}, otherwise it
-#'   is the generated time from the vector of candidate times. The minimum of 
-#'   these candidate times (i.e. when we deem the event to have first happened) 
+#'   is the generated time from the vector of candidate times. The minimum of
+#'   these candidate times (i.e. when we deem the event to have first happened)
 #'   is taken as the survival time.}
-#'   
+#'
 #'   }
-#'   
+#'
 #' @author Pete Philipson (\email{pete.philipson@northumbria.ac.uk})
 #' @keywords datagen survival
-#'   
+#'
 #' @references
-#' 
-#' Austin PC. Generating survival times to simulate Cox proportional hazards 
-#' models with time-varying covariates. \emph{Stat Med.} 2012; \strong{31(29)}: 
+#'
+#' Austin PC. Generating survival times to simulate Cox proportional hazards
+#' models with time-varying covariates. \emph{Stat Med.} 2012; \strong{31(29)}:
 #' 3946-3958.
-#' 
-#' Bender R, Augustin T, Blettner M. Generating survival times to simulate Cox 
+#'
+#' Bender R, Augustin T, Blettner M. Generating survival times to simulate Cox
 #' proportional hazards models. \emph{Stat Med.} 2005; \strong{24}: 1713-1723.
-#' 
-#' Henderson R, Diggle PJ, Dobson A. Joint modelling of longitudinal 
-#' measurements and event time data. \emph{Biostatistics.} 2000; \strong{1(4)}: 
+#'
+#' Henderson R, Diggle PJ, Dobson A. Joint modelling of longitudinal
+#' measurements and event time data. \emph{Biostatistics.} 2000; \strong{1(4)}:
 #' 465-480.
-#' 
-#' @return A list of 2 data.frames: one recording the requisite longitudinal 
-#'   outcomes data, and one recording the time-to-event data.
+#'
+#' @return A list of 2 \code{data.frame}s: one recording the requisite
+#'   longitudinal outcomes data, and one recording the time-to-event data.
 #' @export
-#' 
+#'
 #' @examples
 #' simjoint(10, sepassoc = TRUE)
 simjoint <- function(n = 500, model = c("intslope", "int", "quad"), sepassoc = FALSE,
-                     ntms = 5, b1 = c(1, 1, 1, 1), b2 = c(1, 1), gamma = c(1, 0.1), 
-                     sigu, vare = 0.01, theta0 = -3, theta1 = 1, censoring = TRUE, 
-                     censlam = exp(-3), truncation = FALSE, trunctime = max(ntms), 
+                     ntms = 5, b1 = c(1, 1, 1, 1), b2 = c(1, 1), gamma = c(1, 0.1),
+                     sigu, vare = 0.01, theta0 = -3, theta1 = 1, censoring = TRUE,
+                     censlam = exp(-3), truncation = FALSE, trunctime = max(ntms),
                      gridstep = 0.01) {
-  
+
   model <- match.arg(model)
   if (model != "intslope" && model != "int" && model != "quad") {
     stop(paste("Unknown model:", model))
@@ -160,11 +160,11 @@ simjoint <- function(n = 500, model = c("intslope", "int", "quad"), sepassoc = F
       stop("Covariance matrix must be positive semi-definite")
     }
   }
-  
-  sim <- simdat(n, model, sepassoc, ntms, ran, b1, b2, gamma, sigu, vare, 
+
+  sim <- simdat(n, model, sepassoc, ntms, ran, b1, b2, gamma, sigu, vare,
                 theta0, theta1,
                 censoring, censlam, truncation, trunctime, gridstep)
-  
+
   list(longitudinal = sim$longdat, survival = sim$survdat)
-  
+
 }

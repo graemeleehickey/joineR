@@ -132,6 +132,12 @@ Both \code{longsep} and \code{survsep} ignore any latent association
   in the separate effect of each random effect (this is for intercept and
   slope or quadratic models only) upon the survival data, the user should set
   \code{sepassoc = TRUE}.
+
+Since numerical integration is required, it is advisable to check the
+  stability of the maximum likelihood estimates with an increasing number of
+  Gauss-Hermite quadrature points. \code{joint()} uses \code{gpt = 3} by
+  default, as this has been adequate for many datasets. However, for certain
+  datasets and models, this might be too small.
 }
 \examples{
 ## Standard joint model
