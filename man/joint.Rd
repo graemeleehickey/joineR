@@ -66,7 +66,9 @@ This generic function fits a joint model with random latent
   association, building on the formulation described in Wulfsohn and Tsiatis
   (1997) while allowing for the presence of longitudinal and survival
   covariates, and three choices for the latent process. The link between the
-  longitudinal and survival processes can be proportional or separate.
+  longitudinal and survival processes can be proportional or separate. When
+  failure is attributable to 2 separate causes, a competing risks joint model
+  is fitted as per Williamson et al. (2008).
 }
 \details{
 The \code{joint} function fits a joint model to survival and 
@@ -102,43 +104,50 @@ The \code{joint} function fits a joint model to survival and
   \eqn{X_{i2}} is the vector of survival covariates for unit \eqn{i}. The 
   baseline hazard function is \eqn{\lambda_0(t)}.
   
-  If failure can be attributed to 2 causes, i.e. so-called competing risks 
-  events data, then a cause-specific hazards model is adopted, namely
-  
-  \deqn{\lambda_g(t) = \lambda_{0g}(t) \exp\{{X_{i2}(t)^T \beta_2^{(g)} + 
-  D_i(t)(\gamma^T U_i)}\},}
-  
-  where \eqn{g = 1,2} denotes the failure type, \eqn{\beta_2^{(g)}} (\eqn{g =
-  1,2}) are cause-specific hazard parameters corresponding to the same
-  covariates, and \eqn{\lambda_{0g}(t)} are cause-specific baseline hazard
-  functions. For this data, a proportional association structure is assumed
-  (i.e. \code{sepassoc = FALSE}) and a random-intercepts and random-slopes
-  model must be used (i.e. \code{model = "intslope"}). Note that the function
-  only permits 2 failure types. The model is specified in full by Williamson
-  et al. (2008).
-
   The function uses an EM algorithm to estimate parameters in the joint
   model. Starting values are provided by calls to standard R functions
   \code{\link[nlme]{lme}} and \code{\link[survival]{coxph}} for the
   longitudinal and survival components, respectively.
 }
 \note{
-Both \code{longsep} and \code{survsep} ignore any latent association
-  (i.e. \eqn{\gamma = 0}) between the longitudinal and survival processes but
-  their output can be used to compare with the results from the joint model.
-  If interest is solely in the individual processes then the user should
-  instead make use of the functions \code{\link[nlme]{lme}} and
-  \code{\link[survival]{coxph}} mentioned above. Furthermore, if interest is
-  in the separate effect of each random effect (this is for intercept and
-  slope or quadratic models only) upon the survival data, the user should set
-  \code{sepassoc = TRUE}.
-
 Since numerical integration is required, it is advisable to check the
   stability of the maximum likelihood estimates with an increasing number of
   Gauss-Hermite quadrature points. \code{joint()} uses \code{gpt = 3} by
   default, as this has been adequate for many datasets. However, for certain
   datasets and models, this might be too small.
 }
+\section{Competing risks}{
+ If failure can be attributed to 2 causes, i.e. 
+  so-called competing risks events data, then a cause-specific hazards model
+  is adopted, namely
+  
+  \deqn{\lambda_g(t) = \lambda_{0g}(t) \exp\{{X_{i2}(t)^T \beta_2^{(g)} + 
+  D_i(t)(\gamma^T U_i)}\},}
+  
+  where \eqn{g = 1,2} denotes the failure type, \eqn{\beta_2^{(g)}} (\eqn{g =
+  1,2}) are cause-specific hazard parameters corresponding to the same 
+  covariates, and \eqn{\lambda_{0g}(t)} are cause-specific baseline hazard 
+  functions. For this data, a proportional association structure is assumed 
+  (i.e. \code{sepassoc = FALSE}) and a random-intercepts and random-slopes 
+  model must be used (i.e. \code{model = "intslope"}). Note that the function
+  only permits 2 failure types. The model is specified in full by Williamson
+  et al. (2008). The function \code{joint()} automatically detects whether
+  competing risks are present by counting the number of unique components in
+  the event column on the event time data.
+}
+
+\section{Separate models}{
+ Both \code{longsep} and \code{survsep} ignore any
+  latent association (i.e. \eqn{\gamma = 0}) between the longitudinal and
+  survival processes but their output can be used to compare with the results
+  from the joint model. If interest is solely in the individual processes
+  then the user should instead make use of the functions
+  \code{\link[nlme]{lme}} and \code{\link[survival]{coxph}} mentioned above.
+  Furthermore, if interest is in the separate effect of each random effect
+  (this is for intercept and slope or quadratic models only) upon the
+  survival data, the user should set \code{sepassoc = TRUE}.
+}
+
 \examples{
 ## Standard joint model
 
