@@ -36,20 +36,20 @@
 #' @param gridstep the step-size for the grid used to simulate event times when
 #'   \code{model = "quad"}. Default is \code{gridstep = 0.01}. See Details.
 #'
-#' @details The function \code{simData} simulates data from a joint model,
-#'   similar to that performed in Henderson et al. (2000). It works by first
-#'   simulating longitudinal data for all possible follow-up times using random
-#'   draws for the multivariate Gaussian random effects and residual error
-#'   terms. Data can be simulated assuming either random-intercepts only
-#'   (\code{model = "int"}) in each of the longitudinal sub-models;
-#'   random-intercepts and random-slopes (\code{model = "intslope"}); or
-#'   quadratic random effects structures (\code{model = "quad"}). The failure
-#'   times are simulated from proportional hazards time-to-event models, using
+#' @details The function \code{simjoint} simulates data from a joint model, 
+#'   similar to that performed in Henderson et al. (2000). It works by first 
+#'   simulating longitudinal data for all possible follow-up times using random 
+#'   draws for the multivariate Gaussian random effects and residual error 
+#'   terms. Data can be simulated assuming either random-intercepts only 
+#'   (\code{model = "int"}) in each of the longitudinal sub-models; 
+#'   random-intercepts and random-slopes (\code{model = "intslope"}); or 
+#'   quadratic random effects structures (\code{model = "quad"}). The failure 
+#'   times are simulated from proportional hazards time-to-event models, using 
 #'   the following methodologies:
 #'
 #'   \describe{
 #'
-#'   \item{\code{model="int"}}{The baseline hazard function is specified to be
+#'   \item{\code{model = "int"}}{The baseline hazard function is specified to be
 #'   an exponential distribution with
 #'
 #'   \deqn{\lambda_0(t) = \exp{\theta_0}.}
@@ -57,8 +57,8 @@
 #'   Simulation is conditional on known time-independent effects, and the
 #'   methodology of Bender et al. (2005) is used to simulate the failure time.}
 #'
-#'   \item{\code{model="intslope"}}{The baseline hazard function is specified to
-#'   be a Gompertz distribution with
+#'   \item{\code{model = "intslope"}}{The baseline hazard function is specified
+#'   to be a Gompertz distribution with
 #'
 #'   \deqn{\lambda_0(t) = \exp{\theta_0 + \theta_1 t}.}
 #'
