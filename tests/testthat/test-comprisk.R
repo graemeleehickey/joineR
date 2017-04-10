@@ -104,6 +104,8 @@ test_that("ordering of subjects with competing risks", {
 test_that("IDs as factors", {
   # load data + fit model
   skip_on_appveyor()
+  skip_on_cran()
+  skip_on_travis()
   loadJM <- require(JM)
   if (!loadJM) {
     install.packages("JM")
