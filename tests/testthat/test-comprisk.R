@@ -100,3 +100,31 @@ test_that("ordering of subjects with competing risks", {
   expect_identical(fit$haz.b, fit2$haz.b)
 })
 
+
+test_that("IDs as factors", {
+  # load data + fit model
+  loadJM <- require(JM)
+  if (!loadJM) {
+    install.packages("JM")
+  }
+  library(JM)
+  data(pbc2)
+  pbc2$log.b <- log(pbc2$serBilir)
+  pbc2$event <- ifelse(pbc2$status == "dead", 1, ifelse(pbc2$status == "alive", 0, 2))
+  longitudinal <- pbc2[, c("id", "year", "log.b")]
+  survival <- UniqueVariables(pbc2, c("years", "event"), "id")
+  baseline <- UniqueVariables(pbc2, "drug", "id")
+  data <- jointdata(longitudinal = longitudinal,
+                    survival = survival,
+                    baseline = baseline,
+                    id.col = "id",
+                    time.col = "year")
+  fit2 <- joint(data = data,
+                long.formula = log.b ~ year + drug,
+                surv.formula = Surv(years, event) ~ drug,
+                longsep = FALSE, survsep = FALSE,
+                gpt = 3,
+                max.it = 5)
+  # tests
+  expect_is(fit2, "joint")
+})

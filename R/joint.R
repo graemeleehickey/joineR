@@ -247,8 +247,8 @@ joint <- function(data, long.formula, surv.formula,
          surv.s = data.frame(sort.surv))
   }
   sort <- sort.dat(longdat, survdat)
-  longdat <- as.matrix(sort$long.s)
-  survdat <- as.matrix(sort$surv.s)
+  longdat <- sort$long.s
+  survdat <- sort$surv.s
  
   #**********************************************************
   # Model structure
