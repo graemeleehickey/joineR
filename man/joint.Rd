@@ -6,7 +6,7 @@
 \usage{
 joint(data, long.formula, surv.formula, model = c("intslope", "int", "quad"),
   sepassoc = FALSE, longsep = FALSE, survsep = FALSE, gpt, lgpt, max.it,
-  tol)
+  tol, verbose = FALSE)
 }
 \arguments{
 \item{data}{an object of class \code{jointdata} containing the variables
@@ -54,6 +54,9 @@ iterations may be necessary for large, complex data.}
 
 \item{tol}{the tolerance level before convergence of the algorithm is deemed
 to have occurred. Default value is \code{tol = 0.001}.}
+
+\item{verbose}{if \code{TRUE}, the parameter estimates at each iteration of
+the EM algorithm are printed. Default is \code{verbose = FALSE}.}
 }
 \value{
 A list containing the parameter estimates from the joint model and,

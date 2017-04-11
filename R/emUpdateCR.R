@@ -1,7 +1,7 @@
 #' @keywords internal
 #' @importFrom statmod gauss.quad.prob
 emUpdateCR <- function(longdat, survdat, paraests,
-                   gpt, max.it, tol, loglik) {
+                   gpt, max.it, tol, loglik, verbose) {
 
   # longitudinal submodel data
   id <- longdat[, 1]
@@ -318,6 +318,10 @@ emUpdateCR <- function(longdat, survdat, paraests,
 
     # check convergence
     para <- data.frame(c(b1, b2.a, b2.b, sigma.z, sig, rho))
+    if (verbose) {
+      print(paste("Iter:", iter))
+      print(as.numeric(c(b1, b2.a, b2.b, sigma.z, sig, rho)))
+    }
     dd <- abs(parac - para)
     if (max(dd) < tol) {
       conv <- TRUE

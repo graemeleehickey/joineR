@@ -43,6 +43,8 @@
 #'   iterations may be necessary for large, complex data.
 #' @param tol the tolerance level before convergence of the algorithm is deemed
 #'   to have occurred. Default value is \code{tol = 0.001}.
+#' @param verbose if \code{TRUE}, the parameter estimates at each iteration of
+#'   the EM algorithm are printed. Default is \code{verbose = FALSE}.
 #'
 #' @details The \code{joint} function fits a joint model to survival and 
 #'   longitudinal data. The formulation is similar to Wulfsohn and Tsiatis 
@@ -186,7 +188,7 @@
 joint <- function(data, long.formula, surv.formula,
                   model = c("intslope", "int", "quad"),
                   sepassoc = FALSE, longsep = FALSE, survsep = FALSE,
-                  gpt, lgpt, max.it, tol) {
+                  gpt, lgpt, max.it, tol, verbose = FALSE) {
   
   if (!inherits(data, "jointdata")) {
     stop("Data must be of class 'jointdata'\n")
@@ -339,7 +341,8 @@ joint <- function(data, long.formula, surv.formula,
                          gpt = gpt,
                          max.it = max.it,
                          tol = tol,
-                         loglik = FALSE)
+                         loglik = FALSE,
+                         verbose = verbose)
   } else {
     # competing risks
     jointfit <- emUpdateCR(longdat = longdat,
@@ -348,7 +351,8 @@ joint <- function(data, long.formula, surv.formula,
                            gpt = gpt,
                            max.it = max.it,
                            tol = tol,
-                           loglik = FALSE)
+                           loglik = FALSE,
+                           verbose = verbose)
   }
   
   #**********************************************************
@@ -415,7 +419,8 @@ joint <- function(data, long.formula, surv.formula,
                         gpt = lgpt,
                         max.it = 1,
                         tol = tol,
-                        loglik = TRUE)
+                        loglik = TRUE,
+                        verbose = FALSE)
   } else {
     # competing risks
     jointll <- emUpdateCR(longdat = longdat,
@@ -424,7 +429,8 @@ joint <- function(data, long.formula, surv.formula,
                           gpt = lgpt,
                           max.it = 1,
                           tol = tol,
-                          loglik = TRUE)
+                          loglik = TRUE,
+                          verbose = FALSE)
   }
   
   loglik <- list(jointlhood = jointll$log.like,
