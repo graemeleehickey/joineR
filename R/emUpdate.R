@@ -225,7 +225,7 @@ emUpdate <- function(longdat, survdat, model, ran, lat, sepassoc,
     b2 <- b2 - solve(sd, fd)
     para <- data.frame(c(b1, b2, sigma.z, sigma.u))
     if (verbose) {
-      print(paste("Iter:", iter))
+      print(paste("Iter:", it))
       print(as.numeric(c(b1, b2, sigma.z, sigma.u)))
     }
     dd <- abs(parac - para)
