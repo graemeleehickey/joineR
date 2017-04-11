@@ -80,9 +80,7 @@ emUpdateCR <- function(longdat, survdat, paraests,
   }
   
   # main loop over EM iterations begins here
-  iter <- 0
   for (it in 1:max.it) {
-    iter <- iter + 1
     W22 <- sig
     if (p2 > 0) {
       b2temp.a <- c(b2.a[1:p2])
@@ -256,10 +254,10 @@ emUpdateCR <- function(longdat, survdat, paraests,
 
     # update: beta1
     tEUmat <- EUmat[, 2] * lda.time
-    sum <- EUmat[, 1] + tEUmat
-    Ystar <- Y - sum
-    XTX <- t(X1) %*% X1
-    XTY <- t(X1) %*% Ystar
+    ZU <- EUmat[, 1] + tEUmat
+    Ystar <- Y - ZU
+    XTX <- crossprod(X1)
+    XTY <- crossprod(X1, Ystar)
     b1 <- solve(XTX, XTY)
 
     # update: sigmaz
@@ -286,12 +284,13 @@ emUpdateCR <- function(longdat, survdat, paraests,
     eb2x.b <- exp(b2x.b)
     if (p2 > 0) {
       for (i in 1:p2) {
-        fd.a[i] <- sum(cen.a * X2[, i])-sum(X2[, i] * eb2x.a * summat.a[, 1])
+        fd.a[i] <- sum(cen.a * X2[, i]) - sum(X2[, i] * eb2x.a * summat.a[, 1])
         sd.a[i, p2 + 1] <- (-sum(X2[, i] * eb2x.a * (summat2.a[, 1] +
                                                        summat2.a[, 2])))
-        fd.b[i] <- sum(cen.b * X2[, i])-sum(X2[, i] * eb2x.b * summat.b[, 1])
+        fd.b[i] <- sum(cen.b * X2[, i]) - sum(X2[, i] * eb2x.b * summat.b[, 1])
         sd.b[i, p2 + 1] <- (-sum(X2[, i] * eb2x.b * (summat2.b[, 1] +
-                                                       summat2.b[, 2])))}
+                                                       summat2.b[, 2])))
+      }
     }
     fd.a[p2 + 1] <- sum(cen.a * (EU[, 1] + EU[, 2] * surv.time)) -
       sum(eb2x.a * (summat2.a[, 1] + summat2.a[, 2]))
@@ -319,7 +318,7 @@ emUpdateCR <- function(longdat, survdat, paraests,
     # check convergence
     para <- data.frame(c(b1, b2.a, b2.b, sigma.z, sig, rho))
     if (verbose) {
-      print(paste("Iter:", iter))
+      print(paste("Iter:", it))
       print(as.numeric(c(b1, b2.a, b2.b, sigma.z, sig, rho)))
     }
     dd <- abs(parac - para)
@@ -350,7 +349,7 @@ emUpdateCR <- function(longdat, survdat, paraests,
          "haz.b" = haz.b,
          "random" = EU,
          "conv" = conv,
-         "iters" = iter)
+         "iters" = it)
   }
 
 }
