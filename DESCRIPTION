@@ -18,7 +18,7 @@ Authors@R: c(
         role = "aut"),
     person("Graeme L.", "Hickey", email = "graeme.hickey@liverpool.ac.uk", 
         role = c("aut", "cre")),
-    person("Maria", "Sudell", email = "m.e.Sudell@liverpool.ac.uk",
+    person("Maria", "Sudell", email = "m.e.sudell@liverpool.ac.uk",
         role = "ctb")
     )
 Maintainer: Graeme L. Hickey <graeme.hickey@liverpool.ac.uk>
