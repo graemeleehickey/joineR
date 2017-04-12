@@ -389,6 +389,10 @@ joint <- function(data, long.formula, surv.formula,
     hazard <- list(
       "haz.a" = jointfit$haz.a,
       "haz.b" = jointfit$haz.b)
+    likeests <- c(jointfit, list(s.dist.a = survests.a$s.dist.a,
+                                 id.a = survests.a$id.a,
+                                 s.dist.b = survests.b$s.dist.b,
+                                 id.b = survests.b$id.b))
     if (p2 > 0) {
       b2.a <- jointfit$b2.a[1:p2, ]
       b2.b <- jointfit$b2.b[1:p2, ]
@@ -425,7 +429,7 @@ joint <- function(data, long.formula, surv.formula,
     # competing risks
     jointll <- emUpdateCR(longdat = longdat,
                           survdat = survdat,
-                          paraests = paraests,
+                          paraests = likeests,
                           gpt = lgpt,
                           max.it = 1,
                           tol = tol,

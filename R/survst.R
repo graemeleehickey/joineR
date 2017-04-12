@@ -75,7 +75,7 @@ survstCR <- function(survdat, surv.formula, survdat2, event) {
   
   out <- list(
     "b2" = coef(surv.start),
-    "haz" = data.frame(haz),
+    "haz" = haz,
     "id" = data.frame(id.5),
     "s.dist" = data.frame(s.dist),
     "log.like" = ll)

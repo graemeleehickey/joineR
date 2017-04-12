@@ -30,15 +30,20 @@ emUpdateCR <- function(longdat, survdat, paraests,
     b2x.b <- matrix(0, n, 1)
     b2x <- matrix(0, n, 1)
   }
-  haz.a <- paraests$haz.a[, 1]
+  haz.a <- paraests$haz.a
   s.dista <- paraests$s.dist.a[, 1]
   id.a <- paraests$id.a[, 1]
-  haz.b <- paraests$haz.b[, 1]
+  haz.b <- paraests$haz.b
   s.distb <- paraests$s.dist.b[, 1]
   id.b <- paraests$id.b[, 1]
-  b2.a <- c(paraests$b2.a, 0)
-  b2.b <- c(paraests$b2.b, 0)
-
+  if (loglik) {
+    b2.a <- unlist(paraests$b2.a)
+    b2.b <- unlist(paraests$b2.b)
+  } else {
+    b2.a <- c(paraests$b2.a, 0)
+    b2.b <- c(paraests$b2.b, 0)
+  }
+  
   # control params
   N <- sum(nn)
   maxn <- max(nn)
@@ -343,7 +348,7 @@ emUpdateCR <- function(longdat, survdat, paraests,
          "b2.b" = data.frame(b2.b),
          "sigma.z" = sigma.z,
          "sigma.u" = sigma.u,
-         "cor" = rho,
+         "corr" = rho,
          "haz.a" = haz.a,
          "haz.b" = haz.b,
          "random" = EU,
