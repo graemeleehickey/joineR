@@ -1,4 +1,4 @@
-# joineR 0.2.0
+# joineR 1.2.0
 
 ## Major updates
 
