@@ -8,6 +8,7 @@ emUpdateCR <- function(longdat, survdat, paraests,
   Y <- longdat[, 2]
   lda.time <- longdat[, 3]
   X1 <- as.matrix(longdat[, 4:dim(longdat)[2]])
+  XTX <- crossprod(X1)
   p1 <- dim(X1)[2]
   b1 <- paraests$b1[, 1]
   sigma.u <- paraests$sigma.u
@@ -111,7 +112,7 @@ emUpdateCR <- function(longdat, survdat, paraests,
       W11 <- W11 + (sigma.z * diag(nn[i]))
       count <- count + nn[i]
       W3 <- solve(W11, t(W21))
-      cvar <- sigma.u - W21 %*% W3
+      cvar <- matrix(sigma.u, nrow = 2) - W21 %*% W3
 
       # Transform to independent variables (called gamma)
       cvar <- cvar * 2
@@ -196,17 +197,16 @@ emUpdateCR <- function(longdat, survdat, paraests,
       haz.a[i] <- nfail / sum3
     }
     sum3 <- sum(exp(b2x.a[match(ndist.a, id.a):n]) *
-                  (EexpU.a[match(ndist.a, id.a):n, i]))
+                  (EexpU.a[match(ndist.a, id.a):n, ndist.a]))
     nfail <- sum(cen.a[match(ndist.a, id.a):n])
     haz.a[ndist.a] <- nfail / sum3
     for (i in 1:(ndist.b - 1)) {
-      sum3 <- sum(exp(b2x.b[match(i, id.b):n]) *
-                    (EexpU.b[match(i, id.b):n, i]))
+      sum3 <- sum(exp(b2x.b[match(i, id.b):n]) * (EexpU.b[match(i, id.b):n, i]))
       nfail <- sum(cen.b[match(i, id.b):(match(i + 1, id.b) - 1)])
       haz.b[i] <- nfail / sum3
     }
     sum3 <- sum(exp(b2x.b[match(ndist.b, id.b):n]) *
-                  (EexpU.b[match(ndist.b, id.b):n, i]))
+                  (EexpU.b[match(ndist.b, id.b):n, ndist.b]))
     nfail <- sum(cen.b[match(ndist.b, id.b):n])
     haz.b[ndist.b] <- nfail / sum3
 
@@ -260,7 +260,6 @@ emUpdateCR <- function(longdat, survdat, paraests,
     tEUmat <- EUmat[, 2] * lda.time
     ZU <- EUmat[, 1] + tEUmat
     Ystar <- Y - ZU
-    XTX <- crossprod(X1)
     XTY <- crossprod(X1, Ystar)
     b1 <- solve(XTX, XTY)
 
@@ -273,9 +272,9 @@ emUpdateCR <- function(longdat, survdat, paraests,
     sigma.z <- sum(sum2) / N
 
     # update: U-matrix
-    sigma.u[1, 1] <- sum(EUU[, 1]) / n
-    sigma.u[2, 2] <- sum(EUU[, 2]) / n
-    sigma.u[1, 2] <- sum(EUU[, 3]) / n
+    sigma.u[1, 1] <- mean(EUU[, 1])
+    sigma.u[1, 2] <- mean(EUU[, 3])
+    sigma.u[2, 2] <- mean(EUU[, 2])
     sigma.u[2, 1] <- sigma.u[1, 2]
     rho <- sigma.u[1, 2] / sqrt(sigma.u[1, 1] * sigma.u[2, 2])
 
