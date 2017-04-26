@@ -98,7 +98,7 @@ emUpdate <- function(longdat, survdat, model, ran, lat, sepassoc,
         W11 <- ttv %*% W21 + sigma.zi[1:nn[i], 1:nn[i]]
       }
       if (nn[i] == 1) {
-        W3 <- W12 / W11
+        W3 <- W12 / as.vector(W11)
         if (model == "int") {
           cvch <- sqrt((sigma.u - tcrossprod(W21, W3)) * 2)
         } else {
