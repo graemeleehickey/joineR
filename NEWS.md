@@ -8,6 +8,11 @@ handle the competing risks data.
 
 * A second vignette for the competing risks model is available.
 
+## Minor updates
+
+* R version 3.4.0 deprecated the recycling of 1x1 matrices, and led to warnings
+being thrown. This is now fixed.
+
 ## Maintanence
 
 * General code and documentation tidy-up.
