@@ -47,7 +47,7 @@
 #' 
 #' Goldman A, Carlin B, Crane L, Launer C, Korvick J, Deyton L, Abrams K.
 #' Response of CD4+ and clinical consequences to treatment using ddI or ddC in
-#' patients with advanced HIV infection. \emph{Journal of Acquired Immune Deficiency
-#' Syndromes and Human Retrovirology}. 1996; \strong{11}: 161–169. URL: 
-#' \url{http://www.biostat.umn.edu/~brad/data.html}.
+#' patients with advanced HIV infection. \emph{Journal of Acquired Immune
+#' Deficiency Syndromes and Human Retrovirology}. 1996; \strong{11}: 161–169.
+#' URL: \url{http://www.biostat.umn.edu/~brad/data.html}.
 "aids"
