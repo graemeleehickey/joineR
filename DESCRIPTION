@@ -1,7 +1,7 @@
 Package: joineR
 Type: Package
 Title: Joint Modelling of Repeated Measurements and Time-to-Event Data
-Version: 1.2.0
+Version: 1.2.1
 Authors@R: c(
     person("Pete", "Philipson", email = "pete.philipson@northumbria.ac.uk", 
         role = "aut"),
@@ -20,6 +20,7 @@ Authors@R: c(
     person("Maria", "Sudell", email = "m.e.sudell@liverpool.ac.uk",
         role = "ctb")
     )
+Encoding: UTF-8    
 Maintainer: Graeme L. Hickey <graeme.hickey@liverpool.ac.uk>
 Description: Analysis of repeated measurements and time-to-event data via random
     effects joint models. Fits the joint models proposed by Henderson and colleagues

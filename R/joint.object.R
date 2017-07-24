@@ -52,7 +52,7 @@
 #'   \item{\code{formulae}}{a list of model formulae. See \code{\link{joint}}
 #'   for details.}
 #'   
-#'   \item{\code{data}}{a \code{\link{joint.data}} object. See
+#'   \item{\code{data}}{a \code{\link{jointdata}} object. See
 #'   \code{\link{joint}} for details.}
 #'   
 #'   \item{\code{call}}{the model call. Can be used by
