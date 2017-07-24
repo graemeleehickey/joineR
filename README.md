@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-joineR
-======
+joineR <img src="inst/image/hex/hex.png" width = "175" height = "200" align="right" />
+======================================================================================
 
 [![Travis-CI Build Status](https://travis-ci.org/graemeleehickey/joineR.svg?branch=master)](https://travis-ci.org/graemeleehickey/joineR) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/graemeleehickey/joineR?branch=master&svg=true)](https://ci.appveyor.com/project/graemeleehickey/joineR) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/joineR)](https://CRAN.R-project.org/package=joineR) [![](http://cranlogs.r-pkg.org/badges/joineR)](https://CRAN.R-project.org/package=joineR) [![](https://cranlogs.r-pkg.org/badges/grand-total/joineR)](https://CRAN.R-project.org/package=joineR) [![codecov](https://codecov.io/gh/graemeleehickey/joineR/branch/master/graph/badge.svg)](https://codecov.io/gh/graemeleehickey/joineR)
 
