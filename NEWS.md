@@ -1,3 +1,21 @@
+# joineR 1.2.1
+
+## Minor updates
+
+* Added Rd file for `joint.object` to describe what is contained in an object of class `joint`.
+
+* Added the ubiquitous `aids` dataset for teaching purposes.
+
+## Bugs
+
+Fixed an error in the `liver` dataset.
+
+## Maintanence
+
+* Updated the documentation for the datasets.
+
+* Added `ByteCompile: true` to the DESCRIPTION.
+
 # joineR 1.2.0
 
 ## Major updates
