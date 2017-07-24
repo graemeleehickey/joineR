@@ -55,8 +55,8 @@
 #'   }
 #' @keywords datasets
 #' @seealso \code{\link{heart.valve}}, \code{\link{liver}}, 
-#'   \code{\link{mental}}.
-#' @source SANAD Trial, University of Liverpool
+#'   \code{\link{mental}}, \code{\link{aids}}.
+#' @source SANAD Trial Group, University of Liverpool
 #' @docType data
 #' @references
 #' 

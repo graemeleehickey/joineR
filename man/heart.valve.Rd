@@ -94,6 +94,7 @@ left ventricular mass regression after stentless aortic valve replacement.
 \emph{Ann Thorac Surg.} 2008; \strong{85(6)}: 2026-2029.
 }
 \seealso{
-\code{\link{mental}}, \code{\link{liver}}, \code{\link{epileptic}}.
+\code{\link{mental}}, \code{\link{liver}}, \code{\link{epileptic}},
+  \code{\link{aids}}.
 }
 \keyword{datasets}

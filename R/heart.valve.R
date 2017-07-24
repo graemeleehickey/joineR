@@ -78,7 +78,8 @@
 #'   
 #'   }
 #' @keywords datasets
-#' @seealso \code{\link{mental}}, \code{\link{liver}}, \code{\link{epileptic}}.
+#' @seealso \code{\link{mental}}, \code{\link{liver}}, \code{\link{epileptic}},
+#'   \code{\link{aids}}.
 #' @source Mr Eric Lim (\url{http://www.drericlim.com})
 #' @docType data
 #' @references

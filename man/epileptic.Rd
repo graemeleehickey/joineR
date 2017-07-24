@@ -47,7 +47,7 @@
   
   }}
 \source{
-SANAD Trial, University of Liverpool
+SANAD Trial Group, University of Liverpool
 }
 \usage{
 data(epileptic)
@@ -79,6 +79,6 @@ longitudinal and competing risks data. \emph{Stats Med.} 2008;
 }
 \seealso{
 \code{\link{heart.valve}}, \code{\link{liver}}, 
-  \code{\link{mental}}.
+  \code{\link{mental}}, \code{\link{aids}}.
 }
 \keyword{datasets}
