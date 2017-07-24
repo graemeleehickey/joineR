@@ -1,4 +1,4 @@
-#' Liver cirrhosis longitudinal data
+#' Liver cirrhosis drug trial data
 #' 
 #' @description This dataset gives the longitudinal observations of prothrombin
 #'   index, a measure of liver function, for patients from a controlled trial

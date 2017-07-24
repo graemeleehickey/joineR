@@ -3,7 +3,7 @@
 \docType{data}
 \name{liver}
 \alias{liver}
-\title{Liver cirrhosis longitudinal data}
+\title{Liver cirrhosis drug trial data}
 \format{A data frame in the unbalanced format with longitudinal observations 
   from 488 subjects. The columns are:
   
