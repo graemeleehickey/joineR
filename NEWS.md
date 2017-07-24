@@ -1,8 +1,13 @@
+# joineR 1.2.1.9000
+
+* Ready for next version.
+
 # joineR 1.2.1
 
 ## Minor updates
 
-* Added Rd file for `joint.object` to describe what is contained in an object of class `joint`.
+* Added Rd file for `joint.object` to describe what is contained in an object of
+class `joint`.
 
 * Added the ubiquitous `aids` dataset for teaching purposes.
 
