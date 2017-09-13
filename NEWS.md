@@ -1,6 +1,10 @@
-# joineR 1.2.1.9000
+# joineR 1.2.2
 
-* Ready for next version.
+## Minor update
+
+* Modified the control parameters for the call to `nlme::lme()` that is used to
+generate initial parameter estimates. In some bootstrap settings, this was
+throwing an error, leading to the entire bootstrap run to cease.
 
 # joineR 1.2.1
 

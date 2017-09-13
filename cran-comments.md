@@ -1,6 +1,6 @@
 ## Test environments
 
-* local OS X install, R 3.4.0
+* local OS X install, R 3.4.1
 * ubuntu (via travis-ci)
 * windows (via appveyor)
 * win-builder (release, devel)

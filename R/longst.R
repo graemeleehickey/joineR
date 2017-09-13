@@ -20,9 +20,11 @@ longst <- function(longdat, long.formula, model, longdat2) {
                           method = "ML", 
                           data = data.frame(longdat2),
                           na.action = na.omit,
-                          control = lmeControl(maxIter = 100, 
-                                               msMaxIter = 100,
-                                               opt = "optim"))
+                          control = lmeControl(maxIter = 1000, 
+                                               msMaxIter = 1000,
+                                               opt = "optim",
+                                               tolerance = 1e-05,
+                                               msTol = 1e-06))
   
   q <- dim(nlme::VarCorr(long.start))[1] - 1
   sigma.u <- as.matrix(nlme::getVarCov(long.start))

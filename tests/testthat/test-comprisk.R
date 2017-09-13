@@ -25,7 +25,7 @@ test_that("competing risks models", {
                c(1.9730161778, 0.0003545542, -0.1380857344, 0.0006185851),
                tol = 1e-03, check.attributes = FALSE)
   expect_equal(unlist(fit$coefficients$fixed$survival1), 
-               0.02723834,
+               0.02721022,
                tol = 1e-03, check.attributes = FALSE)
   expect_equal(unlist(fit$coefficients$fixed$survival2), 
                -0.6601709,
