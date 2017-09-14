@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-joineR <img src="inst/image/hex/hex.png" width = "175" height = "200" align="right" />
-======================================================================================
+joineR <img src="man/figures/hex.png" width = "175" height = "200" align="right" />
+===================================================================================
 
 [![Travis-CI Build Status](https://travis-ci.org/graemeleehickey/joineR.svg?branch=master)](https://travis-ci.org/graemeleehickey/joineR) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/graemeleehickey/joineR?branch=master&svg=true)](https://ci.appveyor.com/project/graemeleehickey/joineR) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/joineR)](https://CRAN.R-project.org/package=joineR) [![](http://cranlogs.r-pkg.org/badges/joineR)](https://CRAN.R-project.org/package=joineR) [![](https://cranlogs.r-pkg.org/badges/grand-total/joineR)](https://CRAN.R-project.org/package=joineR) [![codecov](https://codecov.io/gh/graemeleehickey/joineR/branch/master/graph/badge.svg)](https://codecov.io/gh/graemeleehickey/joineR)
 
@@ -53,24 +53,24 @@ summary(fit)
 #> 
 #> Random effects joint model
 #>  Data: heart.valve.jd 
-#>  Log-likelihood: -424.7061 
+#>  Log-likelihood: -424.7062 
 #> 
 #> Longitudinal sub-model fixed effects: log.lvmi ~ 1 + time + hs                              
-#> (Intercept)        4.993339611
-#> time              -0.006972218
-#> hsStentless valve  0.055435769
+#> (Intercept)        4.993354492
+#> time              -0.006966354
+#> hsStentless valve  0.055452730
 #> 
 #> Survival sub-model fixed effects: Surv(fuyrs, status) ~ hs                           
-#> hsStentless valve 0.7926163
+#> hsStentless valve 0.7926683
 #> 
 #> Latent association:                 
-#> gamma_0 0.8225708
+#> gamma_0 0.8227578
 #> 
 #> Variance components:
 #>         U_0         U_1    Residual 
-#> 0.113512667 0.001754585 0.037090655 
+#> 0.113521695 0.001757578 0.037086210 
 #> 
-#> Convergence at iteration: 12 
+#> Convergence at iteration: 13 
 #> 
 #> Number of observations: 988 
 #> Number of groups: 256
