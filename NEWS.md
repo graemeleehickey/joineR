@@ -6,6 +6,10 @@
 generate initial parameter estimates. In some bootstrap settings, this was
 throwing an error, leading to the entire bootstrap run to cease.
 
+## Housekeeping
+
+* Added hex sticker badge.
+
 # joineR 1.2.1
 
 ## Minor updates
