@@ -15,4 +15,4 @@ There are no reverse dependencies. The `joineRML` package has a Reverse Suggests
 
 ## Other notes
 
-None
+I have fixed the WARNING from the initial submission.
