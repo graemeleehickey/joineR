@@ -1,7 +1,7 @@
 Package: joineR
 Type: Package
 Title: Joint Modelling of Repeated Measurements and Time-to-Event Data
-Version: 1.2.2
+Version: 1.2.2.9000
 Authors@R: c(
     person("Pete", "Philipson", email = "pete.philipson@northumbria.ac.uk", 
         role = "aut"),
@@ -18,7 +18,9 @@ Authors@R: c(
     person("Graeme L.", "Hickey", email = "graeme.hickey@liverpool.ac.uk", 
         role = c("aut", "cre")),
     person("Maria", "Sudell", email = "m.e.sudell@liverpool.ac.uk",
-        role = "ctb")
+        role = "ctb"),
+    person("Medical Research Council", role = "fnd",
+        comment = "Grant numbers: G0400615 and MR/M013227/1")
     )
 Encoding: UTF-8    
 Maintainer: Graeme L. Hickey <graeme.hickey@liverpool.ac.uk>

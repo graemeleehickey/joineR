@@ -7,11 +7,10 @@ prepLongData <- function(long.formula, data, id, time.long) {
   long.terms <- terms(long.formula, data = long.data)
   long.names <- colnames(long.cov)
   rll <- !is.na(data$longitudinal[[names(long.frame[1])]])
-  longdat <- cbind(data$longitudinal[[id]][rll],
-                   long.frame[, 1],
-                   data$longitudinal[[time.long]][rll],
-                   long.cov)
-  longdat <- as.data.frame(longdat)
+  longdat <- data.frame(data$longitudinal[[id]][rll],
+                        long.frame[, 1],
+                        data$longitudinal[[time.long]][rll],
+                        long.cov)
   names(longdat) <- c(id,
                       names(long.frame)[1],
                       time.long,

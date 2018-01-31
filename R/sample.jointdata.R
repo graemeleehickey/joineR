@@ -37,7 +37,7 @@ sample.jointdata <- function(x, size, replace = FALSE) {
   re <- x
   
   if (replace) { # with replacement
-    re$subject <- re$subject[id]
+    re$subject <- re$subject[match(id, re$subject)]
     if (is.data.frame(re$longitudinal)) {
       nn <- diff(match(x$subject, x$longitudinal[[x$subj.col]]))
       nn[length(nn) + 1] <- length(x$longitudinal[, 1]) - sum(nn)

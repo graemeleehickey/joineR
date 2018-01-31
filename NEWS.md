@@ -1,3 +1,9 @@
+# joineR 1.2.2.9000
+
+## Bugs
+
+* Fixed error when subjects IDs were `character` format.
+
 # joineR 1.2.2
 
 ## Minor update
