@@ -4,6 +4,12 @@
 
 * Fixed error when subjects IDs were `character` format.
 
+## Housekeeping
+
+* Added ORCID IDs for authors.
+
+* Added Depsy badge to README.
+
 # joineR 1.2.2
 
 ## Minor update
