@@ -1,6 +1,5 @@
 citHeader("To cite joineR in publications use:")
 
-year <- sub("-.*", "", meta$Date)
 note <- sprintf("R package version %s", meta$Version)
 
 c(
@@ -14,7 +13,7 @@ c(
                person(family = "Kolamunnage-Dona", given = "Ruwanthi"),
                person(family = "Henderson", given = "Robin"),
                person(family = "Hickey", given = "Graeme L.")),
-    year = year,
+    year = "2018",
     note = note,
     url = "https://github.com/graemeleehickey/joineR/"),
   bibentry(
@@ -30,4 +29,4 @@ c(
     pages = "6426-6438")
 )
 
-citFooter("The second paper refers to the competing risks version of the joint model.")
+citFooter("The second paper refers to the competing risks version of the joint model.\n")
