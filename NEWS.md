@@ -1,8 +1,8 @@
-# joineR 1.2.2.9000
+# joineR 1.2.3
 
 ## Bugs
 
-* Fixed error in `joint()` and `sample.jointdata()` when subjects IDs were `character` format.
+* Fixed error in `joint()`, `sample.jointdata()`, and `jointdata()` when subjects IDs were `character` format.
 
 ## Housekeeping
 

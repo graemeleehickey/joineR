@@ -136,7 +136,7 @@ jointdata <- function(longitudinal = NA, survival = NA, baseline = NA, id.col = 
   npat <- length(patid)
   new <- list(subject = NA, longitudinal = NA, survival = NA, 
               baseline = NA, time.col = NA, subj.col = NA)
-  new[["subject"]] <- patid
+  new[["subject"]] <- patid[order(patid)]
   new[["subj.col"]] <- id.col
   
   if (notNA(longitudinal)) {
