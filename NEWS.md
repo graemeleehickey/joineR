@@ -1,3 +1,9 @@
+# joineR 1.2.3.9000
+
+## Housekeeping
+
+* Added Zenodo badge to README.
+
 # joineR 1.2.3
 
 ## Bugs
