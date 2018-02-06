@@ -2,7 +2,7 @@
 
 ## Bugs
 
-* Fixed error in `joint()`, `sample.jointdata()`, and `jointdata()` when subjects IDs were `character` format.
+* Fixed errors when subjects IDs were `character` format.
 
 ## Housekeeping
 
