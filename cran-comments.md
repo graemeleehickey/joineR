@@ -1,6 +1,6 @@
 ## Test environments
 
-* local OS X install, R 3.4.1
+* local OS X install, R 3.4.3
 * ubuntu (via travis-ci)
 * windows (via appveyor)
 * win-builder (release, devel)
@@ -15,4 +15,4 @@ There are no reverse dependencies. The `joineRML` package has a Reverse Suggests
 
 ## Other notes
 
-I have fixed the WARNING from the initial submission.
+None
