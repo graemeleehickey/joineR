@@ -15,7 +15,7 @@ sample.jointdata(x, size, replace = FALSE)
 = TRUE}.}
 }
 \value{
-An x of class \code{jointdata}, with data only on the subjects 
+An object of class \code{jointdata}, with data only on the subjects 
   sampled.
 }
 \description{

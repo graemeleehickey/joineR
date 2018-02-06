@@ -13,7 +13,7 @@
 #'   \code{\link{UniqueVariables}}.
 #' @keywords data
 #'   
-#' @return An x of class \code{jointdata}, with data only on the subjects 
+#' @return An object of class \code{jointdata}, with data only on the subjects 
 #'   sampled.
 #' @export
 #' 
