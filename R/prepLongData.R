@@ -10,7 +10,8 @@ prepLongData <- function(long.formula, data, id, time.long) {
   longdat <- data.frame(data$longitudinal[[id]][rll],
                         long.frame[, 1],
                         data$longitudinal[[time.long]][rll],
-                        long.cov)
+                        long.cov,
+                        stringsAsFactors = FALSE)
   names(longdat) <- c(id,
                       names(long.frame)[1],
                       time.long,

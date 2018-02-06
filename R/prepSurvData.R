@@ -28,7 +28,8 @@ prepSurvData <- function(surv.formula, data, id, time.long) {
     survdat <- data.frame(data$survival[[id]][rss],
                           srv[rss, 1],
                           srv[rss, 2],
-                          surv.cov[rss, ])
+                          surv.cov[rss, ],
+                          stringsAsFactors = FALSE)
     survdat <- as.data.frame(survdat)
     names(survdat) <- c(id,
                         surv.formula[2][[1]][[2]],
@@ -42,7 +43,8 @@ prepSurvData <- function(surv.formula, data, id, time.long) {
     survdat2 <- data.frame(data$survival[[id]][rss],
                            srv[rss, 1],
                            srv[rss, 2],
-                           surv.frame[, -1])
+                           surv.frame[, -1],
+                           stringsAsFactors = FALSE)
     names(survdat2) <- c(id,
                          surv.formula[2][[1]][[2]],
                          surv.formula[2][[1]][[3]],

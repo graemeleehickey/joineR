@@ -72,7 +72,8 @@ jointdata <- function(longitudinal = NA, survival = NA, baseline = NA, id.col = 
     stop("It is necessary to specify a subject identification column name")
   }
   
-  nm <- names(which(!is.na(list(longitudinal = longitudinal, survival = survival))))
+  nm <- names(which(!is.na(list(longitudinal = longitudinal,
+                                survival = survival))))
   if (length(nm) == 0) {
     stop("Longitudinal and Survival data not available")
   }
@@ -81,7 +82,7 @@ jointdata <- function(longitudinal = NA, survival = NA, baseline = NA, id.col = 
     if (!id.col %in% names(get(nm))) {
       stop(paste("ID column does not exist in ", nm, " object", sep = ""))
     }
-    pp <- (get(nm))[[id.col]]
+    pp <- get(nm)[[id.col]]
     patid <- unique(pp)
     if (nm == "survival") {
       if (length(patid) != dim(survival)[1]) {
