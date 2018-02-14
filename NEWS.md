@@ -4,6 +4,8 @@
 
 * Added Zenodo badge to README.
 
+* Added further ORCID IDs for authors.
+
 # joineR 1.2.3
 
 ## Bugs
