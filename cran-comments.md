@@ -15,4 +15,4 @@ There are no reverse dependencies. The `joineRML` package has a Reverse Suggests
 
 ## Other notes
 
-None
+Pete Philipson has taken over as package maintainer from Graeme Hickey.
