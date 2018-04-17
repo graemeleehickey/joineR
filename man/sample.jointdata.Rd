@@ -2,28 +2,27 @@
 % Please edit documentation in R/sample.jointdata.R
 \name{sample.jointdata}
 \alias{sample.jointdata}
-\title{Sample from a \code{jointdata} object}
+\title{Sample from a \code{jointdata} x}
 \usage{
-sample.jointdata(object, size, replace = FALSE)
+sample.jointdata(x, size, replace = FALSE)
 }
 \arguments{
-\item{object}{an object of class \code{jointdata}.}
+\item{x}{an object of class \code{jointdata}.}
 
 \item{size}{number of subjects to include in the sampled subset.}
 
-\item{replace}{should sampling be with replacement? Deafault is
-\code{replace = TRUE}.}
+\item{replace}{should sampling be with replacement? Default is \code{replace
+= TRUE}.}
 }
 \value{
-An object of class \code{jointdata}, with data only on the subjects
+An object of class \code{jointdata}, with data only on the subjects 
   sampled.
 }
 \description{
-Generic function used to sampling a subset of data from an object of class 
-\code{jointdata}, with a specific size of number of subjects.
+Generic function used to sampling a subset of data from an x of
+  class \code{jointdata}, with a specific size of number of subjects.
 }
 \examples{
-
 data(heart.valve)
 heart.surv <- UniqueVariables(heart.valve, 
                               var.col = c("fuyrs", "status"), 
@@ -33,12 +32,11 @@ heart.valve.jd <- jointdata(survival = heart.surv,
                             time.col = "time")
 sample.jointdata(heart.valve.jd, size = 10)
 }
+\seealso{
+\code{\link{sample}}, \code{\link{jointdata}}, 
+  \code{\link{UniqueVariables}}.
+}
 \author{
 Ines Sousa (\email{isousa@math.uminho.pt})
 }
-\seealso{
-\code{\link{sample}}, \code{\link{jointdata}},
-  \code{\link{UniqueVariables}}.
-}
 \keyword{data}
-

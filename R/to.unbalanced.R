@@ -1,7 +1,7 @@
 #' Transform data to the longitudinal unbalanced format
 #' 
-#' Transforms a longitudinal data set in the balanced format to the unbalanced
-#' format.
+#' @description Transforms a longitudinal data set in the balanced format to the
+#'   unbalanced format.
 #' 
 #' @param data a data frame with longitudinal data in the balanced format. That 
 #'   is, in the format of 'one row per subject'. \code{data}, where the patient
@@ -20,7 +20,6 @@
 #' @export
 #' 
 #' @examples
-#' 
 #' simul <- data.frame(num = 1:10,
 #'                     Y1.1 = rnorm(10), Y1.2 = rnorm(10),
 #'                     Y2.1 = rnorm(10), Y2.2 = rnorm(10), 

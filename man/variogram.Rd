@@ -23,9 +23,9 @@ An object of class \code{vargm} and \code{list} with two elements.
   in the data.
 }
 \description{
-Calculates the variogram for observed measurements, with two components, the 
-total variability in the data, and the variogram for all time lags in all 
-individuals.
+Calculates the variogram for observed measurements, with two
+  components, the total variability in the data, and the variogram for all
+  time lags in all individuals.
 }
 \details{
 The empirical variogram in this function is calculated from observed
@@ -39,7 +39,6 @@ There is a function \code{\link{plot.vargm}} which should be used to
   plot the empirical variogram.
 }
 \examples{
-
 data(mental)
 mental.unbalanced <- to.unbalanced(mental, id.col = 1, 
                                    times = c(0, 1, 2, 4, 6, 8),
@@ -56,4 +55,3 @@ Ines Sousa (\email{isousa@math.uminho.pt})
 }
 \keyword{models}
 \keyword{smooth}
-

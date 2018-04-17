@@ -1,9 +1,9 @@
 #' Extracts the unique non-time dependent variables per patient, from an 
 #' unbalanced data set
 #' 
-#' This function extracts a set of unique variables within a patient, returning 
-#' a data frame with columns, patient identification and variables selected. 
-#' Each row corresponds to the data for each individual.
+#' @description This function extracts a set of unique variables within a
+#'   patient, returning a data frame with columns, patient identification and
+#'   variables selected. Each row corresponds to the data for each individual.
 #' 
 #' @param data data frame, or matrix, with at least a column of patient 
 #'   identification and a covariate column.
@@ -29,7 +29,6 @@
 #' @export
 #' 
 #' @examples
-#' 
 #' data(heart.valve)
 #' heart.cov <- UniqueVariables(heart.valve,
 #'                              c(2, 3, 5, 6, 12:25),

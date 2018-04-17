@@ -1,7 +1,7 @@
-#' Summarise a jointdata object
+#' Summarise a \code{jointdata} object
 #' 
-#' Generic function used to produce summaries of objects of class 
-#' \code{jointdata}
+#' @description Generic function used to produce summaries of objects of class 
+#'   \code{jointdata}.
 #' 
 #' @inheritParams summary.joint
 #'   
@@ -29,7 +29,6 @@
 #' @export
 #' 
 #' @examples
-#' 
 #' data(heart.valve)
 #' heart.surv <- UniqueVariables(heart.valve,
 #'                               var.col = c("fuyrs", "status"), 
@@ -40,9 +39,13 @@
 #' summary(heart.valve.jd)
 summary.jointdata <- function(object, ...) {
   
+  if (!inherits(object, "jointdata")) {
+    stop("Data must be of class 'jointdata'\n")
+  }
+  
   out <- as.list(rep(NA, 5))
   names(out) <- c("subjects", "longitudinal", "survival", "baseline", "times")
-  out[[1]] <- paste("Number of subjects: ", length(object$subject), sep = "")
+  out[[1]] <- paste("Number of subjects:", length(object$subject))
   
   if (any(is.na(object$longitudinal)) & !is.data.frame(object$longitudinal)) {
     out[[2]] <- paste0("No longitudinal data available")
@@ -52,19 +55,30 @@ summary.jointdata <- function(object, ...) {
     names(out[[2]]) <- c("class")
     row.names(out[[2]]) <- names(object$longitudinal)[2:(dim(object$longitudinal)[2])]
     for (j in 2:(dim(object$longitudinal)[2])) {
-      out[[2]][j - 1, 1] <- class(object$longitudinal[, j])
+      out[[2]][(j - 1), 1] <- class(object$longitudinal[, j])
     }
   }
+  
   if (any(is.na(object$survival)) & !is.data.frame(object$survival)) {
     out[[3]] <- paste0("No survival data available")
   } else {
-    nn <- names(which(lapply(apply(object$survival, 2, unique), 
-                             FUN = function(x) length(x) <= 2) == TRUE))
-    out[[3]] <- paste("There are ", sum(object$survival[[nn]]), 
-                      " subjects that fail", "; there are ", length(object$subject) - 
-                        sum(object$survival[[nn]]), " subjects censored", 
-                      sep = "")
+    nn <- names(which(lapply(apply(object$survival, 2, unique), length) <= 3))
+    if (length(unique(object$survival[[nn]])) == 2) {
+      out[[3]] <- data.frame(c(sum(object$survival[[nn]]), 
+                               sum(object$survival[[nn]] == 0)))
+      row.names(out[[3]]) <- c("Number of subjects that fail:",
+                               "Number of subjects censored:")
+      } else {
+        out[[3]] <- data.frame(c(sum(object$survival[[nn]] == 1),
+                                 sum(object$survival[[nn]] == 2),
+                                 sum(object$survival[[nn]] == 0)))
+        row.names(out[[3]]) <- c("Number of subjects that fail due to cause 1:",
+                                 "Number of subjects that fail due to cause 2:",
+                                 "Number of subjects censored:")
+    }
+    colnames(out[[3]]) <- NULL
   }
+  
   if (any(is.na(object$baseline)) & !is.data.frame(object$baseline)) {
     out[[4]] <- paste0("No baseline covariates data available")
   } else {
@@ -72,16 +86,16 @@ summary.jointdata <- function(object, ...) {
     names(out[[4]]) <- c("class")
     row.names(out[[4]]) <- names(object$baseline)[2:(dim(object$baseline)[2])]
     for (j in 2:(dim(object$baseline)[2])) {
-      out[[4]][j - 1, 1] <- class(object$baseline[, j])
+      out[[4]][(j - 1), 1] <- class(object$baseline[, j])
     }
   }
   
   if (is.na(object$time)) {
-    out[[5]] <- paste0("No longitudinal data available")
+    out[[5]] <- "No longitudinal data available"
   } else {
     tt <- sort(unique(object$longitudinal[[object$time]]))
     if (length(tt) > 20) {
-      out[[5]] <- paste0("Unbalanced longitudinal study or more than twenty observation times")
+      out[[5]] <- "Unbalanced longitudinal study or more than twenty observation times"
     } else {
       out[[5]] <- tt
     }

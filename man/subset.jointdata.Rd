@@ -19,11 +19,10 @@ An object of class \code{jointdata}, with data only on a subset of
   subjects.
 }
 \description{
-Returns an object of class \code{jointdata} which is a subset of an original 
-object of class \code{jointdata}.
+Returns an object of class \code{jointdata} which is a subset of
+  an original object of class \code{jointdata}.
 }
 \examples{
-
 data(heart.valve)
 heart.surv <- UniqueVariables(heart.valve,
                               var.col = c("fuyrs", "status"),
@@ -40,4 +39,3 @@ heart.jd.cens <- subset(heart.jd, take)
 Ines Sousa (\email{isousa@math.uminho.pt})
 }
 \keyword{data}
-

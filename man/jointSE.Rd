@@ -17,19 +17,19 @@ order to obtain the standard error estimates and confidence intervals. Note
 that at least \code{n.boot = 100} is required in order for the function to 
 return non-zero confidence intervals.}
 
-\item{gpt}{the number of quadrature points across which the integration with 
+\item{gpt}{the number of quadrature points across which the integration with
 respect to the random effects will be performed. Defaults to \code{gpt = 3}
 which produces stable estimates in most datasets.}
 
-\item{lgpt}{the number of quadrature points which the log-likelihood is 
-evaluated over following a model fit. This defaults to \code{lgpt = 10}, 
+\item{lgpt}{the number of quadrature points which the log-likelihood is
+evaluated over following a model fit. This defaults to \code{lgpt = 10},
 though \code{lgpt = 3} is often sufficient.}
 
-\item{max.it}{the maximum number of iterations of the EM algorithm that the 
-function will perform. Defaults to \code{max.it = 200}, though more 
+\item{max.it}{the maximum number of iterations of the EM algorithm that the
+function will perform. Defaults to \code{max.it = 200}, though more
 iterations may be necessary for large, complex data.}
 
-\item{tol}{the tolerance level before convergence of the algorithm is deemed 
+\item{tol}{the tolerance level before convergence of the algorithm is deemed
 to have occurred. Default value is \code{tol = 0.001}.}
 
 \item{print.detail}{This argument determines the level of printing that is 
@@ -40,9 +40,9 @@ from each bootstrap sample are output.}
 An object of class \code{data.frame}.
 }
 \description{
-This function takes a model fit from a joint model and calculates standard 
-errors, with optional confidence intervals, for the main longitudinal and 
-survival covariates.
+This function takes a model fit from a joint model and
+  calculates standard errors, with optional confidence intervals, for the
+  main longitudinal and survival covariates.
 }
 \details{
 Standard errors and confidence intervals are obtained by repeated 
@@ -52,7 +52,6 @@ Standard errors and confidence intervals are obtained by repeated
   samples needed for accurate confidence intervals can be as large as 1000.
 }
 \examples{
-
 data(heart.valve)
 heart.surv <- UniqueVariables(heart.valve, 
                               var.col = c("fuyrs", "status"), 
@@ -72,11 +71,6 @@ fit <- joint(heart.valve.jd,
              model = "int")
 jointSE(fitted = fit, n.boot = 1)
 }
-\author{
-Ruwanthi Kolamunnage-Dona 
-  (\email{ruwanthi.kolamunnage-dona@liverpool.ac.uk}) and Pete Philipson 
-  (\email{pete.philipson@northumbria.ac.uk})
-}
 \references{
 Wulfsohn MS, Tsiatis AA. A joint model for survival and longitudinal data 
 measured with error. \emph{Biometrics.} 1997; \strong{53(1)}: 330-339.
@@ -88,7 +82,11 @@ Raton, FL: Chapman & Hall/CRC.
 \code{\link[nlme]{lme}}, \code{\link[survival]{coxph}}, 
   \code{\link{joint}}, \code{\link{jointdata}}.
 }
+\author{
+Ruwanthi Kolamunnage-Dona 
+  (\email{ruwanthi.kolamunnage-dona@liverpool.ac.uk}) and Pete Philipson 
+  (\email{pete.philipson@northumbria.ac.uk})
+}
 \keyword{htest}
 \keyword{models}
 \keyword{survival}
-

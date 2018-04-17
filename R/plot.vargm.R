@@ -1,7 +1,8 @@
 #' Plots the empirical variogram for longitudinal data
 #' 
-#' Plots the empirical variogram for observed measurements, of an object of 
-#' class 'vargm', obtained by using function \code{\link{variogram}}.
+#' @description Plots the empirical variogram for observed measurements, of an
+#'   object of class \code{vargm}, obtained by using function
+#'   \code{\link{variogram}}.
 #' 
 #' @param x object of class \code{vargm} obtained by using function. 
 #'   \code{\link{variogram}}
@@ -23,7 +24,6 @@
 #' @export
 #' 
 #' @examples
-#' 
 #' data(mental)
 #' mental.unbalanced <- to.unbalanced(mental, id.col = 1, 
 #'                                    times = c(0, 1, 2, 4, 6, 8),
@@ -36,6 +36,10 @@
 #' plot(vgm)
 plot.vargm <- function(x, smooth = FALSE, bdw = NULL, 
                        follow.time = NULL, points = TRUE, ...) {
+  
+  if (!inherits(x, "vargm")) {
+    stop("Data must be of class 'vargm'\n")
+  }
   
   vargm <- x
   svar <- vargm$svar

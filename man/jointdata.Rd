@@ -40,9 +40,9 @@ A list of length six. The first element is the vector of subjects
   element of the list is the column name identification of subjects.
 }
 \description{
-This function creates an object of class \code{jointdata}. This is an object 
-with information on at least one of, longitudinal data or survival data. 
-Moreover, it can also have data on baseline covariates.
+This function creates an object of class \code{jointdata}. This
+  is an object with information on at least one of, longitudinal data or
+  survival data. Moreover, it can also have data on baseline covariates.
 }
 \details{
 This function creates an object of class \code{jointdata}. This is a
@@ -54,7 +54,6 @@ This function creates an object of class \code{jointdata}. This is a
   identification and time measurement column names are necessary.
 }
 \examples{
-
 data(heart.valve)
 heart.surv <- UniqueVariables(heart.valve,
                               var.col = c("fuyrs", "status"), 
@@ -69,4 +68,3 @@ Ines Sousa (\email{isousa@math.uminho.pt})
 \keyword{data}
 \keyword{list}
 \keyword{survival}
-

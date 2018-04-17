@@ -1,10 +1,10 @@
 #' Joint plot of longitudinal and survival data
 #' 
-#' This function views the longitudinal profile of each unit with the last 
-#' longitudinal measurement prior to event-time (censored or not) taken as the 
-#' end-point, referred to as time zero. In doing so, the shape of the profile 
-#' prior to event-time can be inspected. This can be done over a user-specified 
-#' number of time units.
+#' @description This function views the longitudinal profile of each unit with
+#'   the last longitudinal measurement prior to event-time (censored or not)
+#'   taken as the end-point, referred to as time zero. In doing so, the shape of
+#'   the profile prior to event-time can be inspected. This can be done over a
+#'   user-specified number of time units.
 #' 
 #' @param object an object of class \code{jointdata}.
 #' @param Y.col an element of class \code{character} identifying the 
@@ -46,6 +46,9 @@
 #'   produce a representation of joint data with longitudinal and survival 
 #'   components.
 #'   
+#' @note If more than one cause of failure is present (i.e. competing risks
+#'   data), then all failures are pooled together into a single failure type.
+#'   
 #' @author Pete Philipson (\email{pete.philipson@@northumbria.ac.uk})
 #' @keywords dplot
 #' @seealso \code{\link[lattice]{xyplot}}, \code{\link{joint}}, 
@@ -61,7 +64,6 @@
 #' @export
 #' 
 #' @examples
-#' 
 #' data(heart.valve)
 #' heart.surv <- UniqueVariables(heart.valve, 
 #'                               var.col = c("fuyrs", "status"),
@@ -80,6 +82,10 @@
 jointplot <- function(object, Y.col, Cens.col, lag, split = TRUE, 
                       col1, col2, xlab, ylab, gp1lab, gp2lab, 
                       smooth = 2/3, mean.profile = FALSE, mcol1, mcol2) {
+  
+  if (!inherits(object, "jointdata")) {
+    stop("Data must be of class 'jointdata'\n")
+  }
   
   if (!is.vector(Y.col) | length(Y.col) > 1) {
     stop("Only one longitudinal response is possible to plot")
@@ -104,6 +110,10 @@ jointplot <- function(object, Y.col, Cens.col, lag, split = TRUE,
   ft <- rep(t[index], nobs)
   t0 <- t - ft
   hue <- length(id)
+  
+  if (length(unique(cens)) == 3) {
+    warning("jointplot does not display profiles for different failure events")
+  }
   
   if (missing(lag)) {
     lag <- max(t)

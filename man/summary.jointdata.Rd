@@ -2,12 +2,12 @@
 % Please edit documentation in R/summary.jointdata.R
 \name{summary.jointdata}
 \alias{summary.jointdata}
-\title{Summarise a jointdata object}
+\title{Summarise a \code{jointdata} object}
 \usage{
 \method{summary}{jointdata}(object, ...)
 }
 \arguments{
-\item{object}{an object of class \code{jointdata}.}
+\item{object}{an object of class \code{joint}.}
 
 \item{...}{further arguments for the summary.}
 }
@@ -32,10 +32,9 @@ A list with five elements. Each summarises an element of the
 }
 \description{
 Generic function used to produce summaries of objects of class 
-\code{jointdata}
+  \code{jointdata}.
 }
 \examples{
-
 data(heart.valve)
 heart.surv <- UniqueVariables(heart.valve,
                               var.col = c("fuyrs", "status"), 
@@ -45,11 +44,10 @@ heart.valve.jd <- jointdata(survival = heart.surv,
                             time.col = "time")
 summary(heart.valve.jd)
 }
-\author{
-Ines Sousa (\email{isousa@math.uminho.pt})
-}
 \seealso{
 \code{\link{jointdata}}, \code{\link{UniqueVariables}}.
 }
+\author{
+Ines Sousa (\email{isousa@math.uminho.pt})
+}
 \keyword{methods}
-

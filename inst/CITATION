@@ -1,0 +1,32 @@
+citHeader("To cite joineR in publications use:")
+
+note <- sprintf("R package version %s", meta$Version)
+
+c(
+  bibentry(
+    bibtype = "Manual",
+    title = "{joineR}: Joint Modelling of Repeated Measurements and Time-to-Event Data",
+    author = c(person(family = "Philipson", given = "Pete"),
+               person(family = "Sousa", given = "Ines"),
+               person(family = "Diggle", given = "Peter J."),
+               person(family = "Williamson", given = "Paula"),
+               person(family = "Kolamunnage-Dona", given = "Ruwanthi"),
+               person(family = "Henderson", given = "Robin"),
+               person(family = "Hickey", given = "Graeme L.")),
+    year = "2018",
+    note = note,
+    url = "https://github.com/graemeleehickey/joineR/"),
+  bibentry(
+    bibtype = "Article",
+    title = "Joint modelling of longitudinal and competing risks data.",
+    author = c(person(family = "Williamson", given = "Paula"),
+               person(family = "Kolamunnage-Dona", given = "Ruwanthi"),
+               person(family = "Philipson", given = "Pete"),
+               person(family = "Marson", given = "Anthony G.")),
+    year = "2008",
+    journal = "Statistics in Medicine",
+    volume = "27",
+    pages = "6426-6438")
+)
+
+citFooter("The second paper refers to the competing risks version of the joint model.\n")

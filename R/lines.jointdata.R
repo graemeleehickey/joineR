@@ -1,8 +1,9 @@
-#' Add lines to an existing jointdata plot
+#' Add lines to an existing \code{jointdata} plot
 #' 
-#' Add lines to an existing plot of an object of class \code{jointdata}, for a
-#' longitudinal variable. It is possible to plot all the subjects in the data 
-#' set, or just a selected \code{subset}. See \code{\link{subset.jointdata}}.
+#' @description Add lines to an existing plot of an object of class
+#'   \code{jointdata}, for a longitudinal variable. It is possible to plot all
+#'   the subjects in the data set, or just a selected \code{subset}. See
+#'   \code{\link{subset.jointdata}}.
 #' 
 #' @inheritParams plot.jointdata
 #'   
@@ -15,7 +16,6 @@
 #' @export
 #' 
 #' @examples
-#' 
 #' data(heart.valve)
 #' heart.surv <- UniqueVariables(heart.valve, 
 #'                               var.col = c("fuyrs", "status"), 
@@ -34,6 +34,10 @@
 #' plot(heart.jd.1, Y.col = 4)
 #' lines(heart.jd.2, Y.col = 4, lty = 2)
 lines.jointdata <- function(x, Y.col, ...) {
+  
+  if (!inherits(x, "jointdata")) {
+    stop("Data must be of class 'jointdata'\n")
+  }
   
   object <- x
   if (!is.vector(Y.col) | length(Y.col) > 1) {

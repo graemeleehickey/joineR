@@ -11,7 +11,8 @@
 \item{x}{object of class \code{jointdata}.}
 
 \item{Y.col}{column number, or column name, of longitudinal variable to be 
-plotted. Defaults to \code{Y.col=NA}, plotting all longitudinal variables.}
+plotted. Defaults to \code{Y.col = NA}, plotting all longitudinal
+variables.}
 
 \item{type}{the type of line to be plotted, see \code{\link[graphics]{plot}}
 for further details.}
@@ -32,12 +33,12 @@ ranges, see \code{\link[graphics]{plot.window}} for further details.}
 A graphical device with a plot for longitudinal data.
 }
 \description{
-Plot longitudinal data of an object of class \code{jointdata}, for a 
-longitudinal variable. It is possible to plot all the subjects in the data 
-set, or just a selected \code{subset}. See \code{\link{subset.jointdata}}.
+Plot longitudinal data of an object of class \code{jointdata},
+  for a longitudinal variable. It is possible to plot all the subjects in the
+  data set, or just a selected \code{subset}. See
+  \code{\link{subset.jointdata}}.
 }
 \examples{
-
 data(heart.valve)
 heart.surv <- UniqueVariables(heart.valve,
                               var.col = c("fuyrs", "status"),
@@ -49,11 +50,10 @@ heart.jd <- jointdata(longitudinal = heart.long,
                       time.col = "time")
 plot(heart.jd, Y.col = "grad", col = "grey")
 }
-\author{
-Ines Sousa (\email{isousa@math.uminho.pt})
-}
 \seealso{
 \code{\link[graphics]{lines}} and \code{\link[graphics]{points}}.
 }
+\author{
+Ines Sousa (\email{isousa@math.uminho.pt})
+}
 \keyword{dplot}
-

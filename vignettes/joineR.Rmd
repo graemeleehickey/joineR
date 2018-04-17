@@ -257,7 +257,7 @@ most of whose values are missing:
 ```{r epileptic_balanced}
 epileptic.balanced <- to.balanced(epileptic,
                                   id.col = 1, time.col = 3,
-                                  Y.col = 2, other.col = 4:11)
+                                  Y.col = 2, other.col = 4:12)
 dim(epileptic.balanced)
 sum(is.na(epileptic.balanced))
 ```
@@ -491,10 +491,10 @@ plot(vgm)
 
 # Model-fitting
 
-The package includes functions for fitting %two different classes of model 
-%using maximum likelihood estimation. The first is an extended version of the 
-random effects model proposed by Wulfsohn and Tsiatis (1997). See Henderson et
-al. (2000). The second is the transformation model described by Diggle et al.
+The package includes functions for fitting two different classes of model using
+maximum likelihood estimation. The first is an extended version of the random
+effects model proposed by Wulfsohn and Tsiatis (1997). See Henderson et al.
+(2000). The second is the transformation model described by Diggle et al. 
 (2008).
 
 ## The random effects model
@@ -504,26 +504,26 @@ response for the repeated measurements and the subject-specific hazard for the
 time-to-event outcome depend on latent random effect vectors. Hence, if 
 $\lambda_i(t)$ denotes the hazard for subject $i$ and $Y_{ij}$ the $j$-th 
 repeated measurement on subject $i$, the model specifies latent vectors $U_i$ 
-and $V_i$ to follow  zero-mean multivariate Normal distributions, realized 
-independently for different subjects. Conditional on $U_i$ and $V_i$, the 
+and $V_i$ to follow  zero-mean multivariate normal distributions, realized 
+independently for different subjects. Conditional on $U_i$ and $V_i$, the
 repeated measurements sub-model is
 
-$$Y_{ij} = x_{ij} \beta_{ij} + a_{ij}^\prime U_i + Z_{ij},$$
+$$Y_{ij} = x_{ij} \beta + a_{ij}^\top U_i + Z_{ij},$$
 
 and the hazard sub-model is
 
-$$\lambda_i(t) = \lambda_0(t) \exp(w_{ij} \alpha_{ij} + b_{ij}^\prime V_i).$$
+$$\lambda_i(t) = \lambda_0(t) \exp(w_{ij} \alpha + b_{ij}^\top V_i).$$
 
 In the above, the $x_{ij}$, $w_{ij}$, $a_{ij}$ and $b_{ij}$ are vectors of 
 explanatory variables that may be time-constant or time-varying, and the 
-$Z_{ij}$ are mutually independent, $Z_{ij} \sim {\rm N}(0,\tau^2)$. In 
+$Z_{ij}$ are mutually independent, $Z_{ij} \sim {\rm N}(0, \tau^2)$. In 
 principle, this is a very flexible model. In practice, the computational cost of
 evaluating the likelihood restricts routine implementation of the model to 
 low-dimensional $U_i$ and $V_i$. Wulfsohn and Tsiatis (1997) considered the 
 special case in which the repeated measurements follow the so-called random 
-intercept and slope model with $a_{ij}^\prime  = (1,t_{ij})$, whilst the random 
+intercept and slope model with $a_{ij}^\top  = (1, t_{ij})$, whilst the random 
 effects for the repeated measurement and time-to-event sub-models are 
-proportional, hence $b_{ij}^\prime V_{i} = \phi a_{ij}^\prime U_{i}$.
+proportional, hence $b_{ij}^\top V_i = \phi a_{ij}^\top U_i$.
 
 The function provided in the `joineR` package for fitting Wulfsohn-Tsiatis 
 models is `joint`, which allows the user to choose from three models for the 
@@ -547,8 +547,8 @@ The syntax for `joint` is best seen via examples. We will fit the joint random
 effect model to the `mental` data-set with the sub-models:
 
 \begin{eqnarray*}
-  \mbox{longitudinal sub-model:  } & Y_{ij} = X'_{i1}\beta_1 + U_{0i} + Z_{ij} \\
-  \mbox{hazard sub-model:  } & h_i(t) = h_0(t) \exp{\{ X'_{i2}\beta_2 + \gamma U_{0i} \}} \\
+  \mbox{longitudinal sub-model:  } & Y_{ij} = X_{i1}^\top \beta_1 + U_{0i} + Z_{ij} \\
+  \mbox{hazard sub-model:  } & h_i(t) = h_0(t) \exp{\{ X_{i2}^\top \beta_2 + \gamma U_{0i} \}} \\
 \end{eqnarray*}
 
 To do this, we first create a `jointdata` object for these data, using the unbalanced form of the data defined earlier.
@@ -618,16 +618,16 @@ measurements sub-model. Choosing the former leads to the following specification
 for the sub-models:
 
 \begin{eqnarray*}
-  \mbox{longitudinal sub-model:  } & Y_{ij} = X'_{i1}\beta_1 + U_{0i} + U_{1i}t_{ij} + Z_{ij} \\
-  \mbox{hazard sub-model:  } & h_i(t) = h_0(t) \exp{\{ X'_{i2}\beta_2 + \gamma\left(U_{0i} + U_{1i}t\right) \}} \\
+  \mbox{longitudinal sub-model:  } & Y_{ij} = X_{i1}^\top \beta_1 + U_{0i} + U_{1i}t_{ij} + Z_{ij} \\
+  \mbox{hazard sub-model:  } & h_i(t) = h_0(t) \exp{\{ X_{i2}^\top \beta_2 + \gamma\left(U_{0i} + U_{1i}t\right) \}} \\
 \end{eqnarray*}
 
 Similarly, setting `model = "quad"} leads to a joint random effects model of the
 form:
 
 \begin{eqnarray*}
-  \mbox{longitudinal sub-model:  } & Y_{ij} = X'_{i1}\beta_1 + U_{0i} + U_{1i}t_{ij} + U_{2i}{t_{ij}}^2 + Z_{ij} \\
-  \mbox{hazard sub-model:  }& h_i(t) = h_0(t) \exp{\{ X'_{i2}\beta_2 + \gamma\left(U_{0i} + U_{1i}t + U_{2i}t^2\right) \}} \\
+  \mbox{longitudinal sub-model:  } & Y_{ij} = X_{i1}^\top \beta_1 + U_{0i} + U_{1i}t_{ij} + U_{2i}{t_{ij}}^2 + Z_{ij} \\
+  \mbox{hazard sub-model:  }& h_i(t) = h_0(t) \exp{\{ X_{i2}^\top \beta_2 + \gamma\left(U_{0i} + U_{1i}t + U_{2i}t^2\right) \}} \\
 \end{eqnarray*}
 
 The argument `sepassoc` can be set to `TRUE` for each of these model choices, 
@@ -635,8 +635,8 @@ allowing a different latent association parameter for each random effect in the
 survival sub-model, e.g. for the random intercept and slope model
 
 \begin{eqnarray*}
-  \mbox{longitudinal sub-model:  } & Y_{ij} = X'_{i1}\beta_1 + U_{0i} + U_{1i}t_{ij} + Z_{ij} \\
-  \mbox{hazard sub-model:  }& h_i(t) = h_0(t) \exp{\{ X'_{i2}\beta_2 + \gamma_0 U_{0i} + \gamma_1 U_{1i}t \}} \\
+  \mbox{longitudinal sub-model:  } & Y_{ij} = X_{i1}^\top \beta_1 + U_{0i} + U_{1i}t_{ij} + Z_{ij} \\
+  \mbox{hazard sub-model:  }& h_i(t) = h_0(t) \exp{\{ X_{i2}^\top \beta_2 + \gamma_0 U_{0i} + \gamma_1 U_{1i}t \}} \\
 \end{eqnarray*}
 
 The default in `joineR` is that `sepassoc = FALSE`, in which case a model with
@@ -711,10 +711,13 @@ summary(model.jointrandom.heart)
 
 # Acknowledgements
 
-The `joineR` package was funded by the UK Medical Research Council under a grant 
-with Principal Investigator Prof. Paula Williamson; Co-Investigators Prof. Peter
-J. Diggle and Prof. Robin Henderson; and Research Associates Dr Ruwanthi 
-Kolamunnage-Dona, Dr Peter Philipson, and Dr Ines Sousa.
+The `joineR` package was funded by the UK Medical Research Council (MRC) under a
+grant with Principal Investigator (PI) Prof. Paula Williamson; Co-Investigators
+(Co-Is) Prof. Peter J. Diggle and Prof. Robin Henderson; and Research Associates
+Dr Ruwanthi Kolamunnage-Dona, Dr Peter Philipson, and Dr Ines Sousa (Grant
+numbers G0400615). Updates to it were made under a separate MRC grant with PI Dr
+Ruwanthi Kolamunnage-Dona, Co-Is Dr Peter Philipson and Dr Andrea Jorgensen, and
+Research Associate Dr Graeme L. Hickey (Grant number MR/M013227/1).
 
 
 # References
@@ -739,10 +742,10 @@ markers for survival. *Biostatistics*, 2002; **3**: 33-50.
 
 6. Lim E, Ali A, Theodorou P, Sousa I, Ashrafian H, Chamageorgakis AD, et al. A
 longitudinal study of the profile and predictors of left ventricular mass
-regression after stentless aortic valve replacement. *Annals of Thoracic
-Surgery*, 2008; **85**: 2026-2029.
+regression after stentless aortic valve replacement. *Annals of Thoracic Surgery*,
+2008; **85**: 2026-2029.
 
 7. Wulfsohn MS, Tsiatis AA. A joint model for survival and longitudinal data
-measured with error. *Biometrics*, 1997; **53**: 330-339
+measured with error. *Biometrics*, 1997; **53**: 330-339.
 
 

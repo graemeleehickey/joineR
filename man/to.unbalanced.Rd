@@ -30,11 +30,10 @@ A data frame with longitudinal data in the unbalanced format. The
   row has data on each subject observation.
 }
 \description{
-Transforms a longitudinal data set in the balanced format to the unbalanced
-format.
+Transforms a longitudinal data set in the balanced format to the
+  unbalanced format.
 }
 \examples{
-
 simul <- data.frame(num = 1:10,
                     Y1.1 = rnorm(10), Y1.2 = rnorm(10),
                     Y2.1 = rnorm(10), Y2.2 = rnorm(10), 
@@ -42,12 +41,11 @@ simul <- data.frame(num = 1:10,
 to.unbalanced(simul, id.col = 1, times = c(1, 2), Y.col = 2:5,
               other.col = 6)
 }
-\author{
-Ines Sousa (\email{isousa@uminho.pt})
-}
 \seealso{
 \code{\link{to.balanced}}.
 }
+\author{
+Ines Sousa (\email{isousa@uminho.pt})
+}
 \keyword{data}
 \keyword{manip}
-

@@ -4,7 +4,7 @@ getD <- function(q, arg) {
   for (i in 1:q) {
     D[i, ] <- arg^(i - 1)
   }
-  return(D)
+  return(D) # calculate the Z-design matrix
 }
 
 
