@@ -29,7 +29,7 @@ Authors@R: c(
         comment = "Grant numbers: G0400615 and MR/M013227/1")
     )
 Encoding: UTF-8    
-Maintainer: Graeme L. Hickey <graeme.hickey@liverpool.ac.uk>
+Maintainer: Pete Philipson <pete.philipson@northumbria.ac.uk>
 Description: Analysis of repeated measurements and time-to-event data via random
     effects joint models. Fits the joint models proposed by Henderson and colleagues
     <doi:10.1093/biostatistics/1.4.465> (single event time) and by Williamson and
