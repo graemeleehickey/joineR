@@ -41,7 +41,7 @@ Description: Analysis of repeated measurements and time-to-event data via random
     and the variogram are also included. This project is funded by the Medical 
     Research Council (Grant numbers G0400615 and MR/M013227/1).
 License: GPL-3 | file LICENSE
-URL: https://github.com/graemeleehickey/joineR/
+URL: https://github.com/petephilipson/joineR/
 BugReports: https://github.com/graemeleehickey/joineR/issues
 LazyData: true
 ByteCompile: true
