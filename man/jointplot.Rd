@@ -4,8 +4,23 @@
 \alias{jointplot}
 \title{Joint plot of longitudinal and survival data}
 \usage{
-jointplot(object, Y.col, Cens.col, lag, split = TRUE, col1, col2, xlab, ylab,
-  gp1lab, gp2lab, smooth = 2/3, mean.profile = FALSE, mcol1, mcol2)
+jointplot(
+  object,
+  Y.col,
+  Cens.col,
+  lag,
+  split = TRUE,
+  col1,
+  col2,
+  xlab,
+  ylab,
+  gp1lab,
+  gp2lab,
+  smooth = 2/3,
+  mean.profile = FALSE,
+  mcol1,
+  mcol2
+)
 }
 \arguments{
 \item{object}{an object of class \code{jointdata}.}

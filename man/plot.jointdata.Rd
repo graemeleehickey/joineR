@@ -4,8 +4,7 @@
 \alias{plot.jointdata}
 \title{Plot longitudinal data}
 \usage{
-\method{plot}{jointdata}(x, Y.col, type, xlab, xlim = NULL, ylim = NULL,
-  main = NA, pty, ...)
+\method{plot}{jointdata}(x, Y.col, type, xlab, xlim = NULL, ylim = NULL, main = NA, pty, ...)
 }
 \arguments{
 \item{x}{object of class \code{jointdata}.}

@@ -4,8 +4,7 @@
 \alias{plot.vargm}
 \title{Plots the empirical variogram for longitudinal data}
 \usage{
-\method{plot}{vargm}(x, smooth = FALSE, bdw = NULL, follow.time = NULL,
-  points = TRUE, ...)
+\method{plot}{vargm}(x, smooth = FALSE, bdw = NULL, follow.time = NULL, points = TRUE, ...)
 }
 \arguments{
 \item{x}{object of class \code{vargm} obtained by using function. 

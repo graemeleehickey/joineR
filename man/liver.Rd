@@ -4,7 +4,7 @@
 \name{liver}
 \alias{liver}
 \title{Liver cirrhosis drug trial data}
-\format{A data frame in the unbalanced format with longitudinal observations 
+\format{A \code{data.frame} in the unbalanced format with longitudinal observations 
   from 488 subjects. The columns are:
   
   \describe{

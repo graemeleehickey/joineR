@@ -11,7 +11,7 @@
 #'   course of the trial.
 #'   
 #' @usage data(liver)
-#' @format A data frame in the unbalanced format with longitudinal observations 
+#' @format A \code{data.frame} in the unbalanced format with longitudinal observations 
 #'   from 488 subjects. The columns are:
 #'   
 #'   \describe{
