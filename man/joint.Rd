@@ -4,9 +4,20 @@
 \alias{joint}
 \title{Fit joint model for survival and longitudinal data measured with error}
 \usage{
-joint(data, long.formula, surv.formula, model = c("intslope", "int", "quad"),
-  sepassoc = FALSE, longsep = FALSE, survsep = FALSE, gpt, lgpt, max.it,
-  tol, verbose = FALSE)
+joint(
+  data,
+  long.formula,
+  surv.formula,
+  model = c("intslope", "int", "quad"),
+  sepassoc = FALSE,
+  longsep = FALSE,
+  survsep = FALSE,
+  gpt,
+  lgpt,
+  max.it,
+  tol,
+  verbose = FALSE
+)
 }
 \arguments{
 \item{data}{an object of class \code{jointdata} containing the variables

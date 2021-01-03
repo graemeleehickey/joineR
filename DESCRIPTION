@@ -1,9 +1,9 @@
 Package: joineR
 Type: Package
 Title: Joint Modelling of Repeated Measurements and Time-to-Event Data
-Version: 1.2.4
+Version: 1.2.5
 Authors@R: c(
-    person("Pete", "Philipson", email = "pete.philipson@northumbria.ac.uk", 
+    person("Pete", "Philipson", email = "peter.philipson1@newcastle.ac.uk", 
         role = c("aut", "cre"),
         comment = c(ORCID = "0000-0001-7846-0208")),
     person("Ines", "Sousa", email = "isousa@mct.uminho.pt",
@@ -28,7 +28,7 @@ Authors@R: c(
     person("Medical Research Council", role = "fnd",
         comment = "Grant numbers: G0400615 and MR/M013227/1")
     )
-Encoding: UTF-8    
+Encoding: UTF-8
 Description: Analysis of repeated measurements and time-to-event data via random
     effects joint models. Fits the joint models proposed by Henderson and colleagues
     <doi:10.1093/biostatistics/1.4.465> (single event time) and by Williamson and
@@ -42,11 +42,11 @@ Description: Analysis of repeated measurements and time-to-event data via random
     Research Council (Grant numbers G0400615 and MR/M013227/1).
 License: GPL-3 | file LICENSE
 URL: https://github.com/petephilipson/joineR/
-BugReports: https://github.com/graemeleehickey/joineR/issues
+BugReports: https://github.com/petephilipson/joineR/issues
 LazyData: true
 ByteCompile: true
 Depends:
-    R (>= 3.1),
+    R (>= 3.6),
     survival
 Imports:
     graphics,
@@ -62,4 +62,4 @@ Suggests:
     testthat,
     covr
 VignetteBuilder: knitr
-RoxygenNote: 6.0.1
+#RoxygenNote: 7.0.2

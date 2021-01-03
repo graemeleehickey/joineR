@@ -4,8 +4,13 @@
 \alias{jointdata}
 \title{Creates an object of class \code{jointdata}}
 \usage{
-jointdata(longitudinal = NA, survival = NA, baseline = NA,
-  id.col = "ID", time.col = NA)
+jointdata(
+  longitudinal = NA,
+  survival = NA,
+  baseline = NA,
+  id.col = "ID",
+  time.col = NA
+)
 }
 \arguments{
 \item{longitudinal}{a data frame or matrix in the unbalanced format (one row 

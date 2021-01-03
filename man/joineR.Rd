@@ -3,7 +3,6 @@
 \docType{package}
 \name{joineR}
 \alias{joineR}
-\alias{joineR-package}
 \title{joineR}
 \description{
 The joineR package implements methods for analyzing data from

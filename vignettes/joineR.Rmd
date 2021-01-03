@@ -2,7 +2,7 @@
 title: "joineR"
 author: "Pete Philipson, Ines Sousa, Graeme L. Hickey (edited), Peter J. Diggle"
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
+output: rmarkdown::html_document
 vignette: >
   %\VignetteIndexEntry{joineR}
   %\VignetteEngine{knitr::rmarkdown}
@@ -85,8 +85,8 @@ The data refer to 256 patients and are stored in the *unbalanced* format, which
 is convenient here because measurement times were unique to each subject. The 
 data are stored as a single `R` object, `heart.valve`, which is a data-frame of 
 dimension `r nrow(heart.valve)` by `r ncol(heart.valve)`. The average number of 
-repeated measurements per subject is therefore `r nrow(heart.valve)/length(unique(heart.valve$id))`. As with any unbalanced
-data-set, values of time-constant variables are repeated over all rows that
+repeated measurements per subject is therefore `r nrow(heart.valve)/length(unique(heart.valve$id))`. 
+As with any unbalanced data-set, values of time-constant variables are repeated over all rows that
 refer to the same subject. The dimensionality of the dataset can be confirmed by
 a call to the `dim()` function, whilst the names of the 25 variables can be
 listed by a call to the `names()` function:
@@ -285,7 +285,7 @@ The `UniqueVariables` function provides a convenient way to extract the
 time-to-event and base line covariate data from an unbalanced data-frame, as in 
 the following example.
  
-```{r liver_jm, cache=TRUE}
+```{r liver_jm}
 liver.long <- liver[, 1:3]
 liver.surv <- UniqueVariables(liver, var.col = c("survival", "cens"), 
                               id.col = "id")
@@ -302,7 +302,7 @@ liver.jd <- jointdata(longitudinal = liver.long,
 As a second example,  we create a `jointdata` object from the single data-frame
 `heart.valve` as follows:
 
-```{r heart.valve_jd, cache=TRUE}
+```{r heart.valve_jd}
 heart.surv <- UniqueVariables(heart.valve, var.col = c("fuyrs", "status"),
                               id.col = "num")
 heart.long <- heart.valve[, c(1, 4, 5, 7, 8, 9, 10, 11)]
@@ -466,7 +466,7 @@ the variogram cloud. This function has an associated method for the `plot`
 function that can display the variogram cloud, the sample variogram or both, as
 required.
 
-```{r mental_variogram, cache=TRUE}
+```{r mental_variogram}
 vgm <- variogram(indv = mental.unbalanced[, 1], 
                  time = mental.unbalanced[, 2], 
                  Y = mental.unbalanced[, 3])
@@ -553,7 +553,7 @@ effect model to the `mental` data-set with the sub-models:
 
 To do this, we first create a `jointdata` object for these data, using the unbalanced form of the data defined earlier.
 
-```{r mental_jm1, cache=TRUE}
+```{r mental_jm1}
 mental.long <- mental.unbalanced[, 1:3]
 mental.surv <- UniqueVariables(mental.unbalanced, 
                                6:7, id.col = 1)
@@ -570,7 +570,7 @@ The following command then fits the model. Note that in the function call, the
 `Y ~ 1` and `Surv(surv.time, cens.ind) ~ treat` refer to the *names* of
 columns in the relevant data-frames.
 
-```{r mental_jm2, cache=TRUE}
+```{r mental_jm2}
 model.jointrandom <- joint(mental.jd, Y ~ 1 + time + treat, 
                            Surv(surv.time, cens.ind) ~ treat,
                            model = "int")
@@ -606,7 +606,7 @@ bootstrap samples, this function can be slow! The output given is for 100
 bootstrap samples, the confidence limits default to zero unless at least 100 
 bootstrap samples are taken.
 
-```{r mental_jm_boot, cache=TRUE}
+```{r mental_jm_boot}
 model.jointrandom.se <- jointSE(model.jointrandom, n.boot = 100)
 model.jointrandom.se
 ```
@@ -681,7 +681,7 @@ subjects in this data set is reduced, because some patients only provided
 measurements on `lvmi` (left ventricular mass index) and `ef` (ejection
 fraction).
    
-```{r heart.valve_jointdata, cache=TRUE}
+```{r heart.valve_jointdata}
 heart.grad <- heart.valve[!is.na(heart.valve$grad), ]
 heart.grad.long <- heart.grad[, c(1, 4, 7)]
 heart.grad.surv <- UniqueVariables(heart.grad,
@@ -700,7 +700,7 @@ heart.grad.jd <- jointdata(longitudinal = heart.grad.long,
 We then use the function `joint` with argument `model = "int"` to fit a random
 intercept model to these data and summaries the result.
  
-```{r heart.valve_jm, cache=TRUE}
+```{r heart.valve_jm}
 model.jointrandom.heart <- joint(heart.grad.jd,
                                  grad ~ age + sex,
                                  Surv(fuyrs, status) ~ age + sex,

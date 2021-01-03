@@ -32,11 +32,12 @@
   previous infection.}
   
   \item{\code{AZT}}{factor: AZT intolerance/failure indicator. Coded as 
-  \code{intolerance} or \code{failure}.} }}
+  \code{intolerance} or \code{failure}.} 
+  }}
 \source{
 Guo X, Carlin B. Separate and joint modeling of longitudinal and
-  event time data using standard computer packages. \emph{The American
-  Statistician}. 2004; \strong{58}: 16–24.
+  event time data using standard computer packages. 
+  \emph{The American Statistician}. 2004; \strong{58}: 16-24
 }
 \usage{
 data(aids)
@@ -49,10 +50,10 @@ This dataset describes a randomized clinical trial (Goldman et
   intolerant or failing zidovudine (AZT) therapy.
 }
 \references{
-Goldman A, Carlin B, Crane L, Launer C, Korvick J, Deyton L, Abrams K.
-Response of CD4+ and clinical consequences to treatment using ddI or ddC in
+Goldman A, Carlin B, Crane L, Launer C, Korvick J, Deyton L, Abrams D.
+Response of CD4 and clinical consequences to treatment using ddI or ddC in
 patients with advanced HIV infection. \emph{Journal of Acquired Immune
-Deficiency Syndromes and Human Retrovirology}. 1996; \strong{11}: 161–169.
+Deficiency Syndromes and Human Retrovirology}. 1996; \strong{11}: 161-169
 URL: \url{http://www.biostat.umn.edu/~brad/data.html}.
 }
 \seealso{

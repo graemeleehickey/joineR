@@ -4,11 +4,24 @@
 \alias{simjoint}
 \title{Simulate data from a joint model}
 \usage{
-simjoint(n = 500, model = c("intslope", "int", "quad"), sepassoc = FALSE,
-  ntms = 5, b1 = c(1, 1, 1, 1), b2 = c(1, 1), gamma = c(1, 0.1), sigu,
-  vare = 0.01, theta0 = -3, theta1 = 1, censoring = TRUE,
-  censlam = exp(-3), truncation = FALSE, trunctime = max(ntms),
-  gridstep = 0.01)
+simjoint(
+  n = 500,
+  model = c("intslope", "int", "quad"),
+  sepassoc = FALSE,
+  ntms = 5,
+  b1 = c(1, 1, 1, 1),
+  b2 = c(1, 1),
+  gamma = c(1, 0.1),
+  sigu,
+  vare = 0.01,
+  theta0 = -3,
+  theta1 = 1,
+  censoring = TRUE,
+  censlam = exp(-3),
+  truncation = FALSE,
+  trunctime = max(ntms),
+  gridstep = 0.01
+)
 }
 \arguments{
 \item{n}{the number of subjects to simulate data for.}
