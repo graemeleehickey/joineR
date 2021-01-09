@@ -53,6 +53,6 @@ plot(heart.jd, Y.col = "grad", col = "grey")
 \code{\link[graphics]{lines}} and \code{\link[graphics]{points}}.
 }
 \author{
-Ines Sousa (\email{isousa@math.uminho.pt})
+Ines Sousa
 }
 \keyword{dplot}

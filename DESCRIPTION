@@ -1,7 +1,7 @@
 Package: joineR
 Type: Package
 Title: Joint Modelling of Repeated Measurements and Time-to-Event Data
-Version: 1.2.5
+Version: 1.2.6
 Authors@R: c(
     person("Pete", "Philipson", email = "peter.philipson1@newcastle.ac.uk", 
         role = c("aut", "cre"),
@@ -20,7 +20,7 @@ Authors@R: c(
         comment = c(ORCID = "0000-0003-3886-6208")),
     person("Robin", "Henderson", email = "robin.henderson@ncl.ac.uk",
         role = "aut"),
-    person("Graeme L.", "Hickey", email = "graeme.hickey@liverpool.ac.uk", 
+    person("Graeme L.", "Hickey", email = "graemeleehickey@gmail.com", 
         role = "aut",
         comment = c(ORCID = "0000-0002-4989-0054")),
     person("Maria", "Sudell", email = "m.e.sudell@liverpool.ac.uk",
@@ -62,4 +62,4 @@ Suggests:
     testthat,
     covr
 VignetteBuilder: knitr
-#RoxygenNote: 7.0.2
+RoxygenNote: 7.1.1

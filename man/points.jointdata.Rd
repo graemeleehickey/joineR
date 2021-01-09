@@ -46,6 +46,6 @@ plot(heart.jd.1, Y.col = "grad", type = "p")
 points(heart.jd.2, Y.col = "grad", col = "blue", pch = 20)
 }
 \author{
-Ines Sousa (\email{isousa@math.uminho.pt})
+Ines Sousa
 }
 \keyword{aplot}

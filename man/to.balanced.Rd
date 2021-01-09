@@ -48,7 +48,7 @@ simul <- to.balanced(simul, id.col = "num", time.col = "time",
 \code{\link{to.unbalanced}}.
 }
 \author{
-Ines Sousa (\email{isousa@math.uminho.pt})
+Ines Sousa
 }
 \keyword{data}
 \keyword{manip}

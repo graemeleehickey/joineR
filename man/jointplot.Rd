@@ -118,6 +118,6 @@ measured with error. \emph{Biometrics.} 1997; \strong{53(1)}: 330-339.
   \code{\link{jointdata}}.
 }
 \author{
-Pete Philipson (\email{pete.philipson@northumbria.ac.uk})
+Pete Philipson
 }
 \keyword{dplot}

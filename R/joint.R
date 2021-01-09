@@ -118,7 +118,7 @@
 #'   default, as this has been adequate for many datasets. However, for certain
 #'   datasets and models, this might be too small.
 #'
-#' @author Pete Philipson (\email{pete.philipson@@northumbria.ac.uk})
+#' @author Pete Philipson
 #' @keywords models survival
 #' @seealso \code{\link[nlme]{lme}}, \code{\link[survival]{coxph}},
 #'   \code{\link{jointdata}}, \code{\link{jointplot}}.

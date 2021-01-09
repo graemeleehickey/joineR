@@ -68,7 +68,7 @@ heart.valve.jd <- jointdata(survival = heart.surv,
                             time.col = "time")
 }
 \author{
-Ines Sousa (\email{isousa@math.uminho.pt})
+Ines Sousa
 }
 \keyword{data}
 \keyword{list}

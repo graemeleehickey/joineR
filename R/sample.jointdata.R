@@ -8,7 +8,7 @@
 #' @param replace should sampling be with replacement? Default is \code{replace
 #'   = TRUE}.
 #'   
-#' @author Ines Sousa (\email{isousa@@math.uminho.pt})
+#' @author Ines Sousa
 #' @seealso \code{\link{sample}}, \code{\link{jointdata}}, 
 #'   \code{\link{UniqueVariables}}.
 #' @keywords data

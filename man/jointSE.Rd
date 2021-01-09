@@ -83,9 +83,7 @@ Raton, FL: Chapman & Hall/CRC.
   \code{\link{joint}}, \code{\link{jointdata}}.
 }
 \author{
-Ruwanthi Kolamunnage-Dona 
-  (\email{ruwanthi.kolamunnage-dona@liverpool.ac.uk}) and Pete Philipson 
-  (\email{pete.philipson@northumbria.ac.uk})
+Ruwanthi Kolamunnage-Dona and Pete Philipson
 }
 \keyword{htest}
 \keyword{models}

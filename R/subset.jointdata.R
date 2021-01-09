@@ -8,7 +8,7 @@
 #'   subset. This must be a unique vector of patient identifiers.
 #' @param ... further arguments to be passed to or from other methods.
 #'   
-#' @author Ines Sousa (\email{isousa@@math.uminho.pt})
+#' @author Ines Sousa
 #' @keywords data
 #'   
 #' @return An object of class \code{jointdata}, with data only on a subset of

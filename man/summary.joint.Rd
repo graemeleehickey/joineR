@@ -51,6 +51,6 @@ fit <- joint(data = heart.valve.jd,
 summary(fit)
 }
 \author{
-Pete Philipson (\email{pete.philipson@northmbria.ac.uk})
+Pete Philipson
 }
 \keyword{methods}

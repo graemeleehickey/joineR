@@ -30,7 +30,7 @@
 #'   input, for the baseline (non-time dependent) covariates. The subject
 #'   identification and time measurement column names are necessary.
 #'   
-#' @author Ines Sousa (\email{isousa@@math.uminho.pt})
+#' @author Ines Sousa
 #' @keywords survival data list
 #'   
 #' @return A list of length six. The first element is the vector of subjects

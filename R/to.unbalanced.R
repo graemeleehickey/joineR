@@ -10,7 +10,7 @@
 #'   observed. This is the study design time points in a balanced data set.
 #' @inheritParams to.balanced
 #'   
-#' @author Ines Sousa (\email{isousa@@uminho.pt})
+#' @author Ines Sousa
 #' @seealso \code{\link{to.balanced}}.
 #' @keywords data manip
 #'   

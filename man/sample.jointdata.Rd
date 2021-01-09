@@ -37,6 +37,6 @@ sample.jointdata(heart.valve.jd, size = 10)
   \code{\link{UniqueVariables}}.
 }
 \author{
-Ines Sousa (\email{isousa@math.uminho.pt})
+Ines Sousa
 }
 \keyword{data}

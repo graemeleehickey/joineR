@@ -4,7 +4,9 @@
 \name{joint.object}
 \alias{joint.object}
 \title{Fitted \code{joint} object}
-\format{An object of class \code{NULL} of length 0.}
+\format{
+An object of class \code{NULL} of length 0.
+}
 \usage{
 joint.object
 }
@@ -71,6 +73,6 @@ An object returned by the \code{joint} function, inheriting from
 \code{\link{joint}}.
 }
 \author{
-Graeme L. Hickey (\email{graeme.hickey@liverpool.ac.uk})
+Graeme L. Hickey
 }
 \keyword{survival}

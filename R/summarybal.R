@@ -19,7 +19,7 @@
 #'   \code{na.rm = FALSE}.
 #' @param ... further arguments for the summary.
 #'   
-#' @author Ines Sousa (\email{isousa@@math.uminho.pt})
+#' @author Ines Sousa
 #' @seealso \code{\link{to.balanced}}.
 #' @keywords methods
 #'   

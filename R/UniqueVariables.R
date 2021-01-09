@@ -18,7 +18,7 @@
 #'   original data frame has survival data, this can also be used to extract the
 #'   survival information from the original data set.
 #'   
-#' @author Ines Sousa (\email{isousa@@uminho.pt})
+#' @author Ines Sousa
 #' @keywords data manip
 #'   
 #' @return A data frame with patient identification and covariates selected.

@@ -9,7 +9,7 @@
 #'   standard deviations? Defaults to \code{variance = TRUE}.
 #' @param ... further arguments for the summary.
 #'
-#' @author Pete Philipson (\email{pete.philipson@@northmbria.ac.uk})
+#' @author Pete Philipson
 #' @keywords methods
 #'
 #' @return An object inheriting from class \code{summary.joint} with all

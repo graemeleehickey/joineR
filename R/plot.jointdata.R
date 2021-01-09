@@ -19,7 +19,7 @@
 #'   \code{\link[graphics]{par}} for details.
 #' @param ... other graphical arguments; see \code{\link[graphics]{plot}}.
 #'   
-#' @author Ines Sousa (\email{isousa@@math.uminho.pt})
+#' @author Ines Sousa
 #' @keywords dplot
 #' @seealso \code{\link[graphics]{lines}} and \code{\link[graphics]{points}}.
 #'   
