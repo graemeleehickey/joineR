@@ -3,8 +3,10 @@
 
 # joineR <img src="man/figures/hex.png" width = "175" height = "200" align="right" />
 
-[![Travis-CI Build
-Status](https://travis-ci.org/graemeleehickey/joineR.svg?branch=master)](https://travis-ci.org/graemeleehickey/joineR)
+<!-- badges: start -->
+
+[![R build
+status](https://github.com/graemeleehickey/joineR/workflows/R-CMD-check/badge.svg)](https://github.com/graemeleehickey/joineR/actions)
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/graemeleehickey/joineR?branch=master&svg=true)](https://ci.appveyor.com/project/graemeleehickey/joineR)
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/joineR)](https://CRAN.R-project.org/package=joineR)
@@ -14,6 +16,7 @@ Status](https://ci.appveyor.com/api/projects/status/github/graemeleehickey/joine
 [![Research software
 impact](http://depsy.org/api/package/cran/joineR/badge.svg)](http://depsy.org/package/r/joineR)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1167708.svg)](https://doi.org/10.5281/zenodo.1167708)
+<!-- badges: end -->
 
 The `joineR` package implements methods for analyzing data from
 longitudinal studies in which the response from each subject consists of
