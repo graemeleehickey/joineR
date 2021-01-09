@@ -4,7 +4,8 @@
 \name{aids}
 \alias{aids}
 \title{AIDS drug trial data}
-\format{A \code{data.frame} in the unbalanced format with 1405 longitudinal 
+\format{
+A \code{data.frame} in the unbalanced format with 1405 longitudinal 
   observations from 467 subjects. The columns are:
   
   \describe{
@@ -33,7 +34,8 @@
   
   \item{\code{AZT}}{factor: AZT intolerance/failure indicator. Coded as 
   \code{intolerance} or \code{failure}.} 
-  }}
+  }
+}
 \source{
 Guo X, Carlin B. Separate and joint modeling of longitudinal and
   event time data using standard computer packages. 

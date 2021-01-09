@@ -48,6 +48,6 @@ Other functions are useful to be used with this such as
   \code{\link{plot}} and \code{\link{points}}.
 }
 \author{
-Ines Sousa (\email{isousa@math.uminho.pt})
+Ines Sousa
 }
 \keyword{aplot}

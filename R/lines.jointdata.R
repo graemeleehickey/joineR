@@ -7,7 +7,7 @@
 #' 
 #' @inheritParams plot.jointdata
 #'   
-#' @author Ines Sousa (\email{isousa@@math.uminho.pt})
+#' @author Ines Sousa
 #' @keywords aplot
 #' @seealso Other functions are useful to be used with this such as
 #'   \code{\link{plot}} and \code{\link{points}}.

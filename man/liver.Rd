@@ -4,7 +4,8 @@
 \name{liver}
 \alias{liver}
 \title{Liver cirrhosis drug trial data}
-\format{A \code{data.frame} in the unbalanced format with longitudinal observations 
+\format{
+A \code{data.frame} in the unbalanced format with longitudinal observations 
   from 488 subjects. The columns are:
   
   \describe{
@@ -23,7 +24,8 @@
   \item{\code{cens}}{integer: censoring indicator. Coded as \code{1 = }died; 
   \code{0 = }censored.}
   
-  }}
+  }
+}
 \source{
 Skrondal A, Rabe-Hesketh S. \emph{Generalized Latent Variable
   Modeling: Multilevel, Longitudinal and Structural Equation Models.} Chapman

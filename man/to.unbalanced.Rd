@@ -45,7 +45,7 @@ to.unbalanced(simul, id.col = 1, times = c(1, 2), Y.col = 2:5,
 \code{\link{to.balanced}}.
 }
 \author{
-Ines Sousa (\email{isousa@uminho.pt})
+Ines Sousa
 }
 \keyword{data}
 \keyword{manip}

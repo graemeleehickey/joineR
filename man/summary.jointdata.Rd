@@ -48,6 +48,6 @@ summary(heart.valve.jd)
 \code{\link{jointdata}}, \code{\link{UniqueVariables}}.
 }
 \author{
-Ines Sousa (\email{isousa@math.uminho.pt})
+Ines Sousa
 }
 \keyword{methods}

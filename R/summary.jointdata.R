@@ -5,7 +5,7 @@
 #' 
 #' @inheritParams summary.joint
 #'   
-#' @author Ines Sousa (\email{isousa@@math.uminho.pt})
+#' @author Ines Sousa
 #' @seealso \code{\link{jointdata}}, \code{\link{UniqueVariables}}.
 #' @keywords methods
 #'   

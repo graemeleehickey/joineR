@@ -7,7 +7,7 @@
 #' 
 #' @inheritParams plot.jointdata
 #'   
-#' @author Ines Sousa (\email{isousa@@math.uminho.pt})
+#' @author Ines Sousa
 #' @keywords aplot
 #'   
 #' @return A graphical device with a plot for longitudinal data. Other functions

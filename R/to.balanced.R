@@ -15,7 +15,7 @@
 #'   covariates, and/or other subject level data, as for example, survival data.
 #'   Default does not include \code{other.col}.
 #'   
-#' @author Ines Sousa (\email{isousa@@math.uminho.pt})
+#' @author Ines Sousa
 #' @seealso \code{\link{to.unbalanced}}.
 #' @keywords data manip
 #'   

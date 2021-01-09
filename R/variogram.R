@@ -20,7 +20,7 @@
 #' @note There is a function \code{\link{plot.vargm}} which should be used to 
 #'   plot the empirical variogram.
 #'   
-#' @author Ines Sousa (\email{isousa@@math.uminho.pt})
+#' @author Ines Sousa
 #' @keywords smooth models
 #'   
 #' @return An object of class \code{vargm} and \code{list} with two elements.

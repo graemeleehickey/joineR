@@ -91,7 +91,7 @@
 #'
 #'   }
 #'
-#' @author Pete Philipson (\email{pete.philipson@northumbria.ac.uk})
+#' @author Pete Philipson
 #' @keywords datagen survival
 #'
 #' @references

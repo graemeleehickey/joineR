@@ -49,7 +49,7 @@
 #' @note If more than one cause of failure is present (i.e. competing risks
 #'   data), then all failures are pooled together into a single failure type.
 #'   
-#' @author Pete Philipson (\email{pete.philipson@@northumbria.ac.uk})
+#' @author Pete Philipson
 #' @keywords dplot
 #' @seealso \code{\link[lattice]{xyplot}}, \code{\link{joint}}, 
 #'   \code{\link{jointdata}}.

@@ -8,7 +8,7 @@ Status](https://travis-ci.org/graemeleehickey/joineR.svg?branch=master)](https:/
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/graemeleehickey/joineR?branch=master&svg=true)](https://ci.appveyor.com/project/graemeleehickey/joineR)
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/joineR)](https://CRAN.R-project.org/package=joineR)
-[![](http://cranlogs.r-pkg.org/badges/joineR)](https://CRAN.R-project.org/package=joineR)
+[![](https://cranlogs.r-pkg.org/badges/joineR)](https://CRAN.R-project.org/package=joineR)
 [![](https://cranlogs.r-pkg.org/badges/grand-total/joineR)](https://CRAN.R-project.org/package=joineR)
 [![codecov](https://codecov.io/gh/graemeleehickey/joineR/branch/master/graph/badge.svg)](https://codecov.io/gh/graemeleehickey/joineR)
 [![Research software
@@ -25,14 +25,14 @@ outcome is a Cox proportional hazards model with log-Gaussian frailty
 (Cox, 1972). Stochastic dependence is captured by allowing the Gaussian
 random effects of the linear model to be correlated with the frailty
 term of the Cox proportional hazards model. The methodology used to fit
-the model is described in Henderson et al. (2002) and Wulfsohn and
+the model is described in Henderson et al. (2002) and Wulfsohn and
 Tsiatis (1997).
 
 The `joineR` package also allows competing risks data to be jointly
 modelled through a cause-specific hazards model. The importance of
-accounting for competing risks is detailed in Williamson et al.
-(2007a,b). The methodology used to fit this model is described in
-Williamson et al. (2008).
+accounting for competing risks is detailed in Williamson et
+al. (2007a,b). The methodology used to fit this model is described in
+Williamson et al. (2008).
 
 # Example
 

@@ -36,6 +36,6 @@ take <- heart.jd$survival$num[heart.jd$survival$status == 0]
 heart.jd.cens <- subset(heart.jd, take)
 }
 \author{
-Ines Sousa (\email{isousa@math.uminho.pt})
+Ines Sousa
 }
 \keyword{data}

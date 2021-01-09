@@ -4,7 +4,7 @@
 #'   class \code{joint} and representing a fitted joint model for longitudinal
 #'   and time-to-event (or competing risks) data.
 #'   
-#' @author Graeme L. Hickey (\email{graeme.hickey@@liverpool.ac.uk})
+#' @author Graeme L. Hickey
 #' @keywords survival
 #' @seealso \code{\link{joint}}.
 #' @return A list with the following components. \describe{

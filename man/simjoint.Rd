@@ -158,7 +158,7 @@ measurements and event time data. \emph{Biostatistics.} 2000; \strong{1(4)}:
 465-480.
 }
 \author{
-Pete Philipson (\email{pete.philipson@northumbria.ac.uk})
+Pete Philipson
 }
 \keyword{datagen}
 \keyword{survival}

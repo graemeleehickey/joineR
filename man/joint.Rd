@@ -222,7 +222,7 @@ longitudinal and competing risks data. \emph{Stat Med.} 2008; \strong{27}:
   \code{\link{jointdata}}, \code{\link{jointplot}}.
 }
 \author{
-Pete Philipson (\email{pete.philipson@northumbria.ac.uk})
+Pete Philipson
 }
 \keyword{models}
 \keyword{survival}

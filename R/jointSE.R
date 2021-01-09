@@ -23,9 +23,7 @@
 #'   samples are needed for estimating a standard error. The number of bootstrap
 #'   samples needed for accurate confidence intervals can be as large as 1000.
 #'   
-#' @author Ruwanthi Kolamunnage-Dona 
-#'   (\email{ruwanthi.kolamunnage-dona@@liverpool.ac.uk}) and Pete Philipson 
-#'   (\email{pete.philipson@@northumbria.ac.uk})
+#' @author Ruwanthi Kolamunnage-Dona and Pete Philipson
 #' @keywords models survival htest
 #' @seealso \code{\link[nlme]{lme}}, \code{\link[survival]{coxph}}, 
 #'   \code{\link{joint}}, \code{\link{jointdata}}.

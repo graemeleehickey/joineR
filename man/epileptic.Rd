@@ -4,7 +4,8 @@
 \name{epileptic}
 \alias{epileptic}
 \title{Dose calibration of anti-epileptic drugs data}
-\format{This is a data frame in the unbalanced format, that is, with one row 
+\format{
+This is a data frame in the unbalanced format, that is, with one row 
   per observation. The data consists of columns for patient identifier, time 
   of measurement, calibrated dose, baseline covariates, and survival data. 
   The column names are identified as follows:
@@ -45,7 +46,8 @@
   
   \item{\code{learn.dis}}{factor: learning disability.}
   
-  }}
+  }
+}
 \source{
 SANAD Trial Group, University of Liverpool
 }

@@ -4,7 +4,8 @@
 \name{mental}
 \alias{mental}
 \title{Mental health trial data}
-\format{A balanced data set with respect to the times at which observations 
+\format{
+A balanced data set with respect to the times at which observations 
   recorded. The data consists of the following variables on each patient:
   
   \describe{
@@ -42,7 +43,8 @@
   }completer or non-informative dropout; \code{1 = }potentially informative
   dropout.}
   
-  }}
+  }
+}
 \source{
 Peter J. Diggle (p.diggle@lancaster.ac.uk)
 }

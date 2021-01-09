@@ -43,7 +43,7 @@ heart.cov <- UniqueVariables(heart.valve,
                              id.col = "num")
 }
 \author{
-Ines Sousa (\email{isousa@uminho.pt})
+Ines Sousa
 }
 \keyword{data}
 \keyword{manip}
