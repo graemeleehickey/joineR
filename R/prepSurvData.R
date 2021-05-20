@@ -81,9 +81,9 @@ prepSurvData <- function(surv.formula, data, id, time.long) {
                                             scale = FALSE)
     }
     survdat2 <- cbind(survdat2, surv.frame[rss, ])
-    if (p2 > 0) {
-      names(survdat2)[(ncol(survdat) + 1):ncol(survdat2)] <- attr(surv.terms, "term.labels")
-    }
+    #if (p2 > 0) {
+    #  names(survdat2)[(ncol(survdat) + 1):ncol(survdat2)] <- attr(surv.terms, "term.labels")
+    #}
   }  
   
   out <- list(p2 = p2,
