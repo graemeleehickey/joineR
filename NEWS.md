@@ -1,3 +1,19 @@
+# joineR 1.2.6
+
+## Bugs
+
+* Fixed bug for covariates in competing risks models.
+
+## Housekeeping
+
+* Changed package maintainer to Graeme Hickey.
+
+# joineR 1.2.5
+
+## Bugs
+
+* Fixed error when ID column was not the first column in the dataset.
+
 # joineR 1.2.4
 
 ## Housekeeping

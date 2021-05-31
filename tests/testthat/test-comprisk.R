@@ -99,3 +99,26 @@ test_that("ordering of subjects with competing risks", {
   expect_identical(fit$haz.a, fit2$haz.a)
   expect_identical(fit$haz.b, fit2$haz.b)
 })
+
+
+test_that("competing risks model with covariates", {
+  # load data + fit model
+  data(epileptic)
+  longitudinal <- epileptic[, c(1:3)]
+  survival <- UniqueVariables(epileptic, c(4, 6), "id")
+  baseline <- UniqueVariables(epileptic, c("age", "gender"), "id")
+  data <- jointdata(longitudinal = longitudinal,
+                    survival = survival,
+                    baseline = baseline,
+                    id.col = "id",
+                    time.col = "time")
+  
+  fit_covar <- joint(data = data,
+                     long.formula = dose ~ time,
+                     surv.formula = Surv(with.time, with.status2) ~ gender+age,
+                     longsep = FALSE, survsep = FALSE,
+                     gpt = 3)
+  # tests
+  expect_is(fit_covar, "joint")
+  expect_true(fit_covar$convergence)
+})

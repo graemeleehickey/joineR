@@ -4,7 +4,7 @@ Title: Joint Modelling of Repeated Measurements and Time-to-Event Data
 Version: 1.2.6
 Authors@R: c(
     person("Pete", "Philipson", email = "peter.philipson1@newcastle.ac.uk", 
-        role = c("aut", "cre"),
+        role = "aut",
         comment = c(ORCID = "0000-0001-7846-0208")),
     person("Ines", "Sousa", email = "isousa@mct.uminho.pt",
         role = "aut",
@@ -21,7 +21,7 @@ Authors@R: c(
     person("Robin", "Henderson", email = "robin.henderson@ncl.ac.uk",
         role = "aut"),
     person("Graeme L.", "Hickey", email = "graemeleehickey@gmail.com", 
-        role = "aut",
+        role = c("aut", "cre"),
         comment = c(ORCID = "0000-0002-4989-0054")),
     person("Maria", "Sudell", email = "m.e.sudell@liverpool.ac.uk",
         role = "ctb"),
@@ -41,8 +41,8 @@ Description: Analysis of repeated measurements and time-to-event data via random
     and the variogram are also included. This project is funded by the Medical 
     Research Council (Grant numbers G0400615 and MR/M013227/1).
 License: GPL-3 | file LICENSE
-URL: https://github.com/petephilipson/joineR/
-BugReports: https://github.com/petephilipson/joineR/issues
+URL: https://github.com/graemeleehickey/joineR/
+BugReports: https://github.com/graemeleehickey/joineR/issues
 LazyData: true
 ByteCompile: true
 Depends:
