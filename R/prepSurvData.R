@@ -9,7 +9,7 @@ prepSurvData <- function(surv.formula, data, id, time.long) {
   } else if (ctest == 3) {
     compRisk <- TRUE
     message("Competing risks detected")
-  } else if (ctest == 2) {
+  } else if (ctest == 2 | ctest == 1) {
     compRisk <- FALSE
   }
   

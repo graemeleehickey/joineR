@@ -63,7 +63,7 @@ summary.jointdata <- function(object, ...) {
     out[[3]] <- paste0("No survival data available")
   } else {
     nn <- names(which(lapply(apply(object$survival, 2, unique), length) <= 3))
-    if (length(unique(object$survival[[nn]])) == 2) {
+    if (length(unique(object$survival[[nn]])) %in% c(1L, 2L)) {
       out[[3]] <- data.frame(c(sum(object$survival[[nn]]), 
                                sum(object$survival[[nn]] == 0)))
       row.names(out[[3]]) <- c("Number of subjects that fail:",

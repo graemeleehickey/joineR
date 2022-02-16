@@ -1,3 +1,9 @@
+# joineR 1.2.7
+
+## Bugs
+
+* Fixed bug for case when all subjects experience events.
+
 # joineR 1.2.6
 
 ## Bugs
