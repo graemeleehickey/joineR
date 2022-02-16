@@ -115,7 +115,7 @@ test_that("competing risks model with covariates", {
   
   fit_covar <- joint(data = data,
                      long.formula = dose ~ time,
-                     surv.formula = Surv(with.time, with.status2) ~ gender+age,
+                     surv.formula = Surv(with.time, with.status2) ~ gender + age,
                      longsep = FALSE, survsep = FALSE,
                      gpt = 3)
   # tests
