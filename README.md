@@ -9,10 +9,10 @@
 status](https://github.com/graemeleehickey/joineR/workflows/R-CMD-check/badge.svg)](https://github.com/graemeleehickey/joineR/actions)
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/graemeleehickey/joineR?branch=master&svg=true)](https://ci.appveyor.com/project/graemeleehickey/joineR)
-[![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/joineR)](https://CRAN.R-project.org/package=joineR)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/joineR)](https://CRAN.R-project.org/package=joineR)
 [![](https://cranlogs.r-pkg.org/badges/joineR)](https://CRAN.R-project.org/package=joineR)
 [![](https://cranlogs.r-pkg.org/badges/grand-total/joineR)](https://CRAN.R-project.org/package=joineR)
-[![codecov](https://codecov.io/gh/graemeleehickey/joineR/branch/master/graph/badge.svg)](https://codecov.io/gh/graemeleehickey/joineR)
+[![codecov](https://codecov.io/gh/graemeleehickey/joineR/branch/master/graph/badge.svg)](https://app.codecov.io/gh/graemeleehickey/joineR)
 [![Research software
 impact](http://depsy.org/api/package/cran/joineR/badge.svg)](http://depsy.org/package/r/joineR)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1167708.svg)](https://doi.org/10.5281/zenodo.1167708)
@@ -69,13 +69,11 @@ heart.valve.jd <- jointdata(longitudinal = heart.long,
 With the creation of the `heart.valve.jd` object, we can fit a joint
 model using the `joint` function. For this, we need 4 arguments:
 
-  - `jointdata`: the data object we created above
-  - `long.formula`: the linear mixed effects model formula for the
+-   `jointdata`: the data object we created above
+-   `long.formula`: the linear mixed effects model formula for the
     longitudinal sub-model
-  - `surv.formula`: the survival formula the survival sub-model
-  - `model`: the latent association structure.
-
-<!-- end list -->
+-   `surv.formula`: the survival formula the survival sub-model
+-   `model`: the latent association structure.
 
 ``` r
 fit <- joint(data = heart.valve.jd, 
@@ -91,24 +89,24 @@ summary(fit)
 #> 
 #> Random effects joint model
 #>  Data: heart.valve.jd 
-#>  Log-likelihood: -424.7062 
+#>  Log-likelihood: -424.7084 
 #> 
 #> Longitudinal sub-model fixed effects: log.lvmi ~ 1 + time + hs                              
-#> (Intercept)        4.993354492
-#> time              -0.006966354
-#> hsStentless valve  0.055452730
+#> (Intercept)        4.993080959
+#> time              -0.007045486
+#> hsStentless valve  0.055831384
 #> 
 #> Survival sub-model fixed effects: Surv(fuyrs, status) ~ hs                           
-#> hsStentless valve 0.7926683
+#> hsStentless valve 0.7934551
 #> 
 #> Latent association:                 
-#> gamma_0 0.8227578
+#> gamma_0 0.8211701
 #> 
 #> Variance components:
 #>         U_0         U_1    Residual 
-#> 0.113521695 0.001757578 0.037086210 
+#> 0.113577498 0.001766164 0.037071195 
 #> 
-#> Convergence at iteration: 13 
+#> Convergence at iteration: 9 
 #> 
 #> Number of observations: 988 
 #> Number of groups: 256

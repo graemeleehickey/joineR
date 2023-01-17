@@ -56,7 +56,7 @@ survstCR <- function(survdat, surv.formula, survdat2, event) {
   } else {
     surv.start <- survival::coxph(surv.formula, data = survdat2, x = TRUE)
   }
-  alpha.0 <- survival::basehaz(surv.start, FALSE)
+  alpha.0 <- survival::basehaz(surv.start, centered = FALSE)
   l <- length(alpha.0[, 2])
   haz <- vector("numeric", l)
   s.dist <- vector("numeric", l)

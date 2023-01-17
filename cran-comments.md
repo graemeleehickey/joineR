@@ -1,3 +1,7 @@
+## Notes
+
+Fixes bug due to update in `survival` package.
+
 ## Test environments
 
 * macOS-Big Sur (local R installation), R 4.1.2
@@ -14,9 +18,5 @@
 
 ## Reverse dependencies
 
-* `joineRML` has a Reverse Suggests, but does not cause any problems.
-* `joineRmeta` is not affected by the package correction.
-
-## Other notes
-
-Graeme Hickey has taken over as package maintainer from Pete Philipson.
+* `joineRML` has a Reverse Suggests, this update fixes all issues.
+* `joineRmeta` is fixed following this package correction.

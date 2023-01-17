@@ -60,7 +60,7 @@ UniqueVariables <- function(data, var.col, id.col = "ID") {
   
   for (i in 1:n.col) {
     tt <- names(new)[i]
-    if (class(data[[tt]]) == "factor") {
+    if (isa(data[[tt]], "factor")) {
       new[[tt]] <- as.factor(new[[tt]])
       levels(new[[tt]]) <- levels(data[[tt]])
     } else {

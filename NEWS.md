@@ -4,6 +4,14 @@
 
 * Fixed bug for case when all subjects experience events.
 
+* Change to `survival::basehaz` arguments.
+
+* Fixed a `NOTE` on checking for class type.s
+
+## Housekeeping
+
+* Edited `NEWS` v1.1 entry.
+
 # joineR 1.2.6
 
 ## Bugs
@@ -125,10 +133,10 @@ additional information, and removed dependency of `boot` and `gdata` packages.
 
 * Added project to GitHub with integrated Travis CI and appveyor.
 
-# joineR <1.1
+# joineR 1.1
 
 * First version of software with subsequent minor patches. No NEWS file was
-maintained prior to version 1.1
+maintained prior to version 1.1.
 
 
 
