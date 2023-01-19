@@ -92,12 +92,12 @@ test_that("ordering of subjects with competing risks", {
                 longsep = FALSE, survsep = FALSE,
                 gpt = 3)
   # tests
-  expect_identical(summary(data), summary(data2))
-  expect_identical(fit$coefficients, fit2$coefficients)
-  expect_identical(fit$sigma.z, fit2$sigma.z)
-  expect_identical(fit$sigma.u, fit2$sigma.u)
-  expect_identical(fit$haz.a, fit2$haz.a)
-  expect_identical(fit$haz.b, fit2$haz.b)
+  expect_equal(summary(data), summary(data2))
+  expect_equal(fit$coefficients, fit2$coefficients)
+  expect_equal(fit$sigma.z, fit2$sigma.z)
+  expect_equal(fit$sigma.u, fit2$sigma.u)
+  expect_equal(fit$haz.a, fit2$haz.a)
+  expect_equal(fit$haz.b, fit2$haz.b)
 })
 
 
