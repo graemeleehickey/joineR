@@ -1,3 +1,10 @@
+# joineR 1.2.8
+
+## Bugs
+
+* Fixes CRAN CMD check when run using ATLAS (alternative BLAS/LAPACK 
+implementation). Issue was in the tests.
+
 # joineR 1.2.7
 
 ## Bugs

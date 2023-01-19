@@ -1,6 +1,6 @@
 ## Notes
 
-Fixes bug due to update in `survival` package.
+Fixes Additional Issue with ATLAS BLAS/LAPACK implementation.
 
 ## Test environments
 
