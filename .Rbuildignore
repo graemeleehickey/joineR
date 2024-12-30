@@ -10,3 +10,4 @@ inst/image
 ^\.github$
 ^CRAN-RELEASE$
 ^CRAN-SUBMISSION$
+revdep

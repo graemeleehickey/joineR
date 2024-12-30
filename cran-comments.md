@@ -1,22 +1,25 @@
-## Notes
+## Other notes
 
-Fixes Additional Issue with ATLAS BLAS/LAPACK implementation.
+None
 
 ## Test environments
 
-* macOS-Big Sur (local R installation), R 4.1.2
-* ubuntu-20.04 (via GitHub actions, release + devel), R 4.1.2
-* windows-latest (via GitHub actions, release), R 4.1.2
-* macOS-latest (via GitHub actions, release)
-* win-builder (release)
-* win-builder (devel)
-* windows-latest (via appveyor CI, release)
+* local macOS (Sonoma 14.6.1) install, R 4.4.2
+* ubuntu (via GitHub actions, release + devel)
+* macOS (via GitHub actions, release)
+* windows (via appveyor CI, release)
+* windows (via GitHub actions, release)
+* windows (via win-builder, old + release + devel)
 
 ## R CMD check results
 
-0 errors | 0 warnings | 0 notes
+0 errors | 0 warnings | 1 notes
+
+Win-Builder NOTE: "checking CRAN incoming feasibility ... NOTE"
 
 ## Reverse dependencies
 
-* `joineRML` has a Reverse Suggests, this update fixes all issues.
-* `joineRmeta` is fixed following this package correction.
+We checked 1 reverse dependencies, comparing R CMD check results across CRAN and dev versions of this package.
+
+ * We saw 0 new problems
+ * We failed to check 0 packages

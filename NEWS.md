@@ -8,6 +8,8 @@
 
 * Fixed deprecated documentation for `joineR-package.R`.
 
+* Added reverse dependency checks.
+
 # joineR 1.2.8
 
 ## Bugs
