@@ -1,4 +1,7 @@
-#' joineR
+#' @keywords internal
+"_PACKAGE"
+#' @name joineR
+#' @title joineR
 #' 
 #' @description The joineR package implements methods for analyzing data from
 #'   longitudinal studies in which the response from each subject consists of a
@@ -58,7 +61,4 @@
 #' Williamson PR, Kolamunnage-Dona R, Philipson P, Marson AG. Joint modelling of
 #' longitudinal and competing risks data. \emph{Stat Med.} 2008; \strong{27}:
 #' 6426-6438.
-#' 
-#' @docType package
-#' @name joineR
 NULL

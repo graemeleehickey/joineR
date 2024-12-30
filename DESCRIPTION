@@ -1,7 +1,7 @@
 Package: joineR
 Type: Package
 Title: Joint Modelling of Repeated Measurements and Time-to-Event Data
-Version: 1.2.8
+Version: 1.2.8-9000
 Authors@R: c(
     person("Pete", "Philipson", email = "peter.philipson1@newcastle.ac.uk", 
         role = "aut",
@@ -62,4 +62,4 @@ Suggests:
     testthat,
     covr
 VignetteBuilder: knitr
-RoxygenNote: 7.1.2
+RoxygenNote: 7.3.2

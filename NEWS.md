@@ -1,3 +1,13 @@
+# joineR 1.2.8-9000
+
+## Housekeeping
+
+* Update README: new MRC logo, fixed badges
+
+* Update GitHub actions workflows
+
+* Fixed deprecated documentation for `joineR-package.R`.
+
 # joineR 1.2.8
 
 ## Bugs

@@ -1,12 +1,11 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# joineR <img src="man/figures/hex.png" width = "175" height = "200" align="right" />
+# joineR <img src="man/figures/hex.png" width="175" height="200" align="right"/>
 
 <!-- badges: start -->
 
-[![R build
-status](https://github.com/graemeleehickey/joineR/workflows/R-CMD-check/badge.svg)](https://github.com/graemeleehickey/joineR/actions)
+[![R-CMD-check](https://github.com/graemeleehickey/joineR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/graemeleehickey/joineR/actions/workflows/R-CMD-check.yaml)
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/graemeleehickey/joineR?branch=master&svg=true)](https://ci.appveyor.com/project/graemeleehickey/joineR)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/joineR)](https://CRAN.R-project.org/package=joineR)
@@ -33,8 +32,8 @@ Tsiatis (1997).
 
 The `joineR` package also allows competing risks data to be jointly
 modelled through a cause-specific hazards model. The importance of
-accounting for competing risks is detailed in Williamson et
-al. (2007a,b). The methodology used to fit this model is described in
+accounting for competing risks is detailed in Williamson et al.
+(2007a,b). The methodology used to fit this model is described in
 Williamson et al. (2008).
 
 # Example
@@ -69,11 +68,11 @@ heart.valve.jd <- jointdata(longitudinal = heart.long,
 With the creation of the `heart.valve.jd` object, we can fit a joint
 model using the `joint` function. For this, we need 4 arguments:
 
--   `jointdata`: the data object we created above
--   `long.formula`: the linear mixed effects model formula for the
-    longitudinal sub-model
--   `surv.formula`: the survival formula the survival sub-model
--   `model`: the latent association structure.
+- `jointdata`: the data object we created above
+- `long.formula`: the linear mixed effects model formula for the
+  longitudinal sub-model
+- `surv.formula`: the survival formula the survival sub-model
+- `model`: the latent association structure.
 
 ``` r
 fit <- joint(data = heart.valve.jd, 
@@ -129,7 +128,7 @@ This project was funded by the [Medical Research
 Council](http://www.mrc.ac.uk) (Grant numbers G0400615 and
 MR/M013227/1).
 
-![](http://www.mrc.ac.uk/mrc/includes/themes/MRC/images/template/desktop/logo.png)
+![](https://www.ukri.org/wp-content/themes/ukri/assets/img/ukri-mrc-standard-logo.png)
 
 # Using the latest developmental version
 
