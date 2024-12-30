@@ -11,10 +11,11 @@ Status](https://ci.appveyor.com/api/projects/status/github/graemeleehickey/joine
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/joineR)](https://CRAN.R-project.org/package=joineR)
 [![](https://cranlogs.r-pkg.org/badges/joineR)](https://CRAN.R-project.org/package=joineR)
 [![](https://cranlogs.r-pkg.org/badges/grand-total/joineR)](https://CRAN.R-project.org/package=joineR)
-[![codecov](https://codecov.io/gh/graemeleehickey/joineR/branch/master/graph/badge.svg)](https://app.codecov.io/gh/graemeleehickey/joineR)
 [![Research software
 impact](http://depsy.org/api/package/cran/joineR/badge.svg)](http://depsy.org/package/r/joineR)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1167708.svg)](https://doi.org/10.5281/zenodo.1167708)
+[![Codecov test
+coverage](https://codecov.io/gh/graemeleehickey/joineR/graph/badge.svg)](https://app.codecov.io/gh/graemeleehickey/joineR)
 <!-- badges: end -->
 
 The `joineR` package implements methods for analyzing data from
