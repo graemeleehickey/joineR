@@ -40,6 +40,13 @@
   are visible in auto-complete and
   [`?joint`](https://graemeleehickey.github.io/joineR/reference/joint.md).
 
+- [`jointSE()`](https://graemeleehickey.github.io/joineR/reference/jointSE.md)
+  output now includes a `p-value` column containing two-sided Wald
+  p-values for all fixed-effect and association parameters. Variance
+  component rows (`U_*`, `Residual`) return `NA` as Wald tests are not
+  appropriate for positive-constrained parameters. Closes
+  [\#58](https://github.com/graemeleehickey/joineR/issues/58).
+
 - [`simjoint()`](https://graemeleehickey.github.io/joineR/reference/simjoint.md)
   no longer prints a progress line via
   [`cat()`](https://rdrr.io/r/base/cat.html) from the internal

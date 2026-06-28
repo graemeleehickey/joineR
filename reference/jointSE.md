@@ -65,7 +65,8 @@ jointSE(
 
 ## Value
 
-An object of class `data.frame`.
+An object of class `data.frame` with columns `Component`, `Parameter`,
+`Estimate`, `SE`, `p-value`, `95%Lower`, and `95%Upper`.
 
 ## Details
 
@@ -74,7 +75,11 @@ fitting of the requisite joint model to bootstrap samples of the
 original longitudinal and survival data. It is rare that more than 200
 bootstrap samples are needed for estimating a standard error. The number
 of bootstrap samples needed for accurate confidence intervals can be as
-large as 1000.
+large as 1000. Two-sided Wald p-values are computed as
+\\2\Phi(-\|\hat\theta / \widehat{SE}\|)\\ for all fixed-effect and
+association parameters. P-values are `NA` for variance components (`U_*`
+and `Residual`) because Wald tests are not appropriate for variance
+parameters constrained to be positive.
 
 ## References
 
@@ -99,29 +104,29 @@ Ruwanthi Kolamunnage-Dona and Pete Philipson
 
 ``` r
 data(heart.valve)
-heart.surv <- UniqueVariables(heart.valve, 
-                              var.col = c("fuyrs", "status"), 
+heart.surv <- UniqueVariables(heart.valve,
+                              var.col = c("fuyrs", "status"),
                               id.col = "num")
 heart.long <- heart.valve[, c("num", "time", "log.lvmi")]
-heart.cov <- UniqueVariables(heart.valve, 
-                             c("age", "hs", "sex"), 
+heart.cov <- UniqueVariables(heart.valve,
+                             c("age", "hs", "sex"),
                              id.col = "num")
-heart.valve.jd <- jointdata(longitudinal = heart.long, 
-                            baseline = heart.cov, 
-                            survival = heart.surv, 
-                            id.col = "num", 
+heart.valve.jd <- jointdata(longitudinal = heart.long,
+                            baseline = heart.cov,
+                            survival = heart.surv,
+                            id.col = "num",
                             time.col = "time")
-fit <- joint(heart.valve.jd, 
-             long.formula = log.lvmi ~ 1 + time + hs, 
-             surv.formula = Surv(fuyrs, status) ~ hs, 
+fit <- joint(heart.valve.jd,
+             long.formula = log.lvmi ~ 1 + time + hs,
+             surv.formula = Surv(fuyrs, status) ~ hs,
              model = "int")
 jointSE(fitted = fit, n.boot = 1)
-#>      Component         Parameter Estimate SE 95%Lower 95%Upper
-#> 1 Longitudinal       (Intercept)   4.9836 NA        0        0
-#> 2                           time   0.0001 NA        0        0
-#> 3              hsStentless valve   0.0519 NA        0        0
-#> 4      Failure hsStentless valve   0.8109 NA        0        0
-#> 5  Association           gamma_0   1.1359 NA        0        0
-#> 6     Variance               U_0   0.0962 NA        0        0
-#> 7                       Residual   0.0454 NA        0        0
+#>      Component         Parameter Estimate SE p-value 95%Lower 95%Upper
+#> 1 Longitudinal       (Intercept)   4.9836 NA      NA        0        0
+#> 2                           time   0.0001 NA      NA        0        0
+#> 3              hsStentless valve   0.0519 NA      NA        0        0
+#> 4      Failure hsStentless valve   0.8109 NA      NA        0        0
+#> 5  Association           gamma_0   1.1359 NA      NA        0        0
+#> 6     Variance               U_0   0.0962 NA      NA        0        0
+#> 7                       Residual   0.0454 NA      NA        0        0
 ```

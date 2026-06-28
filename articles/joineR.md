@@ -858,14 +858,14 @@ model.jointrandom.se <- jointSE(model.jointrandom, n.boot = 100)
 model.jointrandom.se
 ```
 
-    ##      Component   Parameter Estimate      SE 95%Lower 95%Upper
-    ## 1 Longitudinal (Intercept)  61.8734  2.2274  57.4448  66.4313
-    ## 2                     time  -0.5941  0.1785  -0.8670  -0.2703
-    ## 3                    treat  -3.8583  1.0341  -6.0267  -1.8685
-    ## 4      Failure       treat  -0.6154  0.1907  -0.9307  -0.2603
-    ## 5  Association     gamma_0   0.0890  0.0165   0.0646   0.1229
-    ## 6     Variance         U_0  99.9558 12.3516  72.9545 122.6506
-    ## 7                 Residual  64.3633  7.5163  50.8545  80.0720
+    ##      Component   Parameter Estimate      SE p-value 95%Lower 95%Upper
+    ## 1 Longitudinal (Intercept)  61.8734  2.2274  0.0000  57.4448  66.4313
+    ## 2                     time  -0.5941  0.1785  0.0009  -0.8670  -0.2703
+    ## 3                    treat  -3.8583  1.0341  0.0002  -6.0267  -1.8685
+    ## 4      Failure       treat  -0.6154  0.1907  0.0013  -0.9307  -0.2603
+    ## 5  Association     gamma_0   0.0890  0.0165  0.0000   0.0646   0.1229
+    ## 6     Variance         U_0  99.9558 12.3516      NA  72.9545 122.6506
+    ## 7                 Residual  64.3633  7.5163      NA  50.8545  80.0720
 
 As mentioned previously, the argument `model` in the function `joint`
 can be altered to fit a joint random effects model with a random
