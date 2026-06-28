@@ -20,10 +20,9 @@ obtained by fitting a joint model along with the respective formulae for
 the longitudinal and survival sub-models and the model chosen, see
 \code{joint} for further details.}
 
-\item{n.boot}{argument specifying the number of bootstrap samples to use in
-order to obtain the standard error estimates and confidence intervals. Note
-that at least \code{n.boot = 100} is required in order for the function to
-return non-zero confidence intervals.}
+\item{n.boot}{the number of bootstrap samples used to compute standard errors
+and confidence intervals. A minimum of 100 is recommended for reliable
+confidence intervals; fewer samples will trigger a warning.}
 
 \item{gpt}{the number of quadrature points across which the integration with
 respect to the random effects will be performed. Defaults to \code{gpt = 3}
@@ -58,8 +57,9 @@ This function takes a model fit from a joint model and
 Standard errors and confidence intervals are obtained by repeated
   fitting of the requisite joint model to bootstrap samples of the original
   longitudinal and survival data. It is rare that more than 200 bootstrap
-  samples are needed for estimating a standard error. The number of bootstrap
-  samples needed for accurate confidence intervals can be as large as 1000.
+  samples are needed for estimating a standard error. Confidence intervals
+  use the percentile method and are computed for all \code{n.boot} values,
+  though fewer than 100 samples will trigger a warning about reliability.
   Two-sided Wald p-values are computed as \eqn{2\Phi(-|\hat\theta /
   \widehat{SE}|)} for all fixed-effect and association parameters. P-values
   are \code{NA} for variance components (\code{U_*} and \code{Residual})

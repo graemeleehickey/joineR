@@ -16,6 +16,8 @@
 
 * `jointSE()` output now includes a `p-value` column containing two-sided Wald p-values for all fixed-effect and association parameters. Variance component rows (`U_*`, `Residual`) return `NA` as Wald tests are not appropriate for positive-constrained parameters. Closes #58.
 
+* `jointSE()` confidence intervals are now computed for all values of `n.boot`. Previously, runs with fewer than 100 bootstrap samples silently returned `0` for both CI bounds; now the empirical percentile CIs are always returned and a `warning()` is issued when `n.boot < 100` to alert the user that the intervals may be unreliable.
+
 * `simjoint()` no longer prints a progress line via `cat()` from the internal `simdat()` function. It now emits a `message()` at the `simjoint()` level, which can be suppressed with `suppressMessages()`.
 
 * `survival` has been moved from `Depends` to `Imports`. `Surv` is re-exported so existing user code does not require changes.

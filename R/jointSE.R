@@ -8,10 +8,9 @@
 #'   obtained by fitting a joint model along with the respective formulae for
 #'   the longitudinal and survival sub-models and the model chosen, see
 #'   \code{joint} for further details.
-#' @param n.boot argument specifying the number of bootstrap samples to use in
-#'   order to obtain the standard error estimates and confidence intervals. Note
-#'   that at least \code{n.boot = 100} is required in order for the function to
-#'   return non-zero confidence intervals.
+#' @param n.boot the number of bootstrap samples used to compute standard errors
+#'   and confidence intervals. A minimum of 100 is recommended for reliable
+#'   confidence intervals; fewer samples will trigger a warning.
 #' @inheritParams joint
 #' @param print.detail This argument determines the level of printing that is
 #'   done during the bootstrapping. If \code{TRUE} then the parameter estimates
@@ -20,8 +19,9 @@
 #' @details Standard errors and confidence intervals are obtained by repeated
 #'   fitting of the requisite joint model to bootstrap samples of the original
 #'   longitudinal and survival data. It is rare that more than 200 bootstrap
-#'   samples are needed for estimating a standard error. The number of bootstrap
-#'   samples needed for accurate confidence intervals can be as large as 1000.
+#'   samples are needed for estimating a standard error. Confidence intervals
+#'   use the percentile method and are computed for all \code{n.boot} values,
+#'   though fewer than 100 samples will trigger a warning about reliability.
 #'   Two-sided Wald p-values are computed as \eqn{2\Phi(-|\hat\theta /
 #'   \widehat{SE}|)} for all fixed-effect and association parameters. P-values
 #'   are \code{NA} for variance components (\code{U_*} and \code{Residual})
@@ -198,12 +198,12 @@ jointSE <- function(
   }
   se <- apply(out, 2, function(x) sqrt(var(as.numeric(x))))
   if (n.boot < 100) {
-    ci1 <- rep(0, ncol(out))
-    ci2 <- rep(0, ncol(out))
-  } else {
-    ci1 <- apply(out, 2, function(x) quantile(as.numeric(x), probs = 0.025))
-    ci2 <- apply(out, 2, function(x) quantile(as.numeric(x), probs = 0.975))
+    warning(
+      "Fewer than 100 bootstrap samples: confidence intervals may be unreliable"
+    )
   }
+  ci1 <- apply(out, 2, function(x) quantile(as.numeric(x), probs = 0.025))
+  ci2 <- apply(out, 2, function(x) quantile(as.numeric(x), probs = 0.975))
 
   b1 <- data.frame(compnames, paranames)
 
