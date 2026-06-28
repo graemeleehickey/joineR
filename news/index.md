@@ -57,11 +57,13 @@
 
 - [`tidy()`](https://generics.r-lib.org/reference/tidy.html) and
   [`glance()`](https://generics.r-lib.org/reference/glance.html) methods
-  are now available for `joint` objects, providing a tidy -style
+  are now available for `joint` objects, providing a tidy broom-style
   interface. [`tidy()`](https://generics.r-lib.org/reference/tidy.html)
-  returns a of parameter estimates (one row per term) and optionally
-  accepts a result to add standard errors, Wald statistics, p-values,
-  and confidence intervals.
+  returns a data frame of parameter estimates (one row per term) and
+  optionally accepts a
+  [`jointSE()`](https://graemeleehickey.github.io/joineR/reference/jointSE.md)
+  result to add standard errors, Wald statistics, p-values, and
+  confidence intervals.
   [`glance()`](https://generics.r-lib.org/reference/glance.html) returns
   a single-row summary of model-level statistics including
   log-likelihood, AIC, BIC, number of observations, number of subjects,
@@ -239,7 +241,7 @@ CRAN release: 2017-07-24
 
 Fixed an error in the `liver` dataset.
 
-### Maintanence
+### Maintenance
 
 - Updated the documentation for the datasets.
 
@@ -262,7 +264,7 @@ CRAN release: 2017-05-19
 - R version 3.4.0 deprecated the recycling of 1x1 matrices, and led to
   warnings being thrown. This is now fixed.
 
-### Maintanence
+### Maintenance
 
 - General code and documentation tidy-up.
 
@@ -282,7 +284,7 @@ CRAN release: 2017-02-02
 
 - Minor bug fixes to the `joint` and `em.alg` functions.
 
-### Maintanence
+### Maintenance
 
 - Added a `NEWS.md` file to track changes to the package.
 

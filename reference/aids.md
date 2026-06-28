@@ -68,9 +68,7 @@ time data using standard computer packages. *The American Statistician*.
 Goldman A, Carlin B, Crane L, Launer C, Korvick J, Deyton L, Abrams D.
 Response of CD4 and clinical consequences to treatment using ddI or ddC
 in patients with advanced HIV infection. *Journal of Acquired Immune
-Deficiency Syndromes and Human Retrovirology*. 1996; **11**: 161-169
-URL:
-[http://www.biostat.umn.edu/~brad/data.html](http://www.biostat.umn.edu/~brad/data.md).
+Deficiency Syndromes and Human Retrovirology*. 1996; **11**: 161-169.
 
 ## See also
 
