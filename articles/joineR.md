@@ -62,8 +62,8 @@ the balanced format.
 
 ## Motivating Examples
 
-The package includes four data-sets: `heart.valve`, `liver`, `mental`,
-and `epileptic`. Descriptions of each follow.
+The package includes five data-sets: `heart.valve`, `liver`, `mental`,
+`epileptic`, and `aids`. Descriptions of each follow.
 
 ### The `heart.valve` data-set
 
@@ -82,10 +82,10 @@ The data refer to 256 patients and are stored in the *unbalanced*
 format, which is convenient here because measurement times were unique
 to each subject. The data are stored as a single `R` object,
 `heart.valve`, which is a data-frame of dimension 988 by 25. The average
-number of repeated measurements per subject is therefore . As with any
-unbalanced data-set, values of time-constant variables are repeated over
-all rows that refer to the same subject. The dimensionality of the
-dataset can be confirmed by a call to the
+number of repeated measurements per subject is therefore 3.859375. As
+with any unbalanced data-set, values of time-constant variables are
+repeated over all rows that refer to the same subject. The
+dimensionality of the dataset can be confirmed by a call to the
 [`dim()`](https://rdrr.io/r/base/dim.html) function, whilst the names of
 the 25 variables can be listed by a call to the
 [`names()`](https://rdrr.io/r/base/names.html) function:
@@ -209,7 +209,7 @@ whilst subject 30 provided two measurements, at times $`t = 0`$ and
 $`t = 0.09863014`$ years, and died at time $`t = 0.1068493`$ years
 (`cens = 1`).
 
-## The `mental` data-set
+### The `mental` data-set
 
 This data-set relates to a study in which 150 patients suffering from
 chronic mental illness were randomised amongst three different drug
@@ -290,10 +290,35 @@ epileptic[1:3, ]
     ## 2               0   CBZ 75.67      M        No
     ## 3               0   CBZ 75.67      M        No
 
+### The `aids` data-set
+
+This data-set is from a randomised clinical trial comparing the drug
+didanosine (ddI) with zalcitabine (ddC) in HIV-infected patients who had
+failed or were intolerant of zidovudine (AZT) therapy, described in
+Goldman et al. (1996). The data contain repeated measurements of CD4
+cell count along with time-to-death information for each patient. The
+data can be loaded as follows:
+
+``` r
+
+data(aids)
+dim(aids)
+```
+
+    ## [1] 1405    9
+
+``` r
+
+names(aids)
+```
+
+    ## [1] "id"      "time"    "death"   "CD4"     "obstime" "drug"    "gender" 
+    ## [8] "prevOI"  "AZT"
+
 ## Converting between balanced and unbalanced data-formats
 
 Two functions are provided to convert objects from one format to the
-other. The following code demonstrates the conversion of the \`mental}
+other. The following code demonstrates the conversion of the `mental`
 data-set from the balanced to the unbalanced format, including a
 mnemonic re-naming of the column that now contains all of the repeated
 measurements:
@@ -574,8 +599,7 @@ in the following example.
 
 ``` r
 
-y <- as.matrix(mental[, 2:7]) 
-# converts mental from list format to numeric matrix format
+y <- as.matrix(mental[, 2:7])
 means <- matrix(0, 3, 6)
 
 for (trt in 1:3) {
@@ -715,11 +739,11 @@ data to be analysed. The following two arguments specify the
 longitudinal and survival sub-models, making use of the regular
 `R formula` syntax, including incorporating a `Surv` object as the
 response in the survival sub-model for compatibility with the `R`
-function `coxph` from the `survival` package. The next argument
-`model()` allows the user to choose one of the three candidate random
-effects models, and defaults to the random intercept and slope case.
-Setting `model = "int"` and `model = "quad"` will fit a random intercept
-only and random quadratic joint model respectively.
+function `coxph` from the `survival` package. The next argument `model`
+allows the user to choose one of the three candidate random effects
+models, and defaults to the random intercept and slope case. Setting
+`model = "int"` and `model = "quad"` will fit a random intercept only
+and random quadratic joint model respectively.
 
 The functions to fit a joint random effects model have options to fit
 the repeated measurement sub-model and the hazard sub-model separately.
@@ -856,7 +880,7 @@ leads to the following specification for the sub-models:
 \end{eqnarray*}
 ```
 
-Similarly, setting \`model = “quad”} leads to a joint random effects
+Similarly, setting `model = "quad"` leads to a joint random effects
 model of the form:
 
 ``` math
@@ -1003,24 +1027,30 @@ Research Associate Dr Graeme L. Hickey (Grant number MR/M013227/1).
     measurements and time-to-event outcomes: the fourth Armitage
     lecture. *Statistics in Medicine*, 2008; **27**: 2981-2998.
 
-3.  Marson AG, Al-Kharusi AM, Alwaidh M, Appleton R, Baker GA, Chadwick
+3.  Goldman AI, Carlin BP, Crane LR, Launer C, Korvick JA, Deyton L,
+    Abrams DI. Response of CD4 lymphocytes and clinical consequences of
+    treatment using ddI or ddC in patients with advanced HIV infection.
+    *Journal of Acquired Immune Deficiency Syndromes*, 1996; **11**:
+    161-169.
+
+4.  Marson AG, Al-Kharusi AM, Alwaidh M, Appleton R, Baker GA, Chadwick
     GW, et al. The SANAD study of effectiveness of carbamazepine,
     gabapentin, lamotrigine, oxcarbazepine, or topiromate for treatment
     of partial epilepsy: an unblinded randomised controlled trial.
     *Lancet*, 2007; **369**: 1000-1015.
 
-4.  Henderson R, Diggle PJ, Dobson A. Joint modelling of longitudinal
+5.  Henderson R, Diggle PJ, Dobson A. Joint modelling of longitudinal
     measurements and event time data. *Biostatistics*, 2000; **1**:
-    465-480
+    465-480.
 
-5.  Henderson R, Diggle PJ, Dobson A. Identification and efficacy of
+6.  Henderson R, Diggle PJ, Dobson A. Identification and efficacy of
     longitudinal markers for survival. *Biostatistics*, 2002; **3**:
     33-50.
 
-6.  Lim E, Ali A, Theodorou P, Sousa I, Ashrafian H, Chamageorgakis AD,
+7.  Lim E, Ali A, Theodorou P, Sousa I, Ashrafian H, Chamageorgakis AD,
     et al. A longitudinal study of the profile and predictors of left
     ventricular mass regression after stentless aortic valve
     replacement. *Annals of Thoracic Surgery*, 2008; **85**: 2026-2029.
 
-7.  Wulfsohn MS, Tsiatis AA. A joint model for survival and longitudinal
+8.  Wulfsohn MS, Tsiatis AA. A joint model for survival and longitudinal
     data measured with error. *Biometrics*, 1997; **53**: 330-339.

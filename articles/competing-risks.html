@@ -72,6 +72,10 @@ Hickey, Pete Philipson, Ruwanthi Kolamunnage-Dona, Paula Williamson</h4>
 
     
     
+<p>This vignette demonstrates how to fit a joint model for longitudinal
+data and competing risks outcomes using <code>joineR</code>. It
+replicates the analysis of Williamson et al. (2008) applied to the SANAD
+epilepsy trial data.</p>
 <p>As of version 1.2.0, <code>joineR</code> fits the joint model
 proposed by Williamson et al. (2008) for joint models of longitudinal
 data and competing risks. Here, the longitudinal data submodel remains
@@ -107,7 +111,7 @@ is the baseline hazard function for cause
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mo>=</mo><mn>1</mn><mo>,</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">g = 1, 2</annotation></semantics></math>.
 In <code>joineR</code>, when competing risks data are analysed,
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Z</mi><mi>i</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>t</mi><msup><mo stretchy="false" form="postfix">)</mo><mi>⊤</mi></msup><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>,</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">Z_i(t)^\top  = (1, t)</annotation></semantics></math>,
-We also note that currently only 2 failure types are be modelled, which
+We also note that currently only 2 failure types can be modelled, which
 must be coded as 1 and 2 (with 0 representing censoring).</p>
 <div class="section level2">
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
@@ -352,7 +356,7 @@ treatment of newly diagnosed and chronic patients with epilepsy.
 <li><p>Williamson PR, Smith CT, Josemir WS, Marson AG. Importance of
 competing risks in the analysis of anti-epileptic drug failure.
 <em>Trials</em>, 2007; <strong>8</strong>: 12.</p></li>
-<li><p>Williamson PR, Kolamnunnage-Dona R, Tudur Smith C. The influence
+<li><p>Williamson PR, Kolamunnage-Dona R, Tudur Smith C. The influence
 of competing risks setting on the choice of hypothesis test for
 treatment effect. <em>Biostatistics</em>, 2006; <strong>8</strong>:
 689–694.</p></li>

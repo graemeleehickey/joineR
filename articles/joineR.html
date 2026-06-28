@@ -147,9 +147,9 @@ large number of <code>NA</code>’s in the balanced format.</p>
 <div class="section level2">
 <h2 id="motivating-examples">Motivating Examples<a class="anchor" aria-label="anchor" href="#motivating-examples"></a>
 </h2>
-<p>The package includes four data-sets: <code>heart.valve</code>,
-<code>liver</code>, <code>mental</code>, and <code>epileptic</code>.
-Descriptions of each follow.</p>
+<p>The package includes five data-sets: <code>heart.valve</code>,
+<code>liver</code>, <code>mental</code>, <code>epileptic</code>, and
+<code>aids</code>. Descriptions of each follow.</p>
 <div class="section level3">
 <h3 id="the-heart-valve-data-set">The <code>heart.valve</code> data-set<a class="anchor" aria-label="anchor" href="#the-heart-valve-data-set"></a>
 </h3>
@@ -165,8 +165,8 @@ package) with the command:</p>
 times were unique to each subject. The data are stored as a single
 <code>R</code> object, <code>heart.valve</code>, which is a data-frame
 of dimension 988 by 25. The average number of repeated measurements per
-subject is therefore . As with any unbalanced data-set, values of
-time-constant variables are repeated over all rows that refer to the
+subject is therefore 3.859375. As with any unbalanced data-set, values
+of time-constant variables are repeated over all rows that refer to the
 same subject. The dimensionality of the dataset can be confirmed by a
 call to the <code><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim()</a></code> function, whilst the names of the 25
 variables can be listed by a call to the <code><a href="https://rdrr.io/r/base/names.html" class="external-link">names()</a></code>
@@ -262,10 +262,9 @@ years, and died at time
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>=</mo><mn>0.1068493</mn></mrow><annotation encoding="application/x-tex">t = 0.1068493</annotation></semantics></math>
 years (<code>cens = 1</code>).</p>
 </div>
-</div>
-<div class="section level2">
-<h2 id="the-mental-data-set">The <code>mental</code> data-set<a class="anchor" aria-label="anchor" href="#the-mental-data-set"></a>
-</h2>
+<div class="section level3">
+<h3 id="the-mental-data-set">The <code>mental</code> data-set<a class="anchor" aria-label="anchor" href="#the-mental-data-set"></a>
+</h3>
 <p>This data-set relates to a study in which 150 patients suffering from
 chronic mental illness were randomised amongst three different drug
 treatments: placebo and two active drugs. A questionnaire instrument was
@@ -303,6 +302,7 @@ assumed to be uninformative. Hence, the command</p>
 <span><span class="co">## 21 61</span></span></code></pre>
 <p>shows that 21 of the 82 dropouts did so for reasons unrelated to
 their mental health.</p>
+</div>
 <div class="section level3">
 <h3 id="the-epileptic-data-set">The <code>epileptic</code> data-set<a class="anchor" aria-label="anchor" href="#the-epileptic-data-set"></a>
 </h3>
@@ -327,33 +327,51 @@ the same subject, can be accessed as follows:</p>
 <span><span class="co">## 2               0   CBZ 75.67      M        No</span></span>
 <span><span class="co">## 3               0   CBZ 75.67      M        No</span></span></code></pre>
 </div>
+<div class="section level3">
+<h3 id="the-aids-data-set">The <code>aids</code> data-set<a class="anchor" aria-label="anchor" href="#the-aids-data-set"></a>
+</h3>
+<p>This data-set is from a randomised clinical trial comparing the drug
+didanosine (ddI) with zalcitabine (ddC) in HIV-infected patients who had
+failed or were intolerant of zidovudine (AZT) therapy, described in
+Goldman et al. (1996). The data contain repeated measurements of CD4
+cell count along with time-to-death information for each patient. The
+data can be loaded as follows:</p>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">aids</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">aids</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] 1405    9</span></span></code></pre>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">aids</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] "id"      "time"    "death"   "CD4"     "obstime" "drug"    "gender" </span></span>
+<span><span class="co">## [8] "prevOI"  "AZT"</span></span></code></pre>
+</div>
 </div>
 <div class="section level2">
 <h2 id="converting-between-balanced-and-unbalanced-data-formats">Converting between balanced and unbalanced data-formats<a class="anchor" aria-label="anchor" href="#converting-between-balanced-and-unbalanced-data-formats"></a>
 </h2>
 <p>Two functions are provided to convert objects from one format to the
-other. The following code demonstrates the conversion of the `mental}
-data-set from the balanced to the unbalanced format, including a
-mnemonic re-naming of the column that now contains all of the repeated
-measurements:</p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+other. The following code demonstrates the conversion of the
+<code>mental</code> data-set from the balanced to the unbalanced format,
+including a mnemonic re-naming of the column that now contains all of
+the repeated measurements:</p>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mental.unbalanced</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/to.unbalanced.html">to.unbalanced</a></span><span class="op">(</span><span class="va">mental</span>, id.col <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>                                   times <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">6</span>, <span class="fl">8</span><span class="op">)</span>,</span>
 <span>                                   Y.col <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">7</span>, other.col <span class="op">=</span> <span class="fl">8</span><span class="op">:</span><span class="fl">11</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">mental.unbalanced</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] "id"        "time"      "Y.t0"      "treat"     "n.obs"     "surv.time"</span></span>
 <span><span class="co">## [7] "cens.ind"</span></span></code></pre>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">mental.unbalanced</span><span class="op">)</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"Y"</span></span></code></pre></div>
 <p>The following code converts the new object back to the balanced
 format:</p>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mental.balanced</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/to.balanced.html">to.balanced</a></span><span class="op">(</span><span class="va">mental.unbalanced</span>, id.col <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>                               time.col <span class="op">=</span> <span class="fl">2</span>,</span>
 <span>                               Y.col <span class="op">=</span> <span class="fl">3</span>, other.col <span class="op">=</span> <span class="fl">4</span><span class="op">:</span><span class="fl">7</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">mental.balanced</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 150  11</span></span></code></pre>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">mental.balanced</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##  [1] "id"        "Y.t0"      "Y.t1"      "Y.t2"      "Y.t4"      "Y.t6"     </span></span>
 <span><span class="co">##  [7] "Y.t8"      "treat"     "n.obs"     "surv.time" "cens.ind"</span></span></code></pre>
@@ -363,13 +381,13 @@ storing the object in the balanced format is sensible. For example,
 conversion of the <code>epileptic</code> data to the balanced format
 leads to the creation of a large array, most of whose values are
 missing:</p>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">epileptic.balanced</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/to.balanced.html">to.balanced</a></span><span class="op">(</span><span class="va">epileptic</span>,</span>
 <span>                                  id.col <span class="op">=</span> <span class="fl">1</span>, time.col <span class="op">=</span> <span class="fl">3</span>,</span>
 <span>                                  Y.col <span class="op">=</span> <span class="fl">2</span>, other.col <span class="op">=</span> <span class="fl">4</span><span class="op">:</span><span class="fl">12</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">epileptic.balanced</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1]  605 1006</span></span></code></pre>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">epileptic.balanced</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 599783</span></span></code></pre>
 <p>Once a data-set is in the balanced format (if it is unbalanced then
@@ -377,7 +395,7 @@ missing:</p>
 correlation matrix of the responses can be extracted using
 <code>summarybal</code>. An example is given below using the mental
 data-set:</p>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/summarybal.html">summarybal</a></span><span class="op">(</span><span class="va">mental</span>, Y.col <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">7</span>, times <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">6</span>, <span class="fl">8</span><span class="op">)</span>, </span>
 <span>           na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## $mean.vect</span></span>
@@ -415,7 +433,7 @@ containing the subject id, and all three subject id columns must match.
 The <code>UniqueVariables</code> function provides a convenient way to
 extract the time-to-event and base line covariate data from an
 unbalanced data-frame, as in the following example.</p>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">liver.long</span> <span class="op">&lt;-</span> <span class="va">liver</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span></span>
 <span><span class="va">liver.surv</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/UniqueVariables.html">UniqueVariables</a></span><span class="op">(</span><span class="va">liver</span>, var.col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"survival"</span>, <span class="st">"cens"</span><span class="op">)</span>, </span>
 <span>                              id.col <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span></span>
@@ -429,7 +447,7 @@ unbalanced data-frame, as in the following example.</p>
 <span>                      time.col <span class="op">=</span> <span class="st">"time"</span><span class="op">)</span></span></code></pre></div>
 <p>As a second example, we create a <code>jointdata</code> object from
 the single data-frame <code>heart.valve</code> as follows:</p>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">heart.surv</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/UniqueVariables.html">UniqueVariables</a></span><span class="op">(</span><span class="va">heart.valve</span>, var.col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"fuyrs"</span>, <span class="st">"status"</span><span class="op">)</span>,</span>
 <span>                              id.col <span class="op">=</span> <span class="st">"num"</span><span class="op">)</span></span>
 <span><span class="va">heart.long</span> <span class="op">&lt;-</span> <span class="va">heart.valve</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">7</span>, <span class="fl">8</span>, <span class="fl">9</span>, <span class="fl">10</span>, <span class="fl">11</span><span class="op">)</span><span class="op">]</span></span>
@@ -439,7 +457,7 @@ the single data-frame <code>heart.valve</code> as follows:</p>
 <span>                      time.col <span class="op">=</span> <span class="st">"time"</span><span class="op">)</span></span></code></pre></div>
 <p>A summary of a <code>jointdata</code> object can be obtained using
 the <code>summary</code> function. For example:</p>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">heart.jd</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## $subjects</span></span>
 <span><span class="co">## [1] "Number of subjects: 256"</span></span>
@@ -466,7 +484,7 @@ the <code>summary</code> function. For example:</p>
 <span><span class="co">## [1] "Unbalanced longitudinal study or more than twenty observation times"</span></span></code></pre>
 <p>A <code>jointdata</code> object can also be constructed from any
 specified subset of subjects. For example,</p>
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">take</span> <span class="op">&lt;-</span> <span class="va">heart.jd</span><span class="op">$</span><span class="va">survival</span><span class="op">$</span><span class="va">num</span><span class="op">[</span><span class="va">heart.jd</span><span class="op">$</span><span class="va">survival</span><span class="op">$</span><span class="va">status</span> <span class="op">==</span> <span class="fl">0</span><span class="op">]</span></span>
 <span><span class="va">heart.jd.cens</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">heart.jd</span>, <span class="va">take</span><span class="op">)</span></span></code></pre></div>
 <p>selects only those subjects whose survival status is zero, i.e. their
@@ -474,7 +492,7 @@ event-time is right-censored.</p>
 <p>The <code>sample</code> function can also be used to select a random
 sample of subjects from a <code>jointdata</code> object, for
 example:</p>
-<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">94561</span><span class="op">)</span></span>
 <span><span class="va">heart.jd.sample</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sample.jointdata.html">sample.jointdata</a></span><span class="op">(</span><span class="va">heart.jd</span>, size <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
 <p>takes the data from a random sample of 10 out of the 150 subjects and
@@ -490,7 +508,7 @@ profiles of the repeated measurements. If the object contains more than
 one longitudinal variable, each is presented in a separate panel. For
 example, the command <code>plot(heart.jd)</code> produces the following
 figure:</p>
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">heart.jd</span><span class="op">)</span></span></code></pre></div>
 <p><img src="joineR_files/figure-html/heart.valve_jointplot-1.png" class="r-plt" alt="" width="672"></p>
 <p>A useful device for the joint exploratory analysis of longitudinal
@@ -504,7 +522,7 @@ longitudinal variable <code>gradient</code> in the heart data set as a
 pair of plots, with the two sub-sets of subjects chosen according to
 whether their time-to-event outcome was or was not censored. The figure
 is generated by the commands:</p>
-<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">heart.jd.cens</span>, Y.col <span class="op">=</span> <span class="fl">4</span>, main <span class="op">=</span> <span class="st">"gradient: censored"</span><span class="op">)</span></span>
 <span><span class="va">take</span> <span class="op">&lt;-</span> <span class="va">heart.jd</span><span class="op">$</span><span class="va">survival</span><span class="op">$</span><span class="va">num</span><span class="op">[</span><span class="va">heart.jd</span><span class="op">$</span><span class="va">survival</span><span class="op">$</span><span class="va">status</span> <span class="op">==</span> <span class="fl">1</span><span class="op">]</span></span>
@@ -528,7 +546,7 @@ column containing the censoring indicator in the survival component of
 the <code>jointdata</code> object must be specified. The default for the
 <code>jointplot</code> function is to split the profiles according to
 the censoring indicator.</p>
-<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/jointplot.html">jointplot</a></span><span class="op">(</span><span class="va">heart.jd</span>, </span>
 <span>          Y.col <span class="op">=</span> <span class="st">"log.lvmi"</span>, Cens.col <span class="op">=</span> <span class="st">"status"</span>, </span>
 <span>          lag <span class="op">=</span> <span class="fl">5</span>, </span>
@@ -552,9 +570,8 @@ under-fitting. For example, in a randomised trial of two or more
 treatments with a common set of follow-up times for all subjects, we
 would recommend fitting a saturated treatments-by-times model for the
 mean response profiles, as in the following example.</p>
-<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">mental</span><span class="op">[</span>, <span class="fl">2</span><span class="op">:</span><span class="fl">7</span><span class="op">]</span><span class="op">)</span> </span>
-<span><span class="co"># converts mental from list format to numeric matrix format</span></span>
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="va">mental</span><span class="op">[</span>, <span class="fl">2</span><span class="op">:</span><span class="fl">7</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="va">means</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">3</span>, <span class="fl">6</span><span class="op">)</span></span>
 <span></span>
 <span><span class="kw">for</span> <span class="op">(</span><span class="va">trt</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span> <span class="op">{</span></span>
@@ -625,7 +642,7 @@ is called the <em>sample variogram</em>. The function
 <code>variogram</code> calculates the variogram cloud. This function has
 an associated method for the <code>plot</code> function that can display
 the variogram cloud, the sample variogram or both, as required.</p>
-<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">vgm</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/variogram.html">variogram</a></span><span class="op">(</span>indv <span class="op">=</span> <span class="va">mental.unbalanced</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span>, </span>
 <span>                 time <span class="op">=</span> <span class="va">mental.unbalanced</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span>, </span>
 <span>                 Y <span class="op">=</span> <span class="va">mental.unbalanced</span><span class="op">[</span>, <span class="fl">3</span><span class="op">]</span><span class="op">)</span></span>
@@ -636,7 +653,7 @@ the variogram cloud, the sample variogram or both, as required.</p>
 variogram object is to show both the cloud and the sample variogram, the
 sample variogram is almost always the more useful as a pointer to the
 underlying correlation structure of the data.</p>
-<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">vgm</span><span class="op">$</span><span class="va">svar</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span>, <span class="va">vgm</span><span class="op">$</span><span class="va">svar</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span>, </span>
 <span>     pch <span class="op">=</span> <span class="fl">19</span>, cex <span class="op">=</span> <span class="fl">0.5</span>, </span>
@@ -715,12 +732,11 @@ arguments specify the longitudinal and survival sub-models, making use
 of the regular <code>R formula</code> syntax, including incorporating a
 <code>Surv</code> object as the response in the survival sub-model for
 compatibility with the <code>R</code> function <code>coxph</code> from
-the <code>survival</code> package. The next argument
-<code>model()</code> allows the user to choose one of the three
-candidate random effects models, and defaults to the random intercept
-and slope case. Setting <code>model = "int"</code> and
-<code>model = "quad"</code> will fit a random intercept only and random
-quadratic joint model respectively.</p>
+the <code>survival</code> package. The next argument <code>model</code>
+allows the user to choose one of the three candidate random effects
+models, and defaults to the random intercept and slope case. Setting
+<code>model = "int"</code> and <code>model = "quad"</code> will fit a
+random intercept only and random quadratic joint model respectively.</p>
 <p>The functions to fit a joint random effects model have options to fit
 the repeated measurement sub-model and the hazard sub-model
 separately.</p>
@@ -733,7 +749,7 @@ with the sub-models:</p>
 \end{eqnarray*}</annotation></semantics></math></p>
 <p>To do this, we first create a <code>jointdata</code> object for these
 data, using the unbalanced form of the data defined earlier.</p>
-<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mental.long</span> <span class="op">&lt;-</span> <span class="va">mental.unbalanced</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span></span>
 <span><span class="va">mental.surv</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/UniqueVariables.html">UniqueVariables</a></span><span class="op">(</span><span class="va">mental.unbalanced</span>, </span>
 <span>                               <span class="fl">6</span><span class="op">:</span><span class="fl">7</span>, id.col <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
@@ -748,7 +764,7 @@ data, using the unbalanced form of the data defined earlier.</p>
 call, the <code>Y ~ 1</code> and
 <code>Surv(surv.time, cens.ind) ~ treat</code> refer to the
 <em>names</em> of columns in the relevant data-frames.</p>
-<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model.jointrandom</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/joint.html">joint</a></span><span class="op">(</span><span class="va">mental.jd</span>, <span class="va">Y</span> <span class="op">~</span> <span class="fl">1</span> <span class="op">+</span> <span class="va">time</span> <span class="op">+</span> <span class="va">treat</span>, </span>
 <span>                           <span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html" class="external-link">Surv</a></span><span class="op">(</span><span class="va">surv.time</span>, <span class="va">cens.ind</span><span class="op">)</span> <span class="op">~</span> <span class="va">treat</span>,</span>
 <span>                           model <span class="op">=</span> <span class="st">"int"</span><span class="op">)</span></span>
@@ -760,7 +776,7 @@ call, the <code>Y ~ 1</code> and
 <code>joint</code>. This produces a summarized version of the model fit,
 omitting some of the information contained within the fitted object
 itself.</p>
-<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">model.jointrandom</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
 <span><span class="co">## Call:</span></span>
@@ -812,7 +828,7 @@ With a realistically large number of bootstrap samples, this function
 can be slow! The output given is for 100 bootstrap samples, the
 confidence limits default to zero unless at least 100 bootstrap samples
 are taken.</p>
-<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model.jointrandom.se</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/jointSE.html">jointSE</a></span><span class="op">(</span><span class="va">model.jointrandom</span>, n.boot <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span>
 <span><span class="va">model.jointrandom.se</span></span></code></pre></div>
 <pre><code><span><span class="co">##      Component   Parameter Estimate      SE 95%Lower 95%Upper</span></span>
@@ -833,8 +849,8 @@ sub-models:</p>
   \mbox{longitudinal sub-model:  } &amp; Y_{ij} = X_{i1}^\top \beta_1 + U_{0i} + U_{1i}t_{ij} + Z_{ij} \\
   \mbox{hazard sub-model:  } &amp; h_i(t) = h_0(t) \exp{\{ X_{i2}^\top \beta_2 + \gamma\left(U_{0i} + U_{1i}t\right) \}} \\
 \end{eqnarray*}</annotation></semantics></math></p>
-<p>Similarly, setting `model = “quad”} leads to a joint random effects
-model of the form:</p>
+<p>Similarly, setting <code>model = "quad"</code> leads to a joint
+random effects model of the form:</p>
 <p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right"><mrow><mtext mathvariant="normal">longitudinal sub-model: </mtext><mspace width="0.333em"></mspace></mrow></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>Y</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>=</mo><msubsup><mi>X</mi><mrow><mi>i</mi><mn>1</mn></mrow><mi>⊤</mi></msubsup><msub><mi>β</mi><mn>1</mn></msub><mo>+</mo><msub><mi>U</mi><mrow><mn>0</mn><mi>i</mi></mrow></msub><mo>+</mo><msub><mi>U</mi><mrow><mn>1</mn><mi>i</mi></mrow></msub><msub><mi>t</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>+</mo><msub><mi>U</mi><mrow><mn>2</mn><mi>i</mi></mrow></msub><msup><msub><mi>t</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mn>2</mn></msup><mo>+</mo><msub><mi>Z</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><mrow><mtext mathvariant="normal">hazard sub-model: </mtext><mspace width="0.333em"></mspace></mrow></mtd><mtd columnalign="center" style="text-align: center"><msub><mi>h</mi><mi>i</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><msub><mi>h</mi><mn>0</mn></msub><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo><mrow><mi mathvariant="normal">exp</mi><mo>⁡</mo></mrow><mrow><mo stretchy="false" form="prefix">{</mo><msubsup><mi>X</mi><mrow><mi>i</mi><mn>2</mn></mrow><mi>⊤</mi></msubsup><msub><mi>β</mi><mn>2</mn></msub><mo>+</mo><mi>γ</mi><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>U</mi><mrow><mn>0</mn><mi>i</mi></mrow></msub><mo>+</mo><msub><mi>U</mi><mrow><mn>1</mn><mi>i</mi></mrow></msub><mi>t</mi><mo>+</mo><msub><mi>U</mi><mrow><mn>2</mn><mi>i</mi></mrow></msub><msup><mi>t</mi><mn>2</mn></msup><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="false" form="postfix">}</mo></mrow></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{eqnarray*}
   \mbox{longitudinal sub-model:  } &amp; Y_{ij} = X_{i1}^\top \beta_1 + U_{0i} + U_{1i}t_{ij} + U_{2i}{t_{ij}}^2 + Z_{ij} \\
   \mbox{hazard sub-model:  }&amp; h_i(t) = h_0(t) \exp{\{ X_{i2}^\top \beta_2 + \gamma\left(U_{0i} + U_{1i}t + U_{2i}t^2\right) \}} \\
@@ -855,7 +871,7 @@ association is used.</p>
 Wulfsohn-Tsiatis model to the <code>liver</code> data. The sub-models
 considered are those used in Henderson et al. (2002) to analyse these
 data.</p>
-<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model.jointrandom.liver</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/joint.html">joint</a></span><span class="op">(</span></span>
 <span>  <span class="va">liver.jd</span>,</span>
 <span>  <span class="va">prothrombin</span> <span class="op">~</span> <span class="va">treatment</span> <span class="op">*</span> <span class="va">time</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I</a></span><span class="op">(</span><span class="va">time</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span> <span class="op">*</span> <span class="va">treatment</span>,</span>
@@ -864,14 +880,14 @@ data.</p>
 <p>A similar model, but allowing separate association, can be fitted by
 including within the function call the argument
 <code>sepassoc = TRUE</code>.</p>
-<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model.jointrandom.liver.sep</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/joint.html">joint</a></span><span class="op">(</span></span>
 <span>  <span class="va">liver.jd</span>,</span>
 <span>  <span class="va">prothrombin</span> <span class="op">~</span> <span class="va">treatment</span> <span class="op">*</span> <span class="va">time</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I</a></span><span class="op">(</span><span class="va">time</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span> <span class="op">*</span> <span class="va">treatment</span>,</span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html" class="external-link">Surv</a></span><span class="op">(</span><span class="va">survival</span>, <span class="va">cens</span><span class="op">)</span> <span class="op">~</span> <span class="va">treatment</span>,</span>
 <span>  sepassoc <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p>The likelihoods for these models can now be compared using</p>
-<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model.jointrandom.liver.sep</span><span class="op">$</span><span class="va">loglik</span><span class="op">$</span><span class="va">jointlhood</span> <span class="op">-</span> <span class="va">model.jointrandom.liver</span><span class="op">$</span><span class="va">loglik</span><span class="op">$</span><span class="va">jointlhood</span></span></code></pre></div>
 <p>Allowing separate association increases the log-likelihood by 3.36 on
 one degree of freedom. The parameter estimates for each of these models
@@ -883,7 +899,7 @@ variable <code>grad</code> (gradient). The number of subjects in this
 data set is reduced, because some patients only provided measurements on
 <code>lvmi</code> (left ventricular mass index) and <code>ef</code>
 (ejection fraction).</p>
-<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">heart.grad</span> <span class="op">&lt;-</span> <span class="va">heart.valve</span><span class="op">[</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">heart.valve</span><span class="op">$</span><span class="va">grad</span><span class="op">)</span>, <span class="op">]</span></span>
 <span><span class="va">heart.grad.long</span> <span class="op">&lt;-</span> <span class="va">heart.grad</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">4</span>, <span class="fl">7</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="va">heart.grad.surv</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/UniqueVariables.html">UniqueVariables</a></span><span class="op">(</span><span class="va">heart.grad</span>,</span>
@@ -900,7 +916,7 @@ data set is reduced, because some patients only provided measurements on
 <p>We then use the function <code>joint</code> with argument
 <code>model = "int"</code> to fit a random intercept model to these data
 and summaries the result.</p>
-<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model.jointrandom.heart</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/joint.html">joint</a></span><span class="op">(</span><span class="va">heart.grad.jd</span>,</span>
 <span>                                 <span class="va">grad</span> <span class="op">~</span> <span class="va">age</span> <span class="op">+</span> <span class="va">sex</span>,</span>
 <span>                                 <span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html" class="external-link">Surv</a></span><span class="op">(</span><span class="va">fuyrs</span>, <span class="va">status</span><span class="op">)</span> <span class="op">~</span> <span class="va">age</span> <span class="op">+</span> <span class="va">sex</span>,</span>
@@ -960,6 +976,11 @@ Based on Counting Processes</em>, 1993; New York: Springer.</p></li>
 measurements and time-to-event outcomes: the fourth Armitage lecture.
 <em>Statistics in Medicine</em>, 2008; <strong>27</strong>:
 2981-2998.</p></li>
+<li><p>Goldman AI, Carlin BP, Crane LR, Launer C, Korvick JA, Deyton L,
+Abrams DI. Response of CD4 lymphocytes and clinical consequences of
+treatment using ddI or ddC in patients with advanced HIV infection.
+<em>Journal of Acquired Immune Deficiency Syndromes</em>, 1996;
+<strong>11</strong>: 161-169.</p></li>
 <li><p>Marson AG, Al-Kharusi AM, Alwaidh M, Appleton R, Baker GA,
 Chadwick GW, et al. The SANAD study of effectiveness of carbamazepine,
 gabapentin, lamotrigine, oxcarbazepine, or topiromate for treatment of
@@ -967,7 +988,7 @@ partial epilepsy: an unblinded randomised controlled trial.
 <em>Lancet</em>, 2007; <strong>369</strong>: 1000-1015.</p></li>
 <li><p>Henderson R, Diggle PJ, Dobson A. Joint modelling of longitudinal
 measurements and event time data. <em>Biostatistics</em>, 2000;
-<strong>1</strong>: 465-480</p></li>
+<strong>1</strong>: 465-480.</p></li>
 <li><p>Henderson R, Diggle PJ, Dobson A. Identification and efficacy of
 longitudinal markers for survival. <em>Biostatistics</em>, 2002;
 <strong>3</strong>: 33-50.</p></li>

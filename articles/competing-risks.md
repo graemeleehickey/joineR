@@ -1,5 +1,10 @@
 # Competing risks
 
+This vignette demonstrates how to fit a joint model for longitudinal
+data and competing risks outcomes using `joineR`. It replicates the
+analysis of Williamson et al. (2008) applied to the SANAD epilepsy trial
+data.
+
 As of version 1.2.0, `joineR` fits the joint model proposed by
 Williamson et al. (2008) for joint models of longitudinal data and
 competing risks. Here, the longitudinal data submodel remains as per
@@ -28,7 +33,7 @@ $`V_i`$ is another latent vector that follows a zero-mean multivariate
 normal distribution, and $`\lambda_{0g}(t)`$ is the baseline hazard
 function for cause $`g = 1, 2`$. In `joineR`, when competing risks data
 are analysed, $`Z_i(t)^\top  = (1, t)`$, We also note that currently
-only 2 failure types are be modelled, which must be coded as 1 and 2
+only 2 failure types can be modelled, which must be coded as 1 and 2
 (with 0 representing censoring).
 
 ## Example
@@ -302,7 +307,7 @@ Research Associate Dr Graeme L. Hickey (Grant number MR/M013227/1).
     competing risks in the analysis of anti-epileptic drug failure.
     *Trials*, 2007; **8**: 12.
 
-6.  Williamson PR, Kolamnunnage-Dona R, Tudur Smith C. The influence of
+6.  Williamson PR, Kolamunnage-Dona R, Tudur Smith C. The influence of
     competing risks setting on the choice of hypothesis test for
     treatment effect. *Biostatistics*, 2006; **8**: 689–694.
 
