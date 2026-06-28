@@ -17,6 +17,11 @@ navbar:
       aria-label: GitHub
 
 reference:
+  - title: "Package"
+    desc: "Package-level documentation and object descriptions."
+    contents:
+      - joineR
+      - joint.object
   - title: "Fitting joint models"
     desc: "Functions to fit and obtain inference for joint models."
     contents:
