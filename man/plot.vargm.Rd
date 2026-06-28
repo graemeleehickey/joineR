@@ -7,17 +7,17 @@
 \method{plot}{vargm}(x, smooth = FALSE, bdw = NULL, follow.time = NULL, points = TRUE, ...)
 }
 \arguments{
-\item{x}{object of class \code{vargm} obtained by using function. 
+\item{x}{object of class \code{vargm} obtained by using function.
 \code{\link{variogram}}}
 
-\item{smooth}{logical value to use a non-parametric estimator to calculate 
+\item{smooth}{logical value to use a non-parametric estimator to calculate
 the variogram of all \eqn{v_ijk}. The default is \code{FALSE}, as it uses
 time averages.}
 
 \item{bdw}{bandwidth to use in the time averages. The default is \code{NULL},
 because this is calculated automatically.}
 
-\item{follow.time}{the interval of time we want to construct the variogram 
+\item{follow.time}{the interval of time we want to construct the variogram
 for. When \code{NULL} this is the maximum of the data.}
 
 \item{points}{logical value if the points \eqn{v_ijk} should be plotted.}
@@ -34,9 +34,9 @@ Plots the empirical variogram for observed measurements, of an
 }
 \examples{
 data(mental)
-mental.unbalanced <- to.unbalanced(mental, id.col = 1, 
+mental.unbalanced <- to.unbalanced(mental, id.col = 1,
                                    times = c(0, 1, 2, 4, 6, 8),
-                                   Y.col = 2:7, 
+                                   Y.col = 2:7,
                                    other.col = c(8, 10, 11))
 names(mental.unbalanced)[3] <- "Y"
 vgm <- variogram(indv = tail(mental.unbalanced[, 1], 30),

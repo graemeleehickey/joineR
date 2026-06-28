@@ -28,7 +28,7 @@ Further details on the package are given in the vignette. To access
 }
 \section{Data manipulation functions}{
 
-  
+
   There are several functions, including \code{jointdata},
   \code{sample.jointdata}, \code{subset.jointdata}, \code{to.balanced},
   \code{to.unbalanced}, and \code{UniqueVariables}, which offer the ability
@@ -38,7 +38,7 @@ Further details on the package are given in the vignette. To access
 
 \section{Plot functions}{
 
-  
+
   The plot function can be applied to \code{jointdata} and \code{vargm}
   (variogram) objects. In addition, \code{points} and \code{lines} can also
   be used with \code{jointplot} objects.
@@ -46,17 +46,17 @@ Further details on the package are given in the vignette. To access
 
 \section{Model fitting functions}{
 
-  
+
   The primary function for fitting a joint model is \code{joint}. Standard
   errors can be estimated using \code{jointSE}.
 }
 
 \references{
-Wulfsohn MS, Tsiatis AA. A joint model for survival and longitudinal data 
+Wulfsohn MS, Tsiatis AA. A joint model for survival and longitudinal data
 measured with error. \emph{Biometrics.} 1997; \strong{53(1)}: 330-339.
 
-Henderson R, Diggle PJ, Dobson A. Joint modelling of longitudinal 
-measurements and event time data. \emph{Biostatistics.} 2000; \strong{1(4)}: 
+Henderson R, Diggle PJ, Dobson A. Joint modelling of longitudinal
+measurements and event time data. \emph{Biostatistics.} 2000; \strong{1(4)}:
 465-480.
 
 Cox DR. Regression models and life-tables. \emph{J R Stat Soc Ser B Stat

@@ -9,7 +9,7 @@
 \arguments{
 \item{x}{object of class \code{jointdata}.}
 
-\item{Y.col}{column number, or column name, of longitudinal variable to be 
+\item{Y.col}{column number, or column name, of longitudinal variable to be
 plotted. Defaults to \code{Y.col = NA}, plotting all longitudinal
 variables.}
 
@@ -18,12 +18,12 @@ for further details.}
 
 \item{xlab}{a title for the x-axis, see \code{\link[graphics]{title}}.}
 
-\item{xlim, ylim}{numeric vectors of length 2, giving the x and y coordinates 
+\item{xlim, ylim}{numeric vectors of length 2, giving the x and y coordinates
 ranges, see \code{\link[graphics]{plot.window}} for further details.}
 
 \item{main}{an overall title for the plot; see \code{\link[graphics]{title}}.}
 
-\item{pty}{a character specifying the type of plot region to be used, see 
+\item{pty}{a character specifying the type of plot region to be used, see
 \code{\link[graphics]{par}} for details.}
 
 \item{...}{other graphical arguments; see \code{\link[graphics]{plot}}.}
@@ -43,7 +43,7 @@ heart.surv <- UniqueVariables(heart.valve,
                               var.col = c("fuyrs", "status"),
                               id.col = "num")
 heart.long <- heart.valve[, c(1, 4, 5, 7, 8, 9, 10, 11)]
-heart.jd <- jointdata(longitudinal = heart.long, 
+heart.jd <- jointdata(longitudinal = heart.long,
                       survival = heart.surv,
                       id.col = "num",
                       time.col = "time")

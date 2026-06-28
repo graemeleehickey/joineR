@@ -12,7 +12,7 @@ repeated for each time point.}
 
 \item{time}{vector of observation time, as in the longitudinal data.}
 
-\item{Y}{vector of observed measurements. This can be a vector of 
+\item{Y}{vector of observed measurements. This can be a vector of
 longitudinal data, or residuals after fitting a model for the mean
 response.}
 }
@@ -35,14 +35,14 @@ The empirical variogram in this function is calculated from observed
   lag for the \eqn{v_ijk} for all \eqn{i}.
 }
 \note{
-There is a function \code{\link{plot.vargm}} which should be used to 
+There is a function \code{\link{plot.vargm}} which should be used to
   plot the empirical variogram.
 }
 \examples{
 data(mental)
-mental.unbalanced <- to.unbalanced(mental, id.col = 1, 
+mental.unbalanced <- to.unbalanced(mental, id.col = 1,
                                    times = c(0, 1, 2, 4, 6, 8),
-                                   Y.col = 2:7, 
+                                   Y.col = 2:7,
                                    other.col = c(8, 10, 11))
 names(mental.unbalanced)[3] <- "Y"
 

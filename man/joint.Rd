@@ -85,39 +85,39 @@ This generic function fits a joint model with random latent
   is fitted as per Williamson et al. (2008).
 }
 \details{
-The \code{joint} function fits a joint model to survival and 
-  longitudinal data. The formulation is similar to Wulfsohn and Tsiatis 
+The \code{joint} function fits a joint model to survival and
+  longitudinal data. The formulation is similar to Wulfsohn and Tsiatis
   (1997). A linear mixed effects model is assumed for the longitudinal data,
   namely
-  
+
   \deqn{Y_i = X_{i1}(t_i)^T\beta_1 + D_i(t_i)^T U_i + \epsilon_i,}
-  
-  where \eqn{U_i} is a vector of random effects, \eqn{(U_{0i}, \ldots 
+
+  where \eqn{U_i} is a vector of random effects, \eqn{(U_{0i}, \ldots
   U_{qi})} whose length depends on the model chosen, i.e. \eqn{q = 1} for the
-  random intercept model. \eqn{D_i} is the random effects covariate matrix, 
-  which will be time-dependent for all but the random intercept model. 
-  \eqn{X_{i1}} is the longitudinal design matrix for unit \eqn{i}, and 
-  \eqn{t_i} is the vector of measurement times for subject \eqn{i}. 
+  random intercept model. \eqn{D_i} is the random effects covariate matrix,
+  which will be time-dependent for all but the random intercept model.
+  \eqn{X_{i1}} is the longitudinal design matrix for unit \eqn{i}, and
+  \eqn{t_i} is the vector of measurement times for subject \eqn{i}.
   Measurement error is represented by \eqn{\epsilon_i}.
-  
+
   The Cox proportional hazards model is adopted for the survival data, namely
-  
-  \deqn{\lambda(t) = \lambda_0(t) \exp\{{X_{i2}(t)^T \beta_2 + 
+
+  \deqn{\lambda(t) = \lambda_0(t) \exp\{{X_{i2}(t)^T \beta_2 +
   D_i(t)(\gamma^T U_i)}\}.}
-  
-  The parameter \eqn{\gamma} determines the level of association between the 
-  two processes. For the intercept and slope model with separate association 
+
+  The parameter \eqn{\gamma} determines the level of association between the
+  two processes. For the intercept and slope model with separate association
   we have
-  
+
   \deqn{D_i(t) (\gamma^T U_i) = \gamma_0 U_{0i} + \gamma_1 U_{1i} t,}
-  
+
   whereas under proportional association
-  
+
   \deqn{D_i(t)(\gamma^T U_i) = \gamma (U_{0i} + U_{1i} t).}
-  
-  \eqn{X_{i2}} is the vector of survival covariates for unit \eqn{i}. The 
+
+  \eqn{X_{i2}} is the vector of survival covariates for unit \eqn{i}. The
   baseline hazard function is \eqn{\lambda_0(t)}.
-  
+
   The function uses an EM algorithm to estimate parameters in the joint
   model. Starting values are provided by calls to standard R functions
   \code{\link[nlme]{lme}} and \code{\link[survival]{coxph}} for the
@@ -131,18 +131,18 @@ Since numerical integration is required, it is advisable to check the
   datasets and models, this might be too small.
 }
 \section{Competing risks}{
- If failure can be attributed to 2 causes, i.e. 
+ If failure can be attributed to 2 causes, i.e.
   so-called competing risks events data, then a cause-specific hazards model
   is adopted, namely
-  
-  \deqn{\lambda_g(t) = \lambda_{0g}(t) \exp\{{X_{i2}(t)^T \beta_2^{(g)} + 
+
+  \deqn{\lambda_g(t) = \lambda_{0g}(t) \exp\{{X_{i2}(t)^T \beta_2^{(g)} +
   D_i(t)(\gamma^T U_i)}\},}
-  
+
   where \eqn{g = 1,2} denotes the failure type, \eqn{\beta_2^{(g)}} (\eqn{g =
-  1,2}) are cause-specific hazard parameters corresponding to the same 
-  covariates, and \eqn{\lambda_{0g}(t)} are cause-specific baseline hazard 
-  functions. For this data, a proportional association structure is assumed 
-  (i.e. \code{sepassoc = FALSE}) and a random-intercepts and random-slopes 
+  1,2}) are cause-specific hazard parameters corresponding to the same
+  covariates, and \eqn{\lambda_{0g}(t)} are cause-specific baseline hazard
+  functions. For this data, a proportional association structure is assumed
+  (i.e. \code{sepassoc = FALSE}) and a random-intercepts and random-slopes
   model must be used (i.e. \code{model = "intslope"}). Note that the function
   only permits 2 failure types. The model is specified in full by Williamson
   et al. (2008). The function \code{joint()} automatically detects whether
@@ -182,7 +182,7 @@ fit <- joint(data = heart.valve.jd,
              long.formula = log.lvmi ~ 1 + time + hs,
              surv.formula = Surv(fuyrs, status) ~ hs,
              model = "intslope")
-             
+
 ## Competing risks joint model (same data as Williamson et al. 2008)
 
 \dontrun{
@@ -196,7 +196,7 @@ data <- jointdata(longitudinal = longitudinal,
                   baseline = baseline,
                   id.col = "id",
                   time.col = "time")
-                  
+
 fit2 <- joint(data = data,
               long.formula = dose ~ time + treat + interaction,
               surv.formula = Surv(with.time, with.status2) ~ treat,

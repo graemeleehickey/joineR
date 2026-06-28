@@ -9,7 +9,7 @@
 \arguments{
 \item{x}{an object of class \code{jointdata}.}
 
-\item{subj.subset}{vector of subject identifiers, to include in the data 
+\item{subj.subset}{vector of subject identifiers, to include in the data
 subset. This must be a unique vector of patient identifiers.}
 
 \item{...}{further arguments to be passed to or from other methods.}
@@ -28,7 +28,7 @@ heart.surv <- UniqueVariables(heart.valve,
                               var.col = c("fuyrs", "status"),
                               id.col = "num")
 heart.long <- heart.valve[, c(1, 4, 5, 7, 8, 9, 10, 11)]
-heart.jd <- jointdata(longitudinal = heart.long, 
+heart.jd <- jointdata(longitudinal = heart.long,
                       survival = heart.surv,
                       id.col = "num",
                       time.col = "time")

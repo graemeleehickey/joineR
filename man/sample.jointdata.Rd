@@ -15,7 +15,7 @@ sample.jointdata(x, size, replace = FALSE)
 = TRUE}.}
 }
 \value{
-An object of class \code{jointdata}, with data only on the subjects 
+An object of class \code{jointdata}, with data only on the subjects
   sampled.
 }
 \description{
@@ -24,16 +24,16 @@ Generic function used to sampling a subset of data from an x of
 }
 \examples{
 data(heart.valve)
-heart.surv <- UniqueVariables(heart.valve, 
-                              var.col = c("fuyrs", "status"), 
+heart.surv <- UniqueVariables(heart.valve,
+                              var.col = c("fuyrs", "status"),
                               id.col = "num")
-heart.valve.jd <- jointdata(survival = heart.surv, 
-                            id.col = "num", 
+heart.valve.jd <- jointdata(survival = heart.surv,
+                            id.col = "num",
                             time.col = "time")
 sample.jointdata(heart.valve.jd, size = 10)
 }
 \seealso{
-\code{\link{sample}}, \code{\link{jointdata}}, 
+\code{\link{sample}}, \code{\link{jointdata}},
   \code{\link{UniqueVariables}}.
 }
 \author{

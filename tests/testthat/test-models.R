@@ -269,7 +269,7 @@ test_that("bootstrap SE", {
   fit.boot <- jointSE(fitted = fit, n.boot = 3)
   # tests
   expect_output(str(fit.boot), "data.frame")
-  expect_equal(dim(fit.boot), c(8, 6))
+  expect_equal(dim(fit.boot), c(8, 7))
 })
 
 

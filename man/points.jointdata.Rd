@@ -9,7 +9,7 @@
 \arguments{
 \item{x}{object of class \code{jointdata}.}
 
-\item{Y.col}{column number, or column name, of longitudinal variable to be 
+\item{Y.col}{column number, or column name, of longitudinal variable to be
 plotted. Defaults to \code{Y.col = NA}, plotting all longitudinal
 variables.}
 
@@ -17,7 +17,7 @@ variables.}
 }
 \value{
 A graphical device with a plot for longitudinal data. Other functions
-  are useful to be used with this as \code{\link[graphics]{plot}} and 
+  are useful to be used with this as \code{\link[graphics]{plot}} and
   \code{\link[graphics]{lines}}.
 }
 \description{
@@ -36,7 +36,7 @@ heart.jd <- jointdata(longitudinal = heart.long,
                       survival = heart.surv,
                       id.col = "num",
                       time.col = "time")
-                      
+
 # Randomly select a pair of subjects to plot profiles of
 take <- sample(1 : max(heart.jd$survival$num), 2)
 heart.jd.1 <- subset(heart.jd, take[1])

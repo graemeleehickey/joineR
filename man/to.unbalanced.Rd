@@ -7,20 +7,20 @@
 to.unbalanced(data, id.col, times, Y.col, other.col = NA)
 }
 \arguments{
-\item{data}{a data frame with longitudinal data in the balanced format. That 
+\item{data}{a data frame with longitudinal data in the balanced format. That
 is, in the format of 'one row per subject'. \code{data}, where the patient
 identifications is.}
 
 \item{id.col}{a column number, or column name, in the data frame \code{data},
 where the patient identifier is located.}
 
-\item{times}{a vector with the unique time points where the patients are 
+\item{times}{a vector with the unique time points where the patients are
 observed. This is the study design time points in a balanced data set.}
 
-\item{Y.col}{a vector of column numbers, or column names, of longitudinal 
+\item{Y.col}{a vector of column numbers, or column names, of longitudinal
 variables, and/or time dependent covariates in the data frame \code{data}.}
 
-\item{other.col}{a vector of column numbers, or column names, of baseline 
+\item{other.col}{a vector of column numbers, or column names, of baseline
 covariates, and/or other subject level data, as for example, survival data.
 Default does not include \code{other.col}.}
 }
@@ -36,7 +36,7 @@ Transforms a longitudinal data set in the balanced format to the
 \examples{
 simul <- data.frame(num = 1:10,
                     Y1.1 = rnorm(10), Y1.2 = rnorm(10),
-                    Y2.1 = rnorm(10), Y2.2 = rnorm(10), 
+                    Y2.1 = rnorm(10), Y2.2 = rnorm(10),
                     age = rnorm(10))
 to.unbalanced(simul, id.col = 1, times = c(1, 2), Y.col = 2:5,
               other.col = 6)

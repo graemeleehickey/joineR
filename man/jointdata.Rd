@@ -13,25 +13,25 @@ jointdata(
 )
 }
 \arguments{
-\item{longitudinal}{a data frame or matrix in the unbalanced format (one row 
-per observation), with subject identification, time of measurements, and 
-longitudinal measurements and/or time dependent covariates. This must be 
+\item{longitudinal}{a data frame or matrix in the unbalanced format (one row
+per observation), with subject identification, time of measurements, and
+longitudinal measurements and/or time dependent covariates. This must be
 given if no \code{survival} argument is.}
 
-\item{survival}{a data frame or matrix with survival data for all the 
+\item{survival}{a data frame or matrix with survival data for all the
 subjects. This must be given if no \code{longitudinal} argument is.}
 
-\item{baseline}{a data frame or matrix with baseline covariates, or non-time 
-dependent covariates, for the same subjects as in \code{survival} and/or 
-\code{longitudinal}. This has to be in the balanced format (one row per 
-subject). By default an object of this class does not include baseline 
+\item{baseline}{a data frame or matrix with baseline covariates, or non-time
+dependent covariates, for the same subjects as in \code{survival} and/or
+\code{longitudinal}. This has to be in the balanced format (one row per
+subject). By default an object of this class does not include baseline
 covariates.}
 
-\item{id.col}{an element of class \code{character} with the name 
+\item{id.col}{an element of class \code{character} with the name
 identification of subject. This is to identify the subject identification
 in the data frames.}
 
-\item{time.col}{an element of class \code{character} with the time 
+\item{time.col}{an element of class \code{character} with the time
 measurements identification. This is to identify the time column in the
 data frames.}
 }
@@ -61,9 +61,9 @@ This function creates an object of class \code{jointdata}. This is a
 \examples{
 data(heart.valve)
 heart.surv <- UniqueVariables(heart.valve,
-                              var.col = c("fuyrs", "status"), 
+                              var.col = c("fuyrs", "status"),
                               id.col = "num")
-heart.valve.jd <- jointdata(survival = heart.surv, 
+heart.valve.jd <- jointdata(survival = heart.surv,
                             id.col = "num",
                             time.col = "time")
 }

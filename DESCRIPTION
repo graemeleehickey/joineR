@@ -48,6 +48,7 @@ ByteCompile: true
 Depends:
     R (>= 3.6)
 Imports:
+    generics,
     graphics,
     lattice,
     MASS,

@@ -87,15 +87,15 @@ This function simulates longitudinal and time-to-event data from
   a joint model.
 }
 \details{
-The function \code{simjoint} simulates data from a joint model, 
-  similar to that performed in Henderson et al. (2000). It works by first 
-  simulating longitudinal data for all possible follow-up times using random 
-  draws for the multivariate Gaussian random effects and residual error 
-  terms. Data can be simulated assuming either random-intercepts only 
-  (\code{model = "int"}) in each of the longitudinal sub-models; 
-  random-intercepts and random-slopes (\code{model = "intslope"}); or 
-  quadratic random effects structures (\code{model = "quad"}). The failure 
-  times are simulated from proportional hazards time-to-event models, using 
+The function \code{simjoint} simulates data from a joint model,
+  similar to that performed in Henderson et al. (2000). It works by first
+  simulating longitudinal data for all possible follow-up times using random
+  draws for the multivariate Gaussian random effects and residual error
+  terms. Data can be simulated assuming either random-intercepts only
+  (\code{model = "int"}) in each of the longitudinal sub-models;
+  random-intercepts and random-slopes (\code{model = "intslope"}); or
+  quadratic random effects structures (\code{model = "quad"}). The failure
+  times are simulated from proportional hazards time-to-event models, using
   the following methodologies:
 
   \describe{

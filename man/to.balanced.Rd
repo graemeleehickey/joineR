@@ -7,19 +7,19 @@
 to.balanced(data, id.col, time.col, Y.col, other.col = NA)
 }
 \arguments{
-\item{data}{a data frame with longitudinal data in the unbalanced format. 
+\item{data}{a data frame with longitudinal data in the unbalanced format.
 That is, in the format of 'one row per observation'.}
 
 \item{id.col}{a column number, or column name, in the data frame \code{data},
 where the patient identifier is located.}
 
-\item{time.col}{a column number, or column name, in the data frame 
+\item{time.col}{a column number, or column name, in the data frame
 \code{data}, where the time measurements are.}
 
-\item{Y.col}{a vector of column numbers, or column names, of longitudinal 
+\item{Y.col}{a vector of column numbers, or column names, of longitudinal
 variables, and/or time dependent covariates in the data frame \code{data}.}
 
-\item{other.col}{a vector of column numbers, or column names, of baseline 
+\item{other.col}{a vector of column numbers, or column names, of baseline
 covariates, and/or other subject level data, as for example, survival data.
 Default does not include \code{other.col}.}
 }
@@ -39,7 +39,7 @@ simul <- data.frame(num = 1:10,
                     Y1.1 = rnorm(10), Y1.2 = rnorm(10),
                     Y2.1 = rnorm(10), Y2.2 = rnorm(10),
                     age = rnorm(10))
-simul <- to.unbalanced(simul, id.col = 1, times = c(1, 2), 
+simul <- to.unbalanced(simul, id.col = 1, times = c(1, 2),
                        Y.col = 2:5, other.col = 6)
 simul <- to.balanced(simul, id.col = "num", time.col = "time",
                      Y.col = c("Y1.1", "Y2.1"), other.col = "age")

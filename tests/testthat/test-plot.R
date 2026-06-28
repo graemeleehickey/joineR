@@ -224,5 +224,8 @@ test_that("jointplot with character Y.col and mean.profile", {
     "trellis"
   )
   # wrong class
-  expect_error(jointplot(list(), Y.col = 2, Cens.col = 3), class = "simpleError")
+  expect_error(
+    jointplot(list(), Y.col = 2, Cens.col = 3),
+    class = "simpleError"
+  )
 })

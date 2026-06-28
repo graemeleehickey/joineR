@@ -2,16 +2,16 @@
 % Please edit documentation in R/UniqueVariables.R
 \name{UniqueVariables}
 \alias{UniqueVariables}
-\title{Extracts the unique non-time dependent variables per patient, from an 
+\title{Extracts the unique non-time dependent variables per patient, from an
 unbalanced data set}
 \usage{
 UniqueVariables(data, var.col, id.col = "ID")
 }
 \arguments{
-\item{data}{data frame, or matrix, with at least a column of patient 
+\item{data}{data frame, or matrix, with at least a column of patient
 identification and a covariate column.}
 
-\item{var.col}{vector of column names or column numbers, of the variables 
+\item{var.col}{vector of column names or column numbers, of the variables
 (non-time dependent). Cannot have mix of numbers and column names.}
 
 \item{id.col}{column name or column number of the patient identification.}
@@ -32,7 +32,7 @@ This function extracts a set of unique variables within a
 This function can be used, when longitudinal data is in the
   unbalanced format, and it is necessary, for example, to extract the set of
   unique baseline covariates, or any non-time dependent variables, that in
-  the unbalanced format, are repeated for each observation row. Also, if the 
+  the unbalanced format, are repeated for each observation row. Also, if the
   original data frame has survival data, this can also be used to extract the
   survival information from the original data set.
 }

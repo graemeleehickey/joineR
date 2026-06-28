@@ -9,7 +9,7 @@ summarybal(object, Y.col, times, use = "all.obs", na.rm, ...)
 \arguments{
 \item{object}{a longitudinal data set in the balanced format.}
 
-\item{Y.col}{the column numbers of the longitudinal measurements at each 
+\item{Y.col}{the column numbers of the longitudinal measurements at each
 design time point in the \code{object}. This does not have to be all of the
 longitudinal measurements taken and may be a subset instead.}
 
@@ -17,25 +17,25 @@ longitudinal measurements taken and may be a subset instead.}
 This does not have to be all of the study time points and may be a subset
 instead, but should match the columns defined in \code{Y.col}.}
 
-\item{use}{an optional character string giving a method for computing 
+\item{use}{an optional character string giving a method for computing
 covariances in the presence of missing values. This must be (an
 abbreviation of) one of the strings \code{"all.obs"}, \code{"complete.obs"}
 or \code{"pairwise.complete.obs"}. Defaults to \code{use = "all.obs"}.}
 
-\item{na.rm}{logical. Should missing values be removed? By default, 
+\item{na.rm}{logical. Should missing values be removed? By default,
 \code{na.rm = FALSE}.}
 
 \item{...}{further arguments for the summary.}
 }
 \value{
 A \code{list} with three elements:
-  
+
   \item{\code{mean.vect}}{a matrix with the time points in the first column
   and the mean response vector as the second column.}
-  
+
   \item{\code{variance}}{The vector of variances for the response at the time
   points.}
-  
+
   \item{\code{cor.mtx}}{Containing the correlation matrix of the responses
   between each pair of time points.}
 }

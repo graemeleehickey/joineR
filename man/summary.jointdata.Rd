@@ -14,32 +14,32 @@
 \value{
 A list with five elements. Each summarises an element of the
   \code{jointdata} object:
-  
+
   \item{\code{subjects}}{Gives the number of subjects in the data set.}
-  
+
   \item{\code{longitudinal}}{If longitudinal data is available, it gives the
   names and class, of the longitudinal variables.}
-  
+
   \item{\code{survival}}{If survival data is available, it gives the number
   of subjects with failure and censored survival times.}
-  
+
   \item{\code{baseline}}{If baseline covariates is available, it gives the
   names and class, of the baseline covariates.}
-  
+
   \item{\code{times}}{If longitudinal data is available, it gives the unique
   longitudinal time measurements, if it is a balanced study. In case of
   unbalanced study, it will only state it is an unbalanced study.}
 }
 \description{
-Generic function used to produce summaries of objects of class 
+Generic function used to produce summaries of objects of class
   \code{jointdata}.
 }
 \examples{
 data(heart.valve)
 heart.surv <- UniqueVariables(heart.valve,
-                              var.col = c("fuyrs", "status"), 
+                              var.col = c("fuyrs", "status"),
                               id.col = "num")
-heart.valve.jd <- jointdata(survival = heart.surv, 
+heart.valve.jd <- jointdata(survival = heart.surv,
                             id.col = "num",
                             time.col = "time")
 summary(heart.valve.jd)

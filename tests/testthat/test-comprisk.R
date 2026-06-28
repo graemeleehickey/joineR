@@ -78,7 +78,7 @@ test_that("bootstrap SEs with competing risks", {
   fit.boot <- jointSE(fit, n.boot = 2)
   # tests
   expect_output(str(fit.boot), "data.frame")
-  expect_equal(dim(fit.boot), c(11, 6))
+  expect_equal(dim(fit.boot), c(11, 7))
 })
 
 

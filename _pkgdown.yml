@@ -50,6 +50,8 @@ reference:
       - summary.joint
       - summary.jointdata
       - summarybal
+      - tidy.joint
+      - glance.joint
   - title: "Simulation and diagnostics"
     desc: "Functions to simulate joint model data and compute variograms."
     contents:
