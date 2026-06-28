@@ -1,8 +1,19 @@
 #' @keywords internal
 #' @importFrom statmod gauss.quad.prob
-emUpdate <- function(longdat, survdat, model, ran, lat, sepassoc,
-                   paraests, gpt, max.it, tol, loglik, verbose) {
-
+emUpdate <- function(
+  longdat,
+  survdat,
+  model,
+  ran,
+  lat,
+  sepassoc,
+  paraests,
+  gpt,
+  max.it,
+  tol,
+  loglik,
+  verbose
+) {
   id <- longdat[, 1]
   Y <- longdat[, 2]
   tt <- longdat[, 3]
@@ -87,7 +98,6 @@ emUpdate <- function(longdat, survdat, model, ran, lat, sepassoc,
 
     # main loop over subjects begins here
     for (i in 1:n) {
-
       rv <- r[(cnn[i] + 1):cnn[i + 1]]
       ttv <- Dtt2[(cnn[i] + 1):cnn[i + 1], ]
       W21 <- cov[, (cnn[i] + 1):cnn[i + 1]]
@@ -121,8 +131,8 @@ emUpdate <- function(longdat, survdat, model, ran, lat, sepassoc,
       }
       egDUs <- 1
       if (cen[i] == 1) {
-        egDUs <- exp(newu %*% (Dst[i, ] * b2[(p2 + 1):(p2 + lat)]) +
-                       b2x[i, ]) * haz[rs[i]]
+        egDUs <- exp(newu %*% (Dst[i, ] * b2[(p2 + 1):(p2 + lat)]) + b2x[i, ]) *
+          haz[rs[i]]
       }
       egDUsf <- exp(newu %*% (Dsf[, 1:rs[i]] * b2[(p2 + 1):(p2 + lat)]))
       ess <- exp(-(eb2x[i, ] * egDUsf) %*% haz[1:rs[i]])
@@ -136,17 +146,32 @@ emUpdate <- function(longdat, survdat, model, ran, lat, sepassoc,
         EUexpU[i, 1] <- sum(f[, 1] %*% (newu[, 1] * C) * haz[1:rs[i]]) / den
         EUUexpU[i, 1] <- sum(f[, 1] %*% (newu[, 1]^2 * C) * haz[1:rs[i]]) / den
       } else {
-        EUexpU[i, 1:ran] <- rowSums(crossprod(newu * f[, 1], C) *
-                                      Dsf[, 1:rs[i]] * DH[, 1:rs[i]]) / den
-        EUUexpU[i, 1:ran] <- rowSums(crossprod(newu2[, 1:ran] * f[, 1], C) *
-                                       Dsf2[, 1:rs[i]] * DH[, 1:rs[i]]) / den
+        EUexpU[i, 1:ran] <- rowSums(
+          crossprod(newu * f[, 1], C) *
+            Dsf[, 1:rs[i]] *
+            DH[, 1:rs[i]]
+        ) /
+          den
+        EUUexpU[i, 1:ran] <- rowSums(
+          crossprod(newu2[, 1:ran] * f[, 1], C) *
+            Dsf2[, 1:rs[i]] *
+            DH[, 1:rs[i]]
+        ) /
+          den
         if (model == "intslope") {
-          EUUexpU[i, ran + 1] <- 2 * sum(f[, 1] %*% (newu2[, ran + 1] * C) *
-                                           haz[1:rs[i]] * sf[1:rs[i]]) / den
+          EUUexpU[i, ran + 1] <- 2 *
+            sum(
+              f[, 1] %*% (newu2[, ran + 1] * C) * haz[1:rs[i]] * sf[1:rs[i]]
+            ) /
+            den
         } else {
           EUUexpU[i, (ran + 1):sum(1:ran)] <- 2 *
-            rowSums(crossprod(newu2[, (ran + 1):sum(1:ran)] * f[, 1], C) *
-                      Dsfc[, 1:rs[i]] * DH[, 1:rs[i]]) / den
+            rowSums(
+              crossprod(newu2[, (ran + 1):sum(1:ran)] * f[, 1], C) *
+                Dsfc[, 1:rs[i]] *
+                DH[, 1:rs[i]]
+            ) /
+            den
         }
       }
 
@@ -155,10 +180,11 @@ emUpdate <- function(longdat, survdat, model, ran, lat, sepassoc,
         if (den > 0) {
           l2 <- l2 + log(den)
         }
-        l1 <- l1 - nn[i] * 0.5 * log(2 * pi) - 0.5 * log(det(W11)) -
+        l1 <- l1 -
+          nn[i] * 0.5 * log(2 * pi) -
+          0.5 * log(det(W11)) -
           0.5 * sum(rv * solve(W11, rv))
       }
-
     } # end loop over subjects
 
     parac <- data.frame(c(b1, b2, sigma.z, sigma.u))
@@ -187,7 +213,9 @@ emUpdate <- function(longdat, survdat, model, ran, lat, sepassoc,
     if (model != "int") {
       inds1 <- (p2 + 1):(p2 + ran)
       inds2 <- upper.tri(sd[(p2 + 1):(p2 + ran), inds1])
-      sd[inds1, inds1][inds2] <- -colSums(eb2x[, 1] * 0.5 * EUUexpU)[(ran + 1):sum(1:ran)]
+      sd[inds1, inds1][inds2] <- -colSums(eb2x[, 1] * 0.5 * EUUexpU)[
+        (ran + 1):sum(1:ran)
+      ]
     }
     if (p2 > 0) {
       fd[1:p2] <- c(colSums((cen * X2) - (X2 * eb2x[, 1] * EexpUi)))
@@ -206,10 +234,7 @@ emUpdate <- function(longdat, survdat, model, ran, lat, sepassoc,
         -colSums(eb2x[, 1] * EUUexpU)[1:ran]
     }
     if (!sepassoc) {
-      if (model == "int") {
-        fd <- fd
-        sd <- sd
-      } else {
+      if (model != "int") {
         fd[p2 + 1] <- sum(fd[(p2 + 1):(p2 + ran)])
         fd <- fd[1:(p2 + 1)]
         if (p2 > 1) {
@@ -234,27 +259,25 @@ emUpdate <- function(longdat, survdat, model, ran, lat, sepassoc,
       conv <- TRUE
       break
     }
-
   }
 
   if ((conv != TRUE) & !loglik) {
-    print("Not converged")
+    warning("EM algorithm did not converge")
   }
 
   if (loglik) {
     ll <- l1 + l2 - 0.5 * ran * n * log(pi)
-    list("log.like" = ll,
-         "longlog.like" = l1,
-         "survlog.like" = ll - l1)
+    list("log.like" = ll, "longlog.like" = l1, "survlog.like" = ll - l1)
   } else {
-    list("b1" = data.frame(b1),
-         "b2" = data.frame(b2),
-         "sigma.z" = sigma.z,
-         "sigma.u" = sigma.u,
-         "haz" = haz,
-         "random" = EU,
-         "conv" = conv,
-         "iters" = it)
+    list(
+      "b1" = data.frame(b1),
+      "b2" = data.frame(b2),
+      "sigma.z" = sigma.z,
+      "sigma.u" = sigma.u,
+      "haz" = haz,
+      "random" = EU,
+      "conv" = conv,
+      "iters" = it
+    )
   }
-
 }

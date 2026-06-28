@@ -1,0 +1,65 @@
+url: https://graemeleehickey.github.io/joineR/
+
+template:
+  bootstrap: 5
+  bootswatch: cosmo
+  theme: arrow-light
+  theme-dark: arrow-dark
+
+navbar:
+  structure:
+    left: [intro, reference, articles, news]
+    right: [search, github]
+  components:
+    github:
+      icon: fab fa-github fa-lg
+      href: https://github.com/graemeleehickey/joineR
+      aria-label: GitHub
+
+reference:
+  - title: "Fitting joint models"
+    desc: "Functions to fit and obtain inference for joint models."
+    contents:
+      - joint
+      - jointSE
+  - title: "Data preparation"
+    desc: "Functions to create and manipulate `jointdata` objects."
+    contents:
+      - jointdata
+      - UniqueVariables
+      - sample.jointdata
+      - subset.jointdata
+      - to.balanced
+      - to.unbalanced
+  - title: "Visualisation"
+    desc: "Plotting functions for longitudinal and joint data."
+    contents:
+      - jointplot
+      - plot.jointdata
+      - points.jointdata
+      - lines.jointdata
+      - plot.vargm
+  - title: "Summaries"
+    desc: "Summary and print methods."
+    contents:
+      - summary.joint
+      - summary.jointdata
+      - summarybal
+  - title: "Simulation and diagnostics"
+    desc: "Functions to simulate joint model data and compute variograms."
+    contents:
+      - simjoint
+      - variogram
+  - title: "Data sets"
+    contents:
+      - heart.valve
+      - epileptic
+      - liver
+      - mental
+      - aids
+
+articles:
+  - title: "Vignettes"
+    contents:
+      - joineR
+      - competing-risks

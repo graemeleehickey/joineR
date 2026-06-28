@@ -1,3 +1,51 @@
+# joineR 1.2.9
+
+## Bug fixes
+
+* `emUpdate()` and `emUpdateCR()` now issue a `warning()` on non-convergence instead of silently calling `print()`, making it possible for callers to catch non-convergence programmatically.
+
+* `survst()` no longer unconditionally forces the first subject's censoring indicator to 1 before passing data to `coxph()`. A proper `stop()` is raised if no events are observed. The `rs` index vector is now computed correctly via `findInterval()`, clamping subjects who precede the first event time to risk set 1 rather than producing `NA`.
+
+* `survst()` and `survstCR()` now correctly index `loglik[2]` (the fitted model log-likelihood) rather than storing the full length-2 vector in `$log.like`.
+
+* Bootstrap confidence intervals in `jointSE()` now use `quantile()` instead of a manual sorted-index lookup, fixing an off-by-one error for small `n.boot` values.
+
+## Improvements
+
+* `joint()` and `jointSE()` arguments `gpt`, `lgpt`, `max.it`, and `tol` now have explicit default values in the function signatures, replacing the previous `missing()` pattern. Defaults are visible in auto-complete and `?joint`.
+
+* `simjoint()` no longer prints a progress line via `cat()` from the internal `simdat()` function. It now emits a `message()` at the `simjoint()` level, which can be suppressed with `suppressMessages()`.
+
+* The internal helper `sortJointData()` (previously `sort.dat()` defined inside `joint()` on every call) is now a file-level internal function. The rename also avoids a spurious S3 method consistency note in R CMD check.
+
+* `survival` has been moved from `Depends` to `Imports`. `Surv` is re-exported so existing user code does not require changes.
+
+* Code formatted with `air`.
+
+## Housekeeping
+
+* Added a `pkgdown` site with Bootstrap 5, light/dark code themes, and a structured reference index. A `pkgdown.yaml` GitHub Actions workflow builds and deploys the site to GitHub Pages on push and release.
+
+* Updated `R-CMD-check.yaml` and `test-coverage.yaml` GitHub Actions workflows to use `actions/checkout@v6`, `codecov-action@v7`, and `upload-artifact@v7`.
+
+* `DESCRIPTION` URL field now includes the pkgdown site, CRAN page, and GitHub repository.
+
+* README badges updated: removed defunct AppVeyor and Depsy badges; added pkgdown deployment badge and lifecycle (stable) badge.
+
+* Removed dead commented-out code blocks in `survst.R` and `prepSurvData.R`.
+
+* Removed no-op `fd <- fd` / `sd <- sd` assignments in `emUpdate()`.
+
+* Fixed copy-paste error in `@param ylab` documentation for `jointplot()` (was labelled "x-axis").
+
+* Renamed variable `t` to `obs_time` in `jointplot()` to avoid shadowing `base::t()`.
+
+* Fixed typo "am Expectation Maximization" → "an" in `DESCRIPTION`.
+
+* Added `^\.posit, `^_pkgdown\.yml, and `^docs to `.Rbuildignore`.
+
+* Updated test suite: removed deprecated `context()` calls and replaced `expect_is()` with `expect_s3_class()` throughout. Fixed typo "seperate" → "separate" in one test name.
+
 # joineR 1.2.8-9000
 
 ## Housekeeping

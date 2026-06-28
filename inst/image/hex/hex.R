@@ -12,13 +12,17 @@ p <- ggplot(aes(x = year, y = log(serBilir)), data = pbc2) +
   geom_line(data = subset(pbc2, id == "96"), colour = "blue") +
   labs(x = "", y = "") +
   theme_void() +
-  theme(strip.background = element_blank(),
-        strip.text = element_blank())
+  theme(strip.background = element_blank(), strip.text = element_blank())
 
-sticker(p, package = "joineR",
-        p_size = 8,
-        s_x = 1, s_y = .8, s_width = 1.55, s_height = 0.9,
-        #p_color = "#FFFFFFDD",
-        h_color = "#C74646",
-        h_fill = "#46C7C7")
-
+sticker(
+  p,
+  package = "joineR",
+  p_size = 8,
+  s_x = 1,
+  s_y = .8,
+  s_width = 1.55,
+  s_height = 0.9,
+  #p_color = "#FFFFFFDD",
+  h_color = "#C74646",
+  h_fill = "#46C7C7"
+)

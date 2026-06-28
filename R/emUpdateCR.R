@@ -1,8 +1,15 @@
 #' @keywords internal
 #' @importFrom statmod gauss.quad.prob
-emUpdateCR <- function(longdat, survdat, paraests,
-                   gpt, max.it, tol, loglik, verbose) {
-
+emUpdateCR <- function(
+  longdat,
+  survdat,
+  paraests,
+  gpt,
+  max.it,
+  tol,
+  loglik,
+  verbose
+) {
   # longitudinal submodel data
   id <- longdat[, 1]
   Y <- longdat[, 2]
@@ -44,7 +51,7 @@ emUpdateCR <- function(longdat, survdat, paraests,
     b2.a <- c(paraests$b2.a, 0)
     b2.b <- c(paraests$b2.b, 0)
   }
-  
+
   # control params
   N <- sum(nn)
   maxn <- max(nn)
@@ -84,7 +91,7 @@ emUpdateCR <- function(longdat, survdat, paraests,
     l1 <- 0
     l2 <- 0
   }
-  
+
   # main loop over EM iterations begins here
   for (it in 1:max.it) {
     if (p2 > 0) {
@@ -99,12 +106,13 @@ emUpdateCR <- function(longdat, survdat, paraests,
 
     # main loop over subjects begins here (E-step)
     for (i in 1:n) {
-
       W21 <- matrix(0, 2, nn[i])
       rvec <- rlong[count:(count + nn[i] - 1)]
-      W11 <- (sigma.u[1, 2] + sigma.u[2, 2] * lda.time[count:(count + nn[i] - 1)]) %*%
-        t(lda.time[count:(count + nn[i]-1)]) +
-        sigma.u[1, 1] + sigma.u[1, 2] * lda.time[count:(count + nn[i] - 1)]
+      W11 <- (sigma.u[1, 2] +
+        sigma.u[2, 2] * lda.time[count:(count + nn[i] - 1)]) %*%
+        t(lda.time[count:(count + nn[i] - 1)]) +
+        sigma.u[1, 1] +
+        sigma.u[1, 2] * lda.time[count:(count + nn[i] - 1)]
       W21[1, 1:nn[i]] <- sigma.u[1, 1] +
         (sigma.u[1, 2] * lda.time[count:(count + nn[i] - 1)])
       W21[2, 1:nn[i]] <- sigma.u[1, 2] +
@@ -126,11 +134,17 @@ emUpdateCR <- function(longdat, survdat, paraests,
       fvec <- 1
       if (cen.a[i] == 1 || cen.b[i] == 1) {
         fvec <- exp(
-          cen.a[i] * b2.a[p2 + 1] * (newumat[1, ] + newumat[2, ] * surv.time[i]) +
-            cen.b[i] * b2.b[p2 + 1] * (newumat[1, ] + newumat[2, ] * surv.time[i]))
+          cen.a[i] *
+            b2.a[p2 + 1] *
+            (newumat[1, ] + newumat[2, ] * surv.time[i]) +
+            cen.b[i] *
+              b2.b[p2 + 1] *
+              (newumat[1, ] + newumat[2, ] * surv.time[i])
+        )
         if (loglik) {
-          fvec <- fvec * exp(b2x[i, ]) * 
-            ifelse(cen.a[i] == 1, haz.a[which(s.dista == surv.time[i])], 1) * 
+          fvec <- fvec *
+            exp(b2x[i, ]) *
+            ifelse(cen.a[i] == 1, haz.a[which(s.dista == surv.time[i])], 1) *
             ifelse(cen.b[i] == 1, haz.b[which(s.distb == surv.time[i])], 1)
         }
       }
@@ -138,7 +152,8 @@ emUpdateCR <- function(longdat, survdat, paraests,
       ssvec.a <- 1
       if (id.a[i] > 0) {
         const.a <- exp(
-          b2.a[p2 + 1] * (newumat[1, ] + tcrossprod(newumat[2, ], s.dista[1:id.a[i]]))
+          b2.a[p2 + 1] *
+            (newumat[1, ] + tcrossprod(newumat[2, ], s.dista[1:id.a[i]]))
         )
         ssvec.a <- const.a %*% haz.a[1:id.a[i]]
       }
@@ -146,7 +161,8 @@ emUpdateCR <- function(longdat, survdat, paraests,
       ssvec.b <- 1
       if (id.b[i] > 0) {
         const.b <- exp(
-          b2.b[p2 + 1] * (newumat[1, ] + tcrossprod(newumat[2, ], s.distb[1:id.b[i]]))
+          b2.b[p2 + 1] *
+            (newumat[1, ] + tcrossprod(newumat[2, ], s.distb[1:id.b[i]]))
         )
         ssvec.b <- const.b %*% haz.b[1:id.b[i]]
       }
@@ -155,34 +171,37 @@ emUpdateCR <- function(longdat, survdat, paraests,
       den <- sum(fvec)
       fvecT.den <- t(fvec) / den
       fvec.den <- fvec / den
-      
+
       EU[i, 1:2] <- t(newumat %*% fvec.den)
       EUU[i, 1:2] <- t((newumat^2) %*% fvec.den)
       EUU[i, 3] <- (newumat[1, ] * newumat[2, ]) %*% fvec.den
-      
+
       EexpU.a[i, 1:id.a[i]] <- fvecT.den %*% const.a
       EU0expU.a[i, 1:id.a[i]] <- fvecT.den %*% (newumat[1, ] * const.a)
       EU1expU.a[i, 1:id.a[i]] <- fvecT.den %*% (newumat[2, ] * const.a)
       EU0U0expU.a[i, 1:id.a[i]] <- fvecT.den %*% (newumat[1, ]^2 * const.a)
-      EU0U1expU.a[i, 1:id.a[i]] <- fvecT.den %*% (newumat[1, ] * newumat[2, ] * const.a)
+      EU0U1expU.a[i, 1:id.a[i]] <- fvecT.den %*%
+        (newumat[1, ] * newumat[2, ] * const.a)
       EU1U1expU.a[i, 1:id.a[i]] <- fvecT.den %*% (newumat[2, ]^2 * const.a)
 
       EexpU.b[i, 1:id.b[i]] <- fvecT.den %*% const.b
       EU0expU.b[i, 1:id.b[i]] <- fvecT.den %*% (newumat[1, ] * const.b)
       EU1expU.b[i, 1:id.b[i]] <- fvecT.den %*% (newumat[2, ] * const.b)
       EU0U0expU.b[i, 1:id.b[i]] <- fvecT.den %*% (newumat[1, ]^2 * const.b)
-      EU0U1expU.b[i, 1:id.b[i]] <- fvecT.den %*% (newumat[1, ] * newumat[2, ] * const.b)
+      EU0U1expU.b[i, 1:id.b[i]] <- fvecT.den %*%
+        (newumat[1, ] * newumat[2, ] * const.b)
       EU1U1expU.b[i, 1:id.b[i]] <- fvecT.den %*% (newumat[2, ]^2 * const.b)
-      
+
       # calculate the log-likelihood
       if (loglik) {
         if (den > 0) {
           l2 <- l2 + log(den)
         }
-        l1 <- l1 - nn[i] * 0.5 * log(2 * pi) - 0.5 * log(det(W11)) -
+        l1 <- l1 -
+          nn[i] * 0.5 * log(2 * pi) -
+          0.5 * log(det(W11)) -
           0.5 * sum(rvec * solve(W11, rvec))
       }
-
     } # end of loop over subjects
 
     # M-step
@@ -196,8 +215,10 @@ emUpdateCR <- function(longdat, survdat, paraests,
       nfail <- sum(cen.a[match(i, id.a):(match(i + 1, id.a) - 1)])
       haz.a[i] <- nfail / sum3
     }
-    sum3 <- sum(exp(b2x.a[match(ndist.a, id.a):n]) *
-                  (EexpU.a[match(ndist.a, id.a):n, ndist.a]))
+    sum3 <- sum(
+      exp(b2x.a[match(ndist.a, id.a):n]) *
+        (EexpU.a[match(ndist.a, id.a):n, ndist.a])
+    )
     nfail <- sum(cen.a[match(ndist.a, id.a):n])
     haz.a[ndist.a] <- nfail / sum3
     for (i in 1:(ndist.b - 1)) {
@@ -205,8 +226,10 @@ emUpdateCR <- function(longdat, survdat, paraests,
       nfail <- sum(cen.b[match(i, id.b):(match(i + 1, id.b) - 1)])
       haz.b[i] <- nfail / sum3
     }
-    sum3 <- sum(exp(b2x.b[match(ndist.b, id.b):n]) *
-                  (EexpU.b[match(ndist.b, id.b):n, ndist.b]))
+    sum3 <- sum(
+      exp(b2x.b[match(ndist.b, id.b):n]) *
+        (EexpU.b[match(ndist.b, id.b):n, ndist.b])
+    )
     nfail <- sum(cen.b[match(ndist.b, id.b):n])
     haz.b[ndist.b] <- nfail / sum3
 
@@ -227,32 +250,50 @@ emUpdateCR <- function(longdat, survdat, paraests,
 
     for (i in 1:n) {
       if (id.a[i] > 0) {
-        summat.a[i, 1]  <- sum(EexpU.a[i, 1:id.a[i]] *
-                                 haz.a[1:id.a[i]])
-        summat2.a[i, 1] <- sum(EU0expU.a[i, 1:id.a[i]] *
-                                 haz.a[1:id.a[i]])
-        summat2.a[i, 2] <- sum(EU1expU.a[i, 1:id.a[i]] * s.dista[1:id.a[i]] *
-                                 haz.a[1:id.a[i]])
-        summat3.a[i, 1] <- sum(EU0U0expU.a[i, 1:id.a[i]] *
-                                 haz.a[1:id.a[i]])
-        summat3.a[i, 2] <- sum(EU1U1expU.a[i, 1:id.a[i]] * (s.dista[1:id.a[i]]^2) *
-                                 haz.a[1:id.a[i]])
-        summat3.a[i, 3] <- sum(EU0U1expU.a[i, 1:id.a[i]] * s.dista[1:id.a[i]] *
-                                 haz.a[1:id.a[i]])
+        summat.a[i, 1] <- sum(
+          EexpU.a[i, 1:id.a[i]] *
+            haz.a[1:id.a[i]]
+        )
+        summat2.a[i, 1] <- sum(
+          EU0expU.a[i, 1:id.a[i]] *
+            haz.a[1:id.a[i]]
+        )
+        summat2.a[i, 2] <- sum(
+          EU1expU.a[i, 1:id.a[i]] * s.dista[1:id.a[i]] * haz.a[1:id.a[i]]
+        )
+        summat3.a[i, 1] <- sum(
+          EU0U0expU.a[i, 1:id.a[i]] *
+            haz.a[1:id.a[i]]
+        )
+        summat3.a[i, 2] <- sum(
+          EU1U1expU.a[i, 1:id.a[i]] * (s.dista[1:id.a[i]]^2) * haz.a[1:id.a[i]]
+        )
+        summat3.a[i, 3] <- sum(
+          EU0U1expU.a[i, 1:id.a[i]] * s.dista[1:id.a[i]] * haz.a[1:id.a[i]]
+        )
       }
       if (id.b[i] > 0) {
-        summat.b[i, 1]  <- sum(EexpU.b[i, 1:id.b[i]] *
-                                 haz.b[1:id.b[i]])
-        summat2.b[i, 1] <- sum(EU0expU.b[i, 1:id.b[i]] *
-                                 haz.b[1:id.b[i]])
-        summat2.b[i, 2] <- sum(EU1expU.b[i, 1:id.b[i]] * s.distb[1:id.b[i]] *
-                                 haz.b[1:id.b[i]])
-        summat3.b[i, 1] <- sum(EU0U0expU.b[i, 1:id.b[i]] *
-                                 haz.b[1:id.b[i]])
-        summat3.b[i, 2] <- sum(EU1U1expU.b[i, 1:id.b[i]] * (s.distb[1:id.b[i]]^2) *
-                                 haz.b[1:id.b[i]])
-        summat3.b[i, 3] <- sum(EU0U1expU.b[i, 1:id.b[i]] * s.distb[1:id.b[i]] *
-                                 haz.b[1:id.b[i]])
+        summat.b[i, 1] <- sum(
+          EexpU.b[i, 1:id.b[i]] *
+            haz.b[1:id.b[i]]
+        )
+        summat2.b[i, 1] <- sum(
+          EU0expU.b[i, 1:id.b[i]] *
+            haz.b[1:id.b[i]]
+        )
+        summat2.b[i, 2] <- sum(
+          EU1expU.b[i, 1:id.b[i]] * s.distb[1:id.b[i]] * haz.b[1:id.b[i]]
+        )
+        summat3.b[i, 1] <- sum(
+          EU0U0expU.b[i, 1:id.b[i]] *
+            haz.b[1:id.b[i]]
+        )
+        summat3.b[i, 2] <- sum(
+          EU1U1expU.b[i, 1:id.b[i]] * (s.distb[1:id.b[i]]^2) * haz.b[1:id.b[i]]
+        )
+        summat3.b[i, 3] <- sum(
+          EU0U1expU.b[i, 1:id.b[i]] * s.distb[1:id.b[i]] * haz.b[1:id.b[i]]
+        )
       }
     }
 
@@ -266,7 +307,9 @@ emUpdateCR <- function(longdat, survdat, paraests,
     # update: sigmaz
     bx <- X1 %*% b1
     r <- Y - bx
-    sum2 <- r^2 - 2 * r * (EUmat[, 1] + tEUmat) + EUUmat[, 1] +
+    sum2 <- r^2 -
+      2 * r * (EUmat[, 1] + tEUmat) +
+      EUUmat[, 1] +
       (EUUmat[, 2] * (lda.time^2))
     sum2 <- sum2 + 2 * EUUmat[, 3] * lda.time
     sigma.z <- sum(sum2) / N
@@ -288,11 +331,19 @@ emUpdateCR <- function(longdat, survdat, paraests,
     if (p2 > 0) {
       for (i in 1:p2) {
         fd.a[i] <- sum(cen.a * X2[, i]) - sum(X2[, i] * eb2x.a * summat.a[, 1])
-        sd.a[i, p2 + 1] <- (-sum(X2[, i] * eb2x.a * (summat2.a[, 1] +
-                                                       summat2.a[, 2])))
+        sd.a[i, p2 + 1] <- (-sum(
+          X2[, i] *
+            eb2x.a *
+            (summat2.a[, 1] +
+              summat2.a[, 2])
+        ))
         fd.b[i] <- sum(cen.b * X2[, i]) - sum(X2[, i] * eb2x.b * summat.b[, 1])
-        sd.b[i, p2 + 1] <- (-sum(X2[, i] * eb2x.b * (summat2.b[, 1] +
-                                                       summat2.b[, 2])))
+        sd.b[i, p2 + 1] <- (-sum(
+          X2[, i] *
+            eb2x.b *
+            (summat2.b[, 1] +
+              summat2.b[, 2])
+        ))
       }
     }
     fd.a[p2 + 1] <- sum(cen.a * (EU[, 1] + EU[, 2] * surv.time)) -
@@ -309,10 +360,12 @@ emUpdateCR <- function(longdat, survdat, paraests,
         }
       }
     }
-    sd.a[p2 + 1, p2 + 1] <- (-sum(eb2x.a * (summat3.a[, 1] + 2 * summat3.a[, 3] +
-                                              summat3.a[, 2])))
-    sd.b[p2 + 1, p2 + 1] <- (-sum(eb2x.b * (summat3.b[, 1] + 2 * summat3.b[, 3] +
-                                              summat3.b[, 2])))
+    sd.a[p2 + 1, p2 + 1] <- (-sum(
+      eb2x.a * (summat3.a[, 1] + 2 * summat3.a[, 3] + summat3.a[, 2])
+    ))
+    sd.b[p2 + 1, p2 + 1] <- (-sum(
+      eb2x.b * (summat3.b[, 1] + 2 * summat3.b[, 3] + summat3.b[, 2])
+    ))
 
     # N-R step
     b2.a <- b2.a - solve(sd.a, fd.a)
@@ -329,30 +382,28 @@ emUpdateCR <- function(longdat, survdat, paraests,
       conv <- TRUE
       break
     }
-
   }
 
   if ((conv != TRUE) & !loglik) {
-    print("Not converged")
-  }
-  
-  if (loglik) {
-    ll <- l1 + l2 - 0.5 * ran * n * log(pi)
-    list("log.like" = ll,
-         "longlog.like" = l1,
-         "survlog.like" = ll - l1)
-  } else {
-    list("b1" = data.frame(b1),
-         "b2.a" = data.frame(b2.a),
-         "b2.b" = data.frame(b2.b),
-         "sigma.z" = sigma.z,
-         "sigma.u" = sigma.u,
-         "corr" = rho,
-         "haz.a" = haz.a,
-         "haz.b" = haz.b,
-         "random" = EU,
-         "conv" = conv,
-         "iters" = it)
+    warning("EM algorithm did not converge")
   }
 
+  if (loglik) {
+    ll <- l1 + l2 - 0.5 * ran * n * log(pi)
+    list("log.like" = ll, "longlog.like" = l1, "survlog.like" = ll - l1)
+  } else {
+    list(
+      "b1" = data.frame(b1),
+      "b2.a" = data.frame(b2.a),
+      "b2.b" = data.frame(b2.b),
+      "sigma.z" = sigma.z,
+      "sigma.u" = sigma.u,
+      "corr" = rho,
+      "haz.a" = haz.a,
+      "haz.b" = haz.b,
+      "random" = EU,
+      "conv" = conv,
+      "iters" = it
+    )
+  }
 }

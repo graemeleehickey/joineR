@@ -1,7 +1,7 @@
 Package: joineR
 Type: Package
 Title: Joint Modelling of Repeated Measurements and Time-to-Event Data
-Version: 1.2.8-9000
+Version: 1.2.9
 Authors@R: c(
     person("Pete", "Philipson", email = "peter.philipson1@newcastle.ac.uk", 
         role = "aut",
@@ -37,17 +37,16 @@ Description: Analysis of repeated measurements and time-to-event data via random
     (cause-specific) Cox proportional hazards regression model with time-varying 
     covariates. The longitudinal outcome is modelled using a linear mixed effects
     model. The association is captured by a latent Gaussian process. The model is 
-    estimated using am Expectation Maximization algorithm. Some plotting functions 
+    estimated using an Expectation Maximization algorithm. Some plotting functions 
     and the variogram are also included. This project is funded by the Medical 
     Research Council (Grant numbers G0400615 and MR/M013227/1).
 License: GPL-3 | file LICENSE
-URL: https://github.com/graemeleehickey/joineR/
+URL: https://graemeleehickey.github.io/joineR/, https://github.com/graemeleehickey/joineR, https://CRAN.R-project.org/package=joineR
 BugReports: https://github.com/graemeleehickey/joineR/issues
 LazyData: true
 ByteCompile: true
 Depends:
-    R (>= 3.6),
-    survival
+    R (>= 3.6)
 Imports:
     graphics,
     lattice,
@@ -55,6 +54,7 @@ Imports:
     nlme,
     statmod,
     stats,
+    survival,
     utils
 Suggests:
     knitr,
@@ -62,4 +62,4 @@ Suggests:
     testthat,
     covr
 VignetteBuilder: knitr
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3

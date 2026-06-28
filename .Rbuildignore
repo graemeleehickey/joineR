@@ -11,3 +11,6 @@ inst/image
 ^CRAN-RELEASE$
 ^CRAN-SUBMISSION$
 revdep
+^_pkgdown\.yml$
+^docs$
+^\.posit$

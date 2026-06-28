@@ -21,3 +21,16 @@ sep <- function(ests, logical) {
   }
   ests
 }
+
+
+#' @keywords internal
+sortJointData <- function(longdat, survdat) {
+  longid <- longdat[, 1]
+  nn <- diff(match(unique(longid), longid))
+  nn[length(nn) + 1] <- length(longid) - sum(nn)
+  svec <- rep(survdat[, 2], nn)
+  sort.long <- longdat[order(svec), ]
+  os <- order(survdat[, 2])
+  sort.surv <- survdat[os, ]
+  list(long.s = data.frame(sort.long), surv.s = data.frame(sort.surv))
+}

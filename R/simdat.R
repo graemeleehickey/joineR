@@ -1,8 +1,23 @@
 #' @keywords internal
-simdat <- function(n, model, sepassoc, ntms, ran, b1, b2, gamma, sigu,
-                   vare, theta0, theta1, censoring, censlam, truncation, 
-                   trunctime, gridstep) {
-  
+simdat <- function(
+  n,
+  model,
+  sepassoc,
+  ntms,
+  ran,
+  b1,
+  b2,
+  gamma,
+  sigu,
+  vare,
+  theta0,
+  theta1,
+  censoring,
+  censlam,
+  truncation,
+  trunctime,
+  gridstep
+) {
   ctsx <- rnorm(n)
   binx <- rbinom(n, 1, 0.5)
   X2 <- cbind(ctsx, binx)
@@ -10,13 +25,13 @@ simdat <- function(n, model, sepassoc, ntms, ran, b1, b2, gamma, sigu,
   idl <- rep(id, each = ntms)
   ctsxl <- rep(ctsx, each = ntms)
   binxl <- rep(binx, each = ntms)
-  time <- rep(0:(ntms-1), length = n*ntms)
+  time <- rep(0:(ntms - 1), length = n * ntms)
   X1 <- cbind(intercept = 1, ctsxl, binxl, ltime = time)
   U <- MASS::mvrnorm(n, mu = rep(0, ran), Sigma = sigu)
   Ul <- U[rep(1:n, each = ntms), ]
   D <- getD(ran, time)
   DU <- t(D) * Ul
-  Y <- (X1 %*% b1) + rowSums(DU) + sqrt(vare) * rnorm(n*ntms)
+  Y <- (X1 %*% b1) + rowSums(DU) + sqrt(vare) * rnorm(n * ntms)
   u0 <- U[, 1]
   if (model == "intslope") {
     u1 <- U[, 2]
@@ -34,14 +49,23 @@ simdat <- function(n, model, sepassoc, ntms, ran, b1, b2, gamma, sigu,
     }
     uu <- runif(n)
     if (model == "int") {
-      survtime <- -log(uu) / exp(theta0 + b2x + gamma[1]*u0)
+      survtime <- -log(uu) / exp(theta0 + b2x + gamma[1] * u0)
     } else {
-      ii <- ((theta1 + gamma[2]*u1) < 0) & (uu < exp(exp(theta0 + b2x + gamma[1]*u0) / 
-                                                       (theta1 + gamma[2]*u1)))
+      ii <- ((theta1 + gamma[2] * u1) < 0) &
+        (uu <
+          exp(
+            exp(theta0 + b2x + gamma[1] * u0) /
+              (theta1 + gamma[2] * u1)
+          ))
       survtime <- rep(0, n)
       survtime[ii] <- Inf
-      survtime[!ii] <- log(1 - (theta1 + gamma[2]*u1[!ii]) * log(uu[!ii]) / 
-                             exp(theta0 + b2x[!ii] + gamma[1]*u0[!ii])) / (theta1 + gamma[2]*u1[!ii])
+      survtime[!ii] <- log(
+        1 -
+          (theta1 + gamma[2] * u1[!ii]) *
+            log(uu[!ii]) /
+            exp(theta0 + b2x[!ii] + gamma[1] * u0[!ii])
+      ) /
+        (theta1 + gamma[2] * u1[!ii])
     }
   } else {
     tau <- trunctime
@@ -56,7 +80,7 @@ simdat <- function(n, model, sepassoc, ntms, ran, b1, b2, gamma, sigu,
     survtime <- apply(tmat, 1, min)
     cens[survtime == tau] <- 0
   }
-  
+
   if (censoring) {
     censtime <- -log(runif(n)) / censlam
   } else {
@@ -75,9 +99,9 @@ simdat <- function(n, model, sepassoc, ntms, ran, b1, b2, gamma, sigu,
   X1 <- X1[ls > time, ]
   idl <- idl[ls > time]
   time <- time[ls > time]
-  cat(paste0(round(100 * sum(cens) / n, 1), "% experienced event\n"))
-  
-  list(longdat = data.frame(id = idl, Y, time, X1),
-       survdat = data.frame(id, survtime, cens, X2))
-  
+  list(
+    longdat = data.frame(id = idl, Y, time, X1),
+    survdat = data.frame(id, survtime, cens, X2),
+    event_pct = round(100 * sum(cens) / n, 1)
+  )
 }

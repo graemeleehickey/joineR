@@ -49,7 +49,7 @@ FALSE} will plot all profiles overlaid on a single plot.}
 x-axis.}
 
 \item{ylab}{an element of class \code{character} indicating the title for the
-x-axis.}
+y-axis.}
 
 \item{gp1lab}{an element of class \code{character} for the group 
 corresponding to a censoring indicator of zero. Typically, the censored 

@@ -12,10 +12,10 @@ joint(
   sepassoc = FALSE,
   longsep = FALSE,
   survsep = FALSE,
-  gpt,
-  lgpt,
-  max.it,
-  tol,
+  gpt = 3,
+  lgpt = 10,
+  max.it = 200,
+  tol = 0.001,
   verbose = FALSE
 )
 }

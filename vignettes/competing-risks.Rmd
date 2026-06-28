@@ -89,6 +89,7 @@ The data is available in the `joineR` package by running
 
 ```{r epileptic_data}
 library(joineR)
+library(survival)
 data(epileptic)
 head(epileptic)
 ```

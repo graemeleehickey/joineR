@@ -1,13 +1,12 @@
 #' @keywords internal
 survst <- function(survdat, surv.formula, survdat2) {
-  
   survdat2 <- survdat2[order(survdat2[, 2]), ]
   n <- length(survdat[, 2])
   s <- survdat[, 2]
   cen <- survdat[, 3]
-  cen[1] <- 1
-  survdat[1, 3] <- 1
-  survdat2[1, 3] <- 1
+  if (sum(cen) == 0) {
+    stop("No events observed in survival data; cannot fit Cox model")
+  }
   p2 <- dim(survdat)[2] - 3
   surv.start <- survival::coxph(surv.formula, data = survdat2, x = TRUE)
   surv.start.f <- survival::survfit(surv.start)
@@ -20,35 +19,29 @@ survst <- function(survdat, surv.formula, survdat2) {
     haz <- (surv.start.f$n.event) / (surv.start.f$n.risk)
     haz <- haz[surv.start.f$n.event > 0]
   }
-  rs <- rep(1:nf, c(diff(match(sf, s)), n + 1 - match(sf, s)[nf]))
+  rs <- pmax(findInterval(s, sf), 1L)
   b2 <- coef(surv.start)
-  ll <- surv.start$loglik - sum(cen)
-  
+  ll <- surv.start$loglik[2] - sum(cen)
+
   out <- list(
     "b2" = b2,
     "haz" = haz,
     "rs" = rs,
     "sf" = sf,
     "nev" = nev,
-    "log.like" = ll)
-  
+    "log.like" = ll
+  )
+
   return(out)
-  
 }
 
 
 #' @keywords internal
 survstCR <- function(survdat, surv.formula, survdat2, event) {
-  
   survdat2 <- survdat2[order(survdat2[, 2]), ]
   n <- length(survdat[, 2])
   s <- survdat[, 2]
   cen <- survdat[, ifelse(event == 1, 3, 4)]
-  #if (cen[1] == 0) {
-  #  cen[1] <- 1
-  #  survdat[1, ifelse(event == 1, 3, 4)] <- 1
-  #  survdat2[1, ifelse(event == 1, 3, 4)] <- 1
-  #}
   surv.formula[[2]][[3]] <- as.symbol(paste0("event", event))
   p2 <- dim(survdat)[2] - 4
   if (p2 == 0) {
@@ -66,22 +59,24 @@ survstCR <- function(survdat, surv.formula, survdat2, event) {
   id.1 <- match(s[1:n], s.dist)
   dummy <- match(s.dist[1:l], s)
   d.dummy <- diff(dummy)
-  id.2 <- rep(id.1[dummy[1:(l-1)]], d.dummy[1:(l-1)])
+  id.2 <- rep(id.1[dummy[1:(l - 1)]], d.dummy[1:(l - 1)])
   id.3 <- rep(id.1[dummy[l]], (n - dummy[l] + 1))
   id.4 <- vector("numeric", n)
   id.4 <- c(id.2, id.3)
   id.5 <- c(rep(0, match(1, id.1) - 1), id.4)
-  ll <- surv.start$loglik - sum(cen)
-  
+  ll <- surv.start$loglik[2] - sum(cen)
+
   out <- list(
     "b2" = coef(surv.start),
     "haz" = haz,
     "id" = data.frame(id.5),
     "s.dist" = data.frame(s.dist),
-    "log.like" = ll)
-  
-  names(out) <- paste0(c("b2", "haz", "id", "s.dist", "log.like"),
-                       ifelse(event == 1, ".a", ".b"))
+    "log.like" = ll
+  )
+
+  names(out) <- paste0(
+    c("b2", "haz", "id", "s.dist", "log.like"),
+    ifelse(event == 1, ".a", ".b")
+  )
   return(out)
-  
 }

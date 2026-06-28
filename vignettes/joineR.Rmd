@@ -78,6 +78,7 @@ command:
 
 ```{r heart.valve_data}
 library(joineR)
+library(survival)
 data(heart.valve)
 ```
 

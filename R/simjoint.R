@@ -36,15 +36,15 @@
 #' @param gridstep the step-size for the grid used to simulate event times when
 #'   \code{model = "quad"}. Default is \code{gridstep = 0.01}. See Details.
 #'
-#' @details The function \code{simjoint} simulates data from a joint model, 
-#'   similar to that performed in Henderson et al. (2000). It works by first 
-#'   simulating longitudinal data for all possible follow-up times using random 
-#'   draws for the multivariate Gaussian random effects and residual error 
-#'   terms. Data can be simulated assuming either random-intercepts only 
-#'   (\code{model = "int"}) in each of the longitudinal sub-models; 
-#'   random-intercepts and random-slopes (\code{model = "intslope"}); or 
-#'   quadratic random effects structures (\code{model = "quad"}). The failure 
-#'   times are simulated from proportional hazards time-to-event models, using 
+#' @details The function \code{simjoint} simulates data from a joint model,
+#'   similar to that performed in Henderson et al. (2000). It works by first
+#'   simulating longitudinal data for all possible follow-up times using random
+#'   draws for the multivariate Gaussian random effects and residual error
+#'   terms. Data can be simulated assuming either random-intercepts only
+#'   (\code{model = "int"}) in each of the longitudinal sub-models;
+#'   random-intercepts and random-slopes (\code{model = "intslope"}); or
+#'   quadratic random effects structures (\code{model = "quad"}). The failure
+#'   times are simulated from proportional hazards time-to-event models, using
 #'   the following methodologies:
 #'
 #'   \describe{
@@ -113,12 +113,24 @@
 #'
 #' @examples
 #' simjoint(10, sepassoc = TRUE)
-simjoint <- function(n = 500, model = c("intslope", "int", "quad"), sepassoc = FALSE,
-                     ntms = 5, b1 = c(1, 1, 1, 1), b2 = c(1, 1), gamma = c(1, 0.1),
-                     sigu, vare = 0.01, theta0 = -3, theta1 = 1, censoring = TRUE,
-                     censlam = exp(-3), truncation = FALSE, trunctime = max(ntms),
-                     gridstep = 0.01) {
-
+simjoint <- function(
+  n = 500,
+  model = c("intslope", "int", "quad"),
+  sepassoc = FALSE,
+  ntms = 5,
+  b1 = c(1, 1, 1, 1),
+  b2 = c(1, 1),
+  gamma = c(1, 0.1),
+  sigu,
+  vare = 0.01,
+  theta0 = -3,
+  theta1 = 1,
+  censoring = TRUE,
+  censlam = exp(-3),
+  truncation = FALSE,
+  trunctime = max(ntms),
+  gridstep = 0.01
+) {
   model <- match.arg(model)
   if (model != "intslope" && model != "int" && model != "quad") {
     stop(paste("Unknown model:", model))
@@ -142,14 +154,14 @@ simjoint <- function(n = 500, model = c("intslope", "int", "quad"), sepassoc = F
   }
   if (length(sigu) != ran^2) {
     warning("Dimension of covariance matrix does not match chosen model\n")
-    if(length(sigu) > ran^2) {
+    if (length(sigu) > ran^2) {
       sigu <- sigu[1:ran, 1:ran]
     } else {
       sigu <- diag(ran) * sigu[1]
     }
   }
   if (model == "int") {
-    if(sigu < 0) {
+    if (sigu < 0) {
       stop("Variance must be positive")
     }
   } else {
@@ -161,10 +173,26 @@ simjoint <- function(n = 500, model = c("intslope", "int", "quad"), sepassoc = F
     }
   }
 
-  sim <- simdat(n, model, sepassoc, ntms, ran, b1, b2, gamma, sigu, vare,
-                theta0, theta1,
-                censoring, censlam, truncation, trunctime, gridstep)
+  sim <- simdat(
+    n,
+    model,
+    sepassoc,
+    ntms,
+    ran,
+    b1,
+    b2,
+    gamma,
+    sigu,
+    vare,
+    theta0,
+    theta1,
+    censoring,
+    censlam,
+    truncation,
+    trunctime,
+    gridstep
+  )
 
+  message(sim$event_pct, "% experienced event")
   list(longitudinal = sim$longdat, survival = sim$survdat)
-
 }

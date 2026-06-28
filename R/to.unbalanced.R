@@ -1,33 +1,32 @@
 #' Transform data to the longitudinal unbalanced format
-#' 
+#'
 #' @description Transforms a longitudinal data set in the balanced format to the
 #'   unbalanced format.
-#' 
-#' @param data a data frame with longitudinal data in the balanced format. That 
+#'
+#' @param data a data frame with longitudinal data in the balanced format. That
 #'   is, in the format of 'one row per subject'. \code{data}, where the patient
 #'   identifications is.
-#' @param times a vector with the unique time points where the patients are 
+#' @param times a vector with the unique time points where the patients are
 #'   observed. This is the study design time points in a balanced data set.
 #' @inheritParams to.balanced
-#'   
+#'
 #' @author Ines Sousa
 #' @seealso \code{\link{to.balanced}}.
 #' @keywords data manip
-#'   
+#'
 #' @return A data frame with longitudinal data in the unbalanced format. The
 #'   unbalanced format is considered in this context as the format where each
 #'   row has data on each subject observation.
 #' @export
-#' 
+#'
 #' @examples
 #' simul <- data.frame(num = 1:10,
 #'                     Y1.1 = rnorm(10), Y1.2 = rnorm(10),
-#'                     Y2.1 = rnorm(10), Y2.2 = rnorm(10), 
+#'                     Y2.1 = rnorm(10), Y2.2 = rnorm(10),
 #'                     age = rnorm(10))
 #' to.unbalanced(simul, id.col = 1, times = c(1, 2), Y.col = 2:5,
 #'               other.col = 6)
 to.unbalanced <- function(data, id.col, times, Y.col, other.col = NA) {
-  
   if (length(id.col) > 1) {
     stop("Only a single vector of subject identification is possible")
   }
@@ -44,7 +43,9 @@ to.unbalanced <- function(data, id.col, times, Y.col, other.col = NA) {
   Y.col <- as.vector(Y.col)
   nY <- length(Y.col) / length(tm)
   if ((nY %% 1) != 0) {
-    stop("Number of longitudinal variables not consistent with the number of longitudinal time points")
+    stop(
+      "Number of longitudinal variables not consistent with the number of longitudinal time points"
+    )
   }
   time <- rep(tm, times = length(pat))
   indv <- rep(pat, each = ltt)
@@ -54,7 +55,9 @@ to.unbalanced <- function(data, id.col, times, Y.col, other.col = NA) {
   for (i in 1:nY) {
     Y.tt <- c(t(Y[, (ltt * (i - 1) + 1):(ltt * i)]))
     data.trans <- cbind(data.trans, Y.tt)
-    names(data.trans)[dim(data.trans)[2]] <- (names(data)[Y.col])[(i - 1) * ltt + 1]
+    names(data.trans)[dim(data.trans)[2]] <- (names(data)[Y.col])[
+      (i - 1) * ltt + 1
+    ]
   }
   ddt <- dim(data.trans)[2]
   if (!identical(NA, other.col)) {
@@ -71,7 +74,6 @@ to.unbalanced <- function(data, id.col, times, Y.col, other.col = NA) {
     names(data.trans)[(ddt + 1):(dim(data.trans)[2])] <- names(data)[other.col]
   }
   row.names(data.trans) <- 1:(dim(data.trans)[1])
-  
+
   return(data.trans)
-  
 }

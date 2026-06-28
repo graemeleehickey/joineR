@@ -4,7 +4,15 @@
 \alias{jointSE}
 \title{Standard errors via bootstrap for a joint model fit}
 \usage{
-jointSE(fitted, n.boot, gpt, lgpt, max.it, tol, print.detail = FALSE)
+jointSE(
+  fitted,
+  n.boot,
+  gpt = 3,
+  lgpt = 10,
+  max.it = 200,
+  tol = 0.001,
+  print.detail = FALSE
+)
 }
 \arguments{
 \item{fitted}{a list containing as components the parameter estimates 

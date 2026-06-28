@@ -43,30 +43,36 @@
 #'              model = "intslope")
 #' summary(fit)
 summary.joint <- function(object, variance = TRUE, ...) {
-  
   if (!inherits(object, "joint")) {
     stop("Fitted model must be of class 'joint'\n")
   }
-  
+
   compRisk <- object$compRisk
-    
-  cat("\nCall:\n", paste(deparse(object$call), sep = "\n", collapse = "\n"),
-      "\n\n", sep = "")
-  
+
+  cat(
+    "\nCall:\n",
+    paste(deparse(object$call), sep = "\n", collapse = "\n"),
+    "\n\n",
+    sep = ""
+  )
+
   # Random effects
   cat("Random effects joint model\n")
   model <- object$model
   cat(" Data:", deparse(object$call$data), "\n")
   cat(" Log-likelihood:", object$loglik$jointlhood, "\n")
   cat("\n")
-  
+
   # Longitudinal sub-model
-  cat("Longitudinal sub-model fixed effects:", deparse(object$formulae$lformula))
+  cat(
+    "Longitudinal sub-model fixed effects:",
+    deparse(object$formulae$lformula)
+  )
   lfixed <- object$coefficients$fixed$longitudinal
   names(lfixed) <- ""
   print(lfixed)
   cat("\n")
-  
+
   # Survival sub-model
   if (!compRisk) {
     # single event time
@@ -81,7 +87,11 @@ summary.joint <- function(object, variance = TRUE, ...) {
     cat("\n")
   } else {
     # competing risks
-    cat("Competing risks sub-model effects:", deparse(object$formulae$sformula), "\n")
+    cat(
+      "Competing risks sub-model effects:",
+      deparse(object$formulae$sformula),
+      "\n"
+    )
     sfixed1 <- data.frame(object$coefficients$fixed$survival1)
     sfixed2 <- data.frame(object$coefficients$fixed$survival2)
     if (sum(dim(sfixed1)) == 0) {
@@ -95,14 +105,14 @@ summary.joint <- function(object, variance = TRUE, ...) {
     }
     cat("\n")
   }
-  
+
   # Latent associations
   cat("Latent association:")
   lat <- data.frame(object$coefficients$latent)
   names(lat) <- ""
   print(lat)
   cat("\n")
-  
+
   # Variances
   cat("Variance components:\n")
   sigu <- diag(object$sigma.u)
@@ -119,23 +129,22 @@ summary.joint <- function(object, variance = TRUE, ...) {
     cat(" Note: the above are standard deviations\n")
   }
   cat("\n")
-  
+
   # Convergence
   if (object$convergence) {
-    cat("Convergence at iteration:", object$numIter,"\n")
+    cat("Convergence at iteration:", object$numIter, "\n")
   } else {
     cat("Convergence not achieved\n")
   }
   cat("\n")
-  
+
   # Data summaries
-  cat("Number of observations:", dim(object$data$longitudinal)[1],"\n")
-  cat("Number of groups:", dim(object$data$survival)[1],"\n")
-  
+  cat("Number of observations:", dim(object$data$longitudinal)[1], "\n")
+  cat("Number of groups:", dim(object$data$survival)[1], "\n")
+
   # Return summary.joint object
   object$nobs <- dim(object$data$longitudinal)[1]
   object$ngrps <- dim(object$data$survival)[1]
   class(object) <- c("summary.joint")
   invisible(object)
-  
 }

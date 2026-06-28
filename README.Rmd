@@ -19,15 +19,13 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/graemeleehickey/joineR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/graemeleehickey/joineR/actions/workflows/R-CMD-check.yaml)
-[![AppVeyor Build
-Status](https://ci.appveyor.com/api/projects/status/github/graemeleehickey/joineR?branch=master&svg=true)](https://ci.appveyor.com/project/graemeleehickey/joineR)
-[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/joineR)](https://CRAN.R-project.org/package=joineR)
-[![](https://cranlogs.r-pkg.org/badges/joineR)](https://CRAN.R-project.org/package=joineR)
-[![](https://cranlogs.r-pkg.org/badges/grand-total/joineR)](https://CRAN.R-project.org/package=joineR)
-[![Research software
-impact](http://depsy.org/api/package/cran/joineR/badge.svg)](http://depsy.org/package/r/joineR)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1167708.svg)](https://doi.org/10.5281/zenodo.1167708)
 [![Codecov test coverage](https://codecov.io/gh/graemeleehickey/joineR/graph/badge.svg)](https://app.codecov.io/gh/graemeleehickey/joineR)
+[![CRAN status](https://www.r-pkg.org/badges/version/joineR)](https://CRAN.R-project.org/package=joineR)
+[![CRAN downloads](https://cranlogs.r-pkg.org/badges/joineR)](https://CRAN.R-project.org/package=joineR)
+[![CRAN total downloads](https://cranlogs.r-pkg.org/badges/grand-total/joineR)](https://CRAN.R-project.org/package=joineR)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1167708.svg)](https://doi.org/10.5281/zenodo.1167708)
+[![pkgdown](https://github.com/graemeleehickey/joineR/actions/workflows/pkgdown.yaml/badge.svg)](https://graemeleehickey.github.io/joineR/)
+[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 <!-- badges: end -->
 
 The `joineR` package implements methods for analyzing data from
