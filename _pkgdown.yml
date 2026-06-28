@@ -2,17 +2,14 @@ url: https://graemeleehickey.github.io/joineR/
 
 template:
   bootstrap: 5
-  bootswatch: cosmo
+  light-switch: true
   theme: arrow-light
   theme-dark: arrow-dark
-  bslib:
-    preset: cosmo
-  light-switch: true
 
 navbar:
   structure:
     left: [intro, reference, articles, news]
-    right: [search, github]
+    right: [search, github, lightswitch]
   components:
     github:
       icon: fab fa-github fa-lg
