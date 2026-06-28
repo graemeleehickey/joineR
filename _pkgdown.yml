@@ -5,6 +5,9 @@ template:
   bootswatch: cosmo
   theme: arrow-light
   theme-dark: arrow-dark
+  bslib:
+    preset: cosmo
+  light-switch: true
 
 navbar:
   structure:
