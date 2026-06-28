@@ -22,13 +22,20 @@
 #'   longitudinal and survival data. It is rare that more than 200 bootstrap
 #'   samples are needed for estimating a standard error. The number of bootstrap
 #'   samples needed for accurate confidence intervals can be as large as 1000.
+#'   Two-sided Wald p-values are computed as \eqn{2\Phi(-|\hat\theta /
+#'   \widehat{SE}|)} for all fixed-effect and association parameters. P-values
+#'   are \code{NA} for variance components (\code{U_*} and \code{Residual})
+#'   because Wald tests are not appropriate for variance parameters constrained
+#'   to be positive.
 #'
 #' @author Ruwanthi Kolamunnage-Dona and Pete Philipson
 #' @keywords models survival htest
 #' @seealso \code{\link[nlme]{lme}}, \code{\link[survival]{coxph}},
 #'   \code{\link{joint}}, \code{\link{jointdata}}.
 #'
-#' @return An object of class \code{data.frame}.
+#' @return An object of class \code{data.frame} with columns \code{Component},
+#'   \code{Parameter}, \code{Estimate}, \code{SE}, \code{p-value},
+#'   \code{95\%Lower}, and \code{95\%Upper}.
 #' @export
 #'
 #' @references
@@ -199,19 +206,32 @@ jointSE <- function(
   }
 
   b1 <- data.frame(compnames, paranames)
+
+  # Two-sided Wald p-values for fixed effects and association parameters.
+  # Variance component rows (U_* and Residual) get NA: a Wald test is not
+  # meaningful for variance parameters constrained to be positive.
+  n_var <- q + 1 # number of variance rows (random effects + residual)
+  n_fixed <- length(paranames) - n_var
+  pval <- c(
+    2 * pnorm(-abs(mles[seq_len(n_fixed)] / se[seq_len(n_fixed)])),
+    rep(NA_real_, n_var)
+  )
+
   b1 <- cbind(
     b1,
     round(mles, 4),
     round(cbind(se), 4),
+    round(pval, 4),
     round(ci1, 4),
     round(ci2, 4)
   )
 
-  colnames(b1)[1:6] <- c(
+  colnames(b1)[1:7] <- c(
     "Component",
     "Parameter",
     "Estimate",
     "SE",
+    "p-value",
     "95%Lower",
     "95%Upper"
   )

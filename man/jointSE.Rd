@@ -15,14 +15,14 @@ jointSE(
 )
 }
 \arguments{
-\item{fitted}{a list containing as components the parameter estimates 
-obtained by fitting a joint model along with the respective formulae for 
-the longitudinal and survival sub-models and the model chosen, see 
+\item{fitted}{a list containing as components the parameter estimates
+obtained by fitting a joint model along with the respective formulae for
+the longitudinal and survival sub-models and the model chosen, see
 \code{joint} for further details.}
 
-\item{n.boot}{argument specifying the number of bootstrap samples to use in 
+\item{n.boot}{argument specifying the number of bootstrap samples to use in
 order to obtain the standard error estimates and confidence intervals. Note
-that at least \code{n.boot = 100} is required in order for the function to 
+that at least \code{n.boot = 100} is required in order for the function to
 return non-zero confidence intervals.}
 
 \item{gpt}{the number of quadrature points across which the integration with
@@ -40,12 +40,14 @@ iterations may be necessary for large, complex data.}
 \item{tol}{the tolerance level before convergence of the algorithm is deemed
 to have occurred. Default value is \code{tol = 0.001}.}
 
-\item{print.detail}{This argument determines the level of printing that is 
-done during the bootstrapping. If \code{TRUE} then the parameter estimates 
+\item{print.detail}{This argument determines the level of printing that is
+done during the bootstrapping. If \code{TRUE} then the parameter estimates
 from each bootstrap sample are output.}
 }
 \value{
-An object of class \code{data.frame}.
+An object of class \code{data.frame} with columns \code{Component},
+  \code{Parameter}, \code{Estimate}, \code{SE}, \code{p-value},
+  \code{95\%Lower}, and \code{95\%Upper}.
 }
 \description{
 This function takes a model fit from a joint model and
@@ -53,41 +55,46 @@ This function takes a model fit from a joint model and
   main longitudinal and survival covariates.
 }
 \details{
-Standard errors and confidence intervals are obtained by repeated 
-  fitting of the requisite joint model to bootstrap samples of the original 
-  longitudinal and survival data. It is rare that more than 200 bootstrap 
+Standard errors and confidence intervals are obtained by repeated
+  fitting of the requisite joint model to bootstrap samples of the original
+  longitudinal and survival data. It is rare that more than 200 bootstrap
   samples are needed for estimating a standard error. The number of bootstrap
   samples needed for accurate confidence intervals can be as large as 1000.
+  Two-sided Wald p-values are computed as \eqn{2\Phi(-|\hat\theta /
+  \widehat{SE}|)} for all fixed-effect and association parameters. P-values
+  are \code{NA} for variance components (\code{U_*} and \code{Residual})
+  because Wald tests are not appropriate for variance parameters constrained
+  to be positive.
 }
 \examples{
 data(heart.valve)
-heart.surv <- UniqueVariables(heart.valve, 
-                              var.col = c("fuyrs", "status"), 
+heart.surv <- UniqueVariables(heart.valve,
+                              var.col = c("fuyrs", "status"),
                               id.col = "num")
 heart.long <- heart.valve[, c("num", "time", "log.lvmi")]
-heart.cov <- UniqueVariables(heart.valve, 
-                             c("age", "hs", "sex"), 
+heart.cov <- UniqueVariables(heart.valve,
+                             c("age", "hs", "sex"),
                              id.col = "num")
-heart.valve.jd <- jointdata(longitudinal = heart.long, 
-                            baseline = heart.cov, 
-                            survival = heart.surv, 
-                            id.col = "num", 
+heart.valve.jd <- jointdata(longitudinal = heart.long,
+                            baseline = heart.cov,
+                            survival = heart.surv,
+                            id.col = "num",
                             time.col = "time")
-fit <- joint(heart.valve.jd, 
-             long.formula = log.lvmi ~ 1 + time + hs, 
-             surv.formula = Surv(fuyrs, status) ~ hs, 
+fit <- joint(heart.valve.jd,
+             long.formula = log.lvmi ~ 1 + time + hs,
+             surv.formula = Surv(fuyrs, status) ~ hs,
              model = "int")
 jointSE(fitted = fit, n.boot = 1)
 }
 \references{
-Wulfsohn MS, Tsiatis AA. A joint model for survival and longitudinal data 
+Wulfsohn MS, Tsiatis AA. A joint model for survival and longitudinal data
 measured with error. \emph{Biometrics.} 1997; \strong{53(1)}: 330-339.
 
-Efron B, Tibshirani R. \emph{An Introduction to the Bootstrap.} 2000; Boca 
+Efron B, Tibshirani R. \emph{An Introduction to the Bootstrap.} 2000; Boca
 Raton, FL: Chapman & Hall/CRC.
 }
 \seealso{
-\code{\link[nlme]{lme}}, \code{\link[survival]{coxph}}, 
+\code{\link[nlme]{lme}}, \code{\link[survival]{coxph}},
   \code{\link{joint}}, \code{\link{jointdata}}.
 }
 \author{

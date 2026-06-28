@@ -14,6 +14,8 @@
 
 * `joint()` and `jointSE()` arguments `gpt`, `lgpt`, `max.it`, and `tol` now have explicit default values in the function signatures, replacing the previous `missing()` pattern. Defaults are visible in auto-complete and `?joint`.
 
+* `jointSE()` output now includes a `p-value` column containing two-sided Wald p-values for all fixed-effect and association parameters. Variance component rows (`U_*`, `Residual`) return `NA` as Wald tests are not appropriate for positive-constrained parameters. Closes #58.
+
 * `simjoint()` no longer prints a progress line via `cat()` from the internal `simdat()` function. It now emits a `message()` at the `simjoint()` level, which can be suppressed with `suppressMessages()`.
 
 * `survival` has been moved from `Depends` to `Imports`. `Surv` is re-exported so existing user code does not require changes.
