@@ -49,22 +49,23 @@
   level, which can be suppressed with
   [`suppressMessages()`](https://rdrr.io/r/base/message.html).
 
-- The internal helper `sortJointData()` (previously `sort.dat()` defined
-  inside
-  [`joint()`](https://graemeleehickey.github.io/joineR/reference/joint.md)
-  on every call) is now a file-level internal function. The rename also
-  avoids a spurious S3 method consistency note in R CMD check.
-
 - `survival` has been moved from `Depends` to `Imports`. `Surv` is
   re-exported so existing user code does not require changes.
+
+- Test coverage improved from 89% to 93%.
 
 - Code formatted with `air`.
 
 ### Housekeeping
 
-- Added a `pkgdown` site with Bootstrap 5, light/dark code themes, and a
-  structured reference index. A `pkgdown.yaml` GitHub Actions workflow
-  builds and deploys the site to GitHub Pages on push and release.
+- Added a `pkgdown` site with Bootstrap 5, full dark mode (light
+  switch), and a structured reference index. A `pkgdown.yaml` GitHub
+  Actions workflow builds and deploys the site to GitHub Pages on push
+  and release.
+
+- Added a `render-readme.yaml` GitHub Actions workflow that
+  automatically re-renders `README.md` from `README.Rmd` when
+  `README.Rmd` is changed.
 
 - Updated `R-CMD-check.yaml` and `test-coverage.yaml` GitHub Actions
   workflows to use `actions/checkout@v6`, `codecov-action@v7`, and
@@ -76,10 +77,22 @@
 - README badges updated: removed defunct AppVeyor and Depsy badges;
   added pkgdown deployment badge and lifecycle (stable) badge.
 
+- Updated README with new MRC logo and fixed badges.
+
+- Fixed deprecated documentation for `joineR-package.R`.
+
+- Added reverse dependency checks.
+
 - Removed dead commented-out code blocks in `survst.R` and
   `prepSurvData.R`.
 
 - Removed no-op `fd <- fd` / `sd <- sd` assignments in `emUpdate()`.
+
+- The internal helper `sortJointData()` (previously `sort.dat()` defined
+  inside
+  [`joint()`](https://graemeleehickey.github.io/joineR/reference/joint.md)
+  on every call) is now a file-level internal function, avoiding a
+  spurious S3 method consistency note in R CMD check.
 
 - Fixed copy-paste error in `@param ylab` documentation for
   [`jointplot()`](https://graemeleehickey.github.io/joineR/reference/jointplot.md)
@@ -91,23 +104,9 @@
 
 - Fixed typo “am Expectation Maximization” → “an” in `DESCRIPTION`.
 
-- Added `^\.posit,`^\_pkgdown.yml, and `^docs to`.Rbuildignore\`.
-
 - Updated test suite: removed deprecated `context()` calls and replaced
   `expect_is()` with `expect_s3_class()` throughout. Fixed typo
-  “seperate” → “separate” in one test name.
-
-## joineR 1.2.8-9000
-
-### Housekeeping
-
-- Update README: new MRC logo, fixed badges
-
-- Update GitHub actions workflows
-
-- Fixed deprecated documentation for `joineR-package.R`.
-
-- Added reverse dependency checks.
+  “seperate” → “separate” in one test name. Enabled testthat edition 3.
 
 ## joineR 1.2.8
 
