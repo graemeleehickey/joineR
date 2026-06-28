@@ -6,16 +6,18 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/graemeleehickey/joineR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/graemeleehickey/joineR/actions/workflows/R-CMD-check.yaml)
-[![AppVeyor Build
-Status](https://ci.appveyor.com/api/projects/status/github/graemeleehickey/joineR?branch=master&svg=true)](https://ci.appveyor.com/project/graemeleehickey/joineR)
-[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/joineR)](https://CRAN.R-project.org/package=joineR)
-[![](https://cranlogs.r-pkg.org/badges/joineR)](https://CRAN.R-project.org/package=joineR)
-[![](https://cranlogs.r-pkg.org/badges/grand-total/joineR)](https://CRAN.R-project.org/package=joineR)
-[![Research software
-impact](http://depsy.org/api/package/cran/joineR/badge.svg)](http://depsy.org/package/r/joineR)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1167708.svg)](https://doi.org/10.5281/zenodo.1167708)
 [![Codecov test
 coverage](https://codecov.io/gh/graemeleehickey/joineR/graph/badge.svg)](https://app.codecov.io/gh/graemeleehickey/joineR)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/joineR)](https://CRAN.R-project.org/package=joineR)
+[![CRAN
+downloads](https://cranlogs.r-pkg.org/badges/joineR)](https://CRAN.R-project.org/package=joineR)
+[![CRAN total
+downloads](https://cranlogs.r-pkg.org/badges/grand-total/joineR)](https://CRAN.R-project.org/package=joineR)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1167708.svg)](https://doi.org/10.5281/zenodo.1167708)
+[![pkgdown](https://github.com/graemeleehickey/joineR/actions/workflows/pkgdown.yaml/badge.svg)](https://graemeleehickey.github.io/joineR/)
+[![Lifecycle:
+stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 <!-- badges: end -->
 
 The `joineR` package implements methods for analyzing data from
@@ -50,7 +52,6 @@ time outcomes.
 
 ``` r
 library(joineR)
-#> Loading required package: survival
 data(heart.valve)
 heart.surv <- UniqueVariables(heart.valve, 
                               var.col = c("fuyrs", "status"),
@@ -89,22 +90,22 @@ summary(fit)
 #> 
 #> Random effects joint model
 #>  Data: heart.valve.jd 
-#>  Log-likelihood: -424.7084 
+#>  Log-likelihood: -423.7073 
 #> 
 #> Longitudinal sub-model fixed effects: log.lvmi ~ 1 + time + hs                              
-#> (Intercept)        4.993080959
-#> time              -0.007045486
-#> hsStentless valve  0.055831384
+#> (Intercept)        4.992709176
+#> time              -0.006977116
+#> hsStentless valve  0.055921729
 #> 
 #> Survival sub-model fixed effects: Surv(fuyrs, status) ~ hs                           
-#> hsStentless valve 0.7934551
+#> hsStentless valve 0.8106134
 #> 
 #> Latent association:                 
-#> gamma_0 0.8211701
+#> gamma_0 0.8476275
 #> 
 #> Variance components:
 #>         U_0         U_1    Residual 
-#> 0.113577498 0.001766164 0.037071195 
+#> 0.113583056 0.001765284 0.037074269 
 #> 
 #> Convergence at iteration: 9 
 #> 
