@@ -156,6 +156,30 @@ test_that("competing risks model with covariates", {
     gpt = 3
   )
   # tests
-  expect_is(fit_covar, "joint")
+  expect_s3_class(fit_covar, "joint")
   expect_true(fit_covar$convergence)
+})
+
+
+test_that("summary of competing risks joint model", {
+  data(epileptic)
+  epileptic$interaction <- with(epileptic, time * (treat == "LTG"))
+  longitudinal <- epileptic[, c(1:3, 13)]
+  survival <- UniqueVariables(epileptic, c(4, 6), "id")
+  baseline <- UniqueVariables(epileptic, "treat", "id")
+  data <- jointdata(
+    longitudinal = longitudinal,
+    survival = survival,
+    baseline = baseline,
+    id.col = "id",
+    time.col = "time"
+  )
+  fit <- joint(
+    data = data,
+    long.formula = dose ~ time + treat + interaction,
+    surv.formula = Surv(with.time, with.status2) ~ treat,
+    gpt = 3
+  )
+  # exercises the compRisk = TRUE branch of summary.joint
+  expect_output(summary(fit), "Competing risks")
 })

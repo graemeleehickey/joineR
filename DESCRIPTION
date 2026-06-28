@@ -61,6 +61,7 @@ Suggests:
     rmarkdown,
     testthat,
     covr
+Config/testthat/edition: 3
 Config/Needs/readme: rmarkdown
 Config/Needs/website: pkgdown
 VignetteBuilder: knitr

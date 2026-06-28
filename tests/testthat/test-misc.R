@@ -1,5 +1,4 @@
 test_that("summary of joint objects", {
-  # load data + fit model
   data(heart.valve)
   heart.surv <- UniqueVariables(
     heart.valve,
@@ -26,8 +25,11 @@ test_that("summary of joint objects", {
     model = "int",
     tol = 1e-05
   )
-  # tests
   expect_output(str(summary(fit)), "List of 17")
+  # variance = FALSE exercises the sqrt() + note branch
+  expect_output(summary(fit, variance = FALSE), "standard deviations")
+  # wrong class
+  expect_error(summary.joint(list()), class = "simpleError")
 })
 
 
