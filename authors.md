@@ -27,7 +27,7 @@
 ## Citation
 
 Source:
-[`inst/CITATION`](https://github.com/graemeleehickey/joineR/blob/master/inst/CITATION)
+[`inst/CITATION`](https://github.com/graemeleehickey/joineR/blob/v1.2.9/inst/CITATION)
 
 Philipson P, Sousa I, Diggle P, Williamson P, Kolamunnage-Dona R,
 Henderson R, Hickey G (2018). *joineR: Joint Modelling of Repeated
