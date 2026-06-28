@@ -76,10 +76,9 @@ the longitudinal and survival sub-models and the model chosen, see
 
 
 <dt id="arg-n-boot">n.boot<a class="anchor" aria-label="anchor" href="#arg-n-boot"></a></dt>
-<dd><p>argument specifying the number of bootstrap samples to use in
-order to obtain the standard error estimates and confidence intervals. Note
-that at least <code>n.boot = 100</code> is required in order for the function to
-return non-zero confidence intervals.</p></dd>
+<dd><p>the number of bootstrap samples used to compute standard errors
+and confidence intervals. A minimum of 100 is recommended for reliable
+confidence intervals; fewer samples will trigger a warning.</p></dd>
 
 
 <dt id="arg-gpt">gpt<a class="anchor" aria-label="anchor" href="#arg-gpt"></a></dt>
@@ -122,8 +121,9 @@ from each bootstrap sample are output.</p></dd>
     <p>Standard errors and confidence intervals are obtained by repeated
   fitting of the requisite joint model to bootstrap samples of the original
   longitudinal and survival data. It is rare that more than 200 bootstrap
-  samples are needed for estimating a standard error. The number of bootstrap
-  samples needed for accurate confidence intervals can be as large as 1000.
+  samples are needed for estimating a standard error. Confidence intervals
+  use the percentile method and are computed for all <code>n.boot</code> values,
+  though fewer than 100 samples will trigger a warning about reliability.
   Two-sided Wald p-values are computed as \(2\Phi(-|\hat\theta /
   \widehat{SE}|)\) for all fixed-effect and association parameters. P-values
   are <code>NA</code> for variance components (<code>U_*</code> and <code>Residual</code>)
@@ -167,14 +167,15 @@ Raton, FL: Chapman &amp; Hall/CRC.</p>
 <span class="r-in"><span>             surv.formula <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html" class="external-link">Surv</a></span><span class="op">(</span><span class="va">fuyrs</span>, <span class="va">status</span><span class="op">)</span> <span class="op">~</span> <span class="va">hs</span>,</span></span>
 <span class="r-in"><span>             model <span class="op">=</span> <span class="st">"int"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">jointSE</span><span class="op">(</span>fitted <span class="op">=</span> <span class="va">fit</span>, n.boot <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Fewer than 100 bootstrap samples: confidence intervals may be unreliable</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Component         Parameter Estimate SE p-value 95%Lower 95%Upper</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 Longitudinal       (Intercept)   4.9836 NA      NA        0        0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                           time   0.0001 NA      NA        0        0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3              hsStentless valve   0.0519 NA      NA        0        0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4      Failure hsStentless valve   0.8109 NA      NA        0        0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  Association           gamma_0   1.1359 NA      NA        0        0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6     Variance               U_0   0.0962 NA      NA        0        0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7                       Residual   0.0454 NA      NA        0        0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 Longitudinal       (Intercept)   4.9836 NA      NA   4.9996   4.9996</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2                           time   0.0001 NA      NA  -0.0023  -0.0023</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3              hsStentless valve   0.0519 NA      NA   0.0416   0.0416</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4      Failure hsStentless valve   0.8109 NA      NA   0.6743   0.6743</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  Association           gamma_0   1.1359 NA      NA  -0.0606  -0.0606</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6     Variance               U_0   0.0962 NA      NA   0.0828   0.0828</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7                       Residual   0.0454 NA      NA   0.0398   0.0398</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

@@ -47,6 +47,14 @@
   appropriate for positive-constrained parameters. Closes
   [\#58](https://github.com/graemeleehickey/joineR/issues/58).
 
+- [`jointSE()`](https://graemeleehickey.github.io/joineR/reference/jointSE.md)
+  confidence intervals are now computed for all values of `n.boot`.
+  Previously, runs with fewer than 100 bootstrap samples silently
+  returned `0` for both CI bounds; now the empirical percentile CIs are
+  always returned and a
+  [`warning()`](https://rdrr.io/r/base/warning.html) is issued when
+  `n.boot < 100` to alert the user that the intervals may be unreliable.
+
 - [`simjoint()`](https://graemeleehickey.github.io/joineR/reference/simjoint.md)
   no longer prints a progress line via
   [`cat()`](https://rdrr.io/r/base/cat.html) from the internal

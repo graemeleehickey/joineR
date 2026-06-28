@@ -29,10 +29,9 @@ jointSE(
 
 - n.boot:
 
-  argument specifying the number of bootstrap samples to use in order to
-  obtain the standard error estimates and confidence intervals. Note
-  that at least `n.boot = 100` is required in order for the function to
-  return non-zero confidence intervals.
+  the number of bootstrap samples used to compute standard errors and
+  confidence intervals. A minimum of 100 is recommended for reliable
+  confidence intervals; fewer samples will trigger a warning.
 
 - gpt:
 
@@ -73,9 +72,10 @@ An object of class `data.frame` with columns `Component`, `Parameter`,
 Standard errors and confidence intervals are obtained by repeated
 fitting of the requisite joint model to bootstrap samples of the
 original longitudinal and survival data. It is rare that more than 200
-bootstrap samples are needed for estimating a standard error. The number
-of bootstrap samples needed for accurate confidence intervals can be as
-large as 1000. Two-sided Wald p-values are computed as
+bootstrap samples are needed for estimating a standard error. Confidence
+intervals use the percentile method and are computed for all `n.boot`
+values, though fewer than 100 samples will trigger a warning about
+reliability. Two-sided Wald p-values are computed as
 \\2\Phi(-\|\hat\theta / \widehat{SE}\|)\\ for all fixed-effect and
 association parameters. P-values are `NA` for variance components (`U_*`
 and `Residual`) because Wald tests are not appropriate for variance
@@ -121,12 +121,13 @@ fit <- joint(heart.valve.jd,
              surv.formula = Surv(fuyrs, status) ~ hs,
              model = "int")
 jointSE(fitted = fit, n.boot = 1)
+#> Warning: Fewer than 100 bootstrap samples: confidence intervals may be unreliable
 #>      Component         Parameter Estimate SE p-value 95%Lower 95%Upper
-#> 1 Longitudinal       (Intercept)   4.9836 NA      NA        0        0
-#> 2                           time   0.0001 NA      NA        0        0
-#> 3              hsStentless valve   0.0519 NA      NA        0        0
-#> 4      Failure hsStentless valve   0.8109 NA      NA        0        0
-#> 5  Association           gamma_0   1.1359 NA      NA        0        0
-#> 6     Variance               U_0   0.0962 NA      NA        0        0
-#> 7                       Residual   0.0454 NA      NA        0        0
+#> 1 Longitudinal       (Intercept)   4.9836 NA      NA   4.9996   4.9996
+#> 2                           time   0.0001 NA      NA  -0.0023  -0.0023
+#> 3              hsStentless valve   0.0519 NA      NA   0.0416   0.0416
+#> 4      Failure hsStentless valve   0.8109 NA      NA   0.6743   0.6743
+#> 5  Association           gamma_0   1.1359 NA      NA  -0.0606  -0.0606
+#> 6     Variance               U_0   0.0962 NA      NA   0.0828   0.0828
+#> 7                       Residual   0.0454 NA      NA   0.0398   0.0398
 ```
