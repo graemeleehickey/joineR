@@ -33,7 +33,6 @@ time outcomes.
 ``` r
 
 library(joineR)
-#> Loading required package: survival
 data(heart.valve)
 heart.surv <- UniqueVariables(heart.valve, 
                               var.col = c("fuyrs", "status"),
@@ -73,22 +72,22 @@ summary(fit)
 #> 
 #> Random effects joint model
 #>  Data: heart.valve.jd 
-#>  Log-likelihood: -424.7084 
+#>  Log-likelihood: -423.7073 
 #> 
 #> Longitudinal sub-model fixed effects: log.lvmi ~ 1 + time + hs                              
-#> (Intercept)        4.993080959
-#> time              -0.007045486
-#> hsStentless valve  0.055831384
+#> (Intercept)        4.992709176
+#> time              -0.006977116
+#> hsStentless valve  0.055921729
 #> 
 #> Survival sub-model fixed effects: Surv(fuyrs, status) ~ hs                           
-#> hsStentless valve 0.7934551
+#> hsStentless valve 0.8106134
 #> 
 #> Latent association:                 
-#> gamma_0 0.8211701
+#> gamma_0 0.8476275
 #> 
 #> Variance components:
 #>         U_0         U_1    Residual 
-#> 0.113577498 0.001766164 0.037071195 
+#> 0.113583056 0.001765284 0.037074269 
 #> 
 #> Convergence at iteration: 9 
 #> 

@@ -41,6 +41,14 @@
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="search.json">
 </form></li>
 <li class="nav-item"><a class="external-link nav-link" href="https://github.com/graemeleehickey/joineR" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-lightswitch" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true" aria-label="Light switch"><span class="fa fa-sun"></span></button>
+  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-lightswitch">
+<li><button class="dropdown-item" data-bs-theme-value="light"><span class="fa fa-sun"></span> Light</button></li>
+    <li><button class="dropdown-item" data-bs-theme-value="dark"><span class="fa fa-moon"></span> Dark</button></li>
+    <li><button class="dropdown-item" data-bs-theme-value="auto"><span class="fa fa-adjust"></span> Auto</button></li>
+  </ul>
+</li>
       </ul>
 </div>
 
@@ -62,7 +70,6 @@
 <p>The <code>joineR</code> package comes with several data sets including one the describes the survival of patients who underwent aortic valve replacement surgery. The patients were routinely followed up in clinic, where the left ventricular mass index (LVMI) was calculated. To fit a joint model, we must first create a <code>jointdata</code> object, which holds the survival, longitudinal, and baseline covariate data, along with the names of the columns that identify the patient identifiers and repeated time outcomes.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://graemeleehickey.github.io/joineR/">joineR</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; Loading required package: survival</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">heart.valve</span><span class="op">)</span></span>
 <span><span class="va">heart.surv</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/UniqueVariables.html">UniqueVariables</a></span><span class="op">(</span><span class="va">heart.valve</span>, </span>
 <span>                              var.col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"fuyrs"</span>, <span class="st">"status"</span><span class="op">)</span>,</span>
@@ -101,22 +108,22 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Random effects joint model</span></span>
 <span><span class="co">#&gt;  Data: heart.valve.jd </span></span>
-<span><span class="co">#&gt;  Log-likelihood: -424.7084 </span></span>
+<span><span class="co">#&gt;  Log-likelihood: -423.7073 </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Longitudinal sub-model fixed effects: log.lvmi ~ 1 + time + hs                              </span></span>
-<span><span class="co">#&gt; (Intercept)        4.993080959</span></span>
-<span><span class="co">#&gt; time              -0.007045486</span></span>
-<span><span class="co">#&gt; hsStentless valve  0.055831384</span></span>
+<span><span class="co">#&gt; (Intercept)        4.992709176</span></span>
+<span><span class="co">#&gt; time              -0.006977116</span></span>
+<span><span class="co">#&gt; hsStentless valve  0.055921729</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Survival sub-model fixed effects: Surv(fuyrs, status) ~ hs                           </span></span>
-<span><span class="co">#&gt; hsStentless valve 0.7934551</span></span>
+<span><span class="co">#&gt; hsStentless valve 0.8106134</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Latent association:                 </span></span>
-<span><span class="co">#&gt; gamma_0 0.8211701</span></span>
+<span><span class="co">#&gt; gamma_0 0.8476275</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Variance components:</span></span>
 <span><span class="co">#&gt;         U_0         U_1    Residual </span></span>
-<span><span class="co">#&gt; 0.113577498 0.001766164 0.037071195 </span></span>
+<span><span class="co">#&gt; 0.113583056 0.001765284 0.037074269 </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Convergence at iteration: 9 </span></span>
 <span><span class="co">#&gt; </span></span>
@@ -203,13 +210,13 @@
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://github.com/graemeleehickey/joineR/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/graemeleehickey/joineR/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
-<li><a href="https://ci.appveyor.com/project/graemeleehickey/joineR" class="external-link"><img src="https://ci.appveyor.com/api/projects/status/github/graemeleehickey/joineR?branch=master&amp;svg=true" alt="AppVeyor Build Status"></a></li>
-<li><a href="https://CRAN.R-project.org/package=joineR" class="external-link"><img src="https://www.r-pkg.org/badges/version/joineR" alt="CRAN_Status_Badge"></a></li>
-<li><a href="https://CRAN.R-project.org/package=joineR" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/joineR"></a></li>
-<li><a href="https://CRAN.R-project.org/package=joineR" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/grand-total/joineR"></a></li>
-<li><a href="http://depsy.org/package/r/joineR" class="external-link"><img src="http://depsy.org/api/package/cran/joineR/badge.svg" alt="Research software impact"></a></li>
-<li><a href="https://doi.org/10.5281/zenodo.1167708" class="external-link"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.1167708.svg" alt="DOI"></a></li>
 <li><a href="https://app.codecov.io/gh/graemeleehickey/joineR" class="external-link"><img src="https://codecov.io/gh/graemeleehickey/joineR/graph/badge.svg" alt="Codecov test coverage"></a></li>
+<li><a href="https://CRAN.R-project.org/package=joineR" class="external-link"><img src="https://www.r-pkg.org/badges/version/joineR" alt="CRAN status"></a></li>
+<li><a href="https://CRAN.R-project.org/package=joineR" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/joineR" alt="CRAN downloads"></a></li>
+<li><a href="https://CRAN.R-project.org/package=joineR" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/grand-total/joineR" alt="CRAN total downloads"></a></li>
+<li><a href="https://doi.org/10.5281/zenodo.1167708" class="external-link"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.1167708.svg" alt="DOI"></a></li>
+<li><a href="https://graemeleehickey.github.io/joineR/"><img src="https://github.com/graemeleehickey/joineR/actions/workflows/pkgdown.yaml/badge.svg" alt="pkgdown"></a></li>
+<li><a href="https://lifecycle.r-lib.org/articles/stages.html#stable" class="external-link"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="Lifecycle: stable"></a></li>
 </ul>
 </div>
 
