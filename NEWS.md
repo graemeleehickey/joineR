@@ -18,7 +18,7 @@
 
 * `jointSE()` confidence intervals are now computed for all values of `n.boot`. Previously, runs with fewer than 100 bootstrap samples silently returned `0` for both CI bounds; now the empirical percentile CIs are always returned and a `warning()` is issued when `n.boot < 100` to alert the user that the intervals may be unreliable.
 
-* `tidy()` and `glance()` methods are now available for `joint` objects, providing a tidy \pkg{broom}-style interface. `tidy()` returns a \code{data.frame} of parameter estimates (one row per term) and optionally accepts a \code{jointSE()} result to add standard errors, Wald statistics, p-values, and confidence intervals. `glance()` returns a single-row summary of model-level statistics including log-likelihood, AIC, BIC, number of observations, number of subjects, convergence status, and EM iteration count. Closes #59.
+* `tidy()` and `glance()` methods are now available for `joint` objects, providing a tidy broom-style interface. `tidy()` returns a data frame of parameter estimates (one row per term) and optionally accepts a `jointSE()` result to add standard errors, Wald statistics, p-values, and confidence intervals. `glance()` returns a single-row summary of model-level statistics including log-likelihood, AIC, BIC, number of observations, number of subjects, convergence status, and EM iteration count. Closes #59.
 
 * `simjoint()` no longer prints a progress line via `cat()` from the internal `simdat()` function. It now emits a `message()` at the `simjoint()` level, which can be suppressed with `suppressMessages()`.
 
@@ -145,7 +145,7 @@ class `joint`.
 
 Fixed an error in the `liver` dataset.
 
-## Maintanence
+## Maintenance
 
 * Updated the documentation for the datasets.
 
@@ -166,7 +166,7 @@ handle the competing risks data.
 * R version 3.4.0 deprecated the recycling of 1x1 matrices, and led to warnings
 being thrown. This is now fixed.
 
-## Maintanence
+## Maintenance
 
 * General code and documentation tidy-up.
 
@@ -184,7 +184,7 @@ of association structures.
 
 * Minor bug fixes to the `joint` and `em.alg` functions.
 
-## Maintanence
+## Maintenance
 
 * Added a `NEWS.md` file to track changes to the package.
 

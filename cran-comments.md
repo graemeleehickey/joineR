@@ -1,25 +1,30 @@
-## Other notes
+## Submission notes
 
-None
+This is a patch release (1.2.9) containing several bug fixes, new features,
+and housekeeping changes since 1.2.8. Key changes include:
+
+* Bug fixes to `survst()` (data mutation in initialisation), `jointSE()` (CI
+  off-by-one, zeros returned for small `n.boot`), and `emUpdate()`/`emUpdateCR()`
+  (non-convergence was silently printed rather than warned).
+* New `tidy()` and `glance()` methods for `joint` objects (via `generics`).
+* New `p-value` column in `jointSE()` output (two-sided Wald test).
+* `survival` moved from `Depends` to `Imports`; `Surv` re-exported.
+* New dependency: `generics` (added to `Imports`).
 
 ## Test environments
 
-* local macOS (Sonoma 14.6.1) install, R 4.4.2
-* ubuntu (via GitHub actions, release + devel)
-* macOS (via GitHub actions, release)
-* windows (via appveyor CI, release)
-* windows (via GitHub actions, release)
-* windows (via win-builder, old + release + devel)
+* Local macOS (Sequoia 15.5), R 4.5.3
+* Ubuntu 24.04 (via GitHub Actions), R release and devel
+* macOS latest (via GitHub Actions), R release
+* Windows latest (via GitHub Actions), R release
 
 ## R CMD check results
 
-0 errors | 0 warnings | 1 notes
-
-Win-Builder NOTE: "checking CRAN incoming feasibility ... NOTE"
+0 errors | 0 warnings | 0 notes
 
 ## Reverse dependencies
 
-We checked 1 reverse dependencies, comparing R CMD check results across CRAN and dev versions of this package.
+Checked 1 reverse dependency (joineRML) using `revdepcheck::revdep_check()`.
 
- * We saw 0 new problems
- * We failed to check 0 packages
+* 0 new problems
+* 0 packages failed to check
