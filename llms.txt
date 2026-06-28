@@ -248,6 +248,12 @@ Summary and print methods.
 - [`summarybal()`](https://graemeleehickey.github.io/joineR/reference/summarybal.md)
   : Summary of a balanced longitudinal data set
 
+- [`tidy(`*`<joint>`*`)`](https://graemeleehickey.github.io/joineR/reference/tidy.joint.md)
+  : Tidy a joint model fit
+
+- [`glance(`*`<joint>`*`)`](https://graemeleehickey.github.io/joineR/reference/glance.joint.md)
+  : Glance at a joint model fit
+
 ## Simulation and diagnostics
 
 Functions to simulate joint model data and compute variograms.

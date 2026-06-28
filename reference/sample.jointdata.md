@@ -41,11 +41,11 @@ Ines Sousa
 
 ``` r
 data(heart.valve)
-heart.surv <- UniqueVariables(heart.valve, 
-                              var.col = c("fuyrs", "status"), 
+heart.surv <- UniqueVariables(heart.valve,
+                              var.col = c("fuyrs", "status"),
                               id.col = "num")
-heart.valve.jd <- jointdata(survival = heart.surv, 
-                            id.col = "num", 
+heart.valve.jd <- jointdata(survival = heart.surv,
+                            id.col = "num",
                             time.col = "time")
 sample.jointdata(heart.valve.jd, size = 10)
 #> $subject

@@ -64,9 +64,9 @@ Ines Sousa
 ``` r
 data(heart.valve)
 heart.surv <- UniqueVariables(heart.valve,
-                              var.col = c("fuyrs", "status"), 
+                              var.col = c("fuyrs", "status"),
                               id.col = "num")
-heart.valve.jd <- jointdata(survival = heart.surv, 
+heart.valve.jd <- jointdata(survival = heart.surv,
                             id.col = "num",
                             time.col = "time")
 summary(heart.valve.jd)

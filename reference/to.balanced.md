@@ -60,7 +60,7 @@ simul <- data.frame(num = 1:10,
                     Y1.1 = rnorm(10), Y1.2 = rnorm(10),
                     Y2.1 = rnorm(10), Y2.2 = rnorm(10),
                     age = rnorm(10))
-simul <- to.unbalanced(simul, id.col = 1, times = c(1, 2), 
+simul <- to.unbalanced(simul, id.col = 1, times = c(1, 2),
                        Y.col = 2:5, other.col = 6)
 simul <- to.balanced(simul, id.col = "num", time.col = "time",
                      Y.col = c("Y1.1", "Y2.1"), other.col = "age")

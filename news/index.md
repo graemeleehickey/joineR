@@ -55,6 +55,19 @@
   [`warning()`](https://rdrr.io/r/base/warning.html) is issued when
   `n.boot < 100` to alert the user that the intervals may be unreliable.
 
+- [`tidy()`](https://generics.r-lib.org/reference/tidy.html) and
+  [`glance()`](https://generics.r-lib.org/reference/glance.html) methods
+  are now available for `joint` objects, providing a tidy -style
+  interface. [`tidy()`](https://generics.r-lib.org/reference/tidy.html)
+  returns a of parameter estimates (one row per term) and optionally
+  accepts a result to add standard errors, Wald statistics, p-values,
+  and confidence intervals.
+  [`glance()`](https://generics.r-lib.org/reference/glance.html) returns
+  a single-row summary of model-level statistics including
+  log-likelihood, AIC, BIC, number of observations, number of subjects,
+  convergence status, and EM iteration count. Closes
+  [\#59](https://github.com/graemeleehickey/joineR/issues/59).
+
 - [`simjoint()`](https://graemeleehickey.github.io/joineR/reference/simjoint.md)
   no longer prints a progress line via
   [`cat()`](https://rdrr.io/r/base/cat.html) from the internal

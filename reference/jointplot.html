@@ -195,19 +195,19 @@ measured with error. <em>Biometrics.</em> 1997; <strong>53(1)</strong>: 330-339.
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">heart.valve</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">heart.surv</span> <span class="op">&lt;-</span> <span class="fu"><a href="UniqueVariables.html">UniqueVariables</a></span><span class="op">(</span><span class="va">heart.valve</span>, </span></span>
+<span class="r-in"><span><span class="va">heart.surv</span> <span class="op">&lt;-</span> <span class="fu"><a href="UniqueVariables.html">UniqueVariables</a></span><span class="op">(</span><span class="va">heart.valve</span>,</span></span>
 <span class="r-in"><span>                              var.col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"fuyrs"</span>, <span class="st">"status"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>                              id.col <span class="op">=</span> <span class="st">"num"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">heart.long</span> <span class="op">&lt;-</span> <span class="va">heart.valve</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"num"</span>, <span class="st">"time"</span>, <span class="st">"log.lvmi"</span><span class="op">)</span><span class="op">]</span></span></span>
-<span class="r-in"><span><span class="va">heart.cov</span> <span class="op">&lt;-</span> <span class="fu"><a href="UniqueVariables.html">UniqueVariables</a></span><span class="op">(</span><span class="va">heart.valve</span>, </span></span>
-<span class="r-in"><span>                             <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age"</span>, <span class="st">"sex"</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span><span class="va">heart.cov</span> <span class="op">&lt;-</span> <span class="fu"><a href="UniqueVariables.html">UniqueVariables</a></span><span class="op">(</span><span class="va">heart.valve</span>,</span></span>
+<span class="r-in"><span>                             <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age"</span>, <span class="st">"sex"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>                             id.col <span class="op">=</span> <span class="st">"num"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">heart.valve.jd</span> <span class="op">&lt;-</span> <span class="fu"><a href="jointdata.html">jointdata</a></span><span class="op">(</span>longitudinal <span class="op">=</span> <span class="va">heart.long</span>, </span></span>
-<span class="r-in"><span>                            baseline <span class="op">=</span> <span class="va">heart.cov</span>, </span></span>
+<span class="r-in"><span><span class="va">heart.valve.jd</span> <span class="op">&lt;-</span> <span class="fu"><a href="jointdata.html">jointdata</a></span><span class="op">(</span>longitudinal <span class="op">=</span> <span class="va">heart.long</span>,</span></span>
+<span class="r-in"><span>                            baseline <span class="op">=</span> <span class="va">heart.cov</span>,</span></span>
 <span class="r-in"><span>                            survival <span class="op">=</span> <span class="va">heart.surv</span>,</span></span>
 <span class="r-in"><span>                            id.col <span class="op">=</span> <span class="st">"num"</span>,</span></span>
 <span class="r-in"><span>                            time.col <span class="op">=</span> <span class="st">"time"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">jointplot</span><span class="op">(</span><span class="va">heart.valve.jd</span>, Y.col <span class="op">=</span> <span class="st">"log.lvmi"</span>, </span></span>
+<span class="r-in"><span><span class="fu">jointplot</span><span class="op">(</span><span class="va">heart.valve.jd</span>, Y.col <span class="op">=</span> <span class="st">"log.lvmi"</span>,</span></span>
 <span class="r-in"><span>          Cens.col <span class="op">=</span> <span class="st">"status"</span>, lag <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="jointplot-1.png" alt="" width="700" height="433"></span>
 </code></pre></div>

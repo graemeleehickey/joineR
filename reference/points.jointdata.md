@@ -51,7 +51,7 @@ heart.jd <- jointdata(longitudinal = heart.long,
                       survival = heart.surv,
                       id.col = "num",
                       time.col = "time")
-                      
+
 # Randomly select a pair of subjects to plot profiles of
 take <- sample(1 : max(heart.jd$survival$num), 2)
 heart.jd.1 <- subset(heart.jd, take[1])

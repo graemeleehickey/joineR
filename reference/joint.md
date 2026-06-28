@@ -237,7 +237,7 @@ fit <- joint(data = heart.valve.jd,
              long.formula = log.lvmi ~ 1 + time + hs,
              surv.formula = Surv(fuyrs, status) ~ hs,
              model = "intslope")
-             
+
 ## Competing risks joint model (same data as Williamson et al. 2008)
 
 if (FALSE) { # \dontrun{
@@ -251,7 +251,7 @@ data <- jointdata(longitudinal = longitudinal,
                   baseline = baseline,
                   id.col = "id",
                   time.col = "time")
-                  
+
 fit2 <- joint(data = data,
               long.formula = dose ~ time + treat + interaction,
               surv.formula = Surv(with.time, with.status2) ~ treat,

@@ -140,18 +140,18 @@ Pete Philipson
 
 ``` r
 data(heart.valve)
-heart.surv <- UniqueVariables(heart.valve, 
+heart.surv <- UniqueVariables(heart.valve,
                               var.col = c("fuyrs", "status"),
                               id.col = "num")
 heart.long <- heart.valve[, c("num", "time", "log.lvmi")]
-heart.cov <- UniqueVariables(heart.valve, 
-                             c("age", "sex"), 
+heart.cov <- UniqueVariables(heart.valve,
+                             c("age", "sex"),
                              id.col = "num")
-heart.valve.jd <- jointdata(longitudinal = heart.long, 
-                            baseline = heart.cov, 
+heart.valve.jd <- jointdata(longitudinal = heart.long,
+                            baseline = heart.cov,
                             survival = heart.surv,
                             id.col = "num",
                             time.col = "time")
-jointplot(heart.valve.jd, Y.col = "log.lvmi", 
+jointplot(heart.valve.jd, Y.col = "log.lvmi",
           Cens.col = "status", lag = 5)
 ```
